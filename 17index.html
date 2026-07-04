@@ -623,7 +623,7 @@
                             <h4><i class="fa-solid fa-circle-check"></i> Pagamento</h4>
                             <div class="form-grid">
                                 <div class="form-group"><label>Data <span class="required">*</span></label><input type="date" id="initialDataPagamento"></div>
-                                <div class="form-group"><label>Valor (R$) <span class="required">*</span></label><input type="text" id="initialValorPago" oninput="formatCurrency(this)" placeholder="0,00"></div>
+                                <div class="form-group"><label>Valor (R$) <span class="required">*</span></label><input type="number" step="0.01" id="initialValorPago"></div>
                                 <div class="form-group full"><label>Observação</label><input type="text" id="initialObsConciliacao"></div>
                             </div>
                         </div>
@@ -634,11 +634,7 @@
                     <div class="form-group full"><label><i class="fa-solid fa-folder-tree"></i> Rubrica <span class="required">*</span></label><select id="rubrica" required><option value="" disabled selected>Selecione...</option></select></div>
                     <div class="form-group"><label><i class="fa-solid fa-calendar"></i> Data Emissão <span class="required">*</span></label><input type="date" id="dataEmissao" required></div>
                     <div class="form-group"><label><i class="fa-solid fa-calendar-xmark"></i> Data Vencimento <span class="required">*</span></label><input type="date" id="dataVencimento" required></div>
-                    <div class="form-group full">
-                        <label><i class="fa-solid fa-dollar-sign"></i> Valor Original Bruto (R$) <span class="required">*</span></label>
-                        <input type="text" id="valorOriginal" required placeholder="0,00" oninput="formatCurrency(this)" onblur="calculateTaxes()">
-                        <small style="color:var(--text-muted);font-size:.72rem;margin-top:4px;display:block">💡 Digite apenas números - a formatação é automática</small>
-                    </div>
+                    <div class="form-group full"><label><i class="fa-solid fa-dollar-sign"></i> Valor Original Bruto (R$) <span class="required">*</span></label><input type="number" step="0.01" min="0" id="valorOriginal" required placeholder="0,00" oninput="calculateTaxes()"></div>
                     <div class="form-group full"><label><i class="fa-solid fa-note-sticky"></i> Histórico</label><input type="text" id="historico" placeholder="Descrição adicional"></div>
                 </div>
 
@@ -650,10 +646,10 @@
                     </div>
                     <div class="tax-fields" id="taxFields">
                         <div class="tax-grid">
-                            <div class="tax-field"><label><span>📋 IRRF</span><span class="tax-rate auto">1,50% (dia 20)</span></label><div class="tax-inputs"><input type="text" id="taxIRRFValue" readonly style="background:#eff6ff" placeholder="0,00"></div></div>
-                            <div class="tax-field"><label><span>📋 PCC</span><span class="tax-rate auto">4,65% (dia 20)</span></label><div class="tax-inputs"><input type="text" id="taxPCCValue" readonly style="background:#eff6ff" placeholder="0,00"></div></div>
-                            <div class="tax-field optional"><label><span>📋 INSS</span><span class="optional-tag">opcional (dia 20)</span></label><div class="tax-inputs"><input type="text" id="taxINSSPercent" class="tax-percent" placeholder="%" oninput="calculateTaxes()"><input type="text" id="taxINSSValue" readonly style="background:#f0fdf4" placeholder="0,00"></div></div>
-                            <div class="tax-field optional"><label><span>📋 ISS</span><span class="optional-tag">opcional (dia 10)</span></label><div class="tax-inputs"><input type="text" id="taxISSPercent" class="tax-percent" placeholder="%" oninput="calculateTaxes()"><input type="text" id="taxISSValue" readonly style="background:#f0fdf4" placeholder="0,00"></div></div>
+                            <div class="tax-field"><label><span>📋 IRRF</span><span class="tax-rate auto">1,50% (dia 20)</span></label><div class="tax-inputs"><input type="number" id="taxIRRFValue" step="0.01" readonly style="background:#eff6ff"></div></div>
+                            <div class="tax-field"><label><span>📋 PCC</span><span class="tax-rate auto">4,65% (dia 20)</span></label><div class="tax-inputs"><input type="number" id="taxPCCValue" step="0.01" readonly style="background:#eff6ff"></div></div>
+                            <div class="tax-field optional"><label><span>📋 INSS</span><span class="optional-tag">opcional (dia 20)</span></label><div class="tax-inputs"><input type="number" id="taxINSSPercent" class="tax-percent" step="0.01" min="0" max="100" placeholder="%" oninput="calculateTaxes()"><input type="number" id="taxINSSValue" step="0.01" readonly style="background:#f0fdf4"></div></div>
+                            <div class="tax-field optional"><label><span>📋 ISS</span><span class="optional-tag">opcional (dia 10)</span></label><div class="tax-inputs"><input type="number" id="taxISSPercent" class="tax-percent" step="0.01" min="0" max="100" placeholder="%" oninput="calculateTaxes()"><input type="number" id="taxISSValue" step="0.01" readonly style="background:#f0fdf4"></div></div>
                         </div>
                         <div class="tax-summary">
                             <div class="tax-summary-row"><span>Bruto:</span><span id="summaryGross">R$ 0,00</span></div>
@@ -684,7 +680,7 @@
                 <input type="hidden" id="rubricaParentId">
                 <div class="rubrica-form-group"><label>Código <span class="required" style="color:var(--danger)">*</span></label><div class="rubrica-form-grid"><input type="text" id="rubricaCodigo" placeholder="Ex: 1, 1.1, 7.2" required><span style="font-size:.78rem;color:var(--text-muted)">Numeração hierárquica</span></div></div>
                 <div class="rubrica-form-group"><label>Nome da Rubrica <span class="required" style="color:var(--danger)">*</span></label><input type="text" id="rubricaNome" placeholder="Ex: Pessoal, Ordenados" required></div>
-                <div class="rubrica-form-group"><label>Valor Provisionado Mensal (R$)</label><input type="text" id="rubricaProvisionado" placeholder="0,00" value="0" oninput="formatCurrency(this)"><span style="font-size:.72rem;color:var(--text-muted);margin-top:4px;display:block">Valor previsto no orçamento mensal</span></div>
+                <div class="rubrica-form-group"><label>Valor Provisionado Mensal (R$)</label><input type="number" id="rubricaProvisionado" step="0.01" min="0" placeholder="0,00" value="0"><span style="font-size:.72rem;color:var(--text-muted);margin-top:4px;display:block">Valor previsto no orçamento mensal</span></div>
                 <div class="rubrica-preview"><div class="rubrica-preview-title">Visualização Prévia</div><div class="rubrica-preview-content" id="rubricaPreviewContent">Preencha os campos</div></div>
             </div>
             <div style="margin-top:25px;display:flex;justify-content:flex-end;gap:10px">
@@ -704,7 +700,7 @@
                 <input type="hidden" id="conciliateId">
                 <p id="conciliateDesc" style="margin-bottom:20px;background:#f8fafc;padding:12px;border-radius:6px"></p>
                 <div class="form-grid">
-                    <div class="form-group"><label>Valor (R$) <span class="required">*</span></label><input type="text" id="concValorPago" required oninput="formatCurrency(this)" placeholder="0,00"></div>
+                    <div class="form-group"><label>Valor (R$) <span class="required">*</span></label><input type="number" step="0.01" id="concValorPago" required></div>
                     <div class="form-group"><label>Data <span class="required">*</span></label><input type="date" id="concDataPagamento" required></div>
                     <div class="form-group full"><label>Observação</label><input type="text" id="concAcao"></div>
                 </div>
@@ -787,36 +783,6 @@
     </div>
 
 <script>
-// ===== FUNÇÃO DE FORMATAÇÃO DE MOEDA =====
-function formatCurrency(input) {
-    // Remove todos os caracteres não numéricos
-    let value = input.value.replace(/\D/g, '');
-    
-    // Se vazio, retorna
-    if (!value) {
-        input.value = '';
-        return;
-    }
-    
-    // Converte para número e divide por 100 para ter 2 casas decimais
-    value = (parseInt(value) / 100).toFixed(2);
-    
-    // Formata com pontos e vírgulas
-    const parts = value.split('.');
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    
-    input.value = parts.join(',');
-}
-
-// ===== FUNÇÃO PARA OBTER VALOR NUMÉRICO DE CAMPO FORMATADO =====
-function getCurrencyValue(inputId) {
-    const input = document.getElementById(inputId);
-    if (!input || !input.value) return 0;
-    // Remove formatação e converte para número
-    const value = input.value.replace(/\./g, '').replace(',', '.');
-    return parseFloat(value) || 0;
-}
-
 // ===== RUBRICAS =====
 const RUBRICAS_STORAGE_KEY='fin_pro_rubricas_v1';
 const DEFAULT_RUBRICAS=[
@@ -906,10 +872,10 @@ function openRubricaModal(tipo,editId=null,parentId=null){
     document.getElementById('rubricaEditId').value=editId||'';
     document.getElementById('rubricaEditType').value=tipo;
     document.getElementById('rubricaParentId').value=parentId||'';
-    document.getElementById('rubricaCodigo').value='';document.getElementById('rubricaNome').value='';document.getElementById('rubricaProvisionado').value='0,00';
+    document.getElementById('rubricaCodigo').value='';document.getElementById('rubricaNome').value='';document.getElementById('rubricaProvisionado').value='0';
     if(editId){
-        if(tipo==='categoria'){const c=RUBRICAS.find(c=>c.id===editId);if(c){document.getElementById('rubricaCodigo').value=c.codigo;document.getElementById('rubricaNome').value=c.nome;document.getElementById('rubricaProvisionado').value=(c.provisionado||0).toFixed(2).replace('.', ',');document.getElementById('rubricaModalTitle').innerHTML='<i class="fa-solid fa-pen"></i> Editar Categoria'}}
-        else{const pc=RUBRICAS.find(c=>c.id===parentId);if(pc&&pc.subRubricas){const s=pc.subRubricas.find(s=>s.id===editId);if(s){document.getElementById('rubricaCodigo').value=s.codigo;document.getElementById('rubricaNome').value=s.nome;document.getElementById('rubricaProvisionado').value=(s.provisionado||0).toFixed(2).replace('.', ',');document.getElementById('rubricaModalTitle').innerHTML='<i class="fa-solid fa-pen"></i> Editar Sub-rubrica'}}}
+        if(tipo==='categoria'){const c=RUBRICAS.find(c=>c.id===editId);if(c){document.getElementById('rubricaCodigo').value=c.codigo;document.getElementById('rubricaNome').value=c.nome;document.getElementById('rubricaProvisionado').value=c.provisionado||0;document.getElementById('rubricaModalTitle').innerHTML='<i class="fa-solid fa-pen"></i> Editar Categoria'}}
+        else{const pc=RUBRICAS.find(c=>c.id===parentId);if(pc&&pc.subRubricas){const s=pc.subRubricas.find(s=>s.id===editId);if(s){document.getElementById('rubricaCodigo').value=s.codigo;document.getElementById('rubricaNome').value=s.nome;document.getElementById('rubricaProvisionado').value=s.provisionado||0;document.getElementById('rubricaModalTitle').innerHTML='<i class="fa-solid fa-pen"></i> Editar Sub-rubrica'}}}
     }else{
         if(tipo==='categoria'){document.getElementById('rubricaModalTitle').innerHTML='<i class="fa-solid fa-folder-plus"></i> Nova Categoria';document.getElementById('rubricaCodigo').value=String(RUBRICAS.reduce((m,c)=>Math.max(m,parseInt(c.codigo)||0),0)+1)}
         else{document.getElementById('rubricaModalTitle').innerHTML='<i class="fa-solid fa-plus"></i> Nova Sub-rubrica';const pc=RUBRICAS.find(c=>c.id===parentId);if(pc&&pc.subRubricas){const mx=pc.subRubricas.reduce((m,s)=>{const p=s.codigo.split('.');return Math.max(m,parseFloat(p[p.length-1])||0)},0);document.getElementById('rubricaCodigo').value=`${pc.codigo}.${Math.floor(mx)+1}`}}
@@ -917,10 +883,10 @@ function openRubricaModal(tipo,editId=null,parentId=null){
     updateRubricaPreview();document.getElementById('rubricaModal').classList.add('active');
 }
 function closeRubricaModal(){document.getElementById('rubricaModal').classList.remove('active')}
-function updateRubricaPreview(){const c=document.getElementById('rubricaCodigo').value,n=document.getElementById('rubricaNome').value,p=getCurrencyValue('rubricaProvisionado'),t=document.getElementById('rubricaEditType').value,pr=document.getElementById('rubricaPreviewContent');if(!c||!n){pr.textContent='Preencha os campos';return}pr.innerHTML=t==='categoria'?`📁 <strong>${c}. ${n}</strong> — ${fmtBRL(p)}/mês`:`↳ <strong>${c} ${n}</strong> — ${fmtBRL(p)}/mês`}
+function updateRubricaPreview(){const c=document.getElementById('rubricaCodigo').value,n=document.getElementById('rubricaNome').value,p=parseFloat(document.getElementById('rubricaProvisionado').value)||0,t=document.getElementById('rubricaEditType').value,pr=document.getElementById('rubricaPreviewContent');if(!c||!n){pr.textContent='Preencha os campos';return}pr.innerHTML=t==='categoria'?`📁 <strong>${c}. ${n}</strong> — ${fmtBRL(p)}/mês`:`↳ <strong>${c} ${n}</strong> — ${fmtBRL(p)}/mês`}
 ['rubricaCodigo','rubricaNome','rubricaProvisionado'].forEach(id=>{const e=document.getElementById(id);if(e)e.addEventListener('input',updateRubricaPreview)});
 function saveRubrica(){
-    const c=document.getElementById('rubricaCodigo').value.trim(),n=document.getElementById('rubricaNome').value.trim(),p=getCurrencyValue('rubricaProvisionado'),eid=document.getElementById('rubricaEditId').value,tipo=document.getElementById('rubricaEditType').value,pid=document.getElementById('rubricaParentId').value;
+    const c=document.getElementById('rubricaCodigo').value.trim(),n=document.getElementById('rubricaNome').value.trim(),p=parseFloat(document.getElementById('rubricaProvisionado').value)||0,eid=document.getElementById('rubricaEditId').value,tipo=document.getElementById('rubricaEditType').value,pid=document.getElementById('rubricaParentId').value;
     if(!c||!n){showToast('error','Campos obrigatórios','Código e Nome são obrigatórios');return}
     const dup=RUBRICAS.some(cat=>{if(tipo==='categoria'&&cat.id!==eid&&cat.codigo===c)return true;if(cat.subRubricas)return cat.subRubricas.some(s=>tipo==='sub'&&s.id!==eid&&s.codigo===c);return false});
     if(dup){showToast('error','Código duplicado',`O código ${c} já está em uso`);return}
@@ -980,7 +946,7 @@ function executePasswordReset(){const n=document.getElementById('resetNewPasswor
 function populateSettingsPage(){if(!currentUser)return;document.getElementById('settingsCurrentUser').value=`${currentUser.name} (${currentUser.username})`;document.getElementById('settingsCurrentRole').value=currentUser.roleLabel;renderUsersTable()}
 
 // ===== STATE =====
-let transactions=[];const STORAGE_KEY='fin_pro_v25';
+let transactions=[];const STORAGE_KEY='fin_pro_v24';
 let chartRubricaInstance,chartFluxoInstance,chartAutoRubricaInstance,chartAutoCompetenciaInstance,chartFluxoCaixaInstance,chartProvisionadosInstance;
 const uuid=()=>Date.now().toString(36)+Math.random().toString(36).substr(2);
 const fmtBRL=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v||0);
@@ -1015,7 +981,7 @@ function showToast(type,title,message,duration=3500){const c=document.getElement
 function switchView(v,e){document.querySelectorAll('.view-section').forEach(e=>e.classList.remove('active'));document.querySelectorAll('nav button').forEach(e=>e.classList.remove('active'));document.getElementById(`view-${v}`).classList.add('active');if(e&&e.currentTarget)e.currentTarget.classList.add('active');if(v==='reports')generateReports();if(v==='auto-reports')generateAutoReports();if(v==='settings')populateSettingsPage();if(v==='rubricas')renderRubricasTree()}
 function loadData(){const d=localStorage.getItem(STORAGE_KEY);if(d)transactions=JSON.parse(d);else{transactions=[{id:uuid(),tipo:"Despesa",fornecedor:"Distribuidora Med",numeroDocumento:"NF-8821",dataEmissao:"2026-05-01",dataVencimento:"2026-05-10",competencia:"2026-05",rubrica:"2.2 Medicamentos",valorOriginal:32000,valorBruto:32000,valorLiquido:32000,jurosMultas:0,totalTaxes:0,taxes:[],valorPago:32000,dataPagamento:"2026-05-09",status:"Pago",historico:"Compra mensal",acaoConciliacao:"PIX"},{id:uuid(),tipo:"Receita",fornecedor:"Convênio Saúde",numeroDocumento:"Lote-405",dataEmissao:"2026-06-15",dataVencimento:"2026-06-25",competencia:"2026-06",rubrica:"6.1.1 PJ Equipe Médica",valorOriginal:350000,valorBruto:350000,valorLiquido:350000,jurosMultas:0,totalTaxes:0,taxes:[],valorPago:0,dataPagamento:null,status:"Pendente",historico:"Repasse",acaoConciliacao:""},{id:uuid(),tipo:"Despesa",fornecedor:"Clínica Dr. Silva",numeroDocumento:"NF-2290",dataEmissao:"2026-07-01",dataVencimento:"2026-07-15",competencia:"2026-07",rubrica:"6.1.1 PJ Equipe Médica",valorOriginal:180000,valorBruto:180000,valorLiquido:180000,jurosMultas:0,totalTaxes:0,taxes:[],valorPago:0,dataPagamento:null,status:"Pendente",historico:"Plantão",acaoConciliacao:""},{id:uuid(),tipo:"Receita",fornecedor:"Convênio Unimed",numeroDocumento:"Lote-412",dataEmissao:"2026-07-01",dataVencimento:"2026-07-20",competencia:"2026-07",rubrica:"6.1 Assistenciais",valorOriginal:450000,valorBruto:450000,valorLiquido:450000,jurosMultas:0,totalTaxes:0,taxes:[],valorPago:0,dataPagamento:null,status:"Pendente",historico:"Repasse",acaoConciliacao:""}];saveStorage()}}
 function saveStorage(){localStorage.setItem(STORAGE_KEY,JSON.stringify(transactions));updateDashboard();document.getElementById('last-save-info').innerHTML='<i class="fa-solid fa-circle-check"></i> Salvo às '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}
-function togglePaymentFields(){const s=document.querySelector('input[name="initialStatus"]:checked').value,f=document.getElementById('paymentFields');document.getElementById('opt-pending').classList.toggle('active',s==='Pendente');document.getElementById('opt-paid').classList.toggle('active',s==='Pago');if(s==='Pago'){f.style.display='block';document.getElementById('initialDataPagamento').required=true;document.getElementById('initialValorPago').required=true;if(!document.getElementById('initialValorPago').value)document.getElementById('initialValorPago').value='0,00'}else{f.style.display='none';document.getElementById('initialDataPagamento').required=false;document.getElementById('initialValorPago').required=false}}
+function togglePaymentFields(){const s=document.querySelector('input[name="initialStatus"]:checked').value,f=document.getElementById('paymentFields');document.getElementById('opt-pending').classList.toggle('active',s==='Pendente');document.getElementById('opt-paid').classList.toggle('active',s==='Pago');if(s==='Pago'){f.style.display='block';document.getElementById('initialDataPagamento').required=true;document.getElementById('initialValorPago').required=true;if(!document.getElementById('initialDataPagamento').value)document.getElementById('initialDataPagamento').value=today()}else{f.style.display='none';document.getElementById('initialDataPagamento').required=false;document.getElementById('initialValorPago').required=false}}
 function requestAdminConfirmation(t,m,r,f){pendingAction=f;document.getElementById('confirmTitle').textContent=t;document.getElementById('confirmMessage').textContent=m;document.getElementById('confirmRisks').innerHTML=r.map(x=>`<li>${x}</li>`).join('');document.getElementById('confirmInput').value='';document.getElementById('btnConfirmAction').disabled=true;document.getElementById('confirmOverlay').classList.add('active')}
 function closeConfirmOverlay(){document.getElementById('confirmOverlay').classList.remove('active');pendingAction=null}
 document.getElementById('confirmInput').addEventListener('input',function(){document.getElementById('btnConfirmAction').disabled=this.value.trim().toUpperCase()!=='CONFIRMAR'});
@@ -1023,29 +989,8 @@ function executeConfirmedAction(){if(document.getElementById('confirmInput').val
 function toggleTaxSection(e){if(e&&e.type==='click'&&e.target.type!=='checkbox')document.getElementById('enableTaxes').checked=!document.getElementById('enableTaxes').checked;const en=document.getElementById('enableTaxes').checked;document.getElementById('taxFields').classList.toggle('active',en);if(en)calculateTaxes()}
 function updateTaxVisibility(){const t=document.getElementById('tipoMovimentacao').value;document.getElementById('taxSection').style.display=t==='Despesa'?'block':'none'}
 const TAX_RATES={IRRF:0.015,PCC:0.0465};
-function calculateTaxes(){
-    const v=getCurrencyValue('valorOriginal'),e=document.getElementById('enableTaxes').checked;
-    if(!e||v<=0){
-        ['taxIRRFValue','taxPCCValue','taxINSSValue','taxISSValue'].forEach(id=>document.getElementById(id).value='');
-        document.getElementById('summaryGross').textContent=fmtBRL(v);
-        document.getElementById('summaryTaxes').textContent=fmtBRL(0);
-        document.getElementById('summaryNet').textContent=fmtBRL(v);
-        return;
-    }
-    const irrf=v*TAX_RATES.IRRF;
-    document.getElementById('taxIRRFValue').value=irrf.toFixed(2).replace('.',',');
-    const pcc=v*TAX_RATES.PCC;
-    document.getElementById('taxPCCValue').value=pcc.toFixed(2).replace('.',',');
-    const inssP=getCurrencyValue('taxINSSPercent'),inss=v*(inssP/100);
-    document.getElementById('taxINSSValue').value=inss>0?inss.toFixed(2).replace('.',','):'';
-    const issP=getCurrencyValue('taxISSPercent'),iss=v*(issP/100);
-    document.getElementById('taxISSValue').value=iss>0?iss.toFixed(2).replace('.',','):'';
-    const tot=irrf+pcc+inss+iss;
-    document.getElementById('summaryGross').textContent=fmtBRL(v);
-    document.getElementById('summaryTaxes').textContent=fmtBRL(tot);
-    document.getElementById('summaryNet').textContent=fmtBRL(v-tot);
-}
-function getTaxValues(){const e=document.getElementById('enableTaxes').checked;if(!e)return{enabled:false,taxes:[],totalTaxes:0};const irrf=getCurrencyValue('taxIRRFValue'),pcc=getCurrencyValue('taxPCCValue'),inss=getCurrencyValue('taxINSSValue'),iss=getCurrencyValue('taxISSValue'),t=[];if(irrf>0)t.push({nome:'IRRF',valor:irrf,percent:1.5});if(pcc>0)t.push({nome:'PCC',valor:pcc,percent:4.65});if(inss>0)t.push({nome:'INSS',valor:inss,percent:getCurrencyValue('taxINSSPercent')});if(iss>0)t.push({nome:'ISS',valor:iss,percent:getCurrencyValue('taxISSPercent')});return{enabled:true,taxes:t,totalTaxes:t.reduce((s,x)=>s+x.valor,0)}}
+function calculateTaxes(){const v=parseFloat(document.getElementById('valorOriginal').value)||0,e=document.getElementById('enableTaxes').checked;if(!e||v<=0){['taxIRRFValue','taxPCCValue','taxINSSValue','taxISSValue'].forEach(id=>document.getElementById(id).value='');document.getElementById('summaryGross').textContent=fmtBRL(v);document.getElementById('summaryTaxes').textContent=fmtBRL(0);document.getElementById('summaryNet').textContent=fmtBRL(v);return}const irrf=v*TAX_RATES.IRRF;document.getElementById('taxIRRFValue').value=irrf.toFixed(2);const pcc=v*TAX_RATES.PCC;document.getElementById('taxPCCValue').value=pcc.toFixed(2);const inssP=parseFloat(document.getElementById('taxINSSPercent').value)||0,inss=v*(inssP/100);document.getElementById('taxINSSValue').value=inss>0?inss.toFixed(2):'';const issP=parseFloat(document.getElementById('taxISSPercent').value)||0,iss=v*(issP/100);document.getElementById('taxISSValue').value=iss>0?iss.toFixed(2):'';const tot=irrf+pcc+inss+iss;document.getElementById('summaryGross').textContent=fmtBRL(v);document.getElementById('summaryTaxes').textContent=fmtBRL(tot);document.getElementById('summaryNet').textContent=fmtBRL(v-tot)}
+function getTaxValues(){const e=document.getElementById('enableTaxes').checked;if(!e)return{enabled:false,taxes:[],totalTaxes:0};const irrf=parseFloat(document.getElementById('taxIRRFValue').value)||0,pcc=parseFloat(document.getElementById('taxPCCValue').value)||0,inss=parseFloat(document.getElementById('taxINSSValue').value)||0,iss=parseFloat(document.getElementById('taxISSValue').value)||0,t=[];if(irrf>0)t.push({nome:'IRRF',valor:irrf,percent:1.5});if(pcc>0)t.push({nome:'PCC',valor:pcc,percent:4.65});if(inss>0)t.push({nome:'INSS',valor:inss,percent:parseFloat(document.getElementById('taxINSSPercent').value)||0});if(iss>0)t.push({nome:'ISS',valor:iss,percent:parseFloat(document.getElementById('taxISSPercent').value)||0});return{enabled:true,taxes:t,totalTaxes:t.reduce((s,x)=>s+x.valor,0)}}
 
 // ===== GERAÇÃO DE IMPOSTOS =====
 function gerarMovimentacoesImpostos(transOriginal,taxes){
@@ -1093,7 +1038,7 @@ function saveTransaction(e){
     
     if(statusIni==='Pago'){
         status='Pago';
-        valorPago=getCurrencyValue('initialValorPago');
+        valorPago=parseFloat(document.getElementById('initialValorPago').value)||0;
         dataPagamento=document.getElementById('initialDataPagamento').value;
         acaoConciliacao=document.getElementById('initialObsConciliacao').value;
         if(!dataPagamento||!valorPago){showToast('error','Dados incompletos','Informe data e valor');return}
@@ -1102,7 +1047,7 @@ function saveTransaction(e){
         valorPago=0;dataPagamento=null;acaoConciliacao='';
     }
     
-    const vBruto=getCurrencyValue('valorOriginal');
+    const vBruto=parseFloat(document.getElementById('valorOriginal').value);
     const taxData=getTaxValues();
     const t={
         id:id||uuid(),
@@ -1172,26 +1117,14 @@ function editTransaction(id){
     document.getElementById('btnSaveTransaction').style.display='inline-flex';document.getElementById('lockedAlert').style.display='none';document.getElementById('transactionModal').classList.add('active');
 }
 function loadFormData(t,ro){
-    document.getElementById('transId').value=t.id;document.getElementById('tipoMovimentacao').value=t.tipo;document.getElementById('fornecedor').value=t.fornecedor;document.getElementById('numeroDocumento').value=t.numeroDocumento;document.getElementById('dataEmissao').value=t.dataEmissao;document.getElementById('competencia').value=t.competencia||month();document.getElementById('dataVencimento').value=t.dataVencimento;document.getElementById('rubrica').value=t.rubrica;
-    
-    // Formata valor original com máscara
-    const valorOriginalInput = document.getElementById('valorOriginal');
-    valorOriginalInput.value = (t.valorBruto||t.valorOriginal).toFixed(2).replace('.', ',');
-    
-    document.getElementById('jurosMultas').value=t.jurosMultas;document.getElementById('historico').value=t.historico;
-    if(t.taxes&&t.taxes.length>0){document.getElementById('enableTaxes').checked=true;document.getElementById('taxFields').classList.add('active');t.taxes.forEach(tax=>{if(tax.nome==='IRRF')document.getElementById('taxIRRFValue').value=tax.valor.toFixed(2).replace('.',',');else if(tax.nome==='PCC')document.getElementById('taxPCCValue').value=tax.valor.toFixed(2).replace('.',',');else if(tax.nome==='INSS'){document.getElementById('taxINSSPercent').value=tax.percent;document.getElementById('taxINSSValue').value=tax.valor.toFixed(2).replace('.',',')}else if(tax.nome==='ISS'){document.getElementById('taxISSPercent').value=tax.percent;document.getElementById('taxISSValue').value=tax.valor.toFixed(2).replace('.',',')}});setTimeout(calculateTaxes,50)}else{document.getElementById('enableTaxes').checked=false;document.getElementById('taxFields').classList.remove('active')}
+    document.getElementById('transId').value=t.id;document.getElementById('tipoMovimentacao').value=t.tipo;document.getElementById('fornecedor').value=t.fornecedor;document.getElementById('numeroDocumento').value=t.numeroDocumento;document.getElementById('dataEmissao').value=t.dataEmissao;document.getElementById('competencia').value=t.competencia||month();document.getElementById('dataVencimento').value=t.dataVencimento;document.getElementById('rubrica').value=t.rubrica;document.getElementById('valorOriginal').value=t.valorBruto||t.valorOriginal;document.getElementById('jurosMultas').value=t.jurosMultas;document.getElementById('historico').value=t.historico;
+    if(t.taxes&&t.taxes.length>0){document.getElementById('enableTaxes').checked=true;document.getElementById('taxFields').classList.add('active');t.taxes.forEach(tax=>{if(tax.nome==='IRRF')document.getElementById('taxIRRFValue').value=tax.valor.toFixed(2);else if(tax.nome==='PCC')document.getElementById('taxPCCValue').value=tax.valor.toFixed(2);else if(tax.nome==='INSS'){document.getElementById('taxINSSPercent').value=tax.percent;document.getElementById('taxINSSValue').value=tax.valor.toFixed(2)}else if(tax.nome==='ISS'){document.getElementById('taxISSPercent').value=tax.percent;document.getElementById('taxISSValue').value=tax.valor.toFixed(2)}});setTimeout(calculateTaxes,50)}else{document.getElementById('enableTaxes').checked=false;document.getElementById('taxFields').classList.remove('active')}
     updateTaxVisibility();
-    if(t.status==='Pago'){document.querySelectorAll('input[name="initialStatus"]').forEach(r=>r.checked=r.value==='Pago');togglePaymentFields();document.getElementById('initialDataPagamento').value=t.dataPagamento||'';
-        const valorPagoInput = document.getElementById('initialValorPago');
-        valorPagoInput.value = (t.valorPago||0).toFixed(2).replace('.', ',');
-        document.getElementById('initialObsConciliacao').value=t.acaoConciliacao||''}else{document.querySelectorAll('input[name="initialStatus"]').forEach(r=>r.checked=r.value==='Pendente');togglePaymentFields()}
+    if(t.status==='Pago'){document.querySelectorAll('input[name="initialStatus"]').forEach(r=>r.checked=r.value==='Pago');togglePaymentFields();document.getElementById('initialDataPagamento').value=t.dataPagamento||'';document.getElementById('initialValorPago').value=t.valorPago||'';document.getElementById('initialObsConciliacao').value=t.acaoConciliacao||''}else{document.querySelectorAll('input[name="initialStatus"]').forEach(r=>r.checked=r.value==='Pendente');togglePaymentFields()}
     document.querySelectorAll('#financeForm input,#financeForm select,#financeForm textarea').forEach(el=>el.disabled=ro);document.querySelectorAll('.status-option').forEach(el=>{el.style.pointerEvents=ro?'none':'auto';el.style.opacity=ro?'0.6':'1'});
 }
-function openConciliateModal(id){if(currentUser.role==='consulta'||!hasPermission('conciliate'))return;const t=transactions.find(x=>x.id===id);if(!t||(t.status==='Pago'&&!canEditPaid()))return;document.getElementById('conciliateId').value=id;const v=t.valorLiquido||t.valorOriginal;
-    const valorPagoInput = document.getElementById('concValorPago');
-    valorPagoInput.value = (v+t.jurosMultas).toFixed(2).replace('.', ',');
-    document.getElementById('concDataPagamento').value=today();document.getElementById('concAcao').value='';document.getElementById('conciliateModal').classList.add('active')}
-function confirmConciliation(e){e.preventDefault();if(!hasPermission('conciliate'))return;const id=document.getElementById('conciliateId').value,i=transactions.findIndex(t=>t.id===id);if(i!==-1){transactions[i].status='Pago';transactions[i].valorPago=getCurrencyValue('concValorPago');transactions[i].dataPagamento=document.getElementById('concDataPagamento').value;transactions[i].acaoConciliacao=document.getElementById('concAcao').value;saveStorage();closeConciliateModal();renderTable();showToast('success','Conciliado!')}}
+function openConciliateModal(id){if(currentUser.role==='consulta'||!hasPermission('conciliate'))return;const t=transactions.find(x=>x.id===id);if(!t||(t.status==='Pago'&&!canEditPaid()))return;document.getElementById('conciliateId').value=id;const v=t.valorLiquido||t.valorOriginal;document.getElementById('concValorPago').value=(v+t.jurosMultas).toFixed(2);document.getElementById('concDataPagamento').value=today();document.getElementById('concAcao').value='';document.getElementById('conciliateModal').classList.add('active')}
+function confirmConciliation(e){e.preventDefault();if(!hasPermission('conciliate'))return;const id=document.getElementById('conciliateId').value,i=transactions.findIndex(t=>t.id===id);if(i!==-1){transactions[i].status='Pago';transactions[i].valorPago=parseFloat(document.getElementById('concValorPago').value);transactions[i].dataPagamento=document.getElementById('concDataPagamento').value;transactions[i].acaoConciliacao=document.getElementById('concAcao').value;saveStorage();closeConciliateModal();renderTable();showToast('success','Conciliado!')}}
 function closeConciliateModal(){document.getElementById('conciliateModal').classList.remove('active')}
 function renderTable(){
     const t=document.getElementById('tableBody');t.innerHTML='';

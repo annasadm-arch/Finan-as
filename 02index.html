@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA AI Assistant | Enterprise Chat</title>
+    <style>
+        :root {
+            --nv-green: #76b900;
+            --nv-dark: #000000;
+            --nv-gray: #1a1a1a;
+            --nv-light: #eeeeee;
+            --nv-border: #333333;
+            --msg-user: #1e3a1e;
+            --msg-ai: #262626;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--nv-dark);
+            color: var(--nv-light);
+            font-family: var(--font-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(90deg, #000 0%, #111 100%);
+            padding: 1rem 2rem;
+            border-bottom: 2px solid var(--nv-green);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand svg { height: 32px; fill: var(--nv-green); }
+        .brand h1 { font-size: 1.2rem; font-weight: 600; letter-spacing: 0.5px; }
+        .status-badge { 
+            font-size: 0.75rem; 
+            background: rgba(118, 185, 0, 0.15); 
+            color: var(--nv-green); 
+            padding: 4px 10px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(118, 185, 0, 0.3);
+        }
+
+        /* CHAT AREA */
+        #chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--msg-user);
+            border-bottom-right-radius: 2px;
+            border: 1px solid rgba(118, 185, 0, 0.2);
+        }
+
+        .message.ai {
+            align-self: flex-start;
+            background: var(--msg-ai);
+            border-bottom-left-radius: 2px;
+            border-left: 3px solid var(--nv-green);
+        }
+
+        .message .meta {
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 6px; height: 6px;
+            background: var(--nv-green);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+            margin: 0 2px;
+        }
+        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+
+        /* INPUT AREA */
+        .input-area {
+            padding: 1.5rem 2rem;
+            background: #0d0d0d;
+            border-top: 1px solid var(--nv-border);
+            display: flex;
+            gap: 1rem;
+            align-items: flex-end;
+            flex-shrink: 0;
+        }
+
+        textarea {
+            flex: 1;
+            background: var(--nv-gray);
+            border: 1px solid var(--nv-border);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            resize: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            min-height: 56px;
+            max-height: 150px;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        textarea:focus { border-color: var(--nv-green); }
+
+        button#send-btn {
+            background: var(--nv-green);
+            color: black;
+            border: none;
+            padding: 0 1.5rem;
+            height: 56px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        button#send-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        button#send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        /* CONFIG PANEL (Dev Tool) */
+        .config-toggle {
+            position: fixed; top: 70px; right: 20px;
+            background: var(--nv-gray); border: 1px solid var(--nv-border);
+            color: #888; padding: 6px 10px; border-radius: 6px;
+            font-size: 0.75rem; cursor: pointer; z-index: 10;
+        }
+        .config-panel {
+            position: fixed; top: 100px; right: 20px;
+            background: #111; border: 1px solid var(--nv-green);
+            padding: 1.5rem; border-radius: 8px; z-index: 20;
+            width: 320px; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .config-panel.active { display: block; }
+        .config-panel label { display: block; font-size: 0.8rem; color: #aaa; margin-bottom: 4px; margin-top: 10px; }
+        .config-panel input, .config-panel select {
+            width: 100%; background: #222; border: 1px solid #444;
+            color: white; padding: 8px; border-radius: 4px; font-size: 0.85rem;
+        }
+        .config-panel h3 { color: var(--nv-green); font-size: 0.9rem; margin-bottom: 10px; border-bottom: 1px solid #333; padding-bottom: 8px;}
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--nv-green); }
+
+        @media (max-width: 768px) {
+            .input-area { padding: 1rem; }
+            .message { max-width: 95%; }
+            header { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand">
+        <!-- NVIDIA Logo SVG Simplificado -->
+        <svg viewBox="0 0 24 24"><path d="M8.94 7.56v1.63c-2.04.68-3.5 2.39-3.5 4.81 0 2.76 2.24 5 5 5s5-2.24 5-5c0-1.1-.36-2.12-.97-2.95l1.38-1.38c.97 1.21 1.59 2.73 1.59 4.33 0 3.87-3.13 7-7 7s-7-3.13-7-7c0-3.47 2.52-6.34 5.5-6.44zm2.06-2.5v2.06c3.47.1 6.25 2.88 6.25 6.38 0 3.5-2.78 6.28-6.25 6.38v2.06c4.6-.1 8.31-3.88 8.31-8.44S15.6 5.16 11 5.06z"/></svg>
+        <h1>AI ASSISTANT</h1>
+    </div>
+    <div class="status-badge" id="connection-status">● SIMULAÇÃO ATIVA</div>
+</header>
+
+<button class="config-toggle" onclick="document.querySelector('.config-panel').classList.toggle('active')">⚙ Config API</button>
+
+<div class="config-panel">
+    <h3>Configuração do Endpoint</h3>
+    <label>Modo de Operação</label>
+    <select id="api-mode" onchange="NvidiaChat.updateMode()">
+        <option value="mock">Simulação Local (Mock)</option>
+        <option value="nim">NVIDIA NIM API</option>
+        <option value="ollama">Ollama Local</option>
+    </select>
+    
+    <div id="endpoint-config">
+        <label>Endpoint URL</label>
+        <input type="text" id="api-url" placeholder="https://integrate.api.nvidia.com/v1/chat/completions" disabled>
+        
+        <label>API Key / Token</label>
+        <input type="password" id="api-key" placeholder="nvapi-..." disabled>
+        
+        <label>Modelo</label>
+        <input type="text" id="model-name" value="meta/llama-3.1-70b-instruct" disabled>
+    </div>
+    <p style="font-size:0.7rem; color:#666; margin-top:15px;">* Em modo Simulação, nenhuma chamada externa é feita.</p>
+</div>
+
+<div id="chat-container">
+    <div class="message ai">
+        Olá! Sou o assistente virtual baseado na plataforma NVIDIA AI Enterprise. Posso ajudar com dúvidas sobre GPUs, CUDA, TensorRT, ou análise de dados. Como posso auxiliar hoje?
+        <div class="meta"><span>NVIDIA AI</span></div>
+    </div>
+</div>
+
+<div class="input-area">
+    <textarea id="user-input" placeholder="Digite sua pergunta sobre tecnologia NVIDIA..." rows="1"></textarea>
+    <button id="send-btn" onclick="NvidiaChat.sendMessage()">
+        ENVIAR <i class="fas fa-paper-plane"></i>
+    </button>
+</div>
+
+<script>
+/**
+ * NVIDIA CHATBOT CONTROLLER
+ * Arquitetura preparada para integração com NVIDIA NIM ou Ollama
+ */
+const NvidiaChat = {
+    config: {
+        mode: 'mock', // 'mock', 'nim', 'ollama'
+        apiUrl: '',
+        apiKey: '',
+        model: 'meta/llama-3.1-70b-instruct',
+        history: []
+    },
+
+    init() {
+        this.ui = {
+            chat: document.getElementById('chat-container'),
+            input: document.getElementById('user-input'),
+            btn: document.getElementById('send-btn'),
+            status: document.getElementById('connection-status')
+        };
+
+        // Auto-resize textarea
+        this.ui.input.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 150) + 'px';
+        });
+
+        // Enter para enviar (Shift+Enter para nova linha)
+        this.ui.input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                this.sendMessage();
+            }
+        });
+
+        this.updateMode();
+    },
+
+    updateMode() {
+        const mode = document.getElementById('api-mode').value;
+        this.config.mode = mode;
+        
+        const urlInput = document.getElementById('api-url');
+        const keyInput = document.getElementById('api-key');
+        const modelInput = document.getElementById('model-name');
+        const isMock = mode === 'mock';
+
+        urlInput.disabled = isMock;
+        keyInput.disabled = isMock;
+        modelInput.disabled = isMock;
+
+        if (mode === 'nim') {
+            urlInput.value = 'https://integrate.api.nvidia.com/v1/chat/completions';
+            modelInput.value = 'meta/llama-3.1-70b-instruct';
+            this.ui.status.textContent = '● NVIDIA NIM READY';
+            this.ui.status.style.color = '#76b900';
+        } else if (mode === 'ollama') {
+            urlInput.value = 'http://localhost:11434/api/chat';
+            modelInput.value = 'llama3';
+            this.ui.status.textContent = '● OLLAMA LOCAL';
+            this.ui.status.style.color = '#00bfff';
+        } else {
+            this.ui.status.textContent = '● SIMULAÇÃO ATIVA';
+            this.ui.status.style.color = '#f59e0b';
+        }
+    },
+
+    async sendMessage() {
+        const text = this.ui.input.value.trim();
+        if (!text) return;
+
+        // Adiciona mensagem do usuário
+        this.addMessage(text, 'user');
+        this.ui.input.value = '';
+        this.ui.input.style.height = 'auto';
+        this.ui.btn.disabled = true;
+
+        // Mostra indicador de digitação
+        const typingId = this.showTyping();
+
+        try {
+            let responseText;
+            
+            if (this.config.mode === 'mock') {
+                responseText = await this.mockResponse(text);
+            } else {
+                responseText = await this.callAPI(text);
+            }
+
+            this.removeTyping(typingId);
+            this.addMessage(responseText, 'ai');
+            
+        } catch (error) {
+            this.removeTyping(typingId);
+            this.addMessage(`Erro na comunicação: ${error.message}. Verifique as configurações da API.`, 'ai');
+        } finally {
+            this.ui.btn.disabled = false;
+            this.ui.input.focus();
+        }
+    },
+
+    async callAPI(userText) {
+        this.config.history.push({ role: 'user', content: userText });
+
+        let payload, headers, url;
+
+        if (this.config.mode === 'nim') {
+            url = document.getElementById('api-url').value;
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${document.getElementById('api-key').value}`
+            };
+            payload = {
+                model: document.getElementById('model-name').value,
+                messages: this.config.history,
+                temperature: 0.7,
+                max_tokens: 1024
+            };
+        } else if (this.config.mode === 'ollama') {
+            url = document.getElementById('api-url').value;
+            headers = { 'Content-Type': 'application/json' };
+            payload = {
+                model: document.getElementById('model-name').value,
+                messages: this.config.history,
+                stream: false
+            };
+        }
+
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+
+        const data = await res.json();
+        
+        // Parse adaptativo para diferentes formatos de resposta
+        let content;
+        if (this.config.mode === 'nim') {
+            content = data.choices?.[0]?.message?.content || 'Resposta vazia da API.';
+        } else if (this.config.mode === 'ollama') {
+            content = data.message?.content || 'Resposta vazia do Ollama.';
+        }
+
+        this.config.history.push({ role: 'assistant', content });
+        return content;
+    },
+
+    // Simulação inteligente para demonstração sem API
+    mockResponse(input) {
+        return new Promise(resolve => {
+            const lower = input.toLowerCase();
+            let response = '';
+            
+            setTimeout(() => {
+                if (lower.includes('gpu') || lower.includes('placa')) {
+                    response = "As GPUs NVIDIA da série RTX 40 e H100 utilizam a arquitetura Ada Lovelace e Hopper respectivamente. Para workloads de IA empresarial, recomendo a linha A100 ou H100 com memória HBM3 para máxima largura de banda.";
+                } else if (lower.includes('cuda') || lower.includes('programar')) {
+                    response = "CUDA é a plataforma de computação paralela da NVIDIA. Para começar, recomendo instalar o CUDA Toolkit 12.x e usar o Nsight Systems para profiling. Você está desenvolvendo em C++, Python (CuPy/Numba) ou Rust?";
+                } else if (lower.includes('tensorrt') || lower.includes('otimizar')) {
+                    response = "TensorRT é essencial para inferência de alta performance. Ele otimiza modelos treinados através de fusão de camadas, precisão FP16/INT8 e auto-tuning de kernels. Qual framework de origem você está usando? PyTorch, TensorFlow ou ONNX?";
+                } else if (lower.includes('nim') || lower.includes('api')) {
+                    response = "NVIDIA NIM (Inference Microservices) fornece containers otimizados para deploy de modelos de IA. Eles incluem TensorRT-LLM pré-configurado e são compatíveis com Kubernetes e Docker. Precisa de ajuda com o setup do endpoint?";
+                } else {
+                    response = "Entendi sua questão sobre '" + input.substring(0, 30) + "...'. No ecossistema NVIDIA, isso geralmente envolve integração entre hardware (GPU), middleware (CUDA/TensorRT) e frameworks de IA. Poderia detalhar mais seu caso de uso específico para eu dar uma orientação técnica precisa?";
+                }
+                resolve(response);
+            }, 1200 + Math.random() * 800);
+        });
+    },
+
+    addMessage(text, sender) {
+        const div = document.createElement('div');
+        div.className = `message ${sender}`;
+        
+        const time = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        const label = sender === 'user' ? 'Você' : 'NVIDIA AI';
+        
+        // Suporte básico a markdown/code blocks
+        const formattedText = text.replace(/`([^`]+)`/g, '<code style="background:#333;padding:2px 6px;border-radius:4px;font-size:0.85em;color:#76b900">$1</code>');
+        
+        div.innerHTML = `
+            ${formattedText}
+            <div class="meta"><span>${label}</span><span>${time}</span></div>
+        `;
+        
+        this.ui.chat.appendChild(div);
+        this.ui.chat.scrollTop = this.ui.chat.scrollHeight;
+    },
+
+    showTyping() {
+        const id = 'typing-' + Date.now();
+        const div = document.createElement('div');
+        div.id = id;
+        div.className = 'message ai';
+        div.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+        this.ui.chat.appendChild(div);
+        this.ui.chat.scrollTop = this.ui.chat.scrollHeight;
+        return id;
+    },
+
+    removeTyping(id) {
+        const el = document.getElementById(id);
+        if (el) el.remove();
+    }
+};
+
+// Inicializa quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', () => NvidiaChat.init());
+</script>
+
+<!-- FontAwesome para ícones -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</body>
+</html>

@@ -92,7 +92,7 @@
         /* TOOLBAR */
         .toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; background: var(--bg-card); padding: 18px 20px; border-radius: var(--radius); box-shadow: var(--shadow); }
         .toolbar-left { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-        .toolbar-title { font-weight: 700; color: var(--primary); font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+        .toolbar-title { font-weight: 700; color: var(--primary); font-size: 1.05rem; }
         .quick-filter { display: flex; gap: 6px; flex-wrap: wrap; }
         .quick-filter-btn { padding: 6px 12px; background: #f1f5f9; border: 1px solid var(--border); border-radius: 20px; font-size: 0.75rem; font-weight: 600; cursor: pointer; color: var(--secondary); transition: all 0.2s; }
         .quick-filter-btn:hover, .quick-filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
@@ -157,203 +157,6 @@
         .report-summary-table th, .report-summary-table td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; font-size: 0.88rem; }
         .report-summary-table th { background: #f8fafc; font-weight: 600; }
 
-        /* ============================================ */
-        /* RELATÓRIOS AUTOMÁTICOS - NOVA ABA            */
-        /* ============================================ */
-        .auto-reports-tabs {
-            display: flex; gap: 4px; background: #f1f5f9; padding: 4px;
-            border-radius: 10px; margin-bottom: 20px; width: fit-content;
-        }
-        .auto-tab-btn {
-            padding: 10px 18px; background: transparent; border: none;
-            border-radius: 8px; cursor: pointer; font-weight: 600;
-            font-size: 0.85rem; color: var(--secondary); transition: all 0.2s;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .auto-tab-btn:hover { color: var(--primary); }
-        .auto-tab-btn.active {
-            background: white; color: var(--primary);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-        }
-        .auto-tab-content { display: none; }
-        .auto-tab-content.active { display: block; animation: fadeIn 0.3s; }
-
-        /* KPI Cards para relatórios */
-        .report-kpis {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px; margin-bottom: 25px;
-        }
-        .report-kpi {
-            background: white; padding: 18px; border-radius: 10px;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-        }
-        .report-kpi .label {
-            font-size: 0.72rem; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 0.5px;
-            font-weight: 600; margin-bottom: 6px;
-            display: flex; align-items: center; gap: 6px;
-        }
-        .report-kpi .amount {
-            font-size: 1.3rem; font-weight: 700; color: var(--primary);
-        }
-        .report-kpi .amount.positive { color: var(--success); }
-        .report-kpi .amount.negative { color: var(--danger); }
-        .report-kpi .sub {
-            font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;
-        }
-
-        /* Tabela de agrupamento por rubrica */
-        .grouped-table {
-            width: 100%; border-collapse: collapse;
-            background: white; border-radius: 10px; overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-        }
-        .grouped-table th {
-            background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
-            padding: 12px 14px; font-size: 0.72rem;
-            text-transform: uppercase; letter-spacing: 0.5px;
-            color: var(--secondary); font-weight: 700;
-            border-bottom: 2px solid var(--border);
-            text-align: left;
-        }
-        .grouped-table th.text-right { text-align: right; }
-        .grouped-table td {
-            padding: 10px 14px; border-bottom: 1px solid #f1f5f9;
-            font-size: 0.88rem;
-        }
-        .grouped-table td.text-right { text-align: right; font-variant-numeric: tabular-nums; }
-        .grouped-table tr:hover { background: #f8fafc; }
-        
-        /* Linhas de categoria (agrupamento pai) */
-        .grouped-table tr.category-row {
-            background: linear-gradient(to right, #dbeafe, #eff6ff);
-            font-weight: 700;
-        }
-        .grouped-table tr.category-row td {
-            color: var(--primary);
-            border-top: 2px solid var(--accent);
-            border-bottom: 2px solid var(--accent);
-            padding: 12px 14px;
-        }
-        .grouped-table tr.category-row .cat-name {
-            display: flex; align-items: center; gap: 8px;
-        }
-        .grouped-table tr.category-row .cat-icon {
-            width: 28px; height: 28px; border-radius: 6px;
-            background: var(--accent); color: white;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.85rem;
-        }
-        
-        /* Linhas de subcategoria */
-        .grouped-table tr.subcategory-row td {
-            padding-left: 42px;
-            color: var(--text-main);
-        }
-        .grouped-table tr.subcategory-row td:first-child::before {
-            content: '└';
-            color: var(--text-muted);
-            margin-right: 8px;
-            font-weight: 400;
-        }
-        
-        /* Linha de total geral */
-        .grouped-table tr.total-row {
-            background: linear-gradient(to right, var(--primary), #334155);
-            color: white;
-            font-weight: 700;
-        }
-        .grouped-table tr.total-row td {
-            padding: 14px;
-            border: none;
-            font-size: 0.95rem;
-        }
-        .grouped-table tr.total-row .amount-positive { color: #86efac; }
-        .grouped-table tr.total-row .amount-negative { color: #fca5a5; }
-
-        /* Linha de subtotal de competência */
-        .grouped-table tr.subtotal-row {
-            background: #fef3c7;
-            font-weight: 600;
-        }
-        .grouped-table tr.subtotal-row td {
-            border-top: 2px solid var(--warning);
-            border-bottom: 2px solid var(--warning);
-            color: #78350f;
-        }
-
-        /* Matriz cruzada */
-        .matrix-table {
-            width: 100%; border-collapse: collapse;
-            background: white; border-radius: 10px; overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-            font-size: 0.82rem;
-        }
-        .matrix-table th {
-            background: #f1f5f9; padding: 10px 8px;
-            font-size: 0.7rem; text-transform: uppercase;
-            letter-spacing: 0.3px; color: var(--secondary);
-            font-weight: 700; border: 1px solid var(--border);
-            text-align: center;
-        }
-        .matrix-table th.row-header {
-            text-align: left; background: #e2e8f0;
-            min-width: 200px;
-        }
-        .matrix-table td {
-            padding: 8px 10px; border: 1px solid var(--border);
-            text-align: right; font-variant-numeric: tabular-nums;
-        }
-        .matrix-table td.row-label {
-            text-align: left; font-weight: 600;
-            background: #f8fafc; color: var(--primary);
-        }
-        .matrix-table td.category-label {
-            background: #dbeafe; color: var(--primary);
-            font-weight: 700; text-align: left;
-        }
-        .matrix-table td.positive { color: var(--success); font-weight: 600; }
-        .matrix-table td.negative { color: var(--danger); font-weight: 600; }
-        .matrix-table td.zero { color: var(--text-muted); }
-        .matrix-table tr.total-row td {
-            background: var(--primary); color: white;
-            font-weight: 700; font-size: 0.88rem;
-        }
-
-        /* DRE */
-        .dre-section {
-            background: white; border-radius: 10px; padding: 25px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-            margin-bottom: 20px;
-        }
-        .dre-section h3 {
-            color: var(--primary); font-size: 1.1rem;
-            margin-bottom: 20px; display: flex;
-            align-items: center; gap: 10px;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 12px;
-        }
-        .dre-line {
-            display: flex; justify-content: space-between;
-            padding: 10px 0; border-bottom: 1px solid #f1f5f9;
-        }
-        .dre-line.subtotal {
-            background: #f8fafc; padding: 12px 15px;
-            margin: 8px -15px; border-radius: 6px;
-            font-weight: 700;
-        }
-        .dre-line.total {
-            background: linear-gradient(to right, var(--primary), #334155);
-            color: white; padding: 15px; margin: 15px -15px -25px;
-            border-radius: 0 0 10px 10px; font-weight: 700;
-            font-size: 1.05rem;
-        }
-        .dre-line .label { font-weight: 500; }
-        .dre-line .value { font-weight: 700; font-variant-numeric: tabular-nums; }
-        .dre-line.indent { padding-left: 30px; }
-        .dre-line.indent-2 { padding-left: 60px; font-size: 0.88rem; color: var(--text-muted); }
-
         /* MODAL */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: opacity 0.3s; }
         .modal-overlay.active { display: flex; opacity: 1; }
@@ -391,16 +194,64 @@
         .admin-edit-alert .alert-title { font-weight: 700; margin-bottom: 3px; }
         .admin-edit-alert .alert-desc { font-size: 0.8rem; line-height: 1.4; }
 
-        /* RUBRICAS */
-        select#rubrica { font-size: 0.88rem; padding: 10px 12px; cursor: pointer; }
-        select#rubrica optgroup { font-weight: 800 !important; color: var(--primary) !important; background: linear-gradient(to right, #e0f2fe, #f1f5f9) !important; font-style: normal !important; padding: 10px 8px !important; margin-top: 8px !important; text-transform: uppercase !important; font-size: 0.75rem !important; letter-spacing: 0.5px; border-top: 2px solid var(--accent); }
+        /* ============================================ */
+        /* RUBRICAS - TOTALMENTE SELECIONÁVEL           */
+        /* ============================================ */
+        select#rubrica { 
+            font-size: 0.88rem; 
+            padding: 10px 12px;
+            cursor: pointer;
+        }
+        /* Título do grupo (optgroup label) - apenas visual, NÃO clicável por padrão do HTML */
+        select#rubrica optgroup { 
+            font-weight: 800 !important; 
+            color: var(--primary) !important; 
+            background: linear-gradient(to right, #e0f2fe, #f1f5f9) !important;
+            font-style: normal !important; 
+            padding: 10px 8px !important; 
+            margin-top: 8px !important; 
+            text-transform: uppercase !important; 
+            font-size: 0.75rem !important; 
+            letter-spacing: 0.5px;
+            border-top: 2px solid var(--accent);
+        }
         select#rubrica optgroup:first-child { margin-top: 0 !important; }
-        select#rubrica option.category-option { font-weight: 700 !important; color: var(--primary) !important; background: #dbeafe !important; padding: 10px 14px !important; font-size: 0.9rem !important; border-bottom: 1px solid #bfdbfe; cursor: pointer !important; }
-        select#rubrica option.category-option:hover { background: #bfdbfe !important; }
-        select#rubrica option.sub-option { font-weight: 400 !important; color: var(--text-main) !important; background: #fff !important; padding: 8px 14px 8px 32px !important; font-size: 0.88rem !important; cursor: pointer !important; }
-        select#rubrica option.sub-option:hover { background: #eff6ff !important; }
-        select#rubrica option { cursor: pointer !important; }
-        select#rubrica option:disabled { cursor: not-allowed !important; opacity: 0.5; }
+        
+        /* CATEGORIA-PAI: Selecionável, fundo azul, negrito, com ícone */
+        select#rubrica option.category-option {
+            font-weight: 700 !important;
+            color: var(--primary) !important;
+            background: #dbeafe !important;
+            padding: 10px 14px !important;
+            font-size: 0.9rem !important;
+            border-bottom: 1px solid #bfdbfe;
+            cursor: pointer !important;
+        }
+        select#rubrica option.category-option:hover {
+            background: #bfdbfe !important;
+        }
+        
+        /* SUBCATEGORIAS: Selecionáveis, indentadas */
+        select#rubrica option.sub-option { 
+            font-weight: 400 !important; 
+            color: var(--text-main) !important; 
+            background: #fff !important; 
+            padding: 8px 14px 8px 32px !important; 
+            font-size: 0.88rem !important; 
+            cursor: pointer !important;
+        }
+        select#rubrica option.sub-option:hover { 
+            background: #eff6ff !important; 
+        }
+        
+        /* Garantir que TODOS os options sejam clicáveis */
+        select#rubrica option {
+            cursor: pointer !important;
+        }
+        select#rubrica option:disabled {
+            cursor: not-allowed !important;
+            opacity: 0.5;
+        }
 
         /* TOAST */
         .toast-container { position: fixed; top: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
@@ -504,7 +355,6 @@
             .toolbar { flex-direction: column; align-items: stretch; }
             .chatbot-container { width: calc(100% - 20px); right: 10px; bottom: 90px; height: calc(100vh - 110px); }
             .user-box { display: none; }
-            .auto-reports-tabs { width: 100%; overflow-x: auto; }
         }
     </style>
 </head>
@@ -554,7 +404,7 @@
                     </div>
                     <div class="demo-item" onclick="fillDemo('lancador','lan123')">
                         <span><b>lancador</b> / lan123</span>
-                        <span class="role-tag role-lancador">Lançador</span>
+                        <span class="role-tag role-lancador">Lançador ⭐</span>
                     </div>
                     <div class="demo-item" onclick="fillDemo('consulta','co123')">
                         <span><b>consulta</b> / co123</span>
@@ -571,7 +421,6 @@
         <nav>
             <button class="active" onclick="switchView('dashboard', event)"><i class="fa-solid fa-house"></i> Dashboard</button>
             <button id="navReports" onclick="switchView('reports', event)"><i class="fa-solid fa-chart-line"></i> Relatórios</button>
-            <button id="navAutoReports" onclick="switchView('auto-reports', event)"><i class="fa-solid fa-file-invoice"></i> Relatórios Automáticos</button>
             <div style="margin-top: 20px; margin-bottom: 10px; font-size: 0.75rem; color: #64748b; text-transform: uppercase; padding-left: 15px; font-weight: 700;">Ferramentas</div>
             <button onclick="exportToExcel()"><i class="fa-solid fa-file-excel"></i> Exportar Excel</button>
             <button id="btnImportExcel" onclick="document.getElementById('importExcelFile').click()"><i class="fa-solid fa-upload"></i> Importar Excel</button>
@@ -592,7 +441,6 @@
     </aside>
 
     <main id="appMain" style="display:none">
-        <!-- VIEW: DASHBOARD -->
         <div id="view-dashboard" class="view-section active">
             <section class="dashboard-grid">
                 <div class="card danger">
@@ -670,7 +518,6 @@
             </section>
         </div>
 
-        <!-- VIEW: RELATÓRIOS GERENCIAIS -->
         <div id="view-reports" class="view-section">
             <section class="toolbar">
                 <div class="toolbar-title"><i class="fa-solid fa-chart-line"></i> Relatórios Gerenciais</div>
@@ -698,140 +545,6 @@
                 </table>
             </section>
         </div>
-
-        <!-- ============================================ -->
-        <!-- VIEW: RELATÓRIOS AUTOMÁTICOS (NOVA ABA)      -->
-        <!-- ============================================ -->
-        <div id="view-auto-reports" class="view-section">
-            <section class="toolbar">
-                <div class="toolbar-left">
-                    <div class="toolbar-title"><i class="fa-solid fa-file-invoice"></i> Relatórios Automáticos</div>
-                </div>
-                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-                    <label style="font-size:0.82rem;font-weight:600;color:var(--secondary)">De:</label>
-                    <input type="month" id="auto-report-start" onchange="generateAutoReports()" style="width:auto">
-                    <label style="font-size:0.82rem;font-weight:600;color:var(--secondary)">Até:</label>
-                    <input type="month" id="auto-report-end" onchange="generateAutoReports()" style="width:auto">
-                    <button class="btn btn-success" onclick="exportAutoReportsExcel()"><i class="fa-solid fa-file-excel"></i> Exportar Tudo</button>
-                </div>
-            </section>
-
-            <!-- KPIs GERAIS -->
-            <section class="report-kpis">
-                <div class="report-kpi">
-                    <div class="label"><i class="fa-solid fa-arrow-trend-up" style="color:var(--success)"></i> Total Receitas</div>
-                    <div class="amount positive" id="auto-kpi-receitas">R$ 0,00</div>
-                    <div class="sub" id="auto-kpi-receitas-count">0 lançamentos</div>
-                </div>
-                <div class="report-kpi">
-                    <div class="label"><i class="fa-solid fa-arrow-trend-down" style="color:var(--danger)"></i> Total Despesas</div>
-                    <div class="amount negative" id="auto-kpi-despesas">R$ 0,00</div>
-                    <div class="sub" id="auto-kpi-despesas-count">0 lançamentos</div>
-                </div>
-                <div class="report-kpi">
-                    <div class="label"><i class="fa-solid fa-scale-balanced"></i> Resultado</div>
-                    <div class="amount" id="auto-kpi-resultado">R$ 0,00</div>
-                    <div class="sub" id="auto-kpi-resultado-status">-</div>
-                </div>
-                <div class="report-kpi">
-                    <div class="label"><i class="fa-solid fa-percent"></i> Margem</div>
-                    <div class="amount" id="auto-kpi-margem">0%</div>
-                    <div class="sub">Resultado / Receitas</div>
-                </div>
-            </section>
-
-            <!-- TABS DE RELATÓRIOS -->
-            <div class="auto-reports-tabs">
-                <button class="auto-tab-btn active" onclick="switchAutoTab('rubrica', this)">
-                    <i class="fa-solid fa-folder-tree"></i> Por Rubrica
-                </button>
-                <button class="auto-tab-btn" onclick="switchAutoTab('competencia', this)">
-                    <i class="fa-solid fa-calendar-days"></i> Por Competência
-                </button>
-                <button class="auto-tab-btn" onclick="switchAutoTab('matriz', this)">
-                    <i class="fa-solid fa-table-cells"></i> Matriz Cruzada
-                </button>
-                <button class="auto-tab-btn" onclick="switchAutoTab('dre', this)">
-                    <i class="fa-solid fa-file-invoice-dollar"></i> DRE Gerencial
-                </button>
-            </div>
-
-            <!-- TAB 1: POR RUBRICA -->
-            <div id="tab-rubrica" class="auto-tab-content active">
-                <div class="chart-card">
-                    <h3><i class="fa-solid fa-chart-bar"></i> Receitas vs Despesas por Rubrica</h3>
-                    <canvas id="chartAutoRubrica" height="300"></canvas>
-                </div>
-                <div style="margin-top:20px">
-                    <h3 style="color:var(--primary);margin-bottom:15px;display:flex;align-items:center;gap:8px">
-                        <i class="fa-solid fa-list"></i> Agrupamento Hierárquico por Rubrica
-                    </h3>
-                    <table class="grouped-table" id="tableRubrica">
-                        <thead>
-                            <tr>
-                                <th style="width:45%">Rubrica (Plano de Contas)</th>
-                                <th class="text-right">Receitas</th>
-                                <th class="text-right">Despesas</th>
-                                <th class="text-right">Saldo</th>
-                                <th class="text-right">%</th>
-                                <th class="text-right">Qtd</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bodyRubrica"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- TAB 2: POR COMPETÊNCIA -->
-            <div id="tab-competencia" class="auto-tab-content">
-                <div class="chart-card">
-                    <h3><i class="fa-solid fa-chart-line"></i> Evolução Mensal (Receitas vs Despesas)</h3>
-                    <canvas id="chartAutoCompetencia" height="300"></canvas>
-                </div>
-                <div style="margin-top:20px">
-                    <h3 style="color:var(--primary);margin-bottom:15px;display:flex;align-items:center;gap:8px">
-                        <i class="fa-solid fa-calendar"></i> Totais por Competência
-                    </h3>
-                    <table class="grouped-table" id="tableCompetencia">
-                        <thead>
-                            <tr>
-                                <th style="width:30%">Competência</th>
-                                <th class="text-right">Receitas</th>
-                                <th class="text-right">Despesas</th>
-                                <th class="text-right">Saldo</th>
-                                <th class="text-right">Margem</th>
-                                <th class="text-right">Qtd</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bodyCompetencia"></tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- TAB 3: MATRIZ CRUZADA -->
-            <div id="tab-matriz" class="auto-tab-content">
-                <div class="chart-card">
-                    <h3 style="display:flex;justify-content:space-between;align-items:center">
-                        <span><i class="fa-solid fa-table-cells"></i> Matriz Rubrica × Competência</span>
-                        <span style="font-size:0.75rem;color:var(--text-muted);font-weight:400">
-                            Valores em <span style="color:var(--success)">verde</span> = receitas | 
-                            <span style="color:var(--danger)">vermelho</span> = despesas
-                        </span>
-                    </h3>
-                    <div style="overflow-x:auto;margin-top:15px">
-                        <table class="matrix-table" id="tableMatriz"></table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 4: DRE GERENCIAL -->
-            <div id="tab-dre" class="auto-tab-content">
-                <div class="dre-section">
-                    <h3><i class="fa-solid fa-file-invoice-dollar"></i> Demonstrativo do Resultado do Exercício (DRE)</h3>
-                    <div id="dreContent"></div>
-                </div>
-            </div>
-        </div>
     </main>
 
     <!-- MODAL CADASTRO -->
@@ -846,7 +559,10 @@
                 <i class="fa-solid fa-user-shield"></i>
                 <div>
                     <div class="alert-title">Modo Administrador: Editando registro conciliado</div>
-                    <div class="alert-desc">Você está editando uma movimentação já conciliada. Use com responsabilidade.</div>
+                    <div class="alert-desc">
+                        Você está editando uma movimentação já conciliada. Como administrador, você pode alterar dados históricos.
+                        <strong>Use com responsabilidade.</strong>
+                    </div>
                 </div>
             </div>
             
@@ -854,7 +570,7 @@
                 <i class="fa-solid fa-lock"></i>
                 <div>
                     <strong>Registro conciliado.</strong> 
-                    Esta movimentação já foi baixada e não pode ser alterada.
+                    Esta movimentação já foi baixada e não pode ser alterada. Apenas administradores podem editar este registro.
                 </div>
             </div>
             
@@ -918,6 +634,9 @@
                         <input type="month" id="competencia" required>
                     </div>
                     
+                    <!-- ============================================ -->
+                    <!-- CAMPO RUBRICA TOTALMENTE SELECIONÁVEL       -->
+                    <!-- ============================================ -->
                     <div class="form-group full">
                         <label>
                             <i class="fa-solid fa-folder-tree"></i> Rubrica (Plano de Contas) <span class="required">*</span>
@@ -925,56 +644,62 @@
                                 💡 Selecione qualquer nível
                             </span>
                         </label>
-                        <select id="rubrica" required>
+                        <select id="rubrica" required size="1">
                             <option value="" disabled selected>Selecione uma rubrica...</option>
+                            
                             <optgroup label="📂 1. PESSOAL">
                                 <option value="1. Pessoal" class="category-option">📁 1. Pessoal (Categoria Geral)</option>
                                 <option value="1.1 Ordenados" class="sub-option">💼 1.1 Ordenados</option>
                                 <option value="1.2 Encargos Sociais" class="sub-option">📋 1.2 Encargos Sociais</option>
                                 <option value="1.4 Benefícios" class="sub-option">🎁 1.4 Benefícios</option>
-                                <option value="1.5 Provisões" class="sub-option">⚖️ 1.5 Provisões</option>
+                                <option value="1.5 Provisões" class="sub-option">⚖️ 1.5 Provisões (Rescisões/13º/Férias)</option>
                             </optgroup>
+                            
                             <optgroup label="📂 2. MATERIAL / MEDICAMENTOS">
-                                <option value="2. Material / Medicamentos" class="category-option">📁 2. Material / Medicamentos</option>
+                                <option value="2. Material / Medicamentos" class="category-option">📁 2. Material / Medicamentos (Categoria Geral)</option>
                                 <option value="2.1 Materiais Médico Hospitalar" class="sub-option">🏥 2.1 Materiais Médico Hospitalar</option>
                                 <option value="2.2 Medicamentos" class="sub-option">💊 2.2 Medicamentos</option>
                             </optgroup>
+                            
                             <optgroup label="📂 3. MATERIAIS DIVERSOS">
-                                <option value="3. Materiais Diversos" class="category-option">📁 3. Materiais Diversos</option>
-                                <option value="3.1 Material de Higienização" class="sub-option">🧽 3.1 Higienização</option>
-                                <option value="3.3 Material Expediente" class="sub-option">📎 3.3 Expediente</option>
+                                <option value="3. Materiais Diversos" class="category-option">📁 3. Materiais Diversos (Categoria Geral)</option>
+                                <option value="3.1 Material de Higienização" class="sub-option">🧽 3.1 Material de Higienização</option>
+                                <option value="3.3 Material Expediente" class="sub-option">📎 3.3 Material Expediente</option>
                                 <option value="3.4 Combustível" class="sub-option">⛽ 3.4 Combustível</option>
                                 <option value="3.5 GLP" class="sub-option">🔥 3.5 GLP</option>
-                                <option value="3.6 Material de Manutenção" class="sub-option">🔧 3.6 Manutenção</option>
-                                <option value="3.8 Outras Despesas Materiais" class="sub-option">📦 3.8 Outras</option>
-                                <option value="3.9 Enxoval - Lavanderia" class="sub-option">🧺 3.9 Lavanderia</option>
+                                <option value="3.6 Material de Manutenção" class="sub-option">🔧 3.6 Material de Manutenção</option>
+                                <option value="3.8 Outras Despesas Materiais" class="sub-option">📦 3.8 Outras Despesas Materiais</option>
+                                <option value="3.9 Enxoval - Lavanderia" class="sub-option">🧺 3.9 Enxoval - Lavanderia</option>
                                 <option value="3.10 Esterilização" class="sub-option">🧪 3.10 Esterilização</option>
                                 <option value="3.11 Dedetização" class="sub-option">🪰 3.11 Dedetização</option>
-                                <option value="3.12 Gases Medicinais" class="sub-option">💨 3.12 Gases</option>
+                                <option value="3.12 Gases Medicinais" class="sub-option">💨 3.12 Gases Medicinais</option>
                             </optgroup>
+                            
                             <optgroup label="📂 4. SEGUROS / IMPOSTOS / TAXAS">
-                                <option value="4. Seguros/ Impostos/ Taxas" class="category-option">📁 4. Seguros / Impostos</option>
+                                <option value="4. Seguros/ Impostos/ Taxas" class="category-option">📁 4. Seguros / Impostos / Taxas (Categoria Geral)</option>
                                 <option value="4.1 Seguros" class="sub-option">🛡️ 4.1 Seguros</option>
                                 <option value="4.2 Impostos/Taxas" class="sub-option">🧾 4.2 Impostos/Taxas</option>
                             </optgroup>
+                            
                             <optgroup label="📂 5. DESPESAS GERAIS">
-                                <option value="5. Gerais" class="category-option">📁 5. Despesas Gerais</option>
+                                <option value="5. Gerais" class="category-option">📁 5. Despesas Gerais (Categoria Geral)</option>
                                 <option value="5.1 Telefonia" class="sub-option">📱 5.1 Telefonia</option>
                                 <option value="5.2 Água" class="sub-option">💧 5.2 Água</option>
-                                <option value="5.3 Energia Elétrica" class="sub-option">⚡ 5.3 Energia</option>
-                                <option value="5.4 Outras Despesas Gerais" class="sub-option">📑 5.4 Outras</option>
-                                <option value="5.5 Custos Corporativos" class="sub-option">🏢 5.5 Corporativos</option>
+                                <option value="5.3 Energia Elétrica" class="sub-option">⚡ 5.3 Energia Elétrica</option>
+                                <option value="5.4 Outras Despesas Gerais" class="sub-option">📑 5.4 Outras Despesas Gerais</option>
+                                <option value="5.5 Custos Corporativos" class="sub-option">🏢 5.5 Custos Corporativos</option>
                             </optgroup>
+                            
                             <optgroup label="📂 6. SERVIÇOS TERCEIROS">
-                                <option value="6. Serviços Terceiros" class="category-option">📁 6. Serviços Terceiros</option>
+                                <option value="6. Serviços Terceiros" class="category-option">📁 6. Serviços Terceiros (Categoria Geral)</option>
                                 <option value="6.1 Assistenciais" class="sub-option">👨‍⚕️ 6.1 Assistenciais</option>
                                 <option value="6.1.1 PJ Equipe Médica" class="sub-option">⚕️ 6.1.1 PJ Equipe Médica</option>
                                 <option value="6.2 Administrativos" class="sub-option">👔 6.2 Administrativos</option>
-                                <option value="6.2.1 PJ Assessorias" class="sub-option">📊 6.2.1 Assessorias</option>
+                                <option value="6.2.1 PJ Assessorias" class="sub-option">📊 6.2.1 PJ Assessorias</option>
                                 <option value="6.2.2 Operacionais" class="sub-option">⚙️ 6.2.2 Operacionais</option>
                                 <option value="6.2.3 SADT" class="sub-option">🔬 6.2.3 SADT</option>
                                 <option value="6.2.4 Alimentação" class="sub-option">🍽️ 6.2.4 Alimentação</option>
-                                <option value="6.2.5 Engenharia Clinica" class="sub-option">🔩 6.2.5 Eng. Clínica</option>
+                                <option value="6.2.5 Engenharia Clinica" class="sub-option">🔩 6.2.5 Engenharia Clínica</option>
                             </optgroup>
                         </select>
                     </div>
@@ -1044,11 +769,13 @@
     <div class="confirm-overlay" id="confirmOverlay">
         <div class="confirm-box">
             <div class="warn-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-            <h3 id="confirmTitle">Ação Administrativa</h3>
-            <p id="confirmMessage">Você está prestes a realizar uma ação sensível.</p>
+            <h3 id="confirmTitle">Ação Administrativa Sensível</h3>
+            <p id="confirmMessage">Você está prestes a realizar uma ação que afeta registros históricos.</p>
             <div class="risk-list">
                 <strong>⚠️ Atenção:</strong>
-                <ul id="confirmRisks"></ul>
+                <ul id="confirmRisks">
+                    <li>Esta ação pode alterar o histórico contábil</li>
+                </ul>
             </div>
             <div class="confirm-input">
                 <label>Para confirmar, digite: <strong>CONFIRMAR</strong></label>
@@ -1057,7 +784,7 @@
             <div class="confirm-actions">
                 <button class="btn btn-outline" onclick="closeConfirmOverlay()">Cancelar</button>
                 <button class="btn btn-danger" id="btnConfirmAction" onclick="executeConfirmedAction()" disabled>
-                    <i class="fa-solid fa-check-double"></i> Confirmar
+                    <i class="fa-solid fa-check-double"></i> Confirmar Ação
                 </button>
             </div>
         </div>
@@ -1132,17 +859,62 @@
 
     <script>
         // ============================================
-        // AUTENTICAÇÃO
+        // SISTEMA DE AUTENTICAÇÃO - 4 PERFIS
         // ============================================
         const AUTH_USERS = {
-            'admin': { password: 'admin123', name: 'Administrador', role: 'admin', roleLabel: 'Administrador',
-                permissions: { create: true, edit: true, delete: true, conciliate: true, export: true, import: true, clearAll: true, adminFullAccess: true, editPaid: true } },
-            'operador': { password: 'op123', name: 'Operador Financeiro', role: 'operador', roleLabel: 'Operador',
-                permissions: { create: true, edit: true, delete: false, conciliate: false, export: true, import: true, clearAll: false, adminFullAccess: false, editPaid: false } },
-            'lancador': { password: 'lan123', name: 'Lançador', role: 'lancador', roleLabel: 'Lançador',
-                permissions: { create: true, edit: true, delete: false, conciliate: false, export: true, import: false, clearAll: false, adminFullAccess: false, editPaid: false } },
-            'consulta': { password: 'co123', name: 'Consultor', role: 'consulta', roleLabel: 'Consulta',
-                permissions: { create: false, edit: false, delete: false, conciliate: false, export: true, import: false, clearAll: false, adminFullAccess: false, editPaid: false } }
+            'admin': { 
+                password: 'admin123', 
+                name: 'Administrador', 
+                role: 'admin',
+                roleLabel: 'Administrador',
+                permissions: {
+                    create: true, edit: true, delete: true, 
+                    conciliate: true, export: true, import: true, clearAll: true,
+                    adminFullAccess: true,
+                    editPaid: true  // Pode editar registros pagos
+                }
+            },
+            'operador': { 
+                password: 'op123', 
+                name: 'Operador Financeiro', 
+                role: 'operador',
+                roleLabel: 'Operador',
+                permissions: {
+                    create: true, edit: true, delete: false, 
+                    conciliate: false, export: true, import: true, clearAll: false,
+                    adminFullAccess: false,
+                    editPaid: false  // Não pode editar pagos
+                }
+            },
+            'lancador': { 
+                password: 'lan123', 
+                name: 'Lançador', 
+                role: 'lancador',
+                roleLabel: 'Lançador',
+                permissions: {
+                    create: true,           // Pode lançar nova movimentação
+                    edit: true,             // Pode editar
+                    delete: false,          // NÃO pode excluir
+                    conciliate: false,      // NÃO pode conciliar
+                    export: true,           // Pode exportar relatórios
+                    import: false,          // NÃO pode importar
+                    clearAll: false,        // NÃO pode limpar
+                    adminFullAccess: false,
+                    editPaid: false         // NÃO pode editar pagos/conciliados
+                }
+            },
+            'consulta': { 
+                password: 'co123', 
+                name: 'Consultor', 
+                role: 'consulta',
+                roleLabel: 'Consulta',
+                permissions: {
+                    create: false, edit: false, delete: false, 
+                    conciliate: false, export: true, import: false, clearAll: false,
+                    adminFullAccess: false,
+                    editPaid: false
+                }
+            }
         };
 
         let currentUser = null;
@@ -1193,6 +965,7 @@
                 errorMsg.textContent = 'Usuário ou senha incorretos!';
                 errorBox.classList.add('active');
                 document.getElementById('loginPass').value = '';
+                document.getElementById('loginPass').focus();
                 return;
             }
             currentUser = { username, ...user };
@@ -1206,19 +979,31 @@
             document.getElementById('loginUser').value = user;
             document.getElementById('loginPass').value = pass;
             document.getElementById('loginError').classList.remove('active');
+            document.getElementById('loginPass').focus();
         }
 
         function logout() {
-            if (confirm(`Deseja sair, ${currentUser.name}?`)) {
+            if (confirm(`Deseja sair do sistema, ${currentUser.name}?`)) {
                 localStorage.removeItem(SESSION_KEY);
                 currentUser = null;
+                document.getElementById('loginUser').value = '';
+                document.getElementById('loginPass').value = '';
                 showLogin();
             }
         }
 
-        function hasPermission(action) { return currentUser ? !!currentUser.permissions[action] : false; }
-        function isAdmin() { return currentUser?.role === 'admin'; }
-        function canEditPaid() { return currentUser?.permissions?.editPaid === true; }
+        function hasPermission(action) {
+            if (!currentUser) return false;
+            return !!currentUser.permissions[action];
+        }
+
+        function isAdmin() {
+            return currentUser?.role === 'admin';
+        }
+
+        function canEditPaid() {
+            return currentUser?.permissions?.editPaid === true;
+        }
 
         function updateUserUI() {
             if (!currentUser) return;
@@ -1232,6 +1017,7 @@
             if (currentUser.role === 'admin') avatarClass += ' admin-avatar';
             else if (currentUser.role === 'lancador') avatarClass += ' lancador-avatar';
             avatarEl.className = avatarClass;
+            
             document.getElementById('adminFullBadge').style.display = isAdmin() ? 'flex' : 'none';
         }
 
@@ -1240,15 +1026,16 @@
             document.getElementById('btnNewTransaction').style.display = p.create ? 'inline-flex' : 'none';
             document.getElementById('btnImportExcel').style.display = p.import ? 'flex' : 'none';
             document.getElementById('btnClearAll').style.display = p.clearAll ? 'flex' : 'none';
+            document.getElementById('navReports').style.display = 'flex'; // Todos podem ver relatórios
         }
 
         // ============================================
         // STATE & UTILS
         // ============================================
         let transactions = [];
-        const STORAGE_KEY = 'fin_pro_v16';
-        let chartRubricaInstance = null, chartFluxoInstance = null;
-        let chartAutoRubricaInstance = null, chartAutoCompetenciaInstance = null;
+        const STORAGE_KEY = 'fin_pro_v15';
+        let chartRubricaInstance = null;
+        let chartFluxoInstance = null;
         let currentQuickFilter = 'all';
 
         const uuid = () => Date.now().toString(36) + Math.random().toString(36).substr(2);
@@ -1273,8 +1060,7 @@
             document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
             document.getElementById(`view-${view}`).classList.add('active');
             if (event && event.currentTarget) event.currentTarget.classList.add('active');
-            if (view === 'reports') generateReports();
-            if (view === 'auto-reports') generateAutoReports();
+            if(view === 'reports') generateReports();
         }
 
         function setQuickFilter(filter, btn) {
@@ -1292,13 +1078,9 @@
                     {id:uuid(),tipo:"Despesa",fornecedor:"Distribuidora Med",numeroDocumento:"NF-8821",dataEmissao:"2026-05-01",dataVencimento:"2026-05-10",competencia:"2026-05",rubrica:"2.2 Medicamentos",valorOriginal:1500,jurosMultas:0,valorPago:1500,dataPagamento:"2026-05-09",status:"Pago",historico:"Compra mensal",acaoConciliacao:"PIX"},
                     {id:uuid(),tipo:"Receita",fornecedor:"Convênio Saúde",numeroDocumento:"Lote-405",dataEmissao:"2026-06-15",dataVencimento:"2026-06-25",competencia:"2026-06",rubrica:"6.1.1 PJ Equipe Médica",valorOriginal:15000,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Pendente",historico:"Repasse",acaoConciliacao:""},
                     {id:uuid(),tipo:"Despesa",fornecedor:"Enel Energia",numeroDocumento:"FAT-332",dataEmissao:"2026-06-01",dataVencimento:"2026-06-15",competencia:"2026-06",rubrica:"5.3 Energia Elétrica",valorOriginal:850,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Vencido",historico:"Consumo Maio",acaoConciliacao:""},
-                    {id:uuid(),tipo:"Despesa",fornecedor:"Folha Pagamento",numeroDocumento:"FP-06/26",dataEmissao:"2026-06-25",dataVencimento:"2026-07-05",competencia:"2026-06",rubrica:"1. Pessoal",valorOriginal:28500,jurosMultas:0,valorPago:28500,dataPagamento:"2026-07-05",status:"Pago",historico:"Folha mensal",acaoConciliacao:"PIX"},
+                    {id:uuid(),tipo:"Despesa",fornecedor:"Folha Pagamento",numeroDocumento:"FP-06/26",dataEmissao:"2026-06-25",dataVencimento:"2026-07-05",competencia:"2026-06",rubrica:"1. Pessoal",valorOriginal:28500,jurosMultas:0,valorPago:28500,dataPagamento:"2026-07-05",status:"Pago",historico:"Folha mensal completa",acaoConciliacao:"PIX"},
                     {id:uuid(),tipo:"Despesa",fornecedor:"Clínica Dr. Silva",numeroDocumento:"NF-2290",dataEmissao:"2026-07-01",dataVencimento:"2026-07-15",competencia:"2026-07",rubrica:"6.1.1 PJ Equipe Médica",valorOriginal:8500,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Pendente",historico:"Plantão médico",acaoConciliacao:""},
-                    {id:uuid(),tipo:"Receita",fornecedor:"Convênio Unimed",numeroDocumento:"Lote-412",dataEmissao:"2026-07-01",dataVencimento:"2026-07-20",competencia:"2026-07",rubrica:"6. Serviços Terceiros",valorOriginal:45000,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Pendente",historico:"Repasse mensal",acaoConciliacao:""},
-                    {id:uuid(),tipo:"Despesa",fornecedor:"Farmácia Central",numeroDocumento:"NF-3341",dataEmissao:"2026-07-03",dataVencimento:"2026-07-18",competencia:"2026-07",rubrica:"2.2 Medicamentos",valorOriginal:3200,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Pendente",historico:"Medicamentos diversos",acaoConciliacao:""},
-                    {id:uuid(),tipo:"Despesa",fornecedor:"Vivo Empresas",numeroDocumento:"FAT-789",dataEmissao:"2026-07-05",dataVencimento:"2026-07-20",competencia:"2026-07",rubrica:"5.1 Telefonia",valorOriginal:450,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Pendente",historico:"Plano corporativo",acaoConciliacao:""},
-                    {id:uuid(),tipo:"Receita",fornecedor:"Particular",numeroDocumento:"REC-001",dataEmissao:"2026-07-10",dataVencimento:"2026-07-10",competencia:"2026-07",rubrica:"6.1 Assistenciais",valorOriginal:2500,jurosMultas:0,valorPago:2500,dataPagamento:"2026-07-10",status:"Pago",historico:"Consulta particular",acaoConciliacao:"Dinheiro"},
-                    {id:uuid(),tipo:"Despesa",fornecedor:"Limpeza Total",numeroDocumento:"NF-556",dataEmissao:"2026-07-02",dataVencimento:"2026-07-15",competencia:"2026-07",rubrica:"3.1 Material de Higienização",valorOriginal:680,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Pendente",historico:"Materiais de limpeza",acaoConciliacao:""}
+                    {id:uuid(),tipo:"Receita",fornecedor:"Convênio Unimed",numeroDocumento:"Lote-412",dataEmissao:"2026-07-01",dataVencimento:"2026-07-20",competencia:"2026-07",rubrica:"6. Serviços Terceiros",valorOriginal:45000,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Pendente",historico:"Repasse mensal",acaoConciliacao:""}
                 ];
                 saveStorage();
             }
@@ -1381,31 +1163,40 @@
                 }
             } else {
                 status = venc < today() ? 'Vencido' : 'Pendente';
-                valorPago = 0; dataPagamento = null; acaoConciliacao = "";
+                valorPago = 0;
+                dataPagamento = null;
+                acaoConciliacao = "";
             }
             
             const t = {
-                id: id||uuid(), tipo: document.getElementById('tipoMovimentacao').value,
+                id: id||uuid(), 
+                tipo: document.getElementById('tipoMovimentacao').value,
                 fornecedor: document.getElementById('fornecedor').value, 
                 numeroDocumento: document.getElementById('numeroDocumento').value,
                 dataEmissao: document.getElementById('dataEmissao').value, 
                 competencia: document.getElementById('competencia').value,
-                dataVencimento: venc, rubrica: document.getElementById('rubrica').value,
+                dataVencimento: venc, 
+                rubrica: document.getElementById('rubrica').value,
                 valorOriginal: parseFloat(document.getElementById('valorOriginal').value),
                 jurosMultas: parseFloat(document.getElementById('jurosMultas').value)||0,
                 valorPago, dataPagamento, status, 
-                historico: document.getElementById('historico').value, acaoConciliacao,
-                editadoPor: currentUser?.name || 'Sistema', editadoEm: new Date().toISOString()
+                historico: document.getElementById('historico').value, 
+                acaoConciliacao,
+                editadoPor: currentUser?.name || 'Sistema',
+                editadoEm: new Date().toISOString()
             };
             
             if(id) {
                 const ex = transactions.find(x=>x.id===id);
+                // Apenas admin pode sobrescrever dados de pagamento
                 if(ex && ex.status === 'Pago' && !canEditPaid()) {
-                    t.valorPago = ex.valorPago; t.dataPagamento = ex.dataPagamento;
-                    t.status = 'Pago'; t.acaoConciliacao = ex.acaoConciliacao;
+                    t.valorPago = ex.valorPago;
+                    t.dataPagamento = ex.dataPagamento;
+                    t.status = 'Pago';
+                    t.acaoConciliacao = ex.acaoConciliacao;
                 }
                 transactions[transactions.findIndex(x=>x.id===id)] = t;
-                showToast('success', 'Atualizado!', 'Movimentação editada');
+                showToast('success', 'Atualizado!', 'Movimentação editada com sucesso');
             } else {
                 transactions.push(t);
                 showToast('success', 'Criado!', `${t.tipo} de ${fmtBRL(t.valorOriginal)} lançada como ${status}`);
@@ -1415,30 +1206,41 @@
 
         function deleteTransaction(id) {
             if (!hasPermission('delete')) {
-                showToast('error', 'Sem permissão', 'Seu perfil não permite excluir');
+                showToast('error', 'Sem permissão', 'Seu perfil não permite excluir movimentações');
                 return;
             }
+            
             const t = transactions.find(x => x.id === id);
             if (!t) return;
+            
             if (t.status === 'Pago') {
                 if (isAdmin()) {
-                    requestAdminConfirmation('Excluir registro conciliado',
-                        `Excluir "${t.fornecedor}" de ${fmtBRL(t.valorOriginal)}?`,
-                        ['Registro será REMOVIDO permanentemente', 'Histórico contábil afetado'],
+                    requestAdminConfirmation(
+                        'Excluir registro conciliado',
+                        `Você está prestes a excluir o lançamento "${t.fornecedor}" de ${fmtBRL(t.valorOriginal)}, conciliado em ${fmtDate(t.dataPagamento)}.`,
+                        [
+                            'O registro será REMOVIDO permanentemente',
+                            'O histórico contábil será afetado',
+                            'Esta ação não pode ser desfeita'
+                        ],
                         () => {
                             transactions = transactions.filter(x => x.id !== id);
-                            saveStorage(); renderTable();
-                            showToast('warning', 'Excluído', '⚠️ Administrador removeu registro conciliado');
-                        });
+                            saveStorage();
+                            renderTable();
+                            showToast('warning', 'Excluído', `⚠️ Administrador removeu registro conciliado`);
+                        }
+                    );
                     return;
                 } else {
-                    showToast('error', 'Bloqueado', 'Não é possível excluir movimentação conciliada');
+                    showToast('error', 'Ação bloqueada', 'Não é possível excluir movimentação já conciliada.');
                     return;
                 }
             }
-            if(confirm('Tem certeza que deseja excluir?')) {
+            
+            if(confirm('Tem certeza que deseja excluir esta movimentação?')) {
                 transactions = transactions.filter(x => x.id !== id);
-                saveStorage(); renderTable();
+                saveStorage();
+                renderTable();
                 showToast('warning', 'Excluído', 'Movimentação removida');
             }
         }
@@ -1446,21 +1248,27 @@
         function editTransaction(id) {
             const t = transactions.find(x=>x.id===id);
             if(!t) return;
+            
             const isPaid = t.status === 'Pago';
+            
+            // Se está pago e usuário NÃO tem permissão de editar pagos = apenas visualiza
             if (isPaid && !canEditPaid()) {
                 loadFormData(t, true);
-                document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-eye"></i> Visualizar';
+                document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-eye"></i> Visualizar Movimentação';
                 document.getElementById('btnSaveTransaction').style.display = 'none';
                 document.getElementById('lockedAlert').style.display = 'flex';
                 document.getElementById('adminEditAlert').classList.remove('active');
                 document.getElementById('transactionModal').classList.add('active');
                 return;
             }
+            
             if (!hasPermission('edit')) {
-                showToast('error', 'Sem permissão', 'Seu perfil não permite editar');
+                showToast('error', 'Sem permissão', 'Seu perfil não permite editar movimentações');
                 return;
             }
+            
             loadFormData(t, false);
+            
             if (isPaid && canEditPaid()) {
                 document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-user-shield" style="color:var(--warning)"></i> Editar Histórico (Admin)';
                 document.getElementById('btnSaveTransaction').style.display = 'inline-flex';
@@ -1469,13 +1277,14 @@
                 document.getElementById('lockedAlert').style.display = 'none';
                 document.getElementById('adminEditAlert').classList.add('active');
             } else {
-                document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Editar';
+                document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Editar Movimentação';
                 document.getElementById('btnSaveTransaction').style.display = 'inline-flex';
                 document.getElementById('btnSaveTransaction').classList.remove('btn-warning');
                 document.getElementById('btnSaveTransaction').classList.add('btn-primary');
                 document.getElementById('lockedAlert').style.display = 'none';
                 document.getElementById('adminEditAlert').classList.remove('active');
             }
+            
             document.getElementById('transactionModal').classList.add('active');
         }
 
@@ -1491,17 +1300,25 @@
             document.getElementById('valorOriginal').value = t.valorOriginal;
             document.getElementById('jurosMultas').value = t.jurosMultas;
             document.getElementById('historico').value = t.historico;
+            
             if (t.status === 'Pago') {
-                document.querySelectorAll('input[name="initialStatus"]').forEach(r => r.checked = r.value === 'Pago');
+                document.querySelectorAll('input[name="initialStatus"]').forEach(r => {
+                    r.checked = r.value === 'Pago';
+                });
                 togglePaymentFields();
                 document.getElementById('initialDataPagamento').value = t.dataPagamento || '';
                 document.getElementById('initialValorPago').value = t.valorPago || '';
                 document.getElementById('initialObsConciliacao').value = t.acaoConciliacao || '';
             } else {
-                document.querySelectorAll('input[name="initialStatus"]').forEach(r => r.checked = r.value === 'Pendente');
+                document.querySelectorAll('input[name="initialStatus"]').forEach(r => {
+                    r.checked = r.value === 'Pendente';
+                });
                 togglePaymentFields();
             }
-            document.querySelectorAll('#financeForm input, #financeForm select, #financeForm textarea').forEach(el => el.disabled = readOnly);
+            
+            document.querySelectorAll('#financeForm input, #financeForm select, #financeForm textarea').forEach(el => {
+                el.disabled = readOnly;
+            });
             document.querySelectorAll('.status-option').forEach(el => {
                 el.style.pointerEvents = readOnly ? 'none' : 'auto';
                 el.style.opacity = readOnly ? '0.6' : '1';
@@ -1510,7 +1327,7 @@
 
         function openConciliateModal(id) {
             if (!hasPermission('conciliate')) {
-                showToast('error', 'Sem permissão', 'Seu perfil não permite conciliar');
+                showToast('error', 'Sem permissão', 'Seu perfil não permite realizar conciliação');
                 return;
             }
             const t = transactions.find(x=>x.id===id);
@@ -1532,13 +1349,14 @@
 
         function confirmConciliation(e) {
             e.preventDefault();
-            if (!hasPermission('conciliate')) return;
+            if (!hasPermission('conciliate')) { showToast('error', 'Sem permissão', 'Ação não autorizada'); return; }
             const id = document.getElementById('conciliateId').value;
             const idx = transactions.findIndex(t => t.id === id);
             if (idx !== -1) {
                 if (transactions[idx].status === 'Pago' && !canEditPaid()) {
-                    showToast('warning', 'Já conciliado', 'Já foi baixada');
-                    closeConciliateModal(); return;
+                    showToast('warning', 'Já conciliado', 'Esta movimentação já foi baixada');
+                    closeConciliateModal();
+                    return;
                 }
                 transactions[idx].status = 'Pago';
                 transactions[idx].valorPago = parseFloat(document.getElementById('concValorPago').value);
@@ -1546,8 +1364,10 @@
                 transactions[idx].acaoConciliacao = document.getElementById('concAcao').value;
                 transactions[idx].editadoPor = currentUser?.name;
                 transactions[idx].editadoEm = new Date().toISOString();
-                saveStorage(); closeConciliateModal(); renderTable();
-                showToast('success', 'Conciliado!', 'Movimentação baixada');
+                saveStorage();
+                closeConciliateModal();
+                renderTable();
+                showToast('success', 'Conciliado!', 'Movimentação baixada com sucesso');
             }
         }
 
@@ -1588,6 +1408,7 @@
             }).sort((a,b) => new Date(a.dataVencimento) - new Date(b.dataVencimento));
 
             document.getElementById('table-count').innerText = filtered.length;
+
             if(!filtered.length) {
                 tbody.innerHTML = '<tr><td colspan="11" style="text-align:center;padding:40px;color:var(--text-muted)"><i class="fa-solid fa-inbox" style="font-size:2rem;opacity:0.3;margin-bottom:10px;display:block"></i>Nenhum registro encontrado.</td></tr>';
                 return;
@@ -1597,30 +1418,52 @@
                 const tr = document.createElement('tr');
                 const isPaid = t.status === 'Pago';
                 if (isPaid) tr.classList.add('status-paid-row');
+                
                 let sc = 'status-pendente', sl = t.status;
                 if(isPaid) { sc = 'status-pago'; sl = t.tipo === 'Receita' ? 'Recebido' : 'Pago'; }
                 else if(t.status === 'Vencido') sc = 'status-vencido';
                 const tc = t.tipo === 'Receita' ? 'type-receita' : 'type-despesa';
                 const ve = isPaid ? t.valorPago : 0;
                 const cv = t.tipo === 'Receita' ? 'var(--success)' : 'var(--text-main)';
-                let actions = '', lockIcon = '';
+                
+                let actions = '';
+                let lockIcon = '';
+                
                 if (isPaid) {
                     if (canEditPaid()) {
                         lockIcon = '<i class="fa-solid fa-lock-open admin-indicator" title="Admin pode editar"></i>';
-                        actions = `<button class="icon-btn conciliar" onclick="openConciliateModal('${t.id}')" title="Re-conciliar"><i class="fa-solid fa-rotate"></i></button>
-                            <button class="icon-btn admin-edit" onclick="editTransaction('${t.id}')" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button class="icon-btn admin-delete" onclick="deleteTransaction('${t.id}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>`;
+                        actions = `
+                            <button class="icon-btn conciliar" onclick="openConciliateModal('${t.id}')" title="Re-conciliar (Admin)"><i class="fa-solid fa-rotate"></i></button>
+                            <button class="icon-btn admin-edit" onclick="editTransaction('${t.id}')" title="Editar histórico (Admin)"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button class="icon-btn admin-delete" onclick="deleteTransaction('${t.id}')" title="Excluir (Admin)"><i class="fa-solid fa-trash"></i></button>
+                        `;
                     } else {
                         lockIcon = '<i class="fa-solid fa-lock lock-indicator" title="Conciliado"></i>';
-                        actions = `<button class="icon-btn" onclick="editTransaction('${t.id}')" title="Visualizar"><i class="fa-solid fa-eye"></i></button>`;
+                        // Outros perfis: apenas visualizar (se tiverem permissão de edit) ou nada
+                        if (hasPermission('edit')) {
+                            actions = `<button class="icon-btn" onclick="editTransaction('${t.id}')" title="Visualizar"><i class="fa-solid fa-eye"></i></button>`;
+                        } else {
+                            actions = `<button class="icon-btn locked" disabled title="Apenas visualização"><i class="fa-solid fa-eye"></i></button>`;
+                        }
                     }
                 } else {
-                    if (hasPermission('conciliate')) actions += `<button class="icon-btn conciliar" onclick="openConciliateModal('${t.id}')" title="Conciliar"><i class="fa-solid fa-check"></i></button>`;
-                    if (hasPermission('edit')) actions += `<button class="icon-btn" onclick="editTransaction('${t.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>`;
-                    if (hasPermission('delete')) actions += `<button class="icon-btn delete" onclick="deleteTransaction('${t.id}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>`;
-                    if (!actions) actions = `<button class="icon-btn locked" disabled title="Apenas visualização"><i class="fa-solid fa-eye"></i></button>`;
+                    // Registro não pago - aplicar permissões normais
+                    if (hasPermission('conciliate')) {
+                        actions += `<button class="icon-btn conciliar" onclick="openConciliateModal('${t.id}')" title="Conciliar"><i class="fa-solid fa-check"></i></button>`;
+                    }
+                    if (hasPermission('edit')) {
+                        actions += `<button class="icon-btn" onclick="editTransaction('${t.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>`;
+                    }
+                    if (hasPermission('delete')) {
+                        actions += `<button class="icon-btn delete" onclick="deleteTransaction('${t.id}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>`;
+                    }
+                    if (!actions) {
+                        actions = `<button class="icon-btn locked" title="Apenas visualização" disabled><i class="fa-solid fa-eye"></i></button>`;
+                    }
                 }
-                tr.innerHTML = `<td><span class="badge ${tc}">${t.tipo}</span>${lockIcon}</td>
+                
+                tr.innerHTML = `
+                    <td><span class="badge ${tc}">${t.tipo}</span>${lockIcon}</td>
                     <td><span class="badge ${sc}">${sl}</span></td>
                     <td class="desc-cell"><strong>${t.fornecedor}</strong><span>${t.historico||'-'}</span></td>
                     <td class="rubrica-cell"><div class="rubrica-main">${t.rubrica || '-'}</div></td>
@@ -1643,7 +1486,8 @@
 
         function updateDashboard() {
             const td = today();
-            let tp = 0, trm = 0, pc = 0, tpm = 0, recCount = 0, vencCount = 0, totalValues = 0;
+            let tp = 0, trm = 0, pc = 0, tpm = 0, recCount = 0, vencCount = 0;
+            let totalValues = 0;
             transactions.forEach(t => {
                 totalValues += t.valorOriginal;
                 if(t.tipo === 'Despesa' && t.status !== 'Pago') tp += (t.valorOriginal + t.jurosMultas);
@@ -1716,7 +1560,7 @@
                 const saldo = v.rec - v.desp;
                 tbody.innerHTML += `<tr><td style="font-weight:600">${rub}</td><td style="color:var(--danger)">${fmtBRL(v.desp)}</td><td style="color:var(--success)">${fmtBRL(v.rec)}</td><td style="color:${saldo>=0?'var(--success)':'var(--danger)'};font-weight:700">${fmtBRL(saldo)}</td><td>${pct}%</td></tr>`;
             });
-            if(!Object.keys(summary).length) tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:20px">Sem dados</td></tr>';
+            if(!Object.keys(summary).length) tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:20px">Sem dados neste período</td></tr>';
         }
 
         function exportReportExcel() {
@@ -1726,479 +1570,17 @@
                 const cells = []; tr.querySelectorAll('td').forEach(td => cells.push(td.innerText));
                 if(cells.length) rows.push({Rubrica:cells[0],Despesas:cells[1],Receitas:cells[2],Saldo:cells[3],Percentual:cells[4]});
             });
-            if(!rows.length){showToast('warning','Atenção','Sem dados');return;}
+            if(!rows.length){showToast('warning','Atenção','Sem dados para exportar');return;}
             const ws = XLSX.utils.json_to_sheet(rows);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "Relatório");
             XLSX.writeFile(wb, `Relatorio_Gerencial_${period}.xlsx`);
-            showToast('success','Exportado!','Relatório gerado');
-        }
-
-        // ============================================
-        // RELATÓRIOS AUTOMÁTICOS (NOVA FUNCIONALIDADE)
-        // ============================================
-        
-        // Mapeamento de rubrica para categoria-pai
-        function getCategoryFromRubrica(rubrica) {
-            if (!rubrica) return 'Outros';
-            // Detecta categoria-pai baseado no número inicial
-            if (rubrica.startsWith('1.')) return '1. Pessoal';
-            if (rubrica.startsWith('2.')) return '2. Material / Medicamentos';
-            if (rubrica.startsWith('3.')) return '3. Materiais Diversos';
-            if (rubrica.startsWith('4.')) return '4. Seguros/ Impostos/ Taxas';
-            if (rubrica.startsWith('5.')) return '5. Despesas Gerais';
-            if (rubrica.startsWith('6.')) return '6. Serviços Terceiros';
-            // Se for exatamente a categoria-pai
-            if (rubrica === '1. Pessoal') return '1. Pessoal';
-            if (rubrica === '2. Material / Medicamentos') return '2. Material / Medicamentos';
-            if (rubrica === '3. Materiais Diversos') return '3. Materiais Diversos';
-            if (rubrica === '4. Seguros/ Impostos/ Taxas') return '4. Seguros/ Impostos/ Taxas';
-            if (rubrica === '5. Gerais') return '5. Despesas Gerais';
-            if (rubrica === '6. Serviços Terceiros') return '6. Serviços Terceiros';
-            return rubrica;
-        }
-
-        function switchAutoTab(tab, btn) {
-            document.querySelectorAll('.auto-tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.auto-tab-content').forEach(c => c.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById(`tab-${tab}`).classList.add('active');
-        }
-
-        function generateAutoReports() {
-            const startPeriod = document.getElementById('auto-report-start').value;
-            const endPeriod = document.getElementById('auto-report-end').value;
-            
-            // Filtrar transações no período
-            const filtered = transactions.filter(t => {
-                if (!t.competencia) return false;
-                if (startPeriod && t.competencia < startPeriod) return false;
-                if (endPeriod && t.competencia > endPeriod) return false;
-                return true;
-            });
-
-            // KPIs gerais
-            let totalReceitas = 0, totalDespesas = 0, countRec = 0, countDesp = 0;
-            filtered.forEach(t => {
-                if (t.tipo === 'Receita') { totalReceitas += t.valorOriginal; countRec++; }
-                else { totalDespesas += t.valorOriginal; countDesp++; }
-            });
-            const resultado = totalReceitas - totalDespesas;
-            const margem = totalReceitas > 0 ? (resultado / totalReceitas * 100) : 0;
-
-            document.getElementById('auto-kpi-receitas').innerText = fmtBRL(totalReceitas);
-            document.getElementById('auto-kpi-receitas-count').innerText = `${countRec} lançamento${countRec!==1?'s':''}`;
-            document.getElementById('auto-kpi-despesas').innerText = fmtBRL(totalDespesas);
-            document.getElementById('auto-kpi-despesas-count').innerText = `${countDesp} lançamento${countDesp!==1?'s':''}`;
-            
-            const resEl = document.getElementById('auto-kpi-resultado');
-            resEl.innerText = fmtBRL(resultado);
-            resEl.className = `amount ${resultado >= 0 ? 'positive' : 'negative'}`;
-            document.getElementById('auto-kpi-resultado-status').innerText = resultado >= 0 ? 'Superávit ✓' : 'Déficit ✗';
-            document.getElementById('auto-kpi-margem').innerText = `${margem.toFixed(1)}%`;
-            document.getElementById('auto-kpi-margem').className = `amount ${margem >= 0 ? 'positive' : 'negative'}`;
-
-            // ============ TAB 1: POR RUBRICA ============
-            generateTabRubrica(filtered, totalReceitas + totalDespesas);
-            
-            // ============ TAB 2: POR COMPETÊNCIA ============
-            generateTabCompetencia(filtered);
-            
-            // ============ TAB 3: MATRIZ CRUZADA ============
-            generateTabMatriz(filtered);
-            
-            // ============ TAB 4: DRE ============
-            generateTabDRE(filtered, totalReceitas, totalDespesas, resultado);
-        }
-
-        function generateTabRubrica(filtered, totalGeral) {
-            // Agrupar por rubrica
-            const byRubrica = {};
-            filtered.forEach(t => {
-                if (!byRubrica[t.rubrica]) byRubrica[t.rubrica] = { rec: 0, desp: 0, count: 0, category: getCategoryFromRubrica(t.rubrica) };
-                if (t.tipo === 'Receita') byRubrica[t.rubrica].rec += t.valorOriginal;
-                else byRubrica[t.rubrica].desp += t.valorOriginal;
-                byRubrica[t.rubrica].count++;
-            });
-
-            // Agrupar por categoria
-            const byCategory = {};
-            Object.entries(byRubrica).forEach(([rub, data]) => {
-                if (!byCategory[data.category]) byCategory[data.category] = { rec: 0, desp: 0, count: 0, rubricas: [] };
-                byCategory[data.category].rec += data.rec;
-                byCategory[data.category].desp += data.desp;
-                byCategory[data.category].count += data.count;
-                byCategory[data.category].rubricas.push({ rubrica: rub, ...data });
-            });
-
-            // Renderizar tabela
-            const tbody = document.getElementById('bodyRubrica');
-            tbody.innerHTML = '';
-            
-            let totalRec = 0, totalDesp = 0, totalCount = 0;
-            
-            // Ordenar categorias
-            const sortedCats = Object.entries(byCategory).sort((a,b) => a[0].localeCompare(b[0]));
-            
-            sortedCats.forEach(([cat, data]) => {
-                const saldo = data.rec - data.desp;
-                const pct = totalGeral > 0 ? ((data.rec + data.desp) / totalGeral * 100).toFixed(1) : 0;
-                
-                // Linha de categoria (agrupamento pai)
-                tbody.innerHTML += `
-                    <tr class="category-row">
-                        <td>
-                            <div class="cat-name">
-                                <div class="cat-icon"><i class="fa-solid fa-folder"></i></div>
-                                <span>${cat}</span>
-                            </div>
-                        </td>
-                        <td class="text-right" style="color:var(--success)">${fmtBRL(data.rec)}</td>
-                        <td class="text-right" style="color:var(--danger)">${fmtBRL(data.desp)}</td>
-                        <td class="text-right" style="color:${saldo>=0?'var(--success)':'var(--danger)'}"><strong>${fmtBRL(saldo)}</strong></td>
-                        <td class="text-right">${pct}%</td>
-                        <td class="text-right">${data.count}</td>
-                    </tr>
-                `;
-                
-                // Subcategorias (ordenadas)
-                data.rubricas.sort((a,b) => a.rubrica.localeCompare(b.rubrica)).forEach(sub => {
-                    const subSaldo = sub.rec - sub.desp;
-                    const subPct = totalGeral > 0 ? ((sub.rec + sub.desp) / totalGeral * 100).toFixed(1) : 0;
-                    tbody.innerHTML += `
-                        <tr class="subcategory-row">
-                            <td>${sub.rubrica}</td>
-                            <td class="text-right" style="color:var(--success)">${sub.rec > 0 ? fmtBRL(sub.rec) : '-'}</td>
-                            <td class="text-right" style="color:var(--danger)">${sub.desp > 0 ? fmtBRL(sub.desp) : '-'}</td>
-                            <td class="text-right" style="color:${subSaldo>=0?'var(--success)':'var(--danger)'}">${fmtBRL(subSaldo)}</td>
-                            <td class="text-right">${subPct}%</td>
-                            <td class="text-right">${sub.count}</td>
-                        </tr>
-                    `;
-                });
-                
-                totalRec += data.rec;
-                totalDesp += data.desp;
-                totalCount += data.count;
-            });
-            
-            // Linha de total geral
-            const totalSaldo = totalRec - totalDesp;
-            tbody.innerHTML += `
-                <tr class="total-row">
-                    <td><i class="fa-solid fa-calculator"></i> TOTAL GERAL</td>
-                    <td class="text-right amount-positive">${fmtBRL(totalRec)}</td>
-                    <td class="text-right amount-negative">${fmtBRL(totalDesp)}</td>
-                    <td class="text-right" style="color:${totalSaldo>=0?'#86efac':'#fca5a5'}">${fmtBRL(totalSaldo)}</td>
-                    <td class="text-right">100%</td>
-                    <td class="text-right">${totalCount}</td>
-                </tr>
-            `;
-
-            // Gráfico
-            const labels = Object.keys(byRubrica).slice(0, 10);
-            const recData = labels.map(l => byRubrica[l].rec);
-            const despData = labels.map(l => byRubrica[l].desp);
-            
-            if(chartAutoRubricaInstance) chartAutoRubricaInstance.destroy();
-            chartAutoRubricaInstance = new Chart(document.getElementById('chartAutoRubrica'), {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        { label: 'Receitas', data: recData, backgroundColor: '#10b981' },
-                        { label: 'Despesas', data: despData, backgroundColor: '#ef4444' }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: { y: { beginAtZero: true } },
-                    plugins: { legend: { position: 'top' } }
-                }
-            });
-        }
-
-        function generateTabCompetencia(filtered) {
-            // Agrupar por competência
-            const byComp = {};
-            filtered.forEach(t => {
-                if (!byComp[t.competencia]) byComp[t.competencia] = { rec: 0, desp: 0, count: 0 };
-                if (t.tipo === 'Receita') byComp[t.competencia].rec += t.valorOriginal;
-                else byComp[t.competencia].desp += t.valorOriginal;
-                byComp[t.competencia].count++;
-            });
-
-            const tbody = document.getElementById('bodyCompetencia');
-            tbody.innerHTML = '';
-            
-            let totalRec = 0, totalDesp = 0, totalCount = 0;
-            const sortedComps = Object.entries(byComp).sort((a,b) => a[0].localeCompare(b[0]));
-            
-            sortedComps.forEach(([comp, data]) => {
-                const saldo = data.rec - data.desp;
-                const margem = data.rec > 0 ? (saldo / data.rec * 100).toFixed(1) : 0;
-                tbody.innerHTML += `
-                    <tr>
-                        <td style="font-weight:600"><i class="fa-solid fa-calendar" style="color:var(--accent);margin-right:6px"></i>${fmtComp(comp)}</td>
-                        <td class="text-right" style="color:var(--success)">${fmtBRL(data.rec)}</td>
-                        <td class="text-right" style="color:var(--danger)">${fmtBRL(data.desp)}</td>
-                        <td class="text-right" style="color:${saldo>=0?'var(--success)':'var(--danger)'};font-weight:700">${fmtBRL(saldo)}</td>
-                        <td class="text-right" style="color:${margem>=0?'var(--success)':'var(--danger)'}">${margem}%</td>
-                        <td class="text-right">${data.count}</td>
-                    </tr>
-                `;
-                totalRec += data.rec;
-                totalDesp += data.desp;
-                totalCount += data.count;
-            });
-            
-            const totalSaldo = totalRec - totalDesp;
-            const totalMargem = totalRec > 0 ? (totalSaldo / totalRec * 100).toFixed(1) : 0;
-            tbody.innerHTML += `
-                <tr class="total-row">
-                    <td><i class="fa-solid fa-calculator"></i> TOTAL GERAL</td>
-                    <td class="text-right amount-positive">${fmtBRL(totalRec)}</td>
-                    <td class="text-right amount-negative">${fmtBRL(totalDesp)}</td>
-                    <td class="text-right" style="color:${totalSaldo>=0?'#86efac':'#fca5a5'}">${fmtBRL(totalSaldo)}</td>
-                    <td class="text-right">${totalMargem}%</td>
-                    <td class="text-right">${totalCount}</td>
-                </tr>
-            `;
-
-            // Gráfico
-            const labels = sortedComps.map(([c]) => fmtComp(c));
-            const recData = sortedComps.map(([,d]) => d.rec);
-            const despData = sortedComps.map(([,d]) => d.desp);
-            const saldoData = sortedComps.map(([,d]) => d.rec - d.desp);
-            
-            if(chartAutoCompetenciaInstance) chartAutoCompetenciaInstance.destroy();
-            chartAutoCompetenciaInstance = new Chart(document.getElementById('chartAutoCompetencia'), {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        { label: 'Receitas', data: recData, backgroundColor: '#10b981' },
-                        { label: 'Despesas', data: despData, backgroundColor: '#ef4444' },
-                        { label: 'Saldo', data: saldoData, type: 'line', borderColor: '#0ea5e9', backgroundColor: 'rgba(14,165,233,0.1)', tension: 0.3, fill: false }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: { y: { beginAtZero: true } },
-                    plugins: { legend: { position: 'top' } }
-                }
-            });
-        }
-
-        function generateTabMatriz(filtered) {
-            // Coletar rubricas e competências únicas
-            const rubricas = new Set();
-            const competencias = new Set();
-            filtered.forEach(t => {
-                rubricas.add(t.rubrica);
-                competencias.add(t.competencia);
-            });
-
-            const sortedRubricas = Array.from(rubricas).sort();
-            const sortedComps = Array.from(competencias).sort();
-
-            // Criar matriz de valores
-            const matrix = {};
-            filtered.forEach(t => {
-                const key = `${t.rubrica}|${t.competencia}`;
-                if (!matrix[key]) matrix[key] = { rec: 0, desp: 0 };
-                if (t.tipo === 'Receita') matrix[key].rec += t.valorOriginal;
-                else matrix[key].desp += t.valorOriginal;
-            });
-
-            // Calcular totais por competência
-            const totalsByComp = {};
-            sortedComps.forEach(c => totalsByComp[c] = { rec: 0, desp: 0 });
-            filtered.forEach(t => {
-                if (t.tipo === 'Receita') totalsByComp[t.competencia].rec += t.valorOriginal;
-                else totalsByComp[t.competencia].desp += t.valorOriginal;
-            });
-
-            // Renderizar tabela
-            const table = document.getElementById('tableMatriz');
-            let html = '<thead><tr><th class="row-header">Rubrica</th>';
-            sortedComps.forEach(c => html += `<th>${fmtComp(c)}</th>`);
-            html += '<th style="background:#1e293b;color:white">TOTAL</th></tr></thead><tbody>';
-
-            // Agrupar por categoria
-            const byCategory = {};
-            sortedRubricas.forEach(r => {
-                const cat = getCategoryFromRubrica(r);
-                if (!byCategory[cat]) byCategory[cat] = [];
-                byCategory[cat].push(r);
-            });
-
-            let grandTotalRec = 0, grandTotalDesp = 0;
-            
-            Object.entries(byCategory).sort((a,b) => a[0].localeCompare(b[0])).forEach(([cat, rubs]) => {
-                // Linha da categoria
-                let catTotalRec = 0, catTotalDesp = 0;
-                html += `<tr><td class="category-label" colspan="${sortedComps.length + 2}"><i class="fa-solid fa-folder"></i> ${cat}</td></tr>`;
-                
-                rubs.forEach(rub => {
-                    let rowTotalRec = 0, rowTotalDesp = 0;
-                    html += `<tr><td class="row-label">${rub}</td>`;
-                    sortedComps.forEach(c => {
-                        const key = `${rub}|${c}`;
-                        const data = matrix[key] || { rec: 0, desp: 0 };
-                        const valor = data.rec > 0 ? data.rec : (data.desp > 0 ? -data.desp : 0);
-                        rowTotalRec += data.rec;
-                        rowTotalDesp += data.desp;
-                        if (valor === 0) {
-                            html += `<td class="zero">-</td>`;
-                        } else if (valor > 0) {
-                            html += `<td class="positive">${fmtBRL(valor)}</td>`;
-                        } else {
-                            html += `<td class="negative">(${fmtBRL(Math.abs(valor))})</td>`;
-                        }
-                    });
-                    const rowSaldo = rowTotalRec - rowTotalDesp;
-                    html += `<td style="background:#f1f5f9;font-weight:700;color:${rowSaldo>=0?'var(--success)':'var(--danger)'}">${fmtBRL(rowSaldo)}</td></tr>`;
-                    catTotalRec += rowTotalRec;
-                    catTotalDesp += rowTotalDesp;
-                });
-                
-                // Subtotal da categoria
-                const catSaldo = catTotalRec - catTotalDesp;
-                html += `<tr class="subtotal-row"><td><strong>Subtotal ${cat}</strong></td>`;
-                sortedComps.forEach(c => {
-                    let catCompRec = 0, catCompDesp = 0;
-                    rubs.forEach(rub => {
-                        const key = `${rub}|${c}`;
-                        const data = matrix[key] || { rec: 0, desp: 0 };
-                        catCompRec += data.rec;
-                        catCompDesp += data.desp;
-                    });
-                    const sub = catCompRec - catCompDesp;
-                    html += `<td style="font-weight:700;color:${sub>=0?'var(--success)':'var(--danger)'}">${fmtBRL(sub)}</td>`;
-                });
-                html += `<td style="font-weight:700;color:${catSaldo>=0?'var(--success)':'var(--danger)'}">${fmtBRL(catSaldo)}</td></tr>`;
-                
-                grandTotalRec += catTotalRec;
-                grandTotalDesp += catTotalDesp;
-            });
-
-            // Total geral
-            const grandSaldo = grandTotalRec - grandTotalDesp;
-            html += `<tr class="total-row"><td style="background:var(--primary);color:white"><i class="fa-solid fa-calculator"></i> TOTAL GERAL</td>`;
-            sortedComps.forEach(c => {
-                const saldo = totalsByComp[c].rec - totalsByComp[c].desp;
-                html += `<td>${fmtBRL(saldo)}</td>`;
-            });
-            html += `<td style="background:var(--primary);color:white">${fmtBRL(grandSaldo)}</td></tr>`;
-            html += '</tbody>';
-            table.innerHTML = html;
-        }
-
-        function generateTabDRE(filtered, totalReceitas, totalDespesas, resultado) {
-            // Agrupar despesas por categoria
-            const byCategory = {};
-            filtered.forEach(t => {
-                if (t.tipo === 'Despesa') {
-                    const cat = getCategoryFromRubrica(t.rubrica);
-                    if (!byCategory[cat]) byCategory[cat] = { total: 0, rubricas: {} };
-                    byCategory[cat].total += t.valorOriginal;
-                    if (!byCategory[cat].rubricas[t.rubrica]) byCategory[cat].rubricas[t.rubrica] = 0;
-                    byCategory[cat].rubricas[t.rubrica] += t.valorOriginal;
-                }
-            });
-
-            const content = document.getElementById('dreContent');
-            let html = '';
-            
-            // Receitas
-            html += `<div class="dre-line"><span class="label"><i class="fa-solid fa-arrow-trend-up" style="color:var(--success)"></i> <strong>RECEITA OPERACIONAL BRUTA</strong></span><span class="value" style="color:var(--success)">${fmtBRL(totalReceitas)}</span></div>`;
-            
-            // Deduções (se houver)
-            html += `<div class="dre-line indent"><span class="label">(-) Deduções</span><span class="value">R$ 0,00</span></div>`;
-            
-            // Receita Líquida
-            html += `<div class="dre-line subtotal"><span class="label"><strong>RECEITA LÍQUIDA</strong></span><span class="value" style="color:var(--success)">${fmtBRL(totalReceitas)}</span></div>`;
-            
-            // Despesas por categoria
-            html += `<div class="dre-line" style="margin-top:15px"><span class="label"><i class="fa-solid fa-arrow-trend-down" style="color:var(--danger)"></i> <strong>(-) DESPESAS OPERACIONAIS</strong></span><span class="value" style="color:var(--danger)">${fmtBRL(totalDespesas)}</span></div>`;
-            
-            Object.entries(byCategory).sort((a,b) => a[0].localeCompare(b[0])).forEach(([cat, data]) => {
-                const pct = totalDespesas > 0 ? (data.total / totalDespesas * 100).toFixed(1) : 0;
-                html += `<div class="dre-line indent"><span class="label">📁 ${cat}</span><span class="value" style="color:var(--danger)">${fmtBRL(data.total)} <small style="color:var(--text-muted)">(${pct}%)</small></span></div>`;
-                
-                // Subcategorias
-                Object.entries(data.rubricas).sort((a,b) => b[1] - a[1]).slice(0, 3).forEach(([rub, val]) => {
-                    html += `<div class="dre-line indent-2"><span class="label">↳ ${rub}</span><span class="value">${fmtBRL(val)}</span></div>`;
-                });
-            });
-            
-            // Resultado
-            html += `<div class="dre-line total"><span class="label"><i class="fa-solid fa-scale-balanced"></i> RESULTADO LÍQUIDO DO PERÍODO</span><span class="value" style="color:${resultado>=0?'#86efac':'#fca5a5'}">${fmtBRL(resultado)}</span></div>`;
-            
-            content.innerHTML = html;
-        }
-
-        function exportAutoReportsExcel() {
-            if (!transactions.length) {
-                showToast('warning', 'Atenção', 'Sem dados para exportar');
-                return;
-            }
-            
-            const wb = XLSX.utils.book_new();
-            
-            // Aba 1: Dados Completos
-            const wsData = XLSX.utils.json_to_sheet(transactions.map(t => ({
-                "ID": t.id, "Tipo": t.tipo, "Fornecedor": t.fornecedor,
-                "Doc": t.numeroDocumento, "Rubrica": t.rubrica,
-                "Categoria": getCategoryFromRubrica(t.rubrica),
-                "Emissão": t.dataEmissao, "Competência": t.competencia,
-                "Vencimento": t.dataVencimento, "Histórico": t.historico,
-                "Valor": t.valorOriginal, "Juros": t.jurosMultas,
-                "Data Pagto": t.dataPagamento || "", "Valor Pago": t.valorPago,
-                "Status": t.status, "Obs": t.acaoConciliacao,
-                "Editado Por": t.editadoPor || "", 
-                "Editado Em": t.editadoEm ? fmtDate(t.editadoEm.split('T')[0]) : ""
-            })));
-            XLSX.utils.book_append_sheet(wb, wsData, "Dados Completos");
-            
-            // Aba 2: Por Rubrica
-            const byRubrica = {};
-            transactions.forEach(t => {
-                if (!byRubrica[t.rubrica]) byRubrica[t.rubrica] = { Categoria: getCategoryFromRubrica(t.rubrica), Receitas: 0, Despesas: 0, Qtd: 0 };
-                if (t.tipo === 'Receita') byRubrica[t.rubrica].Receitas += t.valorOriginal;
-                else byRubrica[t.rubrica].Despesas += t.valorOriginal;
-                byRubrica[t.rubrica].Qtd++;
-            });
-            const rubricaRows = Object.entries(byRubrica).map(([rub, d]) => ({
-                Rubrica: rub, Categoria: d.Categoria, Receitas: d.Receitas,
-                Despesas: d.Despesas, Saldo: d.Receitas - d.Despesas, Qtd: d.Qtd
-            }));
-            const wsRubrica = XLSX.utils.json_to_sheet(rubricaRows);
-            XLSX.utils.book_append_sheet(wb, wsRubrica, "Por Rubrica");
-            
-            // Aba 3: Por Competência
-            const byComp = {};
-            transactions.forEach(t => {
-                if (!byComp[t.competencia]) byComp[t.competencia] = { Receitas: 0, Despesas: 0, Qtd: 0 };
-                if (t.tipo === 'Receita') byComp[t.competencia].Receitas += t.valorOriginal;
-                else byComp[t.competencia].Despesas += t.valorOriginal;
-                byComp[t.competencia].Qtd++;
-            });
-            const compRows = Object.entries(byComp).sort().map(([c, d]) => ({
-                Competência: c, Receitas: d.Receitas, Despesas: d.Despesas,
-                Saldo: d.Receitas - d.Despesas, Qtd: d.Qtd
-            }));
-            const wsComp = XLSX.utils.json_to_sheet(compRows);
-            XLSX.utils.book_append_sheet(wb, wsComp, "Por Competência");
-            
-            XLSX.writeFile(wb, `Relatorios_Automaticos_${today()}.xlsx`);
-            showToast('success', 'Exportado!', 'Relatórios automáticos exportados em 3 abas');
+            showToast('success','Exportado!','Relatório gerado com sucesso');
         }
 
         function openModal(edit = false) {
             if (!hasPermission('create') && !edit) {
-                showToast('error', 'Sem permissão', 'Seu perfil não permite criar');
+                showToast('error', 'Sem permissão', 'Seu perfil não permite criar movimentações');
                 return;
             }
             if(!edit) {
@@ -2210,11 +1592,16 @@
                 document.getElementById('competencia').value = month();
                 document.getElementById('tipoMovimentacao').value = "Despesa";
                 document.getElementById('rubrica').selectedIndex = 0;
-                document.querySelectorAll('input[name="initialStatus"]').forEach(r => r.checked = r.value === 'Pendente');
+                document.querySelectorAll('input[name="initialStatus"]').forEach(r => {
+                    r.checked = r.value === 'Pendente';
+                });
                 togglePaymentFields();
-                document.querySelectorAll('#financeForm input, #financeForm select, #financeForm textarea').forEach(el => el.disabled = false);
+                document.querySelectorAll('#financeForm input, #financeForm select, #financeForm textarea').forEach(el => {
+                    el.disabled = false;
+                });
                 document.querySelectorAll('.status-option').forEach(el => {
-                    el.style.pointerEvents = 'auto'; el.style.opacity = '1';
+                    el.style.pointerEvents = 'auto';
+                    el.style.opacity = '1';
                 });
                 document.getElementById('btnSaveTransaction').style.display = 'inline-flex';
                 document.getElementById('btnSaveTransaction').classList.remove('btn-warning');
@@ -2227,7 +1614,9 @@
 
         function closeModal() {
             document.getElementById('transactionModal').classList.remove('active');
-            document.querySelectorAll('#financeForm input, #financeForm select, #financeForm textarea').forEach(el => el.disabled = false);
+            document.querySelectorAll('#financeForm input, #financeForm select, #financeForm textarea').forEach(el => {
+                el.disabled = false;
+            });
         }
 
         function closeConciliateModal() {
@@ -2235,7 +1624,7 @@
         }
 
         function exportToExcel() {
-            if(!transactions.length) { showToast('warning','Atenção','Sem dados'); return; }
+            if(!transactions.length) { showToast('warning','Atenção','Sem dados para exportar'); return; }
             const ws = XLSX.utils.json_to_sheet(transactions.map(t => ({
                 "ID":t.id,"Tipo":t.tipo,"Fornecedor":t.fornecedor,"Doc":t.numeroDocumento,"Rubrica":t.rubrica,
                 "Emissão":t.dataEmissao,"Competência":t.competencia,"Vencimento":t.dataVencimento,
@@ -2246,12 +1635,12 @@
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "Dados");
             XLSX.writeFile(wb, `Financeiro_${today()}.xlsx`);
-            showToast('success','Exportado!','Dados exportados');
+            showToast('success','Exportado!','Dados exportados para Excel');
         }
         
         function importFromExcel(input) {
             if (!hasPermission('import')) {
-                showToast('error', 'Sem permissão', 'Seu perfil não permite importar');
+                showToast('error', 'Sem permissão', 'Seu perfil não permite importar dados');
                 return;
             }
             const f = input.files[0];
@@ -2272,11 +1661,12 @@
                             status: r.Status || "Pendente", acaoConciliacao: r.Obs || "",
                             editadoPor: currentUser?.name, editadoEm: new Date().toISOString()
                         }));
-                        saveStorage(); renderTable();
+                        saveStorage();
+                        renderTable();
                         showToast('success','Importado!',`${json.length} registros carregados`);
                     }
                 } catch(err) {
-                    showToast('error','Erro','Falha ao importar');
+                    showToast('error','Erro','Falha ao importar arquivo');
                     console.error(err);
                 }
             };
@@ -2286,18 +1676,26 @@
         
         function clearAllData() {
             if (!hasPermission('clearAll')) {
-                showToast('error', 'Sem permissão', 'Apenas administradores');
+                showToast('error', 'Sem permissão', 'Apenas administradores podem limpar todos os dados');
                 return;
             }
             if (isAdmin()) {
-                requestAdminConfirmation('Limpar TODOS os dados',
-                    `Você (${currentUser.name}) está prestes a APAGAR ${transactions.length} registros.`,
-                    ['Todos os registros serão excluídos', 'Ação irreversível'],
+                requestAdminConfirmation(
+                    'Limpar TODOS os dados financeiros',
+                    `Você (${currentUser.name}) está prestes a APAGAR TODOS os ${transactions.length} registros.`,
+                    [
+                        'Todos os registros serão excluídos permanentemente',
+                        'O histórico contábil será perdido',
+                        'Esta ação é irreversível'
+                    ],
                     () => {
                         localStorage.removeItem(STORAGE_KEY);
-                        transactions = []; renderTable(); updateDashboard();
-                        showToast('warning','Dados apagados','Todas as movimentações removidas');
-                    });
+                        transactions = [];
+                        renderTable();
+                        updateDashboard();
+                        showToast('warning','Dados apagados','Todas as movimentações foram removidas');
+                    }
+                );
             }
         }
 
@@ -2376,7 +1774,7 @@
         }
 
         function clearChatHistory() {
-            if (confirm("Limpar histórico?")) {
+            if (confirm("Limpar todo o histórico da conversa?")) {
                 chatHistory = [];
                 localStorage.removeItem(CHAT_STORAGE_KEY);
                 renderChatMessages();
@@ -2435,16 +1833,17 @@ ${topRubricas.map(([r, v]) => `- ${r}: ${fmtBRL(v)}`).join('\n')}`;
             if (!text || chatIsTyping) return;
             const apiKey = localStorage.getItem('fin_ai_api_key');
             const model = localStorage.getItem('fin_ai_model') || 'meta/llama-3.3-70b-instruct';
-            if (!apiKey) { addSystemMessage("⚠️ Configure sua API Key da NVIDIA!"); openChatConfig(); return; }
+            if (!apiKey) { addSystemMessage("⚠️ Configure sua API Key da NVIDIA primeiro!"); openChatConfig(); return; }
             chatHistory.push({ role: 'user', content: text });
             renderChatMessages();
-            input.value = ''; input.style.height = 'auto';
+            input.value = '';
+            input.style.height = 'auto';
             chatIsTyping = true;
             document.getElementById('chatSendBtn').disabled = true;
             const typingBubble = appendMessageBubble('assistant', '', true);
             try {
                 const systemPrompt = `Você é um assistente financeiro especializado.
-Usuário: ${currentUser?.name} (${currentUser?.roleLabel}).
+Usuário atual: ${currentUser?.name} (${currentUser?.roleLabel}).
 
 REGRAS:
 1. Baseie respostas no CONTEXTO.
@@ -2484,11 +1883,6 @@ ${getFinancialContext()}`;
             document.getElementById('dataVencimento').value = today();
             document.getElementById('competencia').value = month();
             document.getElementById('report-period').value = month();
-            // Definir período padrão dos relatórios automáticos (últimos 6 meses)
-            const now = new Date();
-            const sixMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 5, 1);
-            document.getElementById('auto-report-start').value = `${sixMonthsAgo.getFullYear()}-${String(sixMonthsAgo.getMonth()+1).padStart(2,'0')}`;
-            document.getElementById('auto-report-end').value = month();
             checkSession();
         });
     </script>

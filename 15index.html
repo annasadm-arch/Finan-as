@@ -258,55 +258,178 @@
         .users-table .user-cell { display: flex; align-items: center; gap: 10px; }
         .users-table .mini-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 0.8rem; }
 
-        .rubricas-container { background: white; border-radius: 12px; padding: 25px; box-shadow: var(--shadow); border: 1px solid var(--border); }
-        .rubricas-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid var(--border); }
-        .rubricas-header h3 { color: var(--primary); font-size: 1.1rem; display: flex; align-items: center; gap: 10px; }
+        /* ============================================ */
+        /* GESTÃO DE RUBRICAS (PLANO DE CONTAS)        */
+        /* ============================================ */
+        .rubricas-container {
+            background: white; border-radius: 12px; padding: 25px;
+            box-shadow: var(--shadow); border: 1px solid var(--border);
+        }
+        .rubricas-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        }
+        .rubricas-header h3 {
+            color: var(--primary); font-size: 1.1rem;
+            display: flex; align-items: center; gap: 10px;
+        }
         .rubricas-header h3 i { color: var(--accent); }
-        .rubricas-stats { display: flex; gap: 15px; flex-wrap: wrap; }
-        .rubrica-stat { background: #f8fafc; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border); display: flex; align-items: center; gap: 8px; font-size: 0.82rem; }
-        .rubrica-stat .stat-value { font-weight: 700; color: var(--primary); }
-        .rubrica-stat .stat-label { color: var(--text-muted); font-size: 0.72rem; }
+        .rubricas-stats {
+            display: flex; gap: 15px; flex-wrap: wrap;
+        }
+        .rubrica-stat {
+            background: #f8fafc; padding: 8px 14px; border-radius: 8px;
+            border: 1px solid var(--border);
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.82rem;
+        }
+        .rubrica-stat .stat-value {
+            font-weight: 700; color: var(--primary);
+        }
+        .rubrica-stat .stat-label {
+            color: var(--text-muted); font-size: 0.72rem;
+        }
         .rubrica-stat.primary { background: #eff6ff; border-color: #bfdbfe; }
         .rubrica-stat.primary .stat-value { color: var(--provision-color); }
 
-        .rubricas-tree { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 15px; }
-        .rubrica-category { border-bottom: 1px solid var(--border); }
+        .rubricas-tree {
+            border: 1px solid var(--border); border-radius: 8px;
+            overflow: hidden; margin-top: 15px;
+        }
+        .rubrica-category {
+            border-bottom: 1px solid var(--border);
+        }
         .rubrica-category:last-child { border-bottom: none; }
-        .rubrica-category-header { background: linear-gradient(to right, #dbeafe, #eff6ff); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 15px; border-bottom: 1px solid #bfdbfe; }
-        .rubrica-category-info { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
-        .rubrica-category-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
-        .rubrica-category-details { flex: 1; min-width: 0; }
-        .rubrica-category-code { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.5px; }
-        .rubrica-category-name { font-size: 1rem; font-weight: 700; color: var(--primary); margin-top: 2px; }
-        .rubrica-category-provision { background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--accent); color: var(--provision-color); font-weight: 700; font-size: 0.88rem; white-space: nowrap; }
-        .rubrica-category-actions { display: flex; gap: 6px; }
-        .rubrica-sub-list { background: white; }
-        .rubrica-sub-item { padding: 12px 18px 12px 62px; display: flex; align-items: center; justify-content: space-between; gap: 15px; border-bottom: 1px solid #f1f5f9; transition: background 0.15s; }
+        .rubrica-category-header {
+            background: linear-gradient(to right, #dbeafe, #eff6ff);
+            padding: 14px 18px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 15px;
+            border-bottom: 1px solid #bfdbfe;
+        }
+        .rubrica-category-info {
+            display: flex; align-items: center; gap: 12px;
+            flex: 1; min-width: 0;
+        }
+        .rubrica-category-icon {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: var(--accent); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
+        .rubrica-category-details {
+            flex: 1; min-width: 0;
+        }
+        .rubrica-category-code {
+            font-size: 0.72rem; color: var(--text-muted);
+            font-weight: 600; letter-spacing: 0.5px;
+        }
+        .rubrica-category-name {
+            font-size: 1rem; font-weight: 700; color: var(--primary);
+            margin-top: 2px;
+        }
+        .rubrica-category-provision {
+            background: white; padding: 6px 12px; border-radius: 6px;
+            border: 1px solid var(--accent);
+            color: var(--provision-color); font-weight: 700;
+            font-size: 0.88rem; white-space: nowrap;
+        }
+        .rubrica-category-actions {
+            display: flex; gap: 6px;
+        }
+        .rubrica-sub-list {
+            background: white;
+        }
+        .rubrica-sub-item {
+            padding: 12px 18px 12px 62px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 15px;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.15s;
+        }
         .rubrica-sub-item:hover { background: #f8fafc; }
         .rubrica-sub-item:last-child { border-bottom: none; }
-        .rubrica-sub-info { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-        .rubrica-sub-info::before { content: '└'; color: var(--text-muted); font-size: 1.2rem; flex-shrink: 0; }
-        .rubrica-sub-code { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; min-width: 40px; }
-        .rubrica-sub-name { font-size: 0.88rem; color: var(--text-main); flex: 1; min-width: 0; }
-        .rubrica-sub-provision { background: #f0fdf4; padding: 4px 10px; border-radius: 6px; border: 1px solid #86efac; color: var(--success); font-weight: 600; font-size: 0.82rem; white-space: nowrap; }
-        .rubrica-sub-actions { display: flex; gap: 6px; }
-        .add-sub-btn { padding: 10px 18px; background: #f0fdf4; border: 1px dashed #86efac; border-radius: 6px; color: var(--success); font-weight: 600; font-size: 0.82rem; cursor: pointer; display: flex; align-items: center; gap: 6px; width: calc(100% - 36px); margin: 8px 18px; transition: all 0.2s; }
+        .rubrica-sub-info {
+            display: flex; align-items: center; gap: 10px;
+            flex: 1; min-width: 0;
+        }
+        .rubrica-sub-info::before {
+            content: '└'; color: var(--text-muted);
+            font-size: 1.2rem; flex-shrink: 0;
+        }
+        .rubrica-sub-code {
+            font-size: 0.78rem; color: var(--text-muted);
+            font-weight: 600; min-width: 40px;
+        }
+        .rubrica-sub-name {
+            font-size: 0.88rem; color: var(--text-main);
+            flex: 1; min-width: 0;
+        }
+        .rubrica-sub-provision {
+            background: #f0fdf4; padding: 4px 10px; border-radius: 6px;
+            border: 1px solid #86efac;
+            color: var(--success); font-weight: 600;
+            font-size: 0.82rem; white-space: nowrap;
+        }
+        .rubrica-sub-actions {
+            display: flex; gap: 6px;
+        }
+        .add-sub-btn {
+            padding: 10px 18px; background: #f0fdf4;
+            border: 1px dashed #86efac; border-radius: 6px;
+            color: var(--success); font-weight: 600;
+            font-size: 0.82rem; cursor: pointer;
+            display: flex; align-items: center; gap: 6px;
+            width: calc(100% - 36px); margin: 8px 18px;
+            transition: all 0.2s;
+        }
         .add-sub-btn:hover { background: #dcfce7; border-style: solid; }
-        .add-category-btn { padding: 14px 20px; background: #eff6ff; border: 2px dashed var(--accent); border-radius: 8px; color: var(--accent); font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 15px; transition: all 0.2s; }
+        .add-category-btn {
+            padding: 14px 20px; background: #eff6ff;
+            border: 2px dashed var(--accent); border-radius: 8px;
+            color: var(--accent); font-weight: 700;
+            font-size: 0.9rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; margin-top: 15px;
+            transition: all 0.2s;
+        }
         .add-category-btn:hover { background: #dbeafe; border-style: solid; }
 
-        .empty-rubricas { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+        .empty-rubricas {
+            text-align: center; padding: 60px 20px;
+            color: var(--text-muted);
+        }
         .empty-rubricas i { font-size: 3rem; margin-bottom: 15px; opacity: 0.3; }
         .empty-rubricas h4 { color: var(--primary); margin-bottom: 8px; }
 
+        /* Modal de Rubrica */
         .rubrica-modal-body { padding: 5px 0; }
         .rubrica-form-group { margin-bottom: 18px; }
-        .rubrica-form-group label { display: block; margin-bottom: 8px; font-size: 0.85rem; color: var(--secondary); font-weight: 600; }
+        .rubrica-form-group label {
+            display: block; margin-bottom: 8px;
+            font-size: 0.85rem; color: var(--secondary);
+            font-weight: 600;
+        }
         .rubrica-form-group label .required { color: var(--danger); }
-        .rubrica-form-grid { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; }
-        .rubrica-preview { background: #f8fafc; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); margin-top: 15px; }
-        .rubrica-preview-title { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600; }
-        .rubrica-preview-content { font-size: 0.95rem; color: var(--primary); font-weight: 600; }
+        .rubrica-form-grid {
+            display: grid; grid-template-columns: 120px 1fr;
+            gap: 12px; align-items: center;
+        }
+        .rubrica-preview {
+            background: #f8fafc; padding: 12px 16px;
+            border-radius: 8px; border: 1px solid var(--border);
+            margin-top: 15px;
+        }
+        .rubrica-preview-title {
+            font-size: 0.72rem; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.5px;
+            margin-bottom: 6px; font-weight: 600;
+        }
+        .rubrica-preview-content {
+            font-size: 0.95rem; color: var(--primary);
+            font-weight: 600;
+        }
 
         .provision-table-container { max-height: 600px; overflow-y: auto; border: 1px solid var(--border); border-radius: 8px; margin-top: 15px; }
         .provision-table { width: 100%; border-collapse: collapse; }
@@ -360,7 +483,6 @@
         .status-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .status-option { border: 2px solid var(--border); border-radius: 8px; padding: 12px; cursor: pointer; transition: all 0.2s; text-align: center; background: white; position: relative; }
         .status-option.active { border-color: var(--accent); background: #eff6ff; box-shadow: 0 0 0 3px rgba(14,165,233,0.1); }
-        .status-option.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
         .status-option input { position: absolute; opacity: 0; pointer-events: none; }
         .status-option .status-icon { font-size: 1.5rem; margin-bottom: 4px; }
         .status-option .status-label { font-weight: 700; color: var(--primary); font-size: 0.88rem; }
@@ -529,6 +651,7 @@
     </aside>
 
     <main id="appMain" style="display:none">
+        <!-- DASHBOARD -->
         <div id="view-dashboard" class="view-section active">
             <section class="dashboard-grid">
                 <div class="card danger"><h3><i class="fa-solid fa-triangle-exclamation"></i> A Pagar / Vencido</h3><div class="value" id="kpi-total-pagar">R$ 0,00</div><div class="sub-value" id="kpi-vencidas-count">0 vencidas</div></div>
@@ -571,27 +694,35 @@
             </section>
         </div>
 
+        <!-- ============================================ -->
+        <!-- VIEW: PLANO DE CONTAS (RUBRICAS)            -->
+        <!-- ============================================ -->
         <div id="view-rubricas" class="view-section">
             <div class="rubricas-container">
                 <div class="rubricas-header">
                     <h3><i class="fa-solid fa-folder-tree"></i> Plano de Contas (Rubricas)</h3>
                     <div class="rubricas-stats" id="rubricasStats"></div>
                 </div>
+
                 <div id="rubricasAdminInfo" style="display:none;background:#fef3c7;border-left:3px solid var(--warning);padding:12px 14px;border-radius:6px;margin-bottom:15px;font-size:0.85rem;color:#78350f">
                     <i class="fa-solid fa-user-shield"></i>
-                    <strong>Modo Administrador:</strong> Você pode criar, editar e excluir rubricas.
+                    <strong>Modo Administrador:</strong> Você pode criar, editar e excluir rubricas. As alterações se refletem automaticamente no cadastro de movimentações.
                 </div>
+
                 <div id="rubricasViewInfo" style="display:none;background:#eff6ff;border-left:3px solid var(--accent);padding:12px 14px;border-radius:6px;margin-bottom:15px;font-size:0.85rem;color:#1e40af">
                     <i class="fa-solid fa-circle-info"></i>
                     <strong>Modo Visualização:</strong> Apenas administradores podem modificar o plano de contas.
                 </div>
+
                 <div class="rubricas-tree" id="rubricasTree"></div>
+
                 <button id="btnAddCategory" class="add-category-btn" style="display:none" onclick="openRubricaModal('categoria')">
                     <i class="fa-solid fa-plus-circle"></i> Adicionar Nova Categoria
                 </button>
             </div>
         </div>
 
+        <!-- RELATÓRIOS -->
         <div id="view-reports" class="view-section">
             <section class="toolbar">
                 <div class="toolbar-title"><i class="fa-solid fa-chart-line"></i> Relatórios Gerenciais</div>
@@ -611,6 +742,7 @@
             </section>
         </div>
 
+        <!-- AUTO REPORTS -->
         <div id="view-auto-reports" class="view-section">
             <section class="toolbar">
                 <div class="toolbar-title"><i class="fa-solid fa-file-invoice"></i> Relatórios Automáticos</div>
@@ -658,6 +790,7 @@
             </div>
         </div>
 
+        <!-- CONFIGURAÇÕES -->
         <div id="view-settings" class="view-section">
             <section class="toolbar"><div class="toolbar-title"><i class="fa-solid fa-gear"></i> Configurações</div></section>
             <div class="settings-grid">
@@ -682,6 +815,7 @@
         </div>
     </main>
 
+    <!-- MODAL CADASTRO MOVIMENTAÇÃO -->
     <div class="modal-overlay" id="transactionModal">
         <div class="modal">
             <div class="modal-header">
@@ -708,7 +842,7 @@
                     </div>
                     <div class="form-group full">
                         <label><i class="fa-solid fa-toggle-on"></i> Status Inicial <span class="required">*</span></label>
-                        <div class="status-toggle" id="statusToggle">
+                        <div class="status-toggle">
                             <label class="status-option active" id="opt-pending">
                                 <input type="radio" name="initialStatus" value="Pendente" checked onchange="togglePaymentFields()">
                                 <div class="status-icon">⏳</div><div class="status-label">Pendente</div>
@@ -801,7 +935,7 @@
                         </div>
                         <div class="tax-info-box">
                             <i class="fa-solid fa-circle-info"></i>
-                            <div><strong>Vencimentos:</strong> ISS → dia <strong>10</strong> do mês seguinte à emissão (posterga se não for dia útil) | PCC/IRRF/INSS → dia <strong>20</strong> do mês seguinte à emissão (antecipa se não for dia útil).</div>
+                            <div><strong>Vencimentos:</strong> ISS → dia <strong>10</strong> do mês seguinte à emissão | PCC/IRRF/INSS → dia <strong>20</strong> do mês seguinte à emissão (ou dia útil anterior).</div>
                         </div>
                     </div>
                 </div>
@@ -816,6 +950,7 @@
         </div>
     </div>
 
+    <!-- MODAL RUBRICA -->
     <div class="modal-overlay" id="rubricaModal">
         <div class="modal" style="max-width:550px">
             <div class="modal-header">
@@ -860,6 +995,7 @@
         </div>
     </div>
 
+    <!-- MODAL CONCILIAÇÃO -->
     <div class="modal-overlay" id="conciliateModal">
         <div class="modal">
             <div class="modal-header">
@@ -882,6 +1018,7 @@
         </div>
     </div>
 
+    <!-- MODAL RESET SENHA -->
     <div class="modal-overlay" id="resetPasswordModal">
         <div class="modal" style="max-width:450px">
             <div class="modal-header">
@@ -1035,6 +1172,7 @@
 
         let RUBRICAS = loadRubricas();
 
+        // Funções para popular o select de rubricas no modal de movimentação
         function populateRubricasSelect() {
             const select = document.getElementById('rubrica');
             const currentValue = select.value;
@@ -1044,12 +1182,14 @@
                 const optgroup = document.createElement('optgroup');
                 optgroup.label = `📂 ${cat.codigo}. ${cat.nome}`;
                 
+                // Opção da categoria (selecionável)
                 const catOption = document.createElement('option');
                 catOption.value = `${cat.codigo} ${cat.nome}`;
                 catOption.className = 'category-option';
                 catOption.textContent = `📁 ${cat.codigo} ${cat.nome} (Categoria Geral)`;
                 optgroup.appendChild(catOption);
                 
+                // Sub-rubricas
                 if (cat.subRubricas && cat.subRubricas.length > 0) {
                     cat.subRubricas.forEach(sub => {
                         const subOption = document.createElement('option');
@@ -1063,6 +1203,7 @@
                 select.appendChild(optgroup);
             });
             
+            // Tenta restaurar valor anterior
             if (currentValue) {
                 for (let i = 0; i < select.options.length; i++) {
                     if (select.options[i].value === currentValue) {
@@ -1073,6 +1214,7 @@
             }
         }
 
+        // Função auxiliar para obter valor provisionado de uma rubrica
         function getProvisionedValue(rubricaNome) {
             for (const cat of RUBRICAS) {
                 const catFullName = `${cat.codigo} ${cat.nome}`;
@@ -1112,16 +1254,24 @@
             return 'Outros';
         }
 
+        // Renderizar árvore de rubricas
         function renderRubricasTree() {
             const tree = document.getElementById('rubricasTree');
             const stats = document.getElementById('rubricasStats');
             
             if (!RUBRICAS || RUBRICAS.length === 0) {
-                tree.innerHTML = '<div class="empty-rubricas"><i class="fa-solid fa-folder-open"></i><h4>Nenhuma rubrica cadastrada</h4></div>';
+                tree.innerHTML = `
+                    <div class="empty-rubricas">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <h4>Nenhuma rubrica cadastrada</h4>
+                        <p>Clique no botão abaixo para adicionar a primeira categoria</p>
+                    </div>
+                `;
                 stats.innerHTML = '';
                 return;
             }
 
+            // Calcular estatísticas
             let totalCategorias = RUBRICAS.length;
             let totalSubRubricas = 0;
             let totalProvisionado = 0;
@@ -1131,33 +1281,89 @@
             });
 
             stats.innerHTML = `
-                <div class="rubrica-stat"><div><div class="stat-value">${totalCategorias}</div><div class="stat-label">Categorias</div></div></div>
-                <div class="rubrica-stat"><div><div class="stat-value">${totalSubRubricas}</div><div class="stat-label">Sub-rubricas</div></div></div>
-                <div class="rubrica-stat primary"><div><div class="stat-value">${fmtBRL(totalProvisionado)}</div><div class="stat-label">Total Provisionado</div></div></div>
+                <div class="rubrica-stat">
+                    <div><div class="stat-value">${totalCategorias}</div><div class="stat-label">Categorias</div></div>
+                </div>
+                <div class="rubrica-stat">
+                    <div><div class="stat-value">${totalSubRubricas}</div><div class="stat-label">Sub-rubricas</div></div>
+                </div>
+                <div class="rubrica-stat primary">
+                    <div><div class="stat-value">${fmtBRL(totalProvisionado)}</div><div class="stat-label">Total Provisionado</div></div>
+                </div>
             `;
 
             const isAdminUser = isAdmin();
             let html = '';
             
             RUBRICAS.forEach(cat => {
-                html += `<div class="rubrica-category" data-id="${cat.id}"><div class="rubrica-category-header"><div class="rubrica-category-info"><div class="rubrica-category-icon"><i class="fa-solid fa-folder"></i></div><div class="rubrica-category-details"><div class="rubrica-category-code">CÓDIGO ${cat.codigo}</div><div class="rubrica-category-name">${cat.nome}</div></div><div class="rubrica-category-provision">${fmtBRL(cat.provisionado || 0)}</div></div>${isAdminUser ? `<div class="rubrica-category-actions"><button class="icon-btn" onclick="openRubricaModal('categoria', '${cat.id}')" title="Editar categoria"><i class="fa-solid fa-pen"></i></button><button class="icon-btn delete" onclick="deleteRubrica('categoria', '${cat.id}')" title="Excluir categoria"><i class="fa-solid fa-trash"></i></button></div>` : ''}</div><div class="rubrica-sub-list">`;
+                const catFullName = `${cat.codigo} ${cat.nome}`;
+                html += `
+                    <div class="rubrica-category" data-id="${cat.id}">
+                        <div class="rubrica-category-header">
+                            <div class="rubrica-category-info">
+                                <div class="rubrica-category-icon"><i class="fa-solid fa-folder"></i></div>
+                                <div class="rubrica-category-details">
+                                    <div class="rubrica-category-code">CÓDIGO ${cat.codigo}</div>
+                                    <div class="rubrica-category-name">${cat.nome}</div>
+                                </div>
+                                <div class="rubrica-category-provision">${fmtBRL(cat.provisionado || 0)}</div>
+                            </div>
+                            ${isAdminUser ? `
+                            <div class="rubrica-category-actions">
+                                <button class="icon-btn" onclick="openRubricaModal('categoria', '${cat.id}')" title="Editar categoria">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>
+                                <button class="icon-btn delete" onclick="deleteRubrica('categoria', '${cat.id}')" title="Excluir categoria">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                            ` : ''}
+                        </div>
+                        <div class="rubrica-sub-list">
+                `;
                 
                 if (cat.subRubricas && cat.subRubricas.length > 0) {
                     cat.subRubricas.forEach(sub => {
-                        html += `<div class="rubrica-sub-item" data-id="${sub.id}"><div class="rubrica-sub-info"><span class="rubrica-sub-code">${sub.codigo}</span><span class="rubrica-sub-name">${sub.nome}</span><span class="rubrica-sub-provision">${fmtBRL(sub.provisionado || 0)}</span></div>${isAdminUser ? `<div class="rubrica-sub-actions"><button class="icon-btn" onclick="openRubricaModal('sub', '${sub.id}', '${cat.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button><button class="icon-btn delete" onclick="deleteRubrica('sub', '${sub.id}', '${cat.id}')" title="Excluir"><i class="fa-solid fa-trash"></i></button></div>` : ''}</div>`;
+                        html += `
+                            <div class="rubrica-sub-item" data-id="${sub.id}">
+                                <div class="rubrica-sub-info">
+                                    <span class="rubrica-sub-code">${sub.codigo}</span>
+                                    <span class="rubrica-sub-name">${sub.nome}</span>
+                                    <span class="rubrica-sub-provision">${fmtBRL(sub.provisionado || 0)}</span>
+                                </div>
+                                ${isAdminUser ? `
+                                <div class="rubrica-sub-actions">
+                                    <button class="icon-btn" onclick="openRubricaModal('sub', '${sub.id}', '${cat.id}')" title="Editar">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+                                    <button class="icon-btn delete" onclick="deleteRubrica('sub', '${sub.id}', '${cat.id}')" title="Excluir">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </div>
+                                ` : ''}
+                            </div>
+                        `;
                     });
                 }
                 
                 if (isAdminUser) {
-                    html += `<button class="add-sub-btn" onclick="openRubricaModal('sub', null, '${cat.id}')"><i class="fa-solid fa-plus"></i> Adicionar Sub-rubrica</button>`;
+                    html += `
+                        <button class="add-sub-btn" onclick="openRubricaModal('sub', null, '${cat.id}')">
+                            <i class="fa-solid fa-plus"></i> Adicionar Sub-rubrica
+                        </button>
+                    `;
                 }
                 
-                html += `</div></div>`;
+                html += `
+                        </div>
+                    </div>
+                `;
             });
             
             tree.innerHTML = html;
         }
 
+        // Modal de Rubrica
         function openRubricaModal(tipo, editId = null, parentId = null) {
             if (!isAdmin()) {
                 showToast('error', 'Sem permissão', 'Apenas administradores podem modificar o plano de contas');
@@ -1168,11 +1374,13 @@
             document.getElementById('rubricaEditType').value = tipo;
             document.getElementById('rubricaParentId').value = parentId || '';
             
+            // Reset
             document.getElementById('rubricaCodigo').value = '';
             document.getElementById('rubricaNome').value = '';
             document.getElementById('rubricaProvisionado').value = '0';
 
             if (editId) {
+                // Modo edição
                 if (tipo === 'categoria') {
                     const cat = RUBRICAS.find(c => c.id === editId);
                     if (cat) {
@@ -1194,8 +1402,10 @@
                     }
                 }
             } else {
+                // Modo criação
                 if (tipo === 'categoria') {
                     document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-folder-plus"></i> Nova Categoria';
+                    // Sugere próximo código
                     const maxCode = RUBRICAS.reduce((max, c) => {
                         const num = parseInt(c.codigo) || 0;
                         return num > max ? num : max;
@@ -1205,6 +1415,7 @@
                     document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-plus"></i> Nova Sub-rubrica';
                     const parentCat = RUBRICAS.find(c => c.id === parentId);
                     if (parentCat && parentCat.subRubricas) {
+                        // Sugere próximo código baseado no pai
                         const maxSubCode = parentCat.subRubricas.reduce((max, s) => {
                             const parts = s.codigo.split('.');
                             const num = parseFloat(parts[parts.length - 1]) || 0;
@@ -1242,6 +1453,7 @@
             }
         }
 
+        // Atualiza preview em tempo real
         ['rubricaCodigo', 'rubricaNome', 'rubricaProvisionado'].forEach(id => {
             const el = document.getElementById(id);
             if (el) {
@@ -1262,6 +1474,7 @@
                 return;
             }
 
+            // Validação de código único
             const isDuplicate = RUBRICAS.some(cat => {
                 if (tipo === 'categoria' && cat.id !== editId && cat.codigo === codigo) return true;
                 if (cat.subRubricas) {
@@ -1278,6 +1491,7 @@
             }
 
             if (editId) {
+                // Modo edição
                 if (tipo === 'categoria') {
                     const idx = RUBRICAS.findIndex(c => c.id === editId);
                     if (idx !== -1) {
@@ -1298,6 +1512,7 @@
                 }
                 showToast('success', 'Rubrica atualizada!', `${codigo} ${nome}`);
             } else {
+                // Modo criação
                 if (tipo === 'categoria') {
                     RUBRICAS.push({
                         id: 'cat-' + Date.now(),
@@ -1364,6 +1579,9 @@
             );
         }
 
+        // ============================================
+        // AUTENTICAÇÃO
+        // ============================================
         const USERS_STORAGE_KEY = 'fin_pro_users_v2';
         const DEFAULT_USERS = {
             'admin': { password: '123', name: 'Administrador', role: 'admin', roleLabel: 'Administrador',
@@ -1452,7 +1670,6 @@
         function hasPermission(a) { return currentUser ? !!currentUser.permissions[a] : false; }
         function isAdmin() { return currentUser?.role === 'admin'; }
         function canEditPaid() { return currentUser?.permissions?.editPaid === true; }
-        function isLancador() { return currentUser?.role === 'lancador'; }
 
         function updateUserUI() {
             if (!currentUser) return;
@@ -1484,6 +1701,7 @@
             else { cl.style.display = p.clearAll ? 'flex' : 'none'; cl.disabled = false; }
             document.getElementById('adminUsersPanel').style.display = isAdmin() ? 'block' : 'none';
             
+            // Plano de Contas - Admin pode editar, outros apenas visualizar
             const isAdminUser = isAdmin();
             document.getElementById('btnAddCategory').style.display = isAdminUser ? 'flex' : 'none';
             document.getElementById('rubricasAdminInfo').style.display = isAdminUser ? 'block' : 'none';
@@ -1554,8 +1772,11 @@
             renderUsersTable();
         }
 
+        // ============================================
+        // UTILS
+        // ============================================
         let transactions = [];
-        const STORAGE_KEY = 'fin_pro_v23';
+        const STORAGE_KEY = 'fin_pro_v22';
         let chartRubricaInstance, chartFluxoInstance, chartAutoRubricaInstance, chartAutoCompetenciaInstance, chartFluxoCaixaInstance, chartProvisionadosInstance;
 
         const uuid = () => Date.now().toString(36) + Math.random().toString(36).substr(2);
@@ -1565,42 +1786,15 @@
         const today = () => new Date().toISOString().split('T')[0];
         const month = () => today().substring(0,7);
 
-        // ============================================
-        // CÁLCULO DE VENCIMENTO DE IMPOSTOS
-        // IRRF, PCC, INSS: dia 20 do mês subsequente - antecipa se não for dia útil
-        // ISS: dia 10 do mês subsequente - POSTERGA se não for dia útil
-        // ============================================
         function getVencimentoImposto(dataEmissao, tipoImposto) {
             const [year, month] = dataEmissao.split('-').map(Number);
             const nextMonthDate = new Date(year, month - 1 + 1, 1);
-            
-            if (tipoImposto === 'ISS') {
-                // ISS: dia 10, se não for dia útil → PRÓXIMO dia útil
-                let date = new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), 10);
-                const dayOfWeek = date.getDay();
-                
-                if (dayOfWeek === 6) { // Sábado → Segunda (dia 12)
-                    date.setDate(12);
-                } else if (dayOfWeek === 0) { // Domingo → Segunda (dia 11)
-                    date.setDate(11);
-                }
-                // Se for dia útil (seg-sex), mantém dia 10
-                
-                return date.toISOString().split('T')[0];
-            } else {
-                // IRRF, PCC, INSS: dia 20, se não for dia útil → ANTECIPA para dia útil anterior
-                let date = new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), 20);
-                const dayOfWeek = date.getDay();
-                
-                if (dayOfWeek === 6) { // Sábado → Sexta (dia 19)
-                    date.setDate(19);
-                } else if (dayOfWeek === 0) { // Domingo → Sexta (dia 18)
-                    date.setDate(18);
-                }
-                // Se for dia útil (seg-sex), mantém dia 20
-                
-                return date.toISOString().split('T')[0];
-            }
+            const dia = tipoImposto === 'ISS' ? 10 : 20;
+            let date = new Date(nextMonthDate.getFullYear(), nextMonthDate.getMonth(), dia);
+            const dayOfWeek = date.getDay();
+            if (dayOfWeek === 6) date.setDate(dia - 1);
+            else if (dayOfWeek === 0) date.setDate(dia - 2);
+            return date.toISOString().split('T')[0];
         }
 
         function showToast(type, title, message, duration = 3500) {
@@ -1769,16 +1963,6 @@
                 showToast('warning', 'Modo Consulta', 'Somente leitura');
                 return;
             }
-            
-            // VALIDAÇÃO: Lançador não pode criar movimentação como "Pago"
-            if (isLancador()) {
-                const statusIni = document.querySelector('input[name="initialStatus"]:checked').value;
-                if (statusIni === 'Pago') {
-                    showToast('error', 'Ação não permitida', 'Perfil Lançador não pode criar movimentações como "Pago". Use o botão de conciliação após criar.');
-                    return;
-                }
-            }
-            
             const numDoc = document.getElementById('numeroDocumento').value.trim();
             if (!numDoc) {
                 showToast('error', 'Campo obrigatório', 'Número do Documento é obrigatório');
@@ -2159,6 +2343,8 @@
             re.innerText = fmtBRL(r);
             re.className = `amount ${r >= 0 ? 'positive' : 'negative'}`;
             const mnp = f.length > 0 ? new Set(f.map(t => t.competencia)).size : 0;
+            
+            // Calcula provisionado total das categorias principais
             const CATEGORIES_MAIN = RUBRICAS.map(cat => `${cat.codigo} ${cat.nome}`);
             const pp = CATEGORIES_MAIN.reduce((s,c) => s + getTotalProvisionadoCategoria(c), 0) * Math.max(1, mnp);
             document.getElementById('auto-kpi-provisionado').innerText = fmtBRL(pp);
@@ -2515,15 +2701,6 @@
                 document.querySelectorAll('.status-option').forEach(el => { el.style.pointerEvents = 'auto'; el.style.opacity = '1'; });
                 document.getElementById('lockedAlert').style.display = 'none';
                 document.getElementById('adminEditAlert').classList.remove('active');
-                
-                // DESABILITA TOGGLE DE STATUS PARA LANÇADOR
-                if (isLancador()) {
-                    document.getElementById('opt-paid').classList.add('disabled');
-                    document.querySelector('#opt-paid input').disabled = true;
-                } else {
-                    document.getElementById('opt-paid').classList.remove('disabled');
-                    document.querySelector('#opt-paid input').disabled = false;
-                }
             }
             document.getElementById('btnSaveTransaction').style.display = 'inline-flex';
             document.getElementById('btnSaveTransaction').disabled = false;

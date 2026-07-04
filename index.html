@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Financeiro Pro | Gestão & Relatórios</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --primary: #1e293b; --secondary: #475569; --accent: #0ea5e9; 
+            --success: #10b981; --warning: #f59e0b; --danger: #ef4444; 
+            --bg-body: #f8fafc; --bg-card: #ffffff; --text-main: #0f172a; 
+            --text-muted: #64748b; --border: #e2e8f0; --shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --radius: 8px; --font: 'Segoe UI', Roboto, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body { font-family: var(--font); background: var(--bg-body); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
+
+        /* SIDEBAR */
+        aside { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; padding: 25px 20px; z-index: 100; flex-shrink: 0; }
+        .brand { font-size: 1.4rem; font-weight: 700; margin-bottom: 40px; display: flex; align-items: center; gap: 12px; }
+        nav button { background: transparent; border: none; color: #94a3b8; width: 100%; padding: 14px 15px; text-align: left; cursor: pointer; font-size: 0.95rem; border-radius: var(--radius); margin-bottom: 8px; transition: all 0.2s; display: flex; align-items: center; gap: 12px; font-weight: 500; }
+        nav button:hover, nav button.active { background: rgba(255,255,255,0.1); color: white; }
+        
+        main { flex: 1; overflow-y: auto; padding: 30px; position: relative; }
+        .view-section { display: none; animation: fadeIn 0.3s; }
+        .view-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* DASHBOARD CARDS */
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card { background: var(--bg-card); padding: 25px; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 4px solid var(--accent); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-2px); }
+        .card h3 { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .card .value { font-size: 1.6rem; font-weight: 700; margin-top: 10px; color: var(--primary); }
+        .card.danger { border-color: var(--danger); } .card.success { border-color: var(--success); }
+        .card.warning { border-color: var(--warning); } .card.neutral { border-color: var(--secondary); }
+
+        /* TOOLBAR & INPUTS */
+        .toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; background: var(--bg-card); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); }
+        input, select { padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.85rem; color: var(--text-main); background: #fff; width: 100%; }
+        input:focus, select:focus { border-color: var(--accent); }
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+        .btn:hover { filter: brightness(95%); transform: translateY(-1px); }
+        .btn-primary { background: var(--primary); color: white; } .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: var(--danger); color: white; } .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
+
+        /* TABLE WITH COLUMN FILTERS */
+        .table-container { background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow); overflow-x: auto; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; min-width: 1500px; }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: middle; }
+        th { background: #f1f5f9; color: var(--secondary); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+        tr:last-child td { border-bottom: none; } tr:hover { background: #f8fafc; }
+        
+        /* Filter Row Styling */
+        .filter-row th { background: #fff; padding: 8px 10px; border-bottom: 2px solid var(--border); }
+        .filter-row input, .filter-row select { padding: 6px 8px; font-size: 0.8rem; }
+
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; display: inline-block; }
+        .status-pendente { background: #fef3c7; color: #d97706; } .status-vencido { background: #fee2e2; color: #dc2626; }
+        .status-pago { background: #d1fae5; color: #059669; } .type-receita { background: #dcfce7; color: #166534; }
+        .type-despesa { background: #ffe4e6; color: #9f1239; }
+        
+        .actions-cell { display: flex; gap: 8px; }
+        .icon-btn { background: #f1f5f9; border: none; cursor: pointer; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--secondary); transition: all 0.2s; }
+        .icon-btn:hover { background: var(--primary); color: white; } .icon-btn.delete:hover { background: var(--danger); } .icon-btn.conciliar:hover { background: var(--success); }
+        .desc-cell strong { display: block; font-size: 0.9rem; } .desc-cell span { display: block; color: var(--text-muted); font-size: 0.8rem; margin-top: 2px; }
+
+        /* REPORTS SECTION */
+        .reports-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+        .chart-card { background: var(--bg-card); padding: 25px; border-radius: var(--radius); box-shadow: var(--shadow); }
+        .chart-card h3 { margin-bottom: 20px; color: var(--primary); font-size: 1.1rem; }
+        .report-summary-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .report-summary-table th, .report-summary-table td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; font-size: 0.9rem; }
+        .report-summary-table th { background: #f8fafc; font-weight: 600; }
+
+        /* MODAL */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: opacity 0.3s; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal { background: white; padding: 30px; border-radius: 12px; width: 100%; max-width: 700px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); transform: scale(0.95); transition: transform 0.3s; max-height: 90vh; overflow-y: auto; }
+        .modal-overlay.active .modal { transform: scale(1); }
+        .modal-header { display: flex; justify-content: space-between; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 5px; } .form-group.full { grid-column: span 2; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.85rem; color: var(--secondary); font-weight: 600; }
+        #tipoMovimentacao { font-weight: 700; border-width: 2px; }
+
+        /* RUBRICAS HIERÁRQUICAS */
+        select#rubrica optgroup { font-weight: 800 !important; color: var(--primary) !important; background: #f1f5f9 !important; font-style: normal !important; padding: 10px 8px !important; margin-top: 8px !important; text-transform: uppercase !important; font-size: 0.78rem !important; pointer-events: none !important; }
+        select#rubrica option { font-weight: 400 !important; color: var(--text-main) !important; background: #fff !important; padding: 8px 15px !important; font-size: 0.9rem !important; pointer-events: auto !important; }
+
+        @media (max-width: 1024px) { .reports-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            body { flex-direction: column; height: auto; overflow: auto; }
+            aside { width: 100%; padding: 15px; flex-direction: row; justify-content: space-between; align-items: center; }
+            .brand { margin-bottom: 0; font-size: 1.1rem; } nav { display: none; } main { padding: 15px; }
+            .form-grid { grid-template-columns: 1fr; } .form-group.full { grid-column: span 1; }
+            .toolbar { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="brand"><i class="fa-solid fa-chart-pie"></i> Finanças Pro</div>
+        <nav>
+            <button class="active" onclick="switchView('dashboard')"><i class="fa-solid fa-house"></i> Dashboard & Lançamentos</button>
+            <button onclick="switchView('reports')"><i class="fa-solid fa-chart-line"></i> Relatórios Gerenciais</button>
+            <div style="margin-top: 20px; margin-bottom: 10px; font-size: 0.8rem; color: #64748b; text-transform: uppercase; padding-left: 15px;">Dados</div>
+            <button onclick="exportToExcel()"><i class="fa-solid fa-file-excel"></i> Exportar Excel</button>
+            <button onclick="document.getElementById('importExcelFile').click()"><i class="fa-solid fa-upload"></i> Importar Excel</button>
+            <input type="file" id="importExcelFile" style="display: none;" accept=".xlsx, .xls" onchange="importFromExcel(this)">
+            <button onclick="clearAllData()" style="color: var(--danger); margin-top: 30px;"><i class="fa-solid fa-trash-can"></i> Limpar Tudo</button>
+        </nav>
+    </aside>
+
+    <main>
+        <!-- VIEW: DASHBOARD & TRANSACTIONS -->
+        <div id="view-dashboard" class="view-section active">
+            <section class="dashboard-grid">
+                <div class="card danger"><h3>Total a Pagar / Vencido</h3><div class="value" id="kpi-total-pagar">R$ 0,00</div></div>
+                <div class="card success"><h3>Total Recebido (Mês)</h3><div class="value" id="kpi-total-recebido">R$ 0,00</div></div>
+                <div class="card warning"><h3>Pendências</h3><div class="value" id="kpi-pendencias">0</div></div>
+                <div class="card neutral"><h3>Saldo do Período</h3><div class="value" id="kpi-saldo">R$ 0,00</div></div>
+            </section>
+
+            <section class="toolbar">
+                <div style="font-weight: 700; color: var(--primary); font-size: 1.1rem;">Movimentações Financeiras</div>
+                <button class="btn btn-primary" onclick="openModal()"><i class="fa-solid fa-plus-circle"></i> Nova Movimentação</button>
+            </section>
+
+            <section class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th><th>Status</th><th>Histórico / Fornecedor</th><th>Rubrica</th>
+                            <th>Emissão</th><th>Vencimento</th><th>Competência</th><th>Valor Original</th>
+                            <th>Data Pagto.</th><th>Valor Efetivo</th><th>Ações</th>
+                        </tr>
+                        <!-- FILTROS POR COLUNA -->
+                        <tr class="filter-row">
+                            <th><select id="col-filter-tipo" onchange="renderTable()"><option value="">Todos</option><option value="Receita">Receita</option><option value="Despesa">Despesa</option></select></th>
+                            <th><select id="col-filter-status" onchange="renderTable()"><option value="">Todos</option><option value="Pendente">Pendente</option><option value="Vencido">Vencido</option><option value="Pago">Pago</option></select></th>
+                            <th><input type="text" id="col-filter-historico" placeholder="Buscar..." onkeyup="renderTable()"></th>
+                            <th><input type="text" id="col-filter-rubrica" placeholder="Filtrar rubrica..." onkeyup="renderTable()"></th>
+                            <th><input type="date" id="col-filter-emissao" onchange="renderTable()"></th>
+                            <th><input type="date" id="col-filter-vencimento" onchange="renderTable()"></th>
+                            <th><input type="month" id="col-filter-competencia" onchange="renderTable()"></th>
+                            <th><input type="number" id="col-filter-valor-min" placeholder="Min" onchange="renderTable()" style="margin-bottom:4px"><input type="number" id="col-filter-valor-max" placeholder="Max" onchange="renderTable()"></th>
+                            <th><input type="date" id="col-filter-pagto" onchange="renderTable()"></th>
+                            <th></th>
+                            <th><button class="btn btn-outline" onclick="clearColumnFilters()" style="padding:4px 8px;font-size:0.75rem;width:100%">Limpar</button></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </section>
+        </div>
+
+        <!-- VIEW: RELATÓRIOS GERENCIAIS -->
+        <div id="view-reports" class="view-section">
+            <section class="toolbar">
+                <div style="font-weight: 700; color: var(--primary); font-size: 1.1rem;">Relatórios Gerenciais</div>
+                <div style="display:flex;gap:10px;align-items:center">
+                    <label style="font-size:0.85rem;font-weight:600;color:var(--secondary)">Período:</label>
+                    <input type="month" id="report-period" onchange="generateReports()" style="width:auto">
+                    <button class="btn btn-success" onclick="exportReportExcel()"><i class="fa-solid fa-file-excel"></i> Exportar Relatório</button>
+                </div>
+            </section>
+
+            <section class="reports-grid">
+                <div class="chart-card">
+                    <h3><i class="fa-solid fa-chart-pie"></i> Despesas por Rubrica</h3>
+                    <canvas id="chartRubrica" height="250"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3><i class="fa-solid fa-chart-bar"></i> Receita vs Despesa (Últimos 6 Meses)</h3>
+                    <canvas id="chartFluxo" height="250"></canvas>
+                </div>
+            </section>
+
+            <section class="chart-card">
+                <h3><i class="fa-solid fa-table"></i> Resumo Detalhado por Categoria (Período Selecionado)</h3>
+                <table class="report-summary-table">
+                    <thead><tr><th>Rubrica</th><th>Total Despesas</th><th>Total Receitas</th><th>Saldo</th><th>% do Total</th></tr></thead>
+                    <tbody id="reportSummaryBody"></tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <!-- MODAL CADASTRO -->
+    <div class="modal-overlay" id="transactionModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nova Movimentação</h2>
+                <button class="close-modal" onclick="closeModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-muted)">&times;</button>
+            </div>
+            <form id="financeForm" onsubmit="saveTransaction(event)">
+                <input type="hidden" id="transId">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label style="font-size: 1rem; color: var(--primary);">Tipo de Movimentação *</label>
+                        <select id="tipoMovimentacao" required><option value="Despesa">💸 DESPESA (Saída)</option><option value="Receita">💰 RECEITA (Entrada)</option></select>
+                    </div>
+                    <div class="form-group full"><label>Fornecedor / Cliente *</label><input type="text" id="fornecedor" required></div>
+                    <div class="form-group"><label>Nº Documento</label><input type="text" id="numeroDocumento"></div>
+                    <div class="form-group"><label>Competência *</label><input type="month" id="competencia" required></div>
+                    <div class="form-group full">
+                        <label>Rubrica (Plano de Contas) *</label>
+                        <select id="rubrica" required>
+                            <option value="" disabled selected>Selecione...</option>
+                            <optgroup label="1. Pessoal" disabled><option value="1.1 Ordenados">1.1 Ordenados</option><option value="1.2 Encargos Sociais">1.2 Encargos Sociais</option><option value="1.4 Benefícios">1.4 Benefícios</option><option value="1.5 Provisões (Rescisões/13º/Férias)">1.5 Provisões</option></optgroup>
+                            <optgroup label="2. Material / Medicamentos" disabled><option value="2.1 Materiais Médico Hospitalar">2.1 Materiais Médico Hospitalar</option><option value="2.2 Medicamentos">2.2 Medicamentos</option></optgroup>
+                            <optgroup label="3. Materiais Diversos" disabled><option value="3.1 Material de Higienização">3.1 Higienização</option><option value="3.3 Material Expediente">3.3 Expediente</option><option value="3.4 Combustível">3.4 Combustível</option><option value="3.5 GLP">3.5 GLP</option><option value="3.6 Material de Manutenção">3.6 Manutenção</option><option value="3.8 Outras Despesas Materiais">3.8 Outras Despesas</option><option value="3.9 Enxoval - Lavanderia">3.9 Lavanderia</option><option value="3.10 Esterilização">3.10 Esterilização</option><option value="3.11 Dedetização">3.11 Dedetização</option><option value="3.12 Gases Medicinais">3.12 Gases Medicinais</option></optgroup>
+                            <optgroup label="4. Seguros/ Impostos/ Taxas" disabled><option value="4.1 Seguros">4.1 Seguros</option><option value="4.2 Impostos/Taxas">4.2 Impostos/Taxas</option></optgroup>
+                            <optgroup label="5. Gerais" disabled><option value="5.1 Telefonia">5.1 Telefonia</option><option value="5.2 Água">5.2 Água</option><option value="5.3 Energia Elétrica">5.3 Energia</option><option value="5.4 Outras Despesas Gerais">5.4 Outras Gerais</option><option value="5.5 Custos Corporativos">5.5 Custos Corporativos</option></optgroup>
+                            <optgroup label="6. Serviços Terceiros" disabled><option value="6.1 Assistenciais">6.1 Assistenciais</option><option value="6.1.1 PJ Equipe Médica">6.1.1 PJ Equipe Médica</option><option value="6.2 Administrativos">6.2 Administrativos</option><option value="6.2.1 PJ Assessorias">6.2.1 Assessorias</option><option value="6.2.2 Operacionais">6.2.2 Operacionais</option><option value="6.2.3 SADT">6.2.3 SADT</option><option value="6.2.4 Alimentação">6.2.4 Alimentação</option><option value="6.2.5 Engenharia Clinica">6.2.5 Eng. Clínica</option></optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Data Emissão *</label><input type="date" id="dataEmissao" required></div>
+                    <div class="form-group"><label>Data Vencimento *</label><input type="date" id="dataVencimento" required></div>
+                    <div class="form-group"><label>Valor Original (R$) *</label><input type="number" step="0.01" id="valorOriginal" required></div>
+                    <div class="form-group"><label>Juros/Multas/Desc (R$)</label><input type="number" step="0.01" id="jurosMultas" value="0"></div>
+                    <div class="form-group full"><label>Histórico</label><input type="text" id="historico"></div>
+                </div>
+                <div style="margin-top: 25px; text-align: right;">
+                    <button type="button" class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL CONCILIAÇÃO -->
+    <div class="modal-overlay" id="conciliateModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="conciliateTitle">Conciliação</h2>
+                <button class="close-modal" onclick="closeConciliateModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-muted)">&times;</button>
+            </div>
+            <form id="conciliateForm" onsubmit="confirmConciliation(event)">
+                <input type="hidden" id="conciliateId">
+                <p id="conciliateDesc" style="margin-bottom:20px;color:var(--text-muted);font-size:0.9rem"></p>
+                <div class="form-grid">
+                    <div class="form-group"><label>Valor Efetivo (R$) *</label><input type="number" step="0.01" id="concValorPago" required></div>
+                    <div class="form-group"><label>Data Pagto/Recebto *</label><input type="date" id="concDataPagamento" required></div>
+                    <div class="form-group full"><label>Observação</label><input type="text" id="concAcao"></div>
+                </div>
+                <div style="margin-top: 25px; text-align: right;">
+                    <button type="button" class="btn btn-outline" onclick="closeConciliateModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-success" id="btnConfirmConciliate">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- STATE & UTILS ---
+        let transactions = [];
+        const STORAGE_KEY = 'fin_pro_v11';
+        let chartRubricaInstance = null;
+        let chartFluxoInstance = null;
+
+        const uuid = () => Date.now().toString(36) + Math.random().toString(36).substr(2);
+        const fmtBRL = v => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v||0);
+        const fmtDate = d => { if(!d) return '-'; const dt=new Date(d); return isNaN(dt)?d:dt.toLocaleDateString('pt-BR'); };
+        const fmtComp = c => { if(!c) return '-'; const [y,m]=c.split('-'); return `${m}/${y}`; };
+        const today = () => new Date().toISOString().split('T')[0];
+        const month = () => today().substring(0,7);
+
+        // --- NAVIGATION ---
+        function switchView(view) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('nav button').forEach(el => el.classList.remove('active'));
+            document.getElementById(`view-${view}`).classList.add('active');
+            event.currentTarget.classList.add('active');
+            if(view === 'reports') generateReports();
+        }
+
+        // --- CORE ---
+        function init() {
+            loadData(); renderTable(); updateDashboard();
+            document.getElementById('dataEmissao').value = today();
+            document.getElementById('dataVencimento').value = today();
+            document.getElementById('competencia').value = month();
+            document.getElementById('report-period').value = month();
+        }
+
+        function loadData() {
+            const d = localStorage.getItem(STORAGE_KEY);
+            if(d) transactions = JSON.parse(d);
+            else {
+                transactions = [
+                    {id:uuid(),tipo:"Despesa",fornecedor:"Distribuidora Med",numeroDocumento:"NF-8821",dataEmissao:"2026-05-01",dataVencimento:"2026-05-10",competencia:"2026-05",rubrica:"2.2 Medicamentos",valorOriginal:1500,jurosMultas:0,valorPago:1500,dataPagamento:"2026-05-09",status:"Pago",historico:"Compra mensal",acaoConciliacao:""},
+                    {id:uuid(),tipo:"Receita",fornecedor:"Convênio Saúde",numeroDocumento:"Lote-405",dataEmissao:"2026-06-15",dataVencimento:"2026-06-25",competencia:"2026-06",rubrica:"6.1.1 PJ Equipe Médica",valorOriginal:15000,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Pendente",historico:"Repasse",acaoConciliacao:""},
+                    {id:uuid(),tipo:"Despesa",fornecedor:"Enel Energia",numeroDocumento:"FAT-332",dataEmissao:"2026-06-01",dataVencimento:"2026-06-15",competencia:"2026-06",rubrica:"5.3 Energia Elétrica",valorOriginal:850,jurosMultas:0,valorPago:0,dataPagamento:null,status:"Vencido",historico:"Consumo Maio",acaoConciliacao:""}
+                ];
+                saveStorage();
+            }
+        }
+        function saveStorage() { localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions)); updateDashboard(); }
+
+        // --- CRUD ---
+        function saveTransaction(e) {
+            e.preventDefault();
+            const id = document.getElementById('transId').value;
+            const venc = document.getElementById('dataVencimento').value;
+            let status = venc < today() ? 'Vencido' : 'Pendente';
+            const t = {
+                id: id||uuid(), tipo: document.getElementById('tipoMovimentacao').value,
+                fornecedor: document.getElementById('fornecedor').value, numeroDocumento: document.getElementById('numeroDocumento').value,
+                dataEmissao: document.getElementById('dataEmissao').value, competencia: document.getElementById('competencia').value,
+                dataVencimento: venc, rubrica: document.getElementById('rubrica').value,
+                valorOriginal: parseFloat(document.getElementById('valorOriginal').value),
+                jurosMultas: parseFloat(document.getElementById('jurosMultas').value)||0,
+                valorPago:0, dataPagamento:null, status, historico: document.getElementById('historico').value, acaoConciliacao:""
+            };
+            if(id) {
+                const ex = transactions.find(x=>x.id===id);
+                if(ex&&ex.status==='Pago'){t.valorPago=ex.valorPago;t.dataPagamento=ex.dataPagamento;t.status='Pago';t.acaoConciliacao=ex.acaoConciliacao;}
+                transactions[transactions.findIndex(x=>x.id===id)] = t;
+            } else transactions.push(t);
+            saveStorage(); closeModal(); renderTable();
+        }
+        function deleteTransaction(id){if(confirm('Excluir?')){transactions=transactions.filter(t=>t.id!==id);saveStorage();renderTable();}}
+        function editTransaction(id){
+            const t=transactions.find(x=>x.id===id);if(!t)return;
+            document.getElementById('transId').value=t.id; document.getElementById('tipoMovimentacao').value=t.tipo;
+            document.getElementById('fornecedor').value=t.fornecedor; document.getElementById('numeroDocumento').value=t.numeroDocumento;
+            document.getElementById('dataEmissao').value=t.dataEmissao; document.getElementById('competencia').value=t.competencia||month();
+            document.getElementById('dataVencimento').value=t.dataVencimento; document.getElementById('rubrica').value=t.rubrica;
+            document.getElementById('valorOriginal').value=t.valorOriginal; document.getElementById('jurosMultas').value=t.jurosMultas;
+            document.getElementById('historico').value=t.historico; document.getElementById('modalTitle').innerText="Editar"; openModal(true);
+        }
+
+        // --- CONCILIATION ---
+        function openConciliateModal(id){
+            const t=transactions.find(x=>x.id===id);if(!t)return;
+            document.getElementById('conciliateId').value=id;
+            document.getElementById('concValorPago').value=(t.valorOriginal+t.jurosMultas).toFixed(2);
+            document.getElementById('concDataPagamento').value=today(); document.getElementById('concAcao').value="";
+            const r=t.tipo==='Receita';
+            document.getElementById('conciliateTitle').innerHTML=r?'<i class="fa-solid fa-money-bill-wave" style="color:var(--success)"></i> Recebimento':'<i class="fa-solid fa-check-double" style="color:var(--success)"></i> Conciliação';
+            document.getElementById('conciliateDesc').innerText=r?'Dados do recebimento efetivo.':'Dados reais do extrato bancário.';
+            document.getElementById('btnConfirmConciliate').innerText=r?'Confirmar Entrada':'Confirmar Baixa';
+            document.getElementById('conciliateModal').classList.add('active');
+        }
+        function confirmConciliation(e){
+            e.preventDefault();const id=document.getElementById('conciliateId').value;const idx=transactions.findIndex(t=>t.id===id);
+            if(idx!==-1){transactions[idx].status='Pago';transactions[idx].valorPago=parseFloat(document.getElementById('concValorPago').value);transactions[idx].dataPagamento=document.getElementById('concDataPagamento').value;transactions[idx].acaoConciliacao=document.getElementById('concAcao').value;saveStorage();closeConciliateModal();renderTable();}
+        }
+
+        // --- RENDER TABLE WITH ALL COLUMN FILTERS ---
+        function renderTable() {
+            const tbody = document.getElementById('tableBody'); tbody.innerHTML='';
+            const fTipo = document.getElementById('col-filter-tipo').value;
+            const fStatus = document.getElementById('col-filter-status').value;
+            const fHist = document.getElementById('col-filter-historico').value.toLowerCase();
+            const fRub = document.getElementById('col-filter-rubrica').value.toLowerCase();
+            const fEmissao = document.getElementById('col-filter-emissao').value;
+            const fVenc = document.getElementById('col-filter-vencimento').value;
+            const fComp = document.getElementById('col-filter-competencia').value;
+            const fValMin = parseFloat(document.getElementById('col-filter-valor-min').value) || 0;
+            const fValMax = parseFloat(document.getElementById('col-filter-valor-max').value) || Infinity;
+            const fPagto = document.getElementById('col-filter-pagto').value;
+
+            const filtered = transactions.filter(t => {
+                if(fTipo && t.tipo !== fTipo) return false;
+                if(fStatus && t.status !== fStatus) return false;
+                if(fHist && !(t.fornecedor.toLowerCase().includes(fHist) || t.historico?.toLowerCase().includes(fHist) || t.numeroDocumento?.toLowerCase().includes(fHist))) return false;
+                if(fRub && !t.rubrica?.toLowerCase().includes(fRub)) return false;
+                if(fEmissao && t.dataEmissao !== fEmissao) return false;
+                if(fVenc && t.dataVencimento !== fVenc) return false;
+                if(fComp && t.competencia !== fComp) return false;
+                if(t.valorOriginal < fValMin || t.valorOriginal > fValMax) return false;
+                if(fPagto && t.dataPagamento !== fPagto) return false;
+                return true;
+            }).sort((a,b)=>new Date(a.dataVencimento)-new Date(b.dataVencimento));
+
+            if(!filtered.length){tbody.innerHTML='<tr><td colspan="11" style="text-align:center;padding:30px;color:var(--text-muted)">Nenhum registro encontrado.</td></tr>';return;}
+
+            filtered.forEach(t => {
+                const tr=document.createElement('tr');
+                let sc='status-pendente',sl=t.status;
+                if(t.status==='Pago'){sc='status-pago';sl=t.tipo==='Receita'?'Recebido':'Pago';}else if(t.status==='Vencido')sc='status-vencido';
+                const tc=t.tipo==='Receita'?'type-receita':'type-despesa';
+                const ve=t.status==='Pago'?t.valorPago:0;
+                const cv=t.tipo==='Receita'?'var(--success)':'var(--text-main)';
+                tr.innerHTML=`
+                    <td><span class="badge ${tc}">${t.tipo}</span></td>
+                    <td><span class="badge ${sc}">${sl}</span></td>
+                    <td class="desc-cell"><strong>${t.fornecedor}</strong><span>${t.historico||'-'}</span></td>
+                    <td style="font-size:0.82rem;max-width:200px">${t.rubrica||'-'}</td>
+                    <td>${fmtDate(t.dataEmissao)}</td><td>${fmtDate(t.dataVencimento)}</td>
+                    <td><span style="background:#f1f5f9;padding:3px 8px;border-radius:4px;font-size:0.82rem;font-weight:600">${fmtComp(t.competencia)}</span></td>
+                    <td>${fmtBRL(t.valorOriginal)}</td>
+                    <td>${t.dataPagamento?fmtDate(t.dataPagamento):'<span style="color:#cbd5e1">-</span>'}</td>
+                    <td style="color:${cv};font-weight:bold">${t.status==='Pago'?fmtBRL(ve):'-'}</td>
+                    <td class="actions-cell">
+                        ${t.status!=='Pago'?`<button class="icon-btn conciliar" onclick="openConciliateModal('${t.id}')"><i class="fa-solid fa-check"></i></button>`:''}
+                        <button class="icon-btn" onclick="editTransaction('${t.id}')"><i class="fa-solid fa-pen"></i></button>
+                        <button class="icon-btn delete" onclick="deleteTransaction('${t.id}')"><i class="fa-solid fa-trash"></i></button>
+                    </td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function clearColumnFilters(){
+            ['col-filter-tipo','col-filter-status','col-filter-historico','col-filter-rubrica','col-filter-emissao','col-filter-vencimento','col-filter-competencia','col-filter-valor-min','col-filter-valor-max','col-filter-pagto'].forEach(id=>document.getElementById(id).value='');
+            renderTable();
+        }
+
+        function updateDashboard(){
+            const td=today();let tp=0,trm=0,pc=0,tpm=0;
+            transactions.forEach(t=>{
+                if(t.tipo==='Despesa'&&t.status!=='Pago')tp+=(t.valorOriginal+t.jurosMultas);
+                if(t.status==='Pago'&&t.dataPagamento){const d=new Date(t.dataPagamento),n=new Date();if(d.getMonth()===n.getMonth()&&d.getFullYear()===n.getFullYear()){if(t.tipo==='Receita')trm+=t.valorPago;else tpm+=t.valorPago;}}
+                if(t.status==='Vencido'||(t.status==='Pendente'&&t.dataVencimento<=td))pc++;
+            });
+            document.getElementById('kpi-total-pagar').innerText=fmtBRL(tp);
+            document.getElementById('kpi-total-recebido').innerText=fmtBRL(trm);
+            document.getElementById('kpi-pendencias').innerText=pc;
+            const s=trm-tpm;const el=document.getElementById('kpi-saldo');el.innerText=fmtBRL(s);el.style.color=s>=0?'var(--success)':'var(--danger)';
+        }
+
+        // --- RELATÓRIOS GERENCIAIS COM CHART.JS ---
+        function generateReports() {
+            const period = document.getElementById('report-period').value;
+            
+            // Filtrar dados pelo período selecionado
+            const periodData = transactions.filter(t => t.competencia === period);
+            
+            // 1. Gráfico de Pizza: Despesas por Rubrica
+            const despByRubrica = {};
+            periodData.filter(t=>t.tipo==='Despesa').forEach(t => {
+                despByRubrica[t.rubrica] = (despByRubrica[t.rubrica]||0) + t.valorOriginal;
+            });
+            
+            if(chartRubricaInstance) chartRubricaInstance.destroy();
+            chartRubricaInstance = new Chart(document.getElementById('chartRubrica'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(despByRubrica),
+                    datasets: [{ data: Object.values(despByRubrica), backgroundColor: ['#ef4444','#f59e0b','#0ea5e9','#10b981','#8b5cf6','#ec4899','#6366f1','#14b8a6','#f97316','#64748b'] }]
+                },
+                options: { responsive:true, plugins:{ legend:{ position:'right', labels:{font:{size:11}} } } }
+            });
+
+            // 2. Gráfico de Barras: Fluxo últimos 6 meses
+            const months = []; const d = new Date(period+'-01');
+            for(let i=5;i>=0;i--){const md=new Date(d.getFullYear(),d.getMonth()-i,1);months.push(`${String(md.getMonth()+1).padStart(2,'0')}/${md.getFullYear()}`);}
+            
+            const receitas = months.map(()=>0); const despesas = months.map(()=>0);
+            transactions.forEach(t => {
+                if(!t.competencia) return;
+                const [y,m] = t.competencia.split('-');
+                const label = `${m}/${y}`;
+                const idx = months.indexOf(label);
+                if(idx !== -1) { if(t.tipo==='Receita') receitas[idx]+=t.valorOriginal; else despesas[idx]+=t.valorOriginal; }
+            });
+
+            if(chartFluxoInstance) chartFluxoInstance.destroy();
+            chartFluxoInstance = new Chart(document.getElementById('chartFluxo'), {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [
+                        { label:'Receitas', data:receitas, backgroundColor:'#10b981' },
+                        { label:'Despesas', data:despesas, backgroundColor:'#ef4444' }
+                    ]
+                },
+                options: { responsive:true, scales:{ y:{ beginAtZero:true } }, plugins:{ legend:{position:'top'} } }
+            });
+
+            // 3. Tabela Resumo
+            const summary = {};
+            periodData.forEach(t => {
+                if(!summary[t.rubrica]) summary[t.rubrica] = {desp:0,rec:0};
+                if(t.tipo==='Despesa') summary[t.rubrica].desp += t.valorOriginal;
+                else summary[t.rubrica].rec += t.valorOriginal;
+            });
+            
+            const totalPeriod = Object.values(summary).reduce((a,b)=>a+b.desp+b.rec,0) || 1;
+            const tbody = document.getElementById('reportSummaryBody'); tbody.innerHTML='';
+            Object.entries(summary).sort((a,b)=>(b[1].desp+b[1].rec)-(a[1].desp+a[1].rec)).forEach(([rub,v])=>{
+                const pct = ((v.desp+v.rec)/totalPeriod*100).toFixed(1);
+                const saldo = v.rec - v.desp;
+                tbody.innerHTML += `<tr>
+                    <td style="font-weight:600">${rub}</td>
+                    <td style="color:var(--danger)">${fmtBRL(v.desp)}</td>
+                    <td style="color:var(--success)">${fmtBRL(v.rec)}</td>
+                    <td style="color:${saldo>=0?'var(--success)':'var(--danger)'};font-weight:700">${fmtBRL(saldo)}</td>
+                    <td>${pct}%</td>
+                </tr>`;
+            });
+            if(!Object.keys(summary).length) tbody.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:20px">Sem dados neste período</td></tr>';
+        }
+
+        function exportReportExcel() {
+            const period = document.getElementById('report-period').value;
+            const rows = [];
+            document.querySelectorAll('#reportSummaryBody tr').forEach(tr => {
+                const cells = []; tr.querySelectorAll('td').forEach(td => cells.push(td.innerText));
+                if(cells.length) rows.push({Rubrica:cells[0],Despesas:cells[1],Receitas:cells[2],Saldo:cells[3],Percentual:cells[4]});
+            });
+            if(!rows.length){alert("Sem dados para exportar");return;}
+            const ws=XLSX.utils.json_to_sheet(rows);const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Relatório");XLSX.writeFile(wb,`Relatorio_Gerencial_${period}.xlsx`);
+        }
+
+        // --- MODALS & DATA IO ---
+        function openModal(edit=false){if(!edit){document.getElementById('financeForm').reset();document.getElementById('transId').value='';document.getElementById('modalTitle').innerText="Nova Movimentação";document.getElementById('dataEmissao').value=today();document.getElementById('dataVencimento').value=today();document.getElementById('competencia').value=month();document.getElementById('tipoMovimentacao').value="Despesa";document.getElementById('rubrica').selectedIndex=0;}document.getElementById('transactionModal').classList.add('active');}
+        function closeModal(){document.getElementById('transactionModal').classList.remove('active');}
+        function closeConciliateModal(){document.getElementById('conciliateModal').classList.remove('active');}
+
+        function exportToExcel(){if(!transactions.length){alert("Sem dados");return;}const ws=XLSX.utils.json_to_sheet(transactions.map(t=>({"ID":t.id,"Tipo":t.tipo,"Fornecedor":t.fornecedor,"Doc":t.numeroDocumento,"Rubrica":t.rubrica,"Emissão":t.dataEmissao,"Competência":t.competencia,"Vencimento":t.dataVencimento,"Histórico":t.historico,"Valor":t.valorOriginal,"Juros":t.jurosMultas,"Data Pagto":t.dataPagamento||"","Valor Pago":t.valorPago,"Status":t.status,"Obs":t.acaoConciliacao})));const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Dados");XLSX.writeFile(wb,`Financeiro_${today()}.xlsx`);}
+        function importFromExcel(input){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{try{const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array'});const json=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);if(json.length&&confirm(`Importar ${json.length}?`)){transactions=json.map(r=>({id:r.ID||uuid(),tipo:r.Tipo||"Despesa",fornecedor:r.Fornecedor||"?",numeroDocumento:r.Doc||"",rubrica:r.Rubrica||"",dataEmissao:r.Emissão||today(),competencia:r.Competência||month(),dataVencimento:r.Vencimento||today(),historico:r.Histórico||"",valorOriginal:parseFloat(r.Valor)||0,jurosMultas:parseFloat(r.Juros)||0,dataPagamento:r["Data Pagto"]||null,valorPago:parseFloat(r["Valor Pago"])||0,status:r.Status||"Pendente",acaoConciliacao:r.Obs||""}));saveStorage();renderTable();alert("OK!");}}catch(err){alert("Erro Excel");console.error(err)}};r.readAsArrayBuffer(f);input.value='';}
+        function clearAllData(){if(confirm("APAGAR TUDO?")){localStorage.removeItem(STORAGE_KEY);transactions=[];renderTable();updateDashboard();alert("Limpo.");}}
+
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

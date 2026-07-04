@@ -24,7 +24,7 @@
         /* LOGIN */
         .login-screen { position: fixed; inset: 0; z-index: 9999; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); display: flex; align-items: center; justify-content: center; padding: 20px; }
         .login-screen.hidden { display: none; }
-        .login-box { background: white; padding: 40px; border-radius: 16px; width: 100%; max-width: 440px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); animation: loginSlideIn 0.5s ease-out; }
+        .login-box { background: white; padding: 40px; border-radius: 16px; width: 100%; max-width: 420px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); animation: loginSlideIn 0.5s ease-out; }
         @keyframes loginSlideIn { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
         .login-header { text-align: center; margin-bottom: 30px; }
         .login-header .logo-icon { width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 2rem; margin-bottom: 15px; box-shadow: 0 10px 25px rgba(14,165,233,0.3); }
@@ -42,13 +42,12 @@
         .login-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(14,165,233,0.3); }
         .login-demo-accounts { margin-top: 25px; padding-top: 20px; border-top: 1px dashed var(--border); font-size: 0.75rem; color: var(--text-muted); }
         .login-demo-accounts strong { display: block; color: var(--primary); margin-bottom: 8px; }
-        .demo-grid { display: grid; gap: 5px; }
-        .demo-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #f8fafc; border-radius: 4px; cursor: pointer; transition: all 0.15s; border-left: 3px solid transparent; }
+        .demo-grid { display: grid; gap: 6px; }
+        .demo-item { display: flex; justify-content: space-between; padding: 6px 10px; background: #f8fafc; border-radius: 4px; cursor: pointer; transition: all 0.15s; border-left: 3px solid transparent; }
         .demo-item:hover { background: #eff6ff; border-left-color: var(--accent); }
         .role-tag { font-size: 0.65rem; padding: 2px 6px; border-radius: 10px; font-weight: 700; text-transform: uppercase; }
         .role-admin { background: #fef3c7; color: #92400e; }
         .role-operador { background: #dbeafe; color: #1e40af; }
-        .role-lancador { background: #d1fae5; color: #065f46; }
         .role-consulta { background: #e0e7ff; color: #4338ca; }
 
         /* SIDEBAR */
@@ -60,13 +59,11 @@
         .user-box { margin-top: auto; padding: 15px; background: rgba(255,255,255,0.08); border-radius: 10px; display: flex; align-items: center; gap: 12px; }
         .user-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #38bdf8); display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; font-size: 1rem; }
         .user-avatar.admin-avatar { background: linear-gradient(135deg, #f59e0b, #fbbf24); box-shadow: 0 0 0 2px rgba(251,191,36,0.4); }
-        .user-avatar.lancador-avatar { background: linear-gradient(135deg, #10b981, #34d399); box-shadow: 0 0 0 2px rgba(52,211,153,0.4); }
         .user-info { flex: 1; min-width: 0; }
         .user-info h5 { font-size: 0.85rem; margin-bottom: 3px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .user-info .user-role { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
         .role-admin-badge { background: var(--warning); color: #78350f; }
         .role-operador-badge { background: var(--accent); color: white; }
-        .role-lancador-badge { background: var(--success); color: white; }
         .role-consulta-badge { background: var(--secondary); color: white; }
         .admin-badge-full { display: inline-flex; align-items: center; gap: 4px; font-size: 0.62rem; color: #fbbf24; margin-top: 3px; font-weight: 700; }
         .logout-btn { background: transparent; border: none; color: #94a3b8; cursor: pointer; padding: 6px; border-radius: 6px; transition: all 0.2s; font-size: 0.9rem; }
@@ -93,7 +90,7 @@
         .toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; background: var(--bg-card); padding: 18px 20px; border-radius: var(--radius); box-shadow: var(--shadow); }
         .toolbar-left { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
         .toolbar-title { font-weight: 700; color: var(--primary); font-size: 1.05rem; }
-        .quick-filter { display: flex; gap: 6px; flex-wrap: wrap; }
+        .quick-filter { display: flex; gap: 6px; }
         .quick-filter-btn { padding: 6px 12px; background: #f1f5f9; border: 1px solid var(--border); border-radius: 20px; font-size: 0.75rem; font-weight: 600; cursor: pointer; color: var(--secondary); transition: all 0.2s; }
         .quick-filter-btn:hover, .quick-filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
         
@@ -138,6 +135,7 @@
         .icon-btn:disabled { opacity: 0.3; cursor: not-allowed; }
         .icon-btn.locked { background: #fef3c7; color: var(--warning); cursor: help; }
         .icon-btn.locked:hover { background: #fef3c7; color: var(--warning); transform: none; }
+        /* NOVO: Botão especial admin em registros pagos */
         .icon-btn.admin-edit { background: #fef3c7; color: #92400e; }
         .icon-btn.admin-edit:hover:not(:disabled) { background: var(--warning); color: white; }
         .icon-btn.admin-delete { background: #fef3c7; color: #92400e; }
@@ -186,6 +184,7 @@
         .payment-fields h4 { color: var(--success); font-size: 0.85rem; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
         .payment-fields .form-grid { gap: 12px; }
         
+        /* ALERTAS */
         .locked-alert { background: #fef3c7; border-left: 3px solid var(--warning); padding: 12px 14px; border-radius: 6px; margin-bottom: 15px; font-size: 0.85rem; color: #78350f; display: flex; align-items: center; gap: 10px; }
         .locked-alert i { font-size: 1.1rem; }
         .admin-edit-alert { background: #fef3c7; border-left: 4px solid var(--warning); padding: 14px; border-radius: 8px; margin-bottom: 18px; font-size: 0.85rem; color: #78350f; display: none; }
@@ -194,64 +193,12 @@
         .admin-edit-alert .alert-title { font-weight: 700; margin-bottom: 3px; }
         .admin-edit-alert .alert-desc { font-size: 0.8rem; line-height: 1.4; }
 
-        /* ============================================ */
-        /* RUBRICAS - TOTALMENTE SELECIONÁVEL           */
-        /* ============================================ */
-        select#rubrica { 
-            font-size: 0.88rem; 
-            padding: 10px 12px;
-            cursor: pointer;
-        }
-        /* Título do grupo (optgroup label) - apenas visual, NÃO clicável por padrão do HTML */
-        select#rubrica optgroup { 
-            font-weight: 800 !important; 
-            color: var(--primary) !important; 
-            background: linear-gradient(to right, #e0f2fe, #f1f5f9) !important;
-            font-style: normal !important; 
-            padding: 10px 8px !important; 
-            margin-top: 8px !important; 
-            text-transform: uppercase !important; 
-            font-size: 0.75rem !important; 
-            letter-spacing: 0.5px;
-            border-top: 2px solid var(--accent);
-        }
+        /* RUBRICAS */
+        select#rubrica { font-size: 0.88rem; padding: 10px 12px; }
+        select#rubrica optgroup { font-weight: 800 !important; color: var(--primary) !important; background: linear-gradient(to right, #e0f2fe, #f1f5f9) !important; font-style: normal !important; padding: 12px 10px !important; margin-top: 10px !important; text-transform: uppercase !important; font-size: 0.75rem !important; letter-spacing: 0.5px; pointer-events: none !important; border-top: 2px solid var(--accent); }
         select#rubrica optgroup:first-child { margin-top: 0 !important; }
-        
-        /* CATEGORIA-PAI: Selecionável, fundo azul, negrito, com ícone */
-        select#rubrica option.category-option {
-            font-weight: 700 !important;
-            color: var(--primary) !important;
-            background: #dbeafe !important;
-            padding: 10px 14px !important;
-            font-size: 0.9rem !important;
-            border-bottom: 1px solid #bfdbfe;
-            cursor: pointer !important;
-        }
-        select#rubrica option.category-option:hover {
-            background: #bfdbfe !important;
-        }
-        
-        /* SUBCATEGORIAS: Selecionáveis, indentadas */
-        select#rubrica option.sub-option { 
-            font-weight: 400 !important; 
-            color: var(--text-main) !important; 
-            background: #fff !important; 
-            padding: 8px 14px 8px 32px !important; 
-            font-size: 0.88rem !important; 
-            cursor: pointer !important;
-        }
-        select#rubrica option.sub-option:hover { 
-            background: #eff6ff !important; 
-        }
-        
-        /* Garantir que TODOS os options sejam clicáveis */
-        select#rubrica option {
-            cursor: pointer !important;
-        }
-        select#rubrica option:disabled {
-            cursor: not-allowed !important;
-            opacity: 0.5;
-        }
+        select#rubrica option.category-option { font-weight: 700 !important; color: var(--primary) !important; background: #dbeafe !important; padding: 10px 15px !important; font-size: 0.88rem !important; border-bottom: 1px solid #bfdbfe; }
+        select#rubrica option:not(.category-option) { font-weight: 400 !important; color: var(--text-main) !important; background: #fff !important; padding: 8px 15px 8px 30px !important; font-size: 0.88rem !important; }
 
         /* TOAST */
         .toast-container { position: fixed; top: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
@@ -265,7 +212,7 @@
         .toast-message { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
         @keyframes slideInRight { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        /* CONFIRMAÇÃO DUPLA */
+        /* CONFIRMAÇÃO DUPLA ADMIN */
         .confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 1200; display: none; align-items: center; justify-content: center; }
         .confirm-overlay.active { display: flex; }
         .confirm-box { background: white; padding: 30px; border-radius: 12px; max-width: 480px; width: 90%; box-shadow: 0 25px 60px rgba(0,0,0,0.4); border-top: 4px solid var(--warning); }
@@ -392,19 +339,15 @@
                 </button>
             </form>
             <div class="login-demo-accounts">
-                <strong>🔑 Contas de Demonstração (clique):</strong>
+                <strong>🔑 Contas de Demonstração:</strong>
                 <div class="demo-grid">
                     <div class="demo-item" onclick="fillDemo('admin','admin123')">
                         <span><b>admin</b> / admin123</span>
-                        <span class="role-tag role-admin">Administrador</span>
+                        <span class="role-tag role-admin">Administrador Total</span>
                     </div>
                     <div class="demo-item" onclick="fillDemo('operador','op123')">
                         <span><b>operador</b> / op123</span>
                         <span class="role-tag role-operador">Operador</span>
-                    </div>
-                    <div class="demo-item" onclick="fillDemo('lancador','lan123')">
-                        <span><b>lancador</b> / lan123</span>
-                        <span class="role-tag role-lancador">Lançador ⭐</span>
                     </div>
                     <div class="demo-item" onclick="fillDemo('consulta','co123')">
                         <span><b>consulta</b> / co123</span>
@@ -420,7 +363,7 @@
         <div class="brand"><i class="fa-solid fa-chart-pie"></i> Finanças Pro</div>
         <nav>
             <button class="active" onclick="switchView('dashboard', event)"><i class="fa-solid fa-house"></i> Dashboard</button>
-            <button id="navReports" onclick="switchView('reports', event)"><i class="fa-solid fa-chart-line"></i> Relatórios</button>
+            <button onclick="switchView('reports', event)"><i class="fa-solid fa-chart-line"></i> Relatórios</button>
             <div style="margin-top: 20px; margin-bottom: 10px; font-size: 0.75rem; color: #64748b; text-transform: uppercase; padding-left: 15px; font-weight: 700;">Ferramentas</div>
             <button onclick="exportToExcel()"><i class="fa-solid fa-file-excel"></i> Exportar Excel</button>
             <button id="btnImportExcel" onclick="document.getElementById('importExcelFile').click()"><i class="fa-solid fa-upload"></i> Importar Excel</button>
@@ -555,17 +498,19 @@
                 <button class="close-modal" onclick="closeModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-muted)">&times;</button>
             </div>
             
+            <!-- ALERTA ADMIN: EDITANDO REGISTRO PAGO -->
             <div class="admin-edit-alert" id="adminEditAlert">
                 <i class="fa-solid fa-user-shield"></i>
                 <div>
                     <div class="alert-title">Modo Administrador: Editando registro conciliado</div>
                     <div class="alert-desc">
-                        Você está editando uma movimentação já conciliada. Como administrador, você pode alterar dados históricos.
-                        <strong>Use com responsabilidade.</strong>
+                        Você está editando uma movimentação que já foi baixada/conciliada. Como administrador, você tem poderes totais para alterar estes dados históricos.
+                        <strong>Use com responsabilidade</strong> — alterações afetam relatórios e histórico contábil.
                     </div>
                 </div>
             </div>
             
+            <!-- ALERTA COMUM: APENAS VISUALIZAÇÃO -->
             <div class="locked-alert" id="lockedAlert" style="display:none">
                 <i class="fa-solid fa-lock"></i>
                 <div>
@@ -633,77 +578,61 @@
                         <label><i class="fa-solid fa-calendar-days"></i> Competência <span class="required">*</span></label>
                         <input type="month" id="competencia" required>
                     </div>
-                    
-                    <!-- ============================================ -->
-                    <!-- CAMPO RUBRICA TOTALMENTE SELECIONÁVEL       -->
-                    <!-- ============================================ -->
                     <div class="form-group full">
-                        <label>
-                            <i class="fa-solid fa-folder-tree"></i> Rubrica (Plano de Contas) <span class="required">*</span>
-                            <span style="font-size:0.7rem;color:var(--text-muted);font-weight:400;margin-left:auto">
-                                💡 Selecione qualquer nível
-                            </span>
-                        </label>
-                        <select id="rubrica" required size="1">
+                        <label><i class="fa-solid fa-folder-tree"></i> Rubrica (Plano de Contas) <span class="required">*</span></label>
+                        <select id="rubrica" required>
                             <option value="" disabled selected>Selecione uma rubrica...</option>
-                            
-                            <optgroup label="📂 1. PESSOAL">
-                                <option value="1. Pessoal" class="category-option">📁 1. Pessoal (Categoria Geral)</option>
-                                <option value="1.1 Ordenados" class="sub-option">💼 1.1 Ordenados</option>
-                                <option value="1.2 Encargos Sociais" class="sub-option">📋 1.2 Encargos Sociais</option>
-                                <option value="1.4 Benefícios" class="sub-option">🎁 1.4 Benefícios</option>
-                                <option value="1.5 Provisões" class="sub-option">⚖️ 1.5 Provisões (Rescisões/13º/Férias)</option>
+                            <optgroup label="1. PESSOAL" disabled>
+                                <option value="1. Pessoal" class="category-option">📁 1. Pessoal (Categoria)</option>
+                                <option value="1.1 Ordenados">💼 1.1 Ordenados</option>
+                                <option value="1.2 Encargos Sociais">📋 1.2 Encargos Sociais</option>
+                                <option value="1.4 Benefícios">🎁 1.4 Benefícios</option>
+                                <option value="1.5 Provisões">⚖️ 1.5 Provisões</option>
                             </optgroup>
-                            
-                            <optgroup label="📂 2. MATERIAL / MEDICAMENTOS">
-                                <option value="2. Material / Medicamentos" class="category-option">📁 2. Material / Medicamentos (Categoria Geral)</option>
-                                <option value="2.1 Materiais Médico Hospitalar" class="sub-option">🏥 2.1 Materiais Médico Hospitalar</option>
-                                <option value="2.2 Medicamentos" class="sub-option">💊 2.2 Medicamentos</option>
+                            <optgroup label="2. MATERIAL / MEDICAMENTOS" disabled>
+                                <option value="2. Material / Medicamentos" class="category-option">📁 2. Material / Medicamentos</option>
+                                <option value="2.1 Materiais Médico Hospitalar">🏥 2.1 Materiais Médico Hospitalar</option>
+                                <option value="2.2 Medicamentos">💊 2.2 Medicamentos</option>
                             </optgroup>
-                            
-                            <optgroup label="📂 3. MATERIAIS DIVERSOS">
-                                <option value="3. Materiais Diversos" class="category-option">📁 3. Materiais Diversos (Categoria Geral)</option>
-                                <option value="3.1 Material de Higienização" class="sub-option">🧽 3.1 Material de Higienização</option>
-                                <option value="3.3 Material Expediente" class="sub-option">📎 3.3 Material Expediente</option>
-                                <option value="3.4 Combustível" class="sub-option">⛽ 3.4 Combustível</option>
-                                <option value="3.5 GLP" class="sub-option">🔥 3.5 GLP</option>
-                                <option value="3.6 Material de Manutenção" class="sub-option">🔧 3.6 Material de Manutenção</option>
-                                <option value="3.8 Outras Despesas Materiais" class="sub-option">📦 3.8 Outras Despesas Materiais</option>
-                                <option value="3.9 Enxoval - Lavanderia" class="sub-option">🧺 3.9 Enxoval - Lavanderia</option>
-                                <option value="3.10 Esterilização" class="sub-option">🧪 3.10 Esterilização</option>
-                                <option value="3.11 Dedetização" class="sub-option">🪰 3.11 Dedetização</option>
-                                <option value="3.12 Gases Medicinais" class="sub-option">💨 3.12 Gases Medicinais</option>
+                            <optgroup label="3. MATERIAIS DIVERSOS" disabled>
+                                <option value="3. Materiais Diversos" class="category-option">📁 3. Materiais Diversos</option>
+                                <option value="3.1 Material de Higienização">🧽 3.1 Higienização</option>
+                                <option value="3.3 Material Expediente">📎 3.3 Expediente</option>
+                                <option value="3.4 Combustível">⛽ 3.4 Combustível</option>
+                                <option value="3.5 GLP">🔥 3.5 GLP</option>
+                                <option value="3.6 Material de Manutenção">🔧 3.6 Manutenção</option>
+                                <option value="3.8 Outras Despesas Materiais">📦 3.8 Outras</option>
+                                <option value="3.9 Enxoval - Lavanderia">🧺 3.9 Lavanderia</option>
+                                <option value="3.10 Esterilização">🧪 3.10 Esterilização</option>
+                                <option value="3.11 Dedetização">🪰 3.11 Dedetização</option>
+                                <option value="3.12 Gases Medicinais">💨 3.12 Gases</option>
                             </optgroup>
-                            
-                            <optgroup label="📂 4. SEGUROS / IMPOSTOS / TAXAS">
-                                <option value="4. Seguros/ Impostos/ Taxas" class="category-option">📁 4. Seguros / Impostos / Taxas (Categoria Geral)</option>
-                                <option value="4.1 Seguros" class="sub-option">🛡️ 4.1 Seguros</option>
-                                <option value="4.2 Impostos/Taxas" class="sub-option">🧾 4.2 Impostos/Taxas</option>
+                            <optgroup label="4. SEGUROS / IMPOSTOS / TAXAS" disabled>
+                                <option value="4. Seguros/ Impostos/ Taxas" class="category-option">📁 4. Seguros / Impostos</option>
+                                <option value="4.1 Seguros">🛡️ 4.1 Seguros</option>
+                                <option value="4.2 Impostos/Taxas">🧾 4.2 Impostos/Taxas</option>
                             </optgroup>
-                            
-                            <optgroup label="📂 5. DESPESAS GERAIS">
-                                <option value="5. Gerais" class="category-option">📁 5. Despesas Gerais (Categoria Geral)</option>
-                                <option value="5.1 Telefonia" class="sub-option">📱 5.1 Telefonia</option>
-                                <option value="5.2 Água" class="sub-option">💧 5.2 Água</option>
-                                <option value="5.3 Energia Elétrica" class="sub-option">⚡ 5.3 Energia Elétrica</option>
-                                <option value="5.4 Outras Despesas Gerais" class="sub-option">📑 5.4 Outras Despesas Gerais</option>
-                                <option value="5.5 Custos Corporativos" class="sub-option">🏢 5.5 Custos Corporativos</option>
+                            <optgroup label="5. DESPESAS GERAIS" disabled>
+                                <option value="5. Gerais" class="category-option">📁 5. Despesas Gerais</option>
+                                <option value="5.1 Telefonia">📱 5.1 Telefonia</option>
+                                <option value="5.2 Água">💧 5.2 Água</option>
+                                <option value="5.3 Energia Elétrica">⚡ 5.3 Energia</option>
+                                <option value="5.4 Outras Despesas Gerais">📑 5.4 Outras</option>
+                                <option value="5.5 Custos Corporativos">🏢 5.5 Corporativos</option>
                             </optgroup>
-                            
-                            <optgroup label="📂 6. SERVIÇOS TERCEIROS">
-                                <option value="6. Serviços Terceiros" class="category-option">📁 6. Serviços Terceiros (Categoria Geral)</option>
-                                <option value="6.1 Assistenciais" class="sub-option">👨‍⚕️ 6.1 Assistenciais</option>
-                                <option value="6.1.1 PJ Equipe Médica" class="sub-option">⚕️ 6.1.1 PJ Equipe Médica</option>
-                                <option value="6.2 Administrativos" class="sub-option">👔 6.2 Administrativos</option>
-                                <option value="6.2.1 PJ Assessorias" class="sub-option">📊 6.2.1 PJ Assessorias</option>
-                                <option value="6.2.2 Operacionais" class="sub-option">⚙️ 6.2.2 Operacionais</option>
-                                <option value="6.2.3 SADT" class="sub-option">🔬 6.2.3 SADT</option>
-                                <option value="6.2.4 Alimentação" class="sub-option">🍽️ 6.2.4 Alimentação</option>
-                                <option value="6.2.5 Engenharia Clinica" class="sub-option">🔩 6.2.5 Engenharia Clínica</option>
+                            <optgroup label="6. SERVIÇOS TERCEIROS" disabled>
+                                <option value="6. Serviços Terceiros" class="category-option">📁 6. Serviços Terceiros</option>
+                                <option value="6.1 Assistenciais">👨‍⚕️ 6.1 Assistenciais</option>
+                                <option value="6.1.1 PJ Equipe Médica">⚕️ 6.1.1 PJ Equipe Médica</option>
+                                <option value="6.2 Administrativos">👔 6.2 Administrativos</option>
+                                <option value="6.2.1 PJ Assessorias">📊 6.2.1 Assessorias</option>
+                                <option value="6.2.2 Operacionais">⚙️ 6.2.2 Operacionais</option>
+                                <option value="6.2.3 SADT">🔬 6.2.3 SADT</option>
+                                <option value="6.2.4 Alimentação">🍽️ 6.2.4 Alimentação</option>
+                                <option value="6.2.5 Engenharia Clinica">🔩 6.2.5 Eng. Clínica</option>
                             </optgroup>
                         </select>
                     </div>
-                    
                     <div class="form-group">
                         <label><i class="fa-solid fa-calendar"></i> Data Emissão <span class="required">*</span></label>
                         <input type="date" id="dataEmissao" required>
@@ -765,7 +694,7 @@
         </div>
     </div>
 
-    <!-- CONFIRMAÇÃO DUPLA -->
+    <!-- CONFIRMAÇÃO DUPLA ADMIN -->
     <div class="confirm-overlay" id="confirmOverlay">
         <div class="confirm-box">
             <div class="warn-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
@@ -775,10 +704,11 @@
                 <strong>⚠️ Atenção:</strong>
                 <ul id="confirmRisks">
                     <li>Esta ação pode alterar o histórico contábil</li>
+                    <li>Os dados atuais serão substituídos</li>
                 </ul>
             </div>
             <div class="confirm-input">
-                <label>Para confirmar, digite: <strong>CONFIRMAR</strong></label>
+                <label id="confirmInputLabel">Para confirmar, digite a palavra: <strong id="confirmWord">CONFIRMAR</strong></label>
                 <input type="text" id="confirmInput" placeholder="Digite aqui..." autocomplete="off">
             </div>
             <div class="confirm-actions">
@@ -859,7 +789,7 @@
 
     <script>
         // ============================================
-        // SISTEMA DE AUTENTICAÇÃO - 4 PERFIS
+        // SISTEMA DE AUTENTICAÇÃO E PERMISSÕES
         // ============================================
         const AUTH_USERS = {
             'admin': { 
@@ -870,8 +800,7 @@
                 permissions: {
                     create: true, edit: true, delete: true, 
                     conciliate: true, export: true, import: true, clearAll: true,
-                    adminFullAccess: true,
-                    editPaid: true  // Pode editar registros pagos
+                    adminFullAccess: true // PODER TOTAL
                 }
             },
             'operador': { 
@@ -882,25 +811,7 @@
                 permissions: {
                     create: true, edit: true, delete: false, 
                     conciliate: false, export: true, import: true, clearAll: false,
-                    adminFullAccess: false,
-                    editPaid: false  // Não pode editar pagos
-                }
-            },
-            'lancador': { 
-                password: 'lan123', 
-                name: 'Lançador', 
-                role: 'lancador',
-                roleLabel: 'Lançador',
-                permissions: {
-                    create: true,           // Pode lançar nova movimentação
-                    edit: true,             // Pode editar
-                    delete: false,          // NÃO pode excluir
-                    conciliate: false,      // NÃO pode conciliar
-                    export: true,           // Pode exportar relatórios
-                    import: false,          // NÃO pode importar
-                    clearAll: false,        // NÃO pode limpar
-                    adminFullAccess: false,
-                    editPaid: false         // NÃO pode editar pagos/conciliados
+                    adminFullAccess: false
                 }
             },
             'consulta': { 
@@ -911,14 +822,15 @@
                 permissions: {
                     create: false, edit: false, delete: false, 
                     conciliate: false, export: true, import: false, clearAll: false,
-                    adminFullAccess: false,
-                    editPaid: false
+                    adminFullAccess: false
                 }
             }
         };
 
         let currentUser = null;
         const SESSION_KEY = 'fin_pro_session';
+        
+        // NOVO: Sistema de confirmação dupla admin
         let pendingAction = null;
 
         function checkSession() {
@@ -972,7 +884,6 @@
             localStorage.setItem(SESSION_KEY, JSON.stringify({ username, loginTime: Date.now() }));
             errorBox.classList.remove('active');
             showApp();
-            showToast('success', 'Bem-vindo!', `Olá, ${currentUser.name}`);
         }
 
         function fillDemo(user, pass) {
@@ -1001,10 +912,6 @@
             return currentUser?.role === 'admin';
         }
 
-        function canEditPaid() {
-            return currentUser?.permissions?.editPaid === true;
-        }
-
         function updateUserUI() {
             if (!currentUser) return;
             document.getElementById('userName').textContent = currentUser.name;
@@ -1013,11 +920,9 @@
             roleEl.className = `user-role role-${currentUser.role}-badge`;
             const avatarEl = document.getElementById('userAvatar');
             avatarEl.textContent = currentUser.name.charAt(0).toUpperCase();
-            let avatarClass = 'user-avatar';
-            if (currentUser.role === 'admin') avatarClass += ' admin-avatar';
-            else if (currentUser.role === 'lancador') avatarClass += ' lancador-avatar';
-            avatarEl.className = avatarClass;
+            avatarEl.className = isAdmin() ? 'user-avatar admin-avatar' : 'user-avatar';
             
+            // NOVO: Badge de Acesso Total para admin
             document.getElementById('adminFullBadge').style.display = isAdmin() ? 'flex' : 'none';
         }
 
@@ -1026,14 +931,13 @@
             document.getElementById('btnNewTransaction').style.display = p.create ? 'inline-flex' : 'none';
             document.getElementById('btnImportExcel').style.display = p.import ? 'flex' : 'none';
             document.getElementById('btnClearAll').style.display = p.clearAll ? 'flex' : 'none';
-            document.getElementById('navReports').style.display = 'flex'; // Todos podem ver relatórios
         }
 
         // ============================================
         // STATE & UTILS
         // ============================================
         let transactions = [];
-        const STORAGE_KEY = 'fin_pro_v15';
+        const STORAGE_KEY = 'fin_pro_v14';
         let chartRubricaInstance = null;
         let chartFluxoInstance = null;
         let currentQuickFilter = 'all';
@@ -1115,6 +1019,9 @@
             }
         }
 
+        // ============================================
+        // NOVO: SISTEMA DE CONFIRMAÇÃO DUPLA ADMIN
+        // ============================================
         function requestAdminConfirmation(title, message, risks, actionFn) {
             pendingAction = actionFn;
             document.getElementById('confirmTitle').textContent = title;
@@ -1143,7 +1050,7 @@
         }
 
         // ============================================
-        // CRUD
+        // CRUD - ADMIN TEM PODER TOTAL
         // ============================================
         function saveTransaction(e) {
             e.preventDefault();
@@ -1182,21 +1089,23 @@
                 valorPago, dataPagamento, status, 
                 historico: document.getElementById('historico').value, 
                 acaoConciliacao,
+                // NOVO: registra quem fez última modificação
                 editadoPor: currentUser?.name || 'Sistema',
                 editadoEm: new Date().toISOString()
             };
             
             if(id) {
                 const ex = transactions.find(x=>x.id===id);
-                // Apenas admin pode sobrescrever dados de pagamento
-                if(ex && ex.status === 'Pago' && !canEditPaid()) {
+                // NOVO: admin pode sobrescrever dados de pagamento; outros perfis não
+                if(ex && ex.status === 'Pago' && !isAdmin()) {
                     t.valorPago = ex.valorPago;
                     t.dataPagamento = ex.dataPagamento;
                     t.status = 'Pago';
                     t.acaoConciliacao = ex.acaoConciliacao;
                 }
                 transactions[transactions.findIndex(x=>x.id===id)] = t;
-                showToast('success', 'Atualizado!', 'Movimentação editada com sucesso');
+                const msg = (ex?.status === 'Pago' && isAdmin()) ? '⚠️ Registro histórico atualizado pelo administrador' : 'Movimentação editada com sucesso';
+                showToast('success', 'Atualizado!', msg);
             } else {
                 transactions.push(t);
                 showToast('success', 'Criado!', `${t.tipo} de ${fmtBRL(t.valorOriginal)} lançada como ${status}`);
@@ -1204,6 +1113,7 @@
             saveStorage(); closeModal(); renderTable();
         }
 
+        // DELETE COM PODER TOTAL DO ADMIN
         function deleteTransaction(id) {
             if (!hasPermission('delete')) {
                 showToast('error', 'Sem permissão', 'Seu perfil não permite excluir movimentações');
@@ -1213,14 +1123,16 @@
             const t = transactions.find(x => x.id === id);
             if (!t) return;
             
+            // ADMIN: pode excluir qualquer registro (inclusive pagos) com confirmação dupla
             if (t.status === 'Pago') {
                 if (isAdmin()) {
                     requestAdminConfirmation(
                         'Excluir registro conciliado',
-                        `Você está prestes a excluir o lançamento "${t.fornecedor}" de ${fmtBRL(t.valorOriginal)}, conciliado em ${fmtDate(t.dataPagamento)}.`,
+                        `Você está prestes a excluir o lançamento "${t.fornecedor}" de ${fmtBRL(t.valorOriginal)}, que já foi conciliado em ${fmtDate(t.dataPagamento)}.`,
                         [
                             'O registro será REMOVIDO permanentemente',
                             'O histórico contábil será afetado',
+                            'Relatórios serão recalculados',
                             'Esta ação não pode ser desfeita'
                         ],
                         () => {
@@ -1232,7 +1144,7 @@
                     );
                     return;
                 } else {
-                    showToast('error', 'Ação bloqueada', 'Não é possível excluir movimentação já conciliada.');
+                    showToast('error', 'Ação bloqueada', 'Não é possível excluir movimentação já conciliada. Contate o administrador.');
                     return;
                 }
             }
@@ -1245,14 +1157,16 @@
             }
         }
 
+        // EDIT - ADMIN EDITA TUDO
         function editTransaction(id) {
             const t = transactions.find(x=>x.id===id);
             if(!t) return;
             
-            const isPaid = t.status === 'Pago';
-            
-            // Se está pago e usuário NÃO tem permissão de editar pagos = apenas visualiza
-            if (isPaid && !canEditPaid()) {
+            // ADMIN pode editar qualquer coisa
+            const adminEditingPaidRecord = isAdmin() && t.status === 'Pago';
+            // Não-admin tentando editar pago = bloqueio
+            if (!isAdmin() && t.status === 'Pago') {
+                // Modo somente leitura para outros perfis
                 loadFormData(t, true);
                 document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-eye"></i> Visualizar Movimentação';
                 document.getElementById('btnSaveTransaction').style.display = 'none';
@@ -1269,7 +1183,8 @@
             
             loadFormData(t, false);
             
-            if (isPaid && canEditPaid()) {
+            if (adminEditingPaidRecord) {
+                // ADMIN editando registro pago
                 document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-user-shield" style="color:var(--warning)"></i> Editar Histórico (Admin)';
                 document.getElementById('btnSaveTransaction').style.display = 'inline-flex';
                 document.getElementById('btnSaveTransaction').classList.remove('btn-primary');
@@ -1316,6 +1231,7 @@
                 togglePaymentFields();
             }
             
+            // Desabilita todos os campos se for somente leitura
             document.querySelectorAll('#financeForm input, #financeForm select, #financeForm textarea').forEach(el => {
                 el.disabled = readOnly;
             });
@@ -1325,6 +1241,7 @@
             });
         }
 
+        // CONCILIAÇÃO
         function openConciliateModal(id) {
             if (!hasPermission('conciliate')) {
                 showToast('error', 'Sem permissão', 'Seu perfil não permite realizar conciliação');
@@ -1332,8 +1249,8 @@
             }
             const t = transactions.find(x=>x.id===id);
             if(!t) return;
-            if (t.status === 'Pago' && !canEditPaid()) {
-                showToast('warning', 'Já conciliado', 'Esta movimentação já foi baixada');
+            if (t.status === 'Pago' && !isAdmin()) {
+                showToast('warning', 'Já conciliado', 'Esta movimentação já foi baixada anteriormente');
                 return;
             }
             document.getElementById('conciliateId').value = id;
@@ -1353,7 +1270,7 @@
             const id = document.getElementById('conciliateId').value;
             const idx = transactions.findIndex(t => t.id === id);
             if (idx !== -1) {
-                if (transactions[idx].status === 'Pago' && !canEditPaid()) {
+                if (transactions[idx].status === 'Pago' && !isAdmin()) {
                     showToast('warning', 'Já conciliado', 'Esta movimentação já foi baixada');
                     closeConciliateModal();
                     return;
@@ -1371,6 +1288,7 @@
             }
         }
 
+        // RENDER TABLE COM INDICADORES VISUAIS ADMIN
         function renderTable() {
             const tbody = document.getElementById('tableBody'); 
             tbody.innerHTML = '';
@@ -1430,7 +1348,8 @@
                 let lockIcon = '';
                 
                 if (isPaid) {
-                    if (canEditPaid()) {
+                    if (isAdmin()) {
+                        // ADMIN: botões ativos com indicação especial
                         lockIcon = '<i class="fa-solid fa-lock-open admin-indicator" title="Admin pode editar"></i>';
                         actions = `
                             <button class="icon-btn conciliar" onclick="openConciliateModal('${t.id}')" title="Re-conciliar (Admin)"><i class="fa-solid fa-rotate"></i></button>
@@ -1439,15 +1358,14 @@
                         `;
                     } else {
                         lockIcon = '<i class="fa-solid fa-lock lock-indicator" title="Conciliado"></i>';
-                        // Outros perfis: apenas visualizar (se tiverem permissão de edit) ou nada
-                        if (hasPermission('edit')) {
-                            actions = `<button class="icon-btn" onclick="editTransaction('${t.id}')" title="Visualizar"><i class="fa-solid fa-eye"></i></button>`;
-                        } else {
-                            actions = `<button class="icon-btn locked" disabled title="Apenas visualização"><i class="fa-solid fa-eye"></i></button>`;
-                        }
+                        // Outros perfis: apenas visualizar
+                        actions = `
+                            <button class="icon-btn locked" title="Já conciliado" disabled><i class="fa-solid fa-lock"></i></button>
+                            <button class="icon-btn" onclick="editTransaction('${t.id}')" title="Visualizar"><i class="fa-solid fa-eye"></i></button>
+                            <button class="icon-btn locked" title="Exclusão bloqueada" disabled><i class="fa-solid fa-trash"></i></button>
+                        `;
                     }
                 } else {
-                    // Registro não pago - aplicar permissões normais
                     if (hasPermission('conciliate')) {
                         actions += `<button class="icon-btn conciliar" onclick="openConciliateModal('${t.id}')" title="Conciliar"><i class="fa-solid fa-check"></i></button>`;
                     }
@@ -1682,20 +1600,27 @@
             if (isAdmin()) {
                 requestAdminConfirmation(
                     'Limpar TODOS os dados financeiros',
-                    `Você (${currentUser.name}) está prestes a APAGAR TODOS os ${transactions.length} registros.`,
+                    `Você (${currentUser.name}) está prestes a APAGAR TODOS os ${transactions.length} registros financeiros do sistema.`,
                     [
                         'Todos os registros serão excluídos permanentemente',
                         'O histórico contábil será perdido',
-                        'Esta ação é irreversível'
+                        'Esta ação é irreversível',
+                        'Recomendamos exportar antes'
                     ],
                     () => {
                         localStorage.removeItem(STORAGE_KEY);
                         transactions = [];
                         renderTable();
                         updateDashboard();
-                        showToast('warning','Dados apagados','Todas as movimentações foram removidas');
+                        showToast('warning','Dados apagados','Todas as movimentações foram removidas pelo administrador');
                     }
                 );
+            } else if(confirm("⚠️ ATENÇÃO: Isso apagará TODOS os dados financeiros. Continuar?")) {
+                localStorage.removeItem(STORAGE_KEY);
+                transactions = [];
+                renderTable();
+                updateDashboard();
+                showToast('warning','Dados apagados','Todas as movimentações foram removidas');
             }
         }
 
@@ -1713,7 +1638,7 @@
             if (savedKey) document.getElementById('chatApiKey').value = savedKey;
             if (savedModel) document.getElementById('chatModel').value = savedModel;
             if (chatHistory.length === 0) {
-                addSystemMessage(`Olá, ${currentUser?.name || 'usuário'}! 👋 Sou seu assistente financeiro com IA da NVIDIA. Perfil: ${currentUser?.roleLabel}. Como posso ajudar?`);
+                addSystemMessage(`Olá, ${currentUser?.name || 'usuário'}! 👋 Sou seu assistente financeiro com IA da NVIDIA. Como ${currentUser?.roleLabel || ''}, posso te ajudar a analisar dados e responder perguntas sobre receitas e despesas.`);
             }
         }
 
@@ -1770,7 +1695,7 @@
             if (key) localStorage.setItem('fin_ai_api_key', key);
             localStorage.setItem('fin_ai_model', model);
             closeChatConfig();
-            addSystemMessage("✅ Configurações salvas!");
+            addSystemMessage("✅ Configurações salvas! Pode começar a conversar comigo.");
         }
 
         function clearChatHistory() {
@@ -1778,7 +1703,7 @@
                 chatHistory = [];
                 localStorage.removeItem(CHAT_STORAGE_KEY);
                 renderChatMessages();
-                addSystemMessage("🧹 Histórico limpo.");
+                addSystemMessage("🧹 Histórico limpo. Como posso ajudar?");
             }
         }
 
@@ -1814,11 +1739,13 @@
 DADOS FINANCEIROS:
 - Data: ${fmtDate(td)} | Mês competência: ${fmtComp(currentMonth)}
 - Usuário: ${currentUser?.name} (${currentUser?.roleLabel})
+- Permissão admin total: ${isAdmin() ? 'SIM' : 'NÃO'}
 
 KPIs:
 - Receitas: ${fmtBRL(totalReceitas)} (Pagas: ${fmtBRL(totalReceitasPagas)} | Pendentes: ${fmtBRL(totalReceitasPendentes)})
 - Despesas: ${fmtBRL(totalDespesas)} (Pagas: ${fmtBRL(totalDespesasPagas)} | Pendentes: ${fmtBRL(totalDespesasPendentes)})
 - Saldo: ${fmtBRL(saldo)}
+- Total: ${transactions.length} transações
 
 CONTAS VENCIDAS (${contasVencidas.length}):
 ${contasVencidas.length > 0 ? contasVencidas.map(c => `- ${c.fornecedor} | ${c.rubrica} | ${fmtBRL(c.valor)} | ${fmtDate(c.vencimento)}`).join('\n') : 'Nenhuma'}
@@ -1833,7 +1760,7 @@ ${topRubricas.map(([r, v]) => `- ${r}: ${fmtBRL(v)}`).join('\n')}`;
             if (!text || chatIsTyping) return;
             const apiKey = localStorage.getItem('fin_ai_api_key');
             const model = localStorage.getItem('fin_ai_model') || 'meta/llama-3.3-70b-instruct';
-            if (!apiKey) { addSystemMessage("⚠️ Configure sua API Key da NVIDIA primeiro!"); openChatConfig(); return; }
+            if (!apiKey) { addSystemMessage("⚠️ Configure sua API Key da NVIDIA primeiro! Clique na 🔑 no topo do chat."); openChatConfig(); return; }
             chatHistory.push({ role: 'user', content: text });
             renderChatMessages();
             input.value = '';
@@ -1842,13 +1769,14 @@ ${topRubricas.map(([r, v]) => `- ${r}: ${fmtBRL(v)}`).join('\n')}`;
             document.getElementById('chatSendBtn').disabled = true;
             const typingBubble = appendMessageBubble('assistant', '', true);
             try {
-                const systemPrompt = `Você é um assistente financeiro especializado.
-Usuário atual: ${currentUser?.name} (${currentUser?.roleLabel}).
+                const systemPrompt = `Você é um assistente financeiro especializado integrado ao Sistema Financeiro Pro.
+Usuário atual: ${currentUser?.name} (${currentUser?.roleLabel}). ${isAdmin() ? 'O usuário tem poderes administrativos totais, incluindo edição/exclusão de registros históricos conciliados.' : ''}
 
 REGRAS:
-1. Baseie respostas no CONTEXTO.
+1. Baseie respostas no CONTEXTO fornecido.
 2. Formate valores em Real brasileiro.
-3. Responda SEMPRE em português do Brasil.
+3. Seja objetivo e ofereça insights acionáveis.
+4. Responda SEMPRE em português do Brasil.
 
 ${getFinancialContext()}`;
                 const messages = [{ role: 'system', content: systemPrompt }, ...chatHistory.filter(m => m.role !== 'system').slice(-10).map(m => ({ role: m.role, content: m.content }))];
@@ -1866,6 +1794,7 @@ ${getFinancialContext()}`;
                 renderChatMessages();
             } catch (err) {
                 typingBubble.remove();
+                console.error('Chat error:', err);
                 let errorMsg = `❌ Erro: ${err.message}`;
                 if (err.message.includes('401')) errorMsg = "❌ API Key inválida.";
                 else if (err.message.includes('429')) errorMsg = "⚠️ Limite de requisições.";

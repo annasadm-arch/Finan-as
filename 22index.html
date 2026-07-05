@@ -27,7 +27,7 @@
         .login-field input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(14,165,233,.1)}
         .login-error{background:#fee2e2;color:#991b1b;padding:10px 14px;border-radius:6px;font-size:.82rem;margin-bottom:15px;display:none;border-left:3px solid var(--danger)}
         .login-error.active{display:flex;align-items:center;gap:8px}
-        .login-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
+        .login-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer;margin-bottom:10px;display:flex;align-items:center;justify-content:center;gap:8px}
         .login-btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(14,165,233,.3)}
         .login-btn.guest-btn{background:linear-gradient(135deg,var(--secondary),var(--text-muted));font-size:.88rem;padding:11px}
         .login-divider{text-align:center;position:relative;margin:18px 0;color:var(--text-muted);font-size:.75rem}
@@ -35,7 +35,7 @@
         .login-divider::before{left:0}.login-divider::after{right:0}
         .password-hint-box{background:#eff6ff;border-left:3px solid var(--accent);padding:10px 12px;border-radius:6px;margin-bottom:12px;font-size:.82rem;color:#1e40af;display:flex;align-items:center;gap:8px}
         .demo-grid{display:grid;gap:5px}
-        .demo-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f8fafc;border-radius:6px;cursor:pointer;transition:all 0.15s;border-left:3px solid transparent}
+        .demo-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f8fafc;border-radius:6px;cursor:pointer;border-left:3px solid transparent}
         .demo-item:hover{background:#eff6ff;border-left-color:var(--accent)}
         .demo-item .user-info{display:flex;align-items:center;gap:10px}
         .demo-item .user-info .user-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.75rem}
@@ -47,7 +47,7 @@
         .role-consulta{background:#e0e7ff;color:#4338ca}
         aside{width:260px;background:var(--primary);color:#fff;display:flex;flex-direction:column;padding:25px 20px;z-index:100;flex-shrink:0}
         .brand{font-size:1.4rem;font-weight:700;margin-bottom:30px;display:flex;align-items:center;gap:12px}
-        nav button{background:transparent;border:none;color:#94a3b8;width:100%;padding:13px 15px;text-align:left;cursor:pointer;font-size:.92rem;border-radius:var(--radius);margin-bottom:6px;transition:all 0.2s;display:flex;align-items:center;gap:12px;font-weight:500}
+        nav button{background:transparent;border:none;color:#94a3b8;width:100%;padding:13px 15px;text-align:left;cursor:pointer;font-size:.92rem;border-radius:var(--radius);margin-bottom:6px;display:flex;align-items:center;gap:12px;font-weight:500}
         nav button:hover,nav button.active{background:rgba(255,255,255,.1);color:#fff}
         nav button:disabled{opacity:.4;cursor:not-allowed}
         .user-box{margin-top:auto;padding:15px;background:rgba(255,255,255,.08);border-radius:10px;display:flex;align-items:center;gap:12px}
@@ -65,14 +65,14 @@
         .admin-badge-full,.guest-badge{display:inline-flex;align-items:center;gap:4px;font-size:.62rem;margin-top:3px;font-weight:700}
         .admin-badge-full{color:#fbbf24}
         .guest-badge{color:#a5b4fc}
-        .logout-btn{background:transparent;border:none;color:#94a3b8;cursor:pointer;padding:6px;border-radius:6px;transition:all 0.2s;font-size:.9rem}
+        .logout-btn{background:transparent;border:none;color:#94a3b8;cursor:pointer;padding:6px;border-radius:6px;font-size:.9rem}
         .logout-btn:hover{color:var(--danger);background:rgba(239,68,68,.1)}
         main{flex:1;overflow-y:auto;padding:30px;position:relative}
         .view-section{display:none;animation:fadeIn .3s}
         .view-section.active{display:block}
         @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
         .dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-bottom:30px}
-        .card{background:var(--bg-card);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow);border-left:4px solid var(--accent);transition:all 0.2s;position:relative;overflow:hidden}
+        .card{background:var(--bg-card);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow);border-left:4px solid var(--accent);position:relative;overflow:hidden}
         .card:hover{transform:translateY(-3px);box-shadow:0 10px 20px -5px rgba(0,0,0,.1)}
         .card h3{font-size:.78rem;color:var(--text-muted);text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:6px}
         .card .value{font-size:1.5rem;font-weight:700;margin-top:10px;color:var(--primary)}
@@ -85,7 +85,7 @@
         input,select,textarea{padding:9px 12px;border:1px solid var(--border);border-radius:6px;font-size:.88rem;color:var(--text-main);background:#fff;width:100%;font-family:var(--font)}
         input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(14,165,233,.1)}
         input:disabled,select:disabled,textarea:disabled{background:#f1f5f9;color:var(--text-muted);cursor:not-allowed}
-        .btn{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s}
+        .btn{padding:10px 18px;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:.88rem;display:inline-flex;align-items:center;gap:8px}
         .btn:hover:not(:disabled){filter:brightness(95%);transform:translateY(-1px)}
         .btn:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(40%)}
         .btn-primary{background:var(--primary);color:#fff}
@@ -96,6 +96,7 @@
         .btn-sm{padding:7px 14px;font-size:.82rem}
         .table-container{background:var(--bg-card);border-radius:var(--radius);box-shadow:var(--shadow);overflow-x:auto;border:1px solid var(--border)}
         .table-header-info{padding:12px 18px;background:#f8fafc;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:var(--text-muted)}
+        .table-header-info strong{color:var(--primary)}
         table{width:100%;border-collapse:collapse;min-width:1500px}
         th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:middle}
         th{background:#f1f5f9;color:var(--secondary);font-weight:600;font-size:.72rem;text-transform:uppercase;white-space:nowrap}
@@ -113,7 +114,7 @@
         .type-despesa{background:#ffe4e6;color:#9f1239}
         .type-tax{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
         .actions-cell{display:flex;gap:6px}
-        .icon-btn{background:#f1f5f9;border:none;cursor:pointer;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--secondary);transition:all 0.2s;font-size:.8rem}
+        .icon-btn{background:#f1f5f9;border:none;cursor:pointer;width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--secondary);font-size:.8rem}
         .icon-btn:hover:not(:disabled){background:var(--primary);color:#fff;transform:scale(1.1)}
         .icon-btn.delete:hover:not(:disabled){background:var(--danger)}
         .icon-btn.conciliar:hover:not(:disabled){background:var(--success)}
@@ -137,8 +138,7 @@
         .report-summary-table th,.report-summary-table td{padding:10px;border-bottom:1px solid var(--border);font-size:.88rem}
         .report-summary-table th{background:#f8fafc;font-weight:600}
         .auto-reports-tabs{display:flex;gap:4px;background:#f1f5f9;padding:4px;border-radius:10px;margin-bottom:20px;width:fit-content;flex-wrap:wrap}
-        .auto-tab-btn{padding:10px 18px;background:transparent;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:.85rem;color:var(--secondary);transition:all 0.2s;display:flex;align-items:center;gap:8px}
-        .auto-tab-btn:hover{color:var(--primary)}
+        .auto-tab-btn{padding:10px 18px;background:transparent;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:.85rem;color:var(--secondary);display:flex;align-items:center;gap:8px}
         .auto-tab-btn.active{background:#fff;color:var(--primary);box-shadow:0 2px 4px rgba(0,0,0,.08)}
         .auto-tab-content{display:none}
         .auto-tab-content.active{display:block;animation:fadeIn .3s}
@@ -243,7 +243,7 @@
         .rubrica-category-provision{background:#fff;padding:6px 12px;border-radius:6px;border:1px solid var(--accent);color:var(--provision-color);font-weight:700;font-size:.88rem;white-space:nowrap}
         .rubrica-category-actions{display:flex;gap:6px}
         .rubrica-sub-list{background:#fff}
-        .rubrica-sub-item{padding:12px 18px 12px 62px;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid #f1f5f9;transition:all 0.15s}
+        .rubrica-sub-item{padding:12px 18px 12px 62px;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid #f1f5f9}
         .rubrica-sub-item:hover{background:#f8fafc}
         .rubrica-sub-item:last-child{border-bottom:none}
         .rubrica-sub-info{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
@@ -252,9 +252,9 @@
         .rubrica-sub-name{font-size:.88rem;color:var(--text-main);flex:1;min-width:0}
         .rubrica-sub-provision{background:#f0fdf4;padding:4px 10px;border-radius:6px;border:1px solid #86efac;color:var(--success);font-weight:600;font-size:.82rem;white-space:nowrap}
         .rubrica-sub-actions{display:flex;gap:6px}
-        .add-sub-btn{padding:10px 18px;background:#f0fdf4;border:1px dashed #86efac;border-radius:6px;color:var(--success);font-weight:600;font-size:.82rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px;width:calc(100% - 36px);margin:8px 18px}
+        .add-sub-btn{padding:10px 18px;background:#f0fdf4;border:1px dashed #86efac;border-radius:6px;color:var(--success);font-weight:600;font-size:.82rem;cursor:pointer;display:flex;align-items:center;gap:6px;width:calc(100% - 36px);margin:8px 18px}
         .add-sub-btn:hover{background:#dcfce7;border-style:solid}
-        .add-category-btn{padding:14px 20px;background:#eff6ff;border:2px dashed var(--accent);border-radius:8px;color:var(--accent);font-weight:700;font-size:.9rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:15px}
+        .add-category-btn{padding:14px 20px;background:#eff6ff;border:2px dashed var(--accent);border-radius:8px;color:var(--accent);font-weight:700;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:15px}
         .add-category-btn:hover{background:#dbeafe;border-style:solid}
         .empty-rubricas{text-align:center;padding:60px 20px;color:var(--text-muted)}
         .empty-rubricas i{font-size:3rem;margin-bottom:15px;opacity:.3}
@@ -268,8 +268,7 @@
         .rubrica-preview-content{font-size:.95rem;color:var(--primary);font-weight:600}
         .tax-section{background:linear-gradient(135deg,#fef2f2,#fee2e2);border:2px solid #fecaca;border-radius:10px;padding:18px;margin-top:15px}
         .tax-section h4{color:var(--tax-color);font-size:.95rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-        .tax-toggle{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border-radius:8px;margin-bottom:12px;border:1px solid #fecaca;cursor:pointer;transition:all 0.2s}
-        .tax-toggle:hover{background:#fef2f2}
+        .tax-toggle{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border-radius:8px;margin-bottom:12px;border:1px solid #fecaca;cursor:pointer}
         .tax-toggle input[type="checkbox"]{width:18px;height:18px;cursor:pointer;accent-color:var(--tax-color)}
         .tax-toggle .tax-toggle-label{flex:1;font-size:.88rem;color:var(--text-main);font-weight:600}
         .tax-toggle .tax-toggle-desc{font-size:.72rem;color:var(--text-muted)}
@@ -291,9 +290,9 @@
         .tax-summary-row.total{border-top:2px solid var(--tax-color);margin-top:8px;padding-top:10px;font-weight:700;color:var(--tax-color);font-size:1rem}
         .tax-summary-row.net{background:#f0fdf4;margin:8px -14px -14px;padding:12px 14px;border-radius:0 0 6px 6px;border-top:2px solid var(--success);color:var(--success);font-weight:700;font-size:1.05rem}
         .tax-info-box{background:#fef3c7;border-left:3px solid var(--warning);padding:10px 12px;border-radius:6px;font-size:.78rem;color:#78350f;margin-top:10px;display:flex;align-items:flex-start;gap:8px}
-        .modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:none;justify-content:center;align-items:center;z-index:1000;opacity:0;transition:opacity 0.3s}
+        .modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:none;justify-content:center;align-items:center;z-index:1000;opacity:0}
         .modal-overlay.active{display:flex;opacity:1}
-        .modal{background:#fff;padding:30px;border-radius:12px;width:100%;max-width:760px;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);transform:scale(.95);transition:transform 0.3s;max-height:90vh;overflow-y:auto}
+        .modal{background:#fff;padding:30px;border-radius:12px;width:100%;max-width:760px;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);transform:scale(.95);max-height:90vh;overflow-y:auto}
         .modal-overlay.active .modal{transform:scale(1)}
         .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;border-bottom:2px solid var(--border);padding-bottom:15px}
         .modal-header h2{font-size:1.2rem;color:var(--primary);display:flex;align-items:center;gap:10px}
@@ -303,8 +302,7 @@
         .form-group label{display:block;margin-bottom:8px;font-size:.82rem;color:var(--secondary);font-weight:600;display:flex;align-items:center;gap:6px}
         .form-group label .required{color:var(--danger)}
         .status-toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-        .status-option{border:2px solid var(--border);border-radius:8px;padding:12px;cursor:pointer;transition:all 0.2s;text-align:center;background:#fff;position:relative}
-        .status-option:hover{border-color:var(--accent);background:#f0f9ff}
+        .status-option{border:2px solid var(--border);border-radius:8px;padding:12px;cursor:pointer;text-align:center;background:#fff;position:relative}
         .status-option.active{border-color:var(--accent);background:#eff6ff;box-shadow:0 0 0 3px rgba(14,165,233,.1)}
         .status-option.disabled{opacity:.5;cursor:not-allowed;pointer-events:none}
         .status-option input{position:absolute;opacity:0;pointer-events:none}
@@ -338,7 +336,6 @@
         .confirm-box h3{color:var(--primary);margin-bottom:10px;font-size:1.1rem}
         .confirm-box .risk-list{background:#fef3c7;padding:12px 16px;border-radius:8px;margin-bottom:18px;font-size:.82rem;color:#78350f}
         .confirm-box .confirm-input{margin-bottom:18px}
-        .confirm-box .confirm-input label{display:block;font-size:.82rem;margin-bottom:6px;color:var(--secondary);font-weight:600}
         .confirm-box .confirm-actions{display:flex;gap:10px;justify-content:flex-end}
         .chatbot-toggle{position:fixed;bottom:25px;right:25px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#1e293b,#0ea5e9);color:#fff;border:none;cursor:pointer;box-shadow:0 10px 25px rgba(14,165,233,.4);z-index:999;display:flex;align-items:center;justify-content:center;font-size:1.4rem;animation:pulse 2.5s infinite}
         .chatbot-toggle .badge-dot{position:absolute;top:8px;right:8px;width:12px;height:12px;background:var(--success);border:2px solid #fff;border-radius:50%}
@@ -348,11 +345,8 @@
         .chatbot-header{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--nvidia-green)}
         .chatbot-header-left{display:flex;align-items:center;gap:12px}
         .chatbot-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--nvidia-green),#a3d600);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#0f172a;font-weight:900}
-        .chatbot-header-actions button{background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:7px;cursor:pointer;transition:all 0.2s}
-        .chatbot-header-actions button:hover{background:rgba(255,255,255,.2)}
+        .chatbot-header-actions button{background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:7px;cursor:pointer}
         .chatbot-messages{flex:1;overflow-y:auto;padding:18px;background:#f8fafc;display:flex;flex-direction:column;gap:12px}
-        .chatbot-messages::-webkit-scrollbar{width:6px}
-        .chatbot-messages::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
         .chat-message{display:flex;gap:10px;max-width:85%}
         .chat-message.user{align-self:flex-end;flex-direction:row-reverse}
         .chat-msg-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
@@ -371,13 +365,10 @@
         .typing-indicator span:nth-child(3){animation-delay:.4s}
         @keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-8px);opacity:1}}
         .chat-suggestions{padding:10px 16px 0;background:#f8fafc;display:flex;flex-wrap:wrap;gap:6px}
-        .chat-chip{background:#fff;border:1px solid var(--border);padding:5px 11px;border-radius:14px;font-size:.72rem;color:var(--primary);cursor:pointer;transition:all 0.2s}
-        .chat-chip:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+        .chat-chip{background:#fff;border:1px solid var(--border);padding:5px 11px;border-radius:14px;font-size:.72rem;color:var(--primary);cursor:pointer}
         .chatbot-input-area{padding:12px;background:#fff;border-top:1px solid var(--border);display:flex;gap:8px}
         .chatbot-input-area textarea{flex:1;padding:10px 14px;resize:none;border:1px solid var(--border);border-radius:20px;max-height:100px}
-        .chatbot-send-btn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#1e293b,var(--accent));color:#fff;border:none;cursor:pointer;transition:all 0.2s}
-        .chatbot-send-btn:hover{transform:scale(1.08)}
-        .chatbot-send-btn:disabled{opacity:.5;cursor:not-allowed}
+        .chatbot-send-btn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#1e293b,var(--accent));color:#fff;border:none;cursor:pointer}
         @media(max-width:1024px){.reports-grid,.settings-grid{grid-template-columns:1fr}}
         @media(max-width:768px){
             body{flex-direction:column;height:auto;overflow:auto}
@@ -447,7 +438,7 @@
                 <div class="admin-badge-full" id="adminFullBadge" style="display:none"><i class="fa-solid fa-shield-halved"></i> Acesso Total</div>
                 <div class="guest-badge" id="guestBadge" style="display:none"><i class="fa-solid fa-eye"></i> Modo Leitura</div>
             </div>
-            <button class="logout-btn" onclick="logout()" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></button>
+            <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i></button>
         </div>
     </aside>
 
@@ -474,7 +465,7 @@
                 </div>
                 <table>
                     <thead>
-                        <tr><th>Tipo</th><th>Status</th><th>Fornecedor / Histórico</th><th>Rubrica</th><th>Emissão</th><th>Vencimento</th><th>Competência</th><th>Valor</th><th>Pagto.</th><th>Efetivo</th><th>Ações</th></tr>
+                        <tr><th>Tipo</th><th>Status</th><th>Fornecedor / Histórico</th><th>Rubrica</th><th>Emissão</th><th>Vencimento</th><th>Competência</th><th>Valor Bruto</th><th>Impostos</th><th>Valor Líquido</th><th>Pagto.</th><th>Efetivo</th><th>Ações</th></tr>
                         <tr class="filter-row">
                             <th><select id="col-filter-tipo" onchange="renderTable()"><option value="">Todos</option><option value="Receita">Receita</option><option value="Despesa">Despesa</option></select></th>
                             <th><select id="col-filter-status" onchange="renderTable()"><option value="">Todos</option><option value="Pendente">Pendente</option><option value="Vencido">Vencido</option><option value="Pago">Pago</option></select></th>
@@ -484,6 +475,8 @@
                             <th><input type="date" id="col-filter-vencimento" onchange="renderTable()"></th>
                             <th><input type="month" id="col-filter-competencia" onchange="renderTable()"></th>
                             <th><input type="text" id="col-filter-valor-min" placeholder="Min" oninput="formatCurrency(this)" onchange="renderTable()" style="margin-bottom:4px"><input type="text" id="col-filter-valor-max" placeholder="Max" oninput="formatCurrency(this)" onchange="renderTable()"></th>
+                            <th></th>
+                            <th></th>
                             <th><input type="date" id="col-filter-pagto" onchange="renderTable()"></th>
                             <th></th>
                             <th><button class="btn btn-outline" onclick="clearColumnFilters()" style="padding:4px 8px;font-size:.72rem;width:100%">Limpar</button></th>
@@ -566,7 +559,7 @@
             <div id="tab-matriz" class="auto-tab-content"><div class="chart-card"><table class="matrix-table" id="tableMatriz"></table></div></div>
             <div id="tab-provisionados" class="auto-tab-content">
                 <div class="chart-card"><canvas id="chartProvisionados" height="300"></canvas></div>
-                <div style="margin-top:20px"><table class="prov-vs-real-table"><thead><tr><th>Rubrica</th><th class="text-right">Provisionado</th><th class="text-right">Realizado</th><th class="text-right">Variação</th><th class="text-center">Execução</th><th class="text-center">Status</th></tr></thead><tbody id="bodyProvisionados"></tbody></table></div>
+                <div style="margin-top:20px"><table class="prov-vs-real-table"><thead><tr><th>Rubrica</th><th class="text-right">Provisionado</th><th class="text-right">Realizado (Bruto)</th><th class="text-right">Variação</th><th class="text-center">Execução</th><th class="text-center">Status</th></tr></thead><tbody id="bodyProvisionados"></tbody></table></div>
             </div>
             <div id="tab-dre" class="auto-tab-content"><div class="dre-section"><h3>DRE</h3><div id="dreContent"></div></div></div>
             <div id="tab-fluxocaixa" class="auto-tab-content">
@@ -641,12 +634,7 @@
                     <div class="form-group full"><label><i class="fa-solid fa-building"></i> Fornecedor / Cliente <span class="required">*</span></label><input type="text" id="fornecedor" required placeholder="Nome do fornecedor ou cliente"></div>
                     <div class="form-group"><label><i class="fa-solid fa-file-lines"></i> Nº Documento <span class="required">*</span></label><input type="text" id="numeroDocumento" required placeholder="NF, boleto, contrato..."></div>
                     <div class="form-group"><label><i class="fa-solid fa-calendar-days"></i> Competência <span class="required">*</span></label><input type="month" id="competencia" required></div>
-                    <div class="form-group full">
-                        <label><i class="fa-solid fa-folder-tree"></i> Rubrica <span class="required">*</span></label>
-                        <select id="rubrica" required>
-                            <option value="" disabled selected>Selecione uma rubrica...</option>
-                        </select>
-                    </div>
+                    <div class="form-group full"><label><i class="fa-solid fa-folder-tree"></i> Rubrica <span class="required">*</span></label><select id="rubrica" required><option value="" disabled selected>Selecione...</option></select></div>
                     <div class="form-group"><label><i class="fa-solid fa-calendar"></i> Data Emissão <span class="required">*</span></label><input type="date" id="dataEmissao" required></div>
                     <div class="form-group"><label><i class="fa-solid fa-calendar-xmark"></i> Data Vencimento <span class="required">*</span></label><input type="date" id="dataVencimento" required></div>
                     <div class="form-group full">
@@ -664,7 +652,7 @@
                     <h4><i class="fa-solid fa-receipt"></i> Impostos a Recolher (PJ)</h4>
                     <div class="tax-toggle" onclick="toggleTaxSection(event)">
                         <input type="checkbox" id="enableTaxes" onchange="toggleTaxSection(event)">
-                        <div><div class="tax-toggle-label">Calcular retenções</div><div class="tax-toggle-desc">IRRF (1,5%) + PCC (4,65%) + INSS/ISS opcionais</div></div>
+                        <div><div class="tax-toggle-label">Calcular retenções de impostos</div><div class="tax-toggle-desc">IRRF (1,5%) + PCC (4,65%) + INSS/ISS opcionais</div></div>
                     </div>
                     <div class="tax-fields" id="taxFields">
                         <div class="tax-grid">
@@ -804,7 +792,7 @@
     </div>
 
     <script>
-        // ===== FUNÇÃO DE FORMATAÇÃO DE MOEDA CORRIGIDA =====
+        // ===== FUNÇÃO DE FORMATAÇÃO DE MOEDA =====
         function formatCurrency(input) {
             try {
                 let value = input.value.replace(/\D/g, '');
@@ -880,52 +868,31 @@
             return JSON.parse(JSON.stringify(DEFAULT_RUBRICAS));
         }
 
-        function saveRubricasToStorage(r) {
-            localStorage.setItem(RUBRICAS_STORAGE_KEY, JSON.stringify(r));
-        }
-
+        function saveRubricasToStorage(r) { localStorage.setItem(RUBRICAS_STORAGE_KEY, JSON.stringify(r)); }
         let RUBRICAS = loadRubricas();
 
-        // ===== FUNÇÃO MELHORADA: POPULAR DROPDOWN DE RUBRICAS =====
         function populateRubricasSelect() {
             const s = document.getElementById('rubrica');
-            if (!s) return;
-            
-            const cv = s.value; // Preserva seleção anterior
+            const cv = s.value;
             s.innerHTML = '<option value="" disabled selected>Selecione uma rubrica...</option>';
-            
             RUBRICAS.forEach(cat => {
                 const og = document.createElement('optgroup');
                 og.label = `📂 ${cat.codigo}. ${cat.nome}`;
-                
-                // Categoria geral (selecionável)
                 const co = document.createElement('option');
                 co.value = `${cat.codigo} ${cat.nome}`;
                 co.className = 'category-option';
-                co.textContent = `📁 ${cat.codigo} ${cat.nome}`;
+                co.textContent = `📁 ${cat.codigo} ${cat.nome} (Categoria Geral)`;
                 og.appendChild(co);
-                
-                if (cat.subRubricas && cat.subRubricas.length > 0) {
-                    cat.subRubricas.forEach(sub => {
-                        const so = document.createElement('option');
-                        so.value = `${sub.codigo} ${sub.nome}`;
-                        so.className = 'sub-option';
-                        so.textContent = `↳ ${sub.codigo} ${sub.nome}`;
-                        og.appendChild(so);
-                    });
-                }
+                if (cat.subRubricas) cat.subRubricas.forEach(sub => {
+                    const so = document.createElement('option');
+                    so.value = `${sub.codigo} ${sub.nome}`;
+                    so.className = 'sub-option';
+                    so.textContent = `↳ ${sub.codigo} ${sub.nome}`;
+                    og.appendChild(so);
+                });
                 s.appendChild(og);
             });
-            
-            // Restore previous selection if it still exists
-            if (cv) {
-                for (let i = 0; i < s.options.length; i++) {
-                    if (s.options[i].value === cv) {
-                        s.selectedIndex = i;
-                        break;
-                    }
-                }
-            }
+            if (cv) for (let i = 0; i < s.options.length; i++) if (s.options[i].value === cv) { s.selectedIndex = i; break; }
         }
 
         function getProvisionedValue(n) {
@@ -978,11 +945,38 @@
             document.getElementById('rubricaNome').value = '';
             document.getElementById('rubricaProvisionado').value = '0,00';
             if (editId) {
-                if (tipo === 'categoria') { const c = RUBRICAS.find(c => c.id === editId); if (c) { document.getElementById('rubricaCodigo').value = c.codigo; document.getElementById('rubricaNome').value = c.nome; document.getElementById('rubricaProvisionado').value = (c.provisionado || 0).toFixed(2).replace('.', ','); document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-pen"></i> Editar Categoria'; } }
-                else { const pc = RUBRICAS.find(c => c.id === parentId); if (pc && pc.subRubricas) { const s = pc.subRubricas.find(s => s.id === editId); if (s) { document.getElementById('rubricaCodigo').value = s.codigo; document.getElementById('rubricaNome').value = s.nome; document.getElementById('rubricaProvisionado').value = (s.provisionado || 0).toFixed(2).replace('.', ','); document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-pen"></i> Editar Sub-rubrica'; } } }
+                if (tipo === 'categoria') {
+                    const c = RUBRICAS.find(c => c.id === editId);
+                    if (c) {
+                        document.getElementById('rubricaCodigo').value = c.codigo;
+                        document.getElementById('rubricaNome').value = c.nome;
+                        document.getElementById('rubricaProvisionado').value = (c.provisionado || 0).toFixed(2).replace('.', ',');
+                        document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-pen"></i> Editar Categoria';
+                    }
+                } else {
+                    const pc = RUBRICAS.find(c => c.id === parentId);
+                    if (pc && pc.subRubricas) {
+                        const s = pc.subRubricas.find(s => s.id === editId);
+                        if (s) {
+                            document.getElementById('rubricaCodigo').value = s.codigo;
+                            document.getElementById('rubricaNome').value = s.nome;
+                            document.getElementById('rubricaProvisionado').value = (s.provisionado || 0).toFixed(2).replace('.', ',');
+                            document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-pen"></i> Editar Sub-rubrica';
+                        }
+                    }
+                }
             } else {
-                if (tipo === 'categoria') { document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-folder-plus"></i> Nova Categoria'; document.getElementById('rubricaCodigo').value = String(RUBRICAS.reduce((m, c) => Math.max(m, parseInt(c.codigo) || 0), 0) + 1); }
-                else { document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-plus"></i> Nova Sub-rubrica'; const pc = RUBRICAS.find(c => c.id === parentId); if (pc && pc.subRubricas) { const mx = pc.subRubricas.reduce((m, s) => { const p = s.codigo.split('.'); return Math.max(m, parseFloat(p[p.length - 1]) || 0); }, 0); document.getElementById('rubricaCodigo').value = `${pc.codigo}.${Math.floor(mx) + 1}`; } }
+                if (tipo === 'categoria') {
+                    document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-folder-plus"></i> Nova Categoria';
+                    document.getElementById('rubricaCodigo').value = String(RUBRICAS.reduce((m, c) => Math.max(m, parseInt(c.codigo) || 0), 0) + 1);
+                } else {
+                    document.getElementById('rubricaModalTitle').innerHTML = '<i class="fa-solid fa-plus"></i> Nova Sub-rubrica';
+                    const pc = RUBRICAS.find(c => c.id === parentId);
+                    if (pc && pc.subRubricas) {
+                        const mx = pc.subRubricas.reduce((m, s) => { const p = s.codigo.split('.'); return Math.max(m, parseFloat(p[p.length - 1]) || 0); }, 0);
+                        document.getElementById('rubricaCodigo').value = `${pc.codigo}.${Math.floor(mx) + 1}`;
+                    }
+                }
             }
             updateRubricaPreview();
             document.getElementById('rubricaModal').classList.add('active');
@@ -996,39 +990,74 @@
             pr.innerHTML = t === 'categoria' ? `📁 <strong>${c}. ${n}</strong> — ${fmtBRL(p)}/mês` : `↳ <strong>${c} ${n}</strong> — ${fmtBRL(p)}/mês`;
         }
 
-        ['rubricaCodigo', 'rubricaNome', 'rubricaProvisionado'].forEach(id => { const e = document.getElementById(id); if (e) e.addEventListener('input', updateRubricaPreview); });
+        ['rubricaCodigo', 'rubricaNome', 'rubricaProvisionado'].forEach(id => {
+            const e = document.getElementById(id);
+            if (e) e.addEventListener('input', updateRubricaPreview);
+        });
 
         function saveRubrica() {
             const c = document.getElementById('rubricaCodigo').value.trim(), n = document.getElementById('rubricaNome').value.trim(), p = getCurrencyValue('rubricaProvisionado'), eid = document.getElementById('rubricaEditId').value, tipo = document.getElementById('rubricaEditType').value, pid = document.getElementById('rubricaParentId').value;
             if (!c || !n) { showToast('error', 'Campos obrigatórios', 'Código e Nome são obrigatórios'); return; }
-            const dup = RUBRICAS.some(cat => { if (tipo === 'categoria' && cat.id !== eid && cat.codigo === c) return true; if (cat.subRubricas) return cat.subRubricas.some(s => tipo === 'sub' && s.id !== eid && s.codigo === c); return false; });
+            const dup = RUBRICAS.some(cat => {
+                if (tipo === 'categoria' && cat.id !== eid && cat.codigo === c) return true;
+                if (cat.subRubricas) return cat.subRubricas.some(s => tipo === 'sub' && s.id !== eid && s.codigo === c);
+                return false;
+            });
             if (dup) { showToast('error', 'Código duplicado', `O código ${c} já está em uso`); return; }
             if (eid) {
-                if (tipo === 'categoria') { const i = RUBRICAS.findIndex(x => x.id === eid); if (i !== -1) { RUBRICAS[i].codigo = c; RUBRICAS[i].nome = n; RUBRICAS[i].provisionado = p; } }
-                else { const pc = RUBRICAS.find(x => x.id === pid); if (pc && pc.subRubricas) { const i = pc.subRubricas.findIndex(x => x.id === eid); if (i !== -1) { pc.subRubricas[i].codigo = c; pc.subRubricas[i].nome = n; pc.subRubricas[i].provisionado = p; } } }
+                if (tipo === 'categoria') {
+                    const i = RUBRICAS.findIndex(x => x.id === eid);
+                    if (i !== -1) { RUBRICAS[i].codigo = c; RUBRICAS[i].nome = n; RUBRICAS[i].provisionado = p; }
+                } else {
+                    const pc = RUBRICAS.find(x => x.id === pid);
+                    if (pc && pc.subRubricas) {
+                        const i = pc.subRubricas.findIndex(x => x.id === eid);
+                        if (i !== -1) { pc.subRubricas[i].codigo = c; pc.subRubricas[i].nome = n; pc.subRubricas[i].provisionado = p; }
+                    }
+                }
                 showToast('success', 'Rubrica atualizada!', `${c} ${n}`);
             } else {
-                if (tipo === 'categoria') { RUBRICAS.push({ id: 'cat-' + Date.now(), codigo: c, nome: n, tipo: 'categoria', provisionado: p, subRubricas: [] }); showToast('success', 'Categoria criada!', `${c}. ${n}`); }
-                else { const pc = RUBRICAS.find(x => x.id === pid); if (pc) { if (!pc.subRubricas) pc.subRubricas = []; pc.subRubricas.push({ id: 'sub-' + Date.now(), codigo: c, nome: n, provisionado: p }); showToast('success', 'Sub-rubrica criada!', `${c} ${n}`); } }
+                if (tipo === 'categoria') {
+                    RUBRICAS.push({ id: 'cat-' + Date.now(), codigo: c, nome: n, tipo: 'categoria', provisionado: p, subRubricas: [] });
+                    showToast('success', 'Categoria criada!', `${c}. ${n}`);
+                } else {
+                    const pc = RUBRICAS.find(x => x.id === pid);
+                    if (pc) {
+                        if (!pc.subRubricas) pc.subRubricas = [];
+                        pc.subRubricas.push({ id: 'sub-' + Date.now(), codigo: c, nome: n, provisionado: p });
+                        showToast('success', 'Sub-rubrica criada!', `${c} ${n}`);
+                    }
+                }
             }
             saveRubricasToStorage(RUBRICAS);
             renderRubricasTree();
-            populateRubricasSelect(); // Atualiza dropdown imediatamente
+            populateRubricasSelect();
             closeRubricaModal();
         }
 
         function deleteRubrica(tipo, id, pid = null) {
             if (!isAdmin()) return;
             let n = '';
-            if (tipo === 'categoria') { const c = RUBRICAS.find(c => c.id === id); if (c) n = `${c.codigo}. ${c.nome}`; }
-            else { const pc = RUBRICAS.find(c => c.id === pid); if (pc && pc.subRubricas) { const s = pc.subRubricas.find(s => s.id === id); if (s) n = `${s.codigo} ${s.nome}`; } }
+            if (tipo === 'categoria') {
+                const c = RUBRICAS.find(c => c.id === id);
+                if (c) n = `${c.codigo}. ${c.nome}`;
+            } else {
+                const pc = RUBRICAS.find(c => c.id === pid);
+                if (pc && pc.subRubricas) {
+                    const s = pc.subRubricas.find(s => s.id === id);
+                    if (s) n = `${s.codigo} ${s.nome}`;
+                }
+            }
             const risks = tipo === 'categoria' ? [`A categoria "${n}" e todas sub-rubricas serão excluídas`] : [`A sub-rubrica "${n}" será excluída`];
             requestAdminConfirmation(`Excluir ${tipo}?`, `Você está prestes a excluir: ${n}`, risks, () => {
                 if (tipo === 'categoria') RUBRICAS = RUBRICAS.filter(c => c.id !== id);
-                else { const pc = RUBRICAS.find(c => c.id === pid); if (pc && pc.subRubricas) pc.subRubricas = pc.subRubricas.filter(s => s.id !== id); }
+                else {
+                    const pc = RUBRICAS.find(c => c.id === pid);
+                    if (pc && pc.subRubricas) pc.subRubricas = pc.subRubricas.filter(s => s.id !== id);
+                }
                 saveRubricasToStorage(RUBRICAS);
                 renderRubricasTree();
-                populateRubricasSelect(); // Atualiza dropdown imediatamente
+                populateRubricasSelect();
                 showToast('warning', 'Rubrica excluída', n);
             });
         }
@@ -1042,7 +1071,15 @@
             'consulta': { password: '123', name: 'Consultor', role: 'consulta', roleLabel: 'Consulta', permissions: { create: false, edit: false, delete: false, conciliate: false, export: true, import: false, clearAll: false, adminFullAccess: false, editPaid: false } }
         };
 
-        function getUsers() { const s = localStorage.getItem(USERS_STORAGE_KEY); if (s) return JSON.parse(s); const u = {}; Object.entries(DEFAULT_USERS).forEach(([k, d]) => u[k] = { ...d, lastLogin: null, passwordChanged: false }); localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(u)); return u; }
+        function getUsers() {
+            const s = localStorage.getItem(USERS_STORAGE_KEY);
+            if (s) return JSON.parse(s);
+            const u = {};
+            Object.entries(DEFAULT_USERS).forEach(([k, d]) => u[k] = { ...d, lastLogin: null, passwordChanged: false });
+            localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(u));
+            return u;
+        }
+
         function saveUsers(u) { localStorage.setItem(USERS_STORAGE_KEY, JSON.stringify(u)); }
         function getUser(u) { return getUsers()[u] || null; }
 
@@ -1050,13 +1087,81 @@
         const SESSION_KEY = 'fin_pro_session';
         let pendingAction = null, resetTargetUsername = null;
 
-        function checkSession() { const s = localStorage.getItem(SESSION_KEY); if (s) { const d = JSON.parse(s), u = getUser(d.username); if (u) { currentUser = { username: d.username, ...u, isGuest: d.isGuest || false }; showApp(); return true; } } showLogin(); return false; }
-        function showLogin() { document.getElementById('loginScreen').classList.remove('hidden'); document.getElementById('appSidebar').style.display = 'none'; document.getElementById('appMain').style.display = 'none'; }
-        function showApp() { document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('appSidebar').style.display = 'flex'; document.getElementById('appMain').style.display = 'block'; updateUserUI(); applyPermissions(); loadData(); renderTable(); updateDashboard(); populateRubricasSelect(); renderRubricasTree(); initChatbot(); }
-        function handleLogin(e) { e.preventDefault(); const u = document.getElementById('loginUser').value.trim().toLowerCase(), p = document.getElementById('loginPass').value, user = getUser(u); if (!user || user.password !== p) { document.getElementById('loginErrorMsg').textContent = 'Usuário ou senha incorretos!'; document.getElementById('loginError').classList.add('active'); return; } currentUser = { username: u, ...user, isGuest: false }; const users = getUsers(); users[u].lastLogin = new Date().toISOString(); saveUsers(users); localStorage.setItem(SESSION_KEY, JSON.stringify({ username: u, loginTime: Date.now(), isGuest: false })); document.getElementById('loginError').classList.remove('active'); showApp(); showToast('success', 'Bem-vindo!', `Olá, ${currentUser.name}`); }
-        function loginAsGuest() { const u = 'consulta', user = getUser(u); if (!user) return; currentUser = { username: u, ...user, isGuest: true }; const users = getUsers(); users[u].lastLogin = new Date().toISOString(); saveUsers(users); localStorage.setItem(SESSION_KEY, JSON.stringify({ username: u, loginTime: Date.now(), isGuest: true })); showApp(); showToast('info', 'Modo Consulta', 'Visualização somente leitura'); }
-        function fillDemo(u) { document.getElementById('loginUser').value = u; document.getElementById('loginPass').value = ''; document.getElementById('loginPass').focus(); document.getElementById('loginError').classList.remove('active'); }
-        function logout() { if (confirm('Sair?')) { localStorage.removeItem(SESSION_KEY); currentUser = null; showLogin(); } }
+        function checkSession() {
+            const s = localStorage.getItem(SESSION_KEY);
+            if (s) {
+                const d = JSON.parse(s), u = getUser(d.username);
+                if (u) { currentUser = { username: d.username, ...u, isGuest: d.isGuest || false }; showApp(); return true; }
+            }
+            showLogin();
+            return false;
+        }
+
+        function showLogin() {
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('appSidebar').style.display = 'none';
+            document.getElementById('appMain').style.display = 'none';
+        }
+
+        function showApp() {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('appSidebar').style.display = 'flex';
+            document.getElementById('appMain').style.display = 'block';
+            updateUserUI();
+            applyPermissions();
+            loadData();
+            renderTable();
+            updateDashboard();
+            populateRubricasSelect();
+            renderRubricasTree();
+            initChatbot();
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('loginUser').value.trim().toLowerCase(), p = document.getElementById('loginPass').value, user = getUser(u);
+            if (!user || user.password !== p) {
+                document.getElementById('loginErrorMsg').textContent = 'Usuário ou senha incorretos!';
+                document.getElementById('loginError').classList.add('active');
+                return;
+            }
+            currentUser = { username: u, ...user, isGuest: false };
+            const users = getUsers();
+            users[u].lastLogin = new Date().toISOString();
+            saveUsers(users);
+            localStorage.setItem(SESSION_KEY, JSON.stringify({ username: u, loginTime: Date.now(), isGuest: false }));
+            document.getElementById('loginError').classList.remove('active');
+            showApp();
+            showToast('success', 'Bem-vindo!', `Olá, ${currentUser.name}`);
+        }
+
+        function loginAsGuest() {
+            const u = 'consulta', user = getUser(u);
+            if (!user) return;
+            currentUser = { username: u, ...user, isGuest: true };
+            const users = getUsers();
+            users[u].lastLogin = new Date().toISOString();
+            saveUsers(users);
+            localStorage.setItem(SESSION_KEY, JSON.stringify({ username: u, loginTime: Date.now(), isGuest: true }));
+            showApp();
+            showToast('info', 'Modo Consulta', 'Visualização somente leitura');
+        }
+
+        function fillDemo(u) {
+            document.getElementById('loginUser').value = u;
+            document.getElementById('loginPass').value = '';
+            document.getElementById('loginPass').focus();
+            document.getElementById('loginError').classList.remove('active');
+        }
+
+        function logout() {
+            if (confirm('Sair?')) {
+                localStorage.removeItem(SESSION_KEY);
+                currentUser = null;
+                showLogin();
+            }
+        }
+
         function hasPermission(a) { return currentUser ? !!currentUser.permissions[a] : false; }
         function isAdmin() { return currentUser?.role === 'admin'; }
         function canEditPaid() { return currentUser?.permissions?.editPaid === true; }
@@ -1096,18 +1201,76 @@
             document.getElementById('rubricasViewInfo').style.display = ia ? 'none' : 'block';
         }
 
-        function checkPasswordStrength(p) { const b = document.getElementById('strengthBar'); b.className = 'bar'; if (!p.length) { b.style.width = '0%'; return; } let s = 0; if (p.length >= 3) s++; if (p.length >= 6) s++; if (/[A-Z]/.test(p) && /[a-z]/.test(p)) s++; if (/[0-9]/.test(p)) s++; if (/[^A-Za-z0-9]/.test(p)) s++; if (s <= 2) b.className = 'bar weak'; else if (s <= 3) b.className = 'bar medium'; else b.className = 'bar strong'; }
-        function changeOwnPassword() { if (currentUser.role === 'consulta') return; const c = document.getElementById('settingsCurrentPass').value, n = document.getElementById('settingsNewPass').value, cf = document.getElementById('settingsConfirmPass').value; if (c !== currentUser.password) { showToast('error', 'Erro', 'Senha atual incorreta'); return; } if (n.length < 3) { showToast('error', 'Erro', 'Mínimo 3 caracteres'); return; } if (n !== cf) { showToast('error', 'Erro', 'Senhas não conferem'); return; } const users = getUsers(); users[currentUser.username].password = n; saveUsers(users); currentUser.password = n; showToast('success', 'Senha alterada!', 'Atualizada'); }
-        function renderUsersTable() { if (!isAdmin()) return; const users = getUsers(), t = document.getElementById('usersTableBody'); t.innerHTML = ''; const colors = { admin: '#f59e0b', operador: '#0ea5e9', lancador: '#10b981', consulta: '#6366f1' }; Object.entries(users).forEach(([u, d]) => { const isSelf = u === currentUser.username, ll = d.lastLogin ? new Date(d.lastLogin).toLocaleString('pt-BR') : 'Nunca'; t.innerHTML += `<tr><td><div class="user-cell"><div class="mini-avatar" style="background:${colors[d.role]}">${d.name.charAt(0)}</div><div><strong>${d.name}</strong>${isSelf ? ' (Você)' : ''}<br><small>${u}</small></div></div></td><td><span class="role-tag role-${d.role}">${d.roleLabel}</span></td><td style="font-size:.78rem">${ll}</td><td><button class="btn btn-sm btn-warning" onclick="openResetPasswordModal('${u}')" ${isSelf ? 'disabled' : ''}><i class="fa-solid fa-key"></i></button></td></tr>`; }); }
-        function openResetPasswordModal(u) { resetTargetUsername = u; document.getElementById('resetTargetUser').textContent = `${getUser(u).name} (${u})`; document.getElementById('resetPasswordModal').classList.add('active'); }
+        function checkPasswordStrength(p) {
+            const b = document.getElementById('strengthBar');
+            b.className = 'bar';
+            if (!p.length) { b.style.width = '0%'; return; }
+            let s = 0;
+            if (p.length >= 3) s++;
+            if (p.length >= 6) s++;
+            if (/[A-Z]/.test(p) && /[a-z]/.test(p)) s++;
+            if (/[0-9]/.test(p)) s++;
+            if (/[^A-Za-z0-9]/.test(p)) s++;
+            if (s <= 2) b.className = 'bar weak';
+            else if (s <= 3) b.className = 'bar medium';
+            else b.className = 'bar strong';
+        }
+
+        function changeOwnPassword() {
+            if (currentUser.role === 'consulta') return;
+            const c = document.getElementById('settingsCurrentPass').value, n = document.getElementById('settingsNewPass').value, cf = document.getElementById('settingsConfirmPass').value;
+            if (c !== currentUser.password) { showToast('error', 'Erro', 'Senha atual incorreta'); return; }
+            if (n.length < 3) { showToast('error', 'Erro', 'Mínimo 3 caracteres'); return; }
+            if (n !== cf) { showToast('error', 'Erro', 'Senhas não conferem'); return; }
+            const users = getUsers();
+            users[currentUser.username].password = n;
+            saveUsers(users);
+            currentUser.password = n;
+            showToast('success', 'Senha alterada!', 'Atualizada');
+        }
+
+        function renderUsersTable() {
+            if (!isAdmin()) return;
+            const users = getUsers(), t = document.getElementById('usersTableBody');
+            t.innerHTML = '';
+            const colors = { admin: '#f59e0b', operador: '#0ea5e9', lancador: '#10b981', consulta: '#6366f1' };
+            Object.entries(users).forEach(([u, d]) => {
+                const isSelf = u === currentUser.username, ll = d.lastLogin ? new Date(d.lastLogin).toLocaleString('pt-BR') : 'Nunca';
+                t.innerHTML += `<tr><td><div class="user-cell"><div class="mini-avatar" style="background:${colors[d.role]}">${d.name.charAt(0)}</div><div><strong>${d.name}</strong>${isSelf ? ' (Você)' : ''}<br><small>${u}</small></div></div></td><td><span class="role-tag role-${d.role}">${d.roleLabel}</span></td><td style="font-size:.78rem">${ll}</td><td><button class="btn btn-sm btn-warning" onclick="openResetPasswordModal('${u}')" ${isSelf ? 'disabled' : ''}><i class="fa-solid fa-key"></i></button></td></tr>`;
+            });
+        }
+
+        function openResetPasswordModal(u) {
+            resetTargetUsername = u;
+            document.getElementById('resetTargetUser').textContent = `${getUser(u).name} (${u})`;
+            document.getElementById('resetPasswordModal').classList.add('active');
+        }
+
         function closeResetPasswordModal() { document.getElementById('resetPasswordModal').classList.remove('active'); }
-        function executePasswordReset() { const n = document.getElementById('resetNewPassword').value, c = document.getElementById('resetConfirmPassword').value; if (n.length < 3 || n !== c) { showToast('error', 'Erro', 'Verifique a senha'); return; } const users = getUsers(); users[resetTargetUsername].password = n; saveUsers(users); closeResetPasswordModal(); renderUsersTable(); showToast('success', 'Resetada!', 'Senha alterada'); }
-        function populateSettingsPage() { if (!currentUser) return; document.getElementById('settingsCurrentUser').value = `${currentUser.name} (${currentUser.username})`; document.getElementById('settingsCurrentRole').value = currentUser.roleLabel; renderUsersTable(); }
+
+        function executePasswordReset() {
+            const n = document.getElementById('resetNewPassword').value, c = document.getElementById('resetConfirmPassword').value;
+            if (n.length < 3 || n !== c) { showToast('error', 'Erro', 'Verifique a senha'); return; }
+            const users = getUsers();
+            users[resetTargetUsername].password = n;
+            saveUsers(users);
+            closeResetPasswordModal();
+            renderUsersTable();
+            showToast('success', 'Resetada!', 'Senha alterada');
+        }
+
+        function populateSettingsPage() {
+            if (!currentUser) return;
+            document.getElementById('settingsCurrentUser').value = `${currentUser.name} (${currentUser.username})`;
+            document.getElementById('settingsCurrentRole').value = currentUser.roleLabel;
+            renderUsersTable();
+        }
 
         // ===== STATE =====
         let transactions = [];
-        const STORAGE_KEY = 'fin_pro_v26';
+        const STORAGE_KEY = 'fin_pro_v27';
         let chartRubricaInstance, chartFluxoInstance, chartAutoRubricaInstance, chartAutoCompetenciaInstance, chartFluxoCaixaInstance, chartProvisionadosInstance;
+
         const uuid = () => Date.now().toString(36) + Math.random().toString(36).substr(2);
         const fmtBRL = v => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v || 0);
         const fmtDate = d => { if (!d) return '-'; const dt = new Date(d + 'T00:00:00'); return isNaN(dt) ? d : dt.toLocaleDateString('pt-BR'); };
@@ -1115,6 +1278,7 @@
         const today = () => new Date().toISOString().split('T')[0];
         const month = () => today().substring(0, 7);
 
+        // ===== VENCIMENTO IMPOSTOS =====
         function getVencimentoImposto(dataEmissao, tipoImposto) {
             const [year, month] = dataEmissao.split('-').map(Number);
             const nextMonthDate = new Date(year, month - 1 + 1, 1);
@@ -1133,33 +1297,117 @@
             }
         }
 
-        function showToast(type, title, message, duration = 3500) { const c = document.getElementById('toastContainer'), t = document.createElement('div'); t.className = `toast ${type}`; const icons = { success: 'circle-check', error: 'circle-xmark', warning: 'triangle-exclamation', info: 'circle-info' }; t.innerHTML = `<i class="fa-solid fa-${icons[type] || 'info'}" style="font-size:1.3rem"></i><div class="toast-content"><div class="toast-title">${title}</div>${message ? `<div class="toast-message">${message}</div>` : ''}</div>`; c.appendChild(t); setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(400px)'; t.style.transition = 'all .3s'; setTimeout(() => t.remove(), 300); }, duration); }
+        function showToast(type, title, message, duration = 3500) {
+            const c = document.getElementById('toastContainer'), t = document.createElement('div');
+            t.className = `toast ${type}`;
+            const icons = { success: 'circle-check', error: 'circle-xmark', warning: 'triangle-exclamation', info: 'circle-info' };
+            t.innerHTML = `<i class="fa-solid fa-${icons[type] || 'info'}" style="font-size:1.3rem"></i><div class="toast-content"><div class="toast-title">${title}</div>${message ? `<div class="toast-message">${message}</div>` : ''}</div>`;
+            c.appendChild(t);
+            setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(400px)'; t.style.transition = 'all .3s'; setTimeout(() => t.remove(), 300); }, duration);
+        }
 
-        function switchView(v, e) { document.querySelectorAll('.view-section').forEach(e => e.classList.remove('active')); document.querySelectorAll('nav button').forEach(e => e.classList.remove('active')); document.getElementById(`view-${v}`).classList.add('active'); if (e && e.currentTarget) e.currentTarget.classList.add('active'); if (v === 'reports') generateReports(); if (v === 'auto-reports') generateAutoReports(); if (v === 'settings') populateSettingsPage(); if (v === 'rubricas') renderRubricasTree(); }
+        function switchView(v, e) {
+            document.querySelectorAll('.view-section').forEach(e => e.classList.remove('active'));
+            document.querySelectorAll('nav button').forEach(e => e.classList.remove('active'));
+            document.getElementById(`view-${v}`).classList.add('active');
+            if (e && e.currentTarget) e.currentTarget.classList.add('active');
+            if (v === 'reports') generateReports();
+            if (v === 'auto-reports') generateAutoReports();
+            if (v === 'settings') populateSettingsPage();
+            if (v === 'rubricas') renderRubricasTree();
+        }
 
-        function loadData() { const d = localStorage.getItem(STORAGE_KEY); if (d) transactions = JSON.parse(d); else { transactions = [{ id: uuid(), tipo: "Despesa", fornecedor: "Distribuidora Med", numeroDocumento: "NF-8821", dataEmissao: "2026-05-01", dataVencimento: "2026-05-10", competencia: "2026-05", rubrica: "2.2 Medicamentos", valorOriginal: 32000, valorBruto: 32000, valorLiquido: 32000, jurosMultas: 0, totalTaxes: 0, taxes: [], valorPago: 32000, dataPagamento: "2026-05-09", status: "Pago", historico: "Compra mensal", acaoConciliacao: "PIX" }, { id: uuid(), tipo: "Receita", fornecedor: "Convênio Saúde", numeroDocumento: "Lote-405", dataEmissao: "2026-06-15", dataVencimento: "2026-06-25", competencia: "2026-06", rubrica: "6.1.1 PJ Equipe Médica", valorOriginal: 350000, valorBruto: 350000, valorLiquido: 350000, jurosMultas: 0, totalTaxes: 0, taxes: [], valorPago: 0, dataPagamento: null, status: "Pendente", historico: "Repasse", acaoConciliacao: "" }, { id: uuid(), tipo: "Despesa", fornecedor: "Clínica Dr. Silva", numeroDocumento: "NF-2290", dataEmissao: "2026-07-01", dataVencimento: "2026-07-15", competencia: "2026-07", rubrica: "6.1.1 PJ Equipe Médica", valorOriginal: 180000, valorBruto: 180000, valorLiquido: 180000, jurosMultas: 0, totalTaxes: 0, taxes: [], valorPago: 0, dataPagamento: null, status: "Pendente", historico: "Plantão", acaoConciliacao: "" }, { id: uuid(), tipo: "Receita", fornecedor: "Convênio Unimed", numeroDocumento: "Lote-412", dataEmissao: "2026-07-01", dataVencimento: "2026-07-20", competencia: "2026-07", rubrica: "6.1 Assistenciais", valorOriginal: 450000, valorBruto: 450000, valorLiquido: 450000, jurosMultas: 0, totalTaxes: 0, taxes: [], valorPago: 0, dataPagamento: null, status: "Pendente", historico: "Repasse", acaoConciliacao: "" }]; saveStorage(); } }
+        function loadData() {
+            const d = localStorage.getItem(STORAGE_KEY);
+            if (d) transactions = JSON.parse(d);
+            else {
+                transactions = [
+                    { id: uuid(), tipo: "Despesa", fornecedor: "Distribuidora Med", numeroDocumento: "NF-8821", dataEmissao: "2026-05-01", dataVencimento: "2026-05-10", competencia: "2026-05", rubrica: "2.2 Medicamentos", valorOriginal: 32000, valorBruto: 32000, valorLiquido: 32000, jurosMultas: 0, totalTaxes: 0, taxes: [], valorPago: 32000, dataPagamento: "2026-05-09", status: "Pago", historico: "Compra mensal", acaoConciliacao: "PIX" },
+                    { id: uuid(), tipo: "Receita", fornecedor: "Convênio Saúde", numeroDocumento: "Lote-405", dataEmissao: "2026-06-15", dataVencimento: "2026-06-25", competencia: "2026-06", rubrica: "6.1.1 PJ Equipe Médica", valorOriginal: 350000, valorBruto: 350000, valorLiquido: 350000, jurosMultas: 0, totalTaxes: 0, taxes: [], valorPago: 0, dataPagamento: null, status: "Pendente", historico: "Repasse", acaoConciliacao: "" },
+                    { id: uuid(), tipo: "Despesa", fornecedor: "Clínica Dr. Silva", numeroDocumento: "NF-2290", dataEmissao: "2026-07-01", dataVencimento: "2026-07-15", competencia: "2026-07", rubrica: "6.1.1 PJ Equipe Médica", valorOriginal: 180000, valorBruto: 180000, valorLiquido: 180000, jurosMultas: 0, totalTaxes: 0, taxes: [], valorPago: 0, dataPagamento: null, status: "Pendente", historico: "Plantão", acaoConciliacao: "" },
+                    { id: uuid(), tipo: "Receita", fornecedor: "Convênio Unimed", numeroDocumento: "Lote-412", dataEmissao: "2026-07-01", dataVencimento: "2026-07-20", competencia: "2026-07", rubrica: "6.1 Assistenciais", valorOriginal: 450000, valorBruto: 450000, valorLiquido: 450000, jurosMultas: 0, totalTaxes: 0, taxes: [], valorPago: 0, dataPagamento: null, status: "Pendente", historico: "Repasse", acaoConciliacao: "" }
+                ];
+                saveStorage();
+            }
+        }
 
-        function saveStorage() { localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions)); updateDashboard(); document.getElementById('last-save-info').innerHTML = '<i class="fa-solid fa-circle-check"></i> Salvo às ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }); }
+        function saveStorage() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
+            updateDashboard();
+            document.getElementById('last-save-info').innerHTML = '<i class="fa-solid fa-circle-check"></i> Salvo às ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        }
 
-        function togglePaymentFields() { const s = document.querySelector('input[name="initialStatus"]:checked').value, f = document.getElementById('paymentFields'); document.getElementById('opt-pending').classList.toggle('active', s === 'Pendente'); document.getElementById('opt-paid').classList.toggle('active', s === 'Pago'); if (s === 'Pago') { f.style.display = 'block'; document.getElementById('initialDataPagamento').required = true; document.getElementById('initialValorPago').required = true; if (!document.getElementById('initialDataPagamento').value) document.getElementById('initialDataPagamento').value = today(); } else { f.style.display = 'none'; document.getElementById('initialDataPagamento').required = false; document.getElementById('initialValorPago').required = false; } }
+        function togglePaymentFields() {
+            const s = document.querySelector('input[name="initialStatus"]:checked').value, f = document.getElementById('paymentFields');
+            document.getElementById('opt-pending').classList.toggle('active', s === 'Pendente');
+            document.getElementById('opt-paid').classList.toggle('active', s === 'Pago');
+            if (s === 'Pago') {
+                f.style.display = 'block';
+                document.getElementById('initialDataPagamento').required = true;
+                document.getElementById('initialValorPago').required = true;
+                if (!document.getElementById('initialValorPago').value) document.getElementById('initialValorPago').value = '0,00';
+            } else {
+                f.style.display = 'none';
+                document.getElementById('initialDataPagamento').required = false;
+                document.getElementById('initialValorPago').required = false;
+            }
+        }
 
-        function requestAdminConfirmation(t, m, r, f) { pendingAction = f; document.getElementById('confirmTitle').textContent = t; document.getElementById('confirmMessage').textContent = m; document.getElementById('confirmRisks').innerHTML = r.map(x => `<li>${x}</li>`).join(''); document.getElementById('confirmInput').value = ''; document.getElementById('btnConfirmAction').disabled = true; document.getElementById('confirmOverlay').classList.add('active'); }
+        function requestAdminConfirmation(t, m, r, f) {
+            pendingAction = f;
+            document.getElementById('confirmTitle').textContent = t;
+            document.getElementById('confirmMessage').textContent = m;
+            document.getElementById('confirmRisks').innerHTML = r.map(x => `<li>${x}</li>`).join('');
+            document.getElementById('confirmInput').value = '';
+            document.getElementById('btnConfirmAction').disabled = true;
+            document.getElementById('confirmOverlay').classList.add('active');
+        }
+
         function closeConfirmOverlay() { document.getElementById('confirmOverlay').classList.remove('active'); pendingAction = null; }
-        document.getElementById('confirmInput').addEventListener('input', function () { document.getElementById('btnConfirmAction').disabled = this.value.trim().toUpperCase() !== 'CONFIRMAR'; });
-        function executeConfirmedAction() { if (document.getElementById('confirmInput').value.trim().toUpperCase() === 'CONFIRMAR' && pendingAction) { pendingAction(); closeConfirmOverlay(); } }
 
-        function toggleTaxSection(e) { if (e && e.type === 'click' && e.target.type !== 'checkbox') document.getElementById('enableTaxes').checked = !document.getElementById('enableTaxes').checked; const en = document.getElementById('enableTaxes').checked; document.getElementById('taxFields').classList.toggle('active', en); if (en) calculateTaxes(); }
-        function updateTaxVisibility() { const t = document.getElementById('tipoMovimentacao').value; document.getElementById('taxSection').style.display = t === 'Despesa' ? 'block' : 'none'; }
+        document.getElementById('confirmInput').addEventListener('input', function () {
+            document.getElementById('btnConfirmAction').disabled = this.value.trim().toUpperCase() !== 'CONFIRMAR';
+        });
+
+        function executeConfirmedAction() {
+            if (document.getElementById('confirmInput').value.trim().toUpperCase() === 'CONFIRMAR' && pendingAction) {
+                pendingAction();
+                closeConfirmOverlay();
+            }
+        }
+
+        function toggleTaxSection(e) {
+            if (e && e.type === 'click' && e.target.type !== 'checkbox') document.getElementById('enableTaxes').checked = !document.getElementById('enableTaxes').checked;
+            const en = document.getElementById('enableTaxes').checked;
+            document.getElementById('taxFields').classList.toggle('active', en);
+            if (en) calculateTaxes();
+        }
+
+        function updateTaxVisibility() {
+            const t = document.getElementById('tipoMovimentacao').value;
+            document.getElementById('taxSection').style.display = t === 'Despesa' ? 'block' : 'none';
+        }
+
         const TAX_RATES = { IRRF: 0.015, PCC: 0.0465 };
 
         function calculateTaxes() {
             try {
                 const v = getCurrencyValue('valorOriginal'), e = document.getElementById('enableTaxes').checked;
-                if (!e || v <= 0) { ['taxIRRFValue', 'taxPCCValue', 'taxINSSValue', 'taxISSValue'].forEach(id => document.getElementById(id).value = ''); document.getElementById('summaryGross').textContent = fmtBRL(v); document.getElementById('summaryTaxes').textContent = fmtBRL(0); document.getElementById('summaryNet').textContent = fmtBRL(v); return; }
-                const irrf = v * TAX_RATES.IRRF; document.getElementById('taxIRRFValue').value = irrf.toFixed(2).replace('.', ',');
-                const pcc = v * TAX_RATES.PCC; document.getElementById('taxPCCValue').value = pcc.toFixed(2).replace('.', ',');
-                const inssP = getCurrencyValue('taxINSSPercent'), inss = v * (inssP / 100); document.getElementById('taxINSSValue').value = inss > 0 ? inss.toFixed(2).replace('.', ',') : '';
-                const issP = getCurrencyValue('taxISSPercent'), iss = v * (issP / 100); document.getElementById('taxISSValue').value = iss > 0 ? iss.toFixed(2).replace('.', ',') : '';
+                if (!e || v <= 0) {
+                    ['taxIRRFValue', 'taxPCCValue', 'taxINSSValue', 'taxISSValue'].forEach(id => document.getElementById(id).value = '');
+                    document.getElementById('summaryGross').textContent = fmtBRL(v);
+                    document.getElementById('summaryTaxes').textContent = fmtBRL(0);
+                    document.getElementById('summaryNet').textContent = fmtBRL(v);
+                    return;
+                }
+                const irrf = v * TAX_RATES.IRRF;
+                document.getElementById('taxIRRFValue').value = irrf.toFixed(2).replace('.', ',');
+                const pcc = v * TAX_RATES.PCC;
+                document.getElementById('taxPCCValue').value = pcc.toFixed(2).replace('.', ',');
+                const inssP = getCurrencyValue('taxINSSPercent'), inss = v * (inssP / 100);
+                document.getElementById('taxINSSValue').value = inss > 0 ? inss.toFixed(2).replace('.', ',') : '';
+                const issP = getCurrencyValue('taxISSPercent'), iss = v * (issP / 100);
+                document.getElementById('taxISSValue').value = iss > 0 ? iss.toFixed(2).replace('.', ',') : '';
                 const tot = irrf + pcc + inss + iss;
                 document.getElementById('summaryGross').textContent = fmtBRL(v);
                 document.getElementById('summaryTaxes').textContent = fmtBRL(tot);
@@ -1167,8 +1415,18 @@
             } catch (error) { console.error('Erro ao calcular impostos:', error); }
         }
 
-        function getTaxValues() { const e = document.getElementById('enableTaxes').checked; if (!e) return { enabled: false, taxes: [], totalTaxes: 0 }; const irrf = getCurrencyValue('taxIRRFValue'), pcc = getCurrencyValue('taxPCCValue'), inss = getCurrencyValue('taxINSSValue'), iss = getCurrencyValue('taxISSValue'), t = []; if (irrf > 0) t.push({ nome: 'IRRF', valor: irrf, percent: 1.5 }); if (pcc > 0) t.push({ nome: 'PCC', valor: pcc, percent: 4.65 }); if (inss > 0) t.push({ nome: 'INSS', valor: inss, percent: getCurrencyValue('taxINSSPercent') }); if (iss > 0) t.push({ nome: 'ISS', valor: iss, percent: getCurrencyValue('taxISSPercent') }); return { enabled: true, taxes: t, totalTaxes: t.reduce((s, x) => s + x.valor, 0) }; }
+        function getTaxValues() {
+            const e = document.getElementById('enableTaxes').checked;
+            if (!e) return { enabled: false, taxes: [], totalTaxes: 0 };
+            const irrf = getCurrencyValue('taxIRRFValue'), pcc = getCurrencyValue('taxPCCValue'), inss = getCurrencyValue('taxINSSValue'), iss = getCurrencyValue('taxISSValue'), t = [];
+            if (irrf > 0) t.push({ nome: 'IRRF', valor: irrf, percent: 1.5 });
+            if (pcc > 0) t.push({ nome: 'PCC', valor: pcc, percent: 4.65 });
+            if (inss > 0) t.push({ nome: 'INSS', valor: inss, percent: getCurrencyValue('taxINSSPercent') });
+            if (iss > 0) t.push({ nome: 'ISS', valor: iss, percent: getCurrencyValue('taxISSPercent') });
+            return { enabled: true, taxes: t, totalTaxes: t.reduce((s, x) => s + x.valor, 0) };
+        }
 
+        // ===== GERAÇÃO DE IMPOSTOS - RUBRICA IGUAL À ORIGINAL =====
         function gerarMovimentacoesImpostos(transOriginal, taxes) {
             const movs = [], docOrig = transOriginal.numeroDocumento || `AUTO-${Date.now()}`;
             taxes.forEach(tax => {
@@ -1181,7 +1439,7 @@
                         dataEmissao: today(),
                         competencia: transOriginal.competencia,
                         dataVencimento: venc,
-                        rubrica: '4.2 Impostos/Taxas',
+                        rubrica: transOriginal.rubrica, // MESMA RUBRICA DA MOVIMENTAÇÃO ORIGINAL
                         valorOriginal: tax.valor, valorBruto: tax.valor, valorLiquido: tax.valor,
                         jurosMultas: 0, valorPago: 0, dataPagamento: null,
                         status: venc < today() ? 'Vencido' : 'Pendente',
@@ -1198,144 +1456,700 @@
 
         function saveTransaction(e) {
             e.preventDefault();
-            console.log('=== INICIANDO SALVAMENTO ===');
-            try {
-                if (currentUser.role === 'consulta') { showToast('warning', 'Modo Consulta', 'Somente leitura'); return; }
-                if (isLancador()) { const statusIni = document.querySelector('input[name="initialStatus"]:checked').value; if (statusIni === 'Pago') { showToast('error', 'Ação não permitida', 'Perfil Lançador não pode criar como Pago'); return; } }
-                const numDoc = document.getElementById('numeroDocumento').value.trim();
-                if (!numDoc) { showToast('error', 'Campo obrigatório', 'Número do Documento é obrigatório'); document.getElementById('numeroDocumento').focus(); return; }
-                const fornecedor = document.getElementById('fornecedor').value.trim();
-                if (!fornecedor) { showToast('error', 'Campo obrigatório', 'Fornecedor/Cliente é obrigatório'); document.getElementById('fornecedor').focus(); return; }
-                const rubrica = document.getElementById('rubrica').value;
-                if (!rubrica) { showToast('error', 'Campo obrigatório', 'Rubrica é obrigatória'); document.getElementById('rubrica').focus(); return; }
-                const id = document.getElementById('transId').value, venc = document.getElementById('dataVencimento').value, statusIni = document.querySelector('input[name="initialStatus"]:checked').value;
-                console.log('Valores obtidos:', { id, venc, statusIni });
-                let status, valorPago, dataPagamento, acaoConciliacao;
-                if (statusIni === 'Pago') { status = 'Pago'; valorPago = getCurrencyValue('initialValorPago'); dataPagamento = document.getElementById('initialDataPagamento').value; acaoConciliacao = document.getElementById('initialObsConciliacao').value; if (!dataPagamento || !valorPago) { showToast('error', 'Dados incompletos', 'Informe data e valor do pagamento'); return; } }
-                else { status = venc < today() ? 'Vencido' : 'Pendente'; valorPago = 0; dataPagamento = null; acaoConciliacao = ''; }
-                const vBruto = getCurrencyValue('valorOriginal'), jurosMultas = getCurrencyValue('jurosMultas'), taxData = getTaxValues();
-                console.log('Valores calculados:', { vBruto, jurosMultas, taxData });
-                const t = {
-                    id: id || uuid(), tipo: document.getElementById('tipoMovimentacao').value,
-                    fornecedor: fornecedor, numeroDocumento: numDoc,
-                    dataEmissao: document.getElementById('dataEmissao').value,
-                    competencia: document.getElementById('competencia').value,
-                    dataVencimento: venc, rubrica: rubrica,
-                    valorOriginal: vBruto, valorBruto: vBruto, valorLiquido: vBruto - taxData.totalTaxes,
-                    jurosMultas: jurosMultas, valorPago: valorPago, dataPagamento: dataPagamento, status: status,
-                    historico: document.getElementById('historico').value, acaoConciliacao: acaoConciliacao,
-                    taxes: taxData.taxes, totalTaxes: taxData.totalTaxes,
-                    editadoPor: currentUser?.name || 'Sistema', editadoEm: new Date().toISOString()
-                };
-                console.log('Transação criada:', t);
-                if (id) {
-                    const ex = transactions.find(x => x.id === id);
-                    if (ex && ex.status === 'Pago' && !canEditPaid()) { t.valorPago = ex.valorPago; t.dataPagamento = ex.dataPagamento; t.status = 'Pago'; t.acaoConciliacao = ex.acaoConciliacao; }
-                    transactions[transactions.findIndex(x => x.id === id)] = t;
-                    showToast('success', 'Atualizado!', 'Movimentação editada com sucesso');
-                } else {
-                    transactions.push(t);
-                    if (taxData.enabled && taxData.taxes.length > 0) {
-                        const taxMovs = gerarMovimentacoesImpostos(t, taxData.taxes);
-                        taxMovs.forEach(m => transactions.push(m));
-                        showToast('success', 'Criado com impostos!', `${fmtBRL(vBruto)} + ${taxMovs.length} guia(s) de imposto(s) gerada(s)`);
-                    } else { showToast('success', 'Criado!', `${t.tipo} de ${fmtBRL(vBruto)} salva com sucesso`); }
+            if (currentUser.role === 'consulta') { showToast('warning', 'Modo Consulta', 'Somente leitura'); return; }
+            if (isLancador()) {
+                const statusIni = document.querySelector('input[name="initialStatus"]:checked').value;
+                if (statusIni === 'Pago') { showToast('error', 'Ação não permitida', 'Perfil Lançador não pode criar como Pago'); return; }
+            }
+            const numDoc = document.getElementById('numeroDocumento').value.trim();
+            if (!numDoc) { showToast('error', 'Campo obrigatório', 'Número do Documento é obrigatório'); document.getElementById('numeroDocumento').focus(); return; }
+            const fornecedor = document.getElementById('fornecedor').value.trim();
+            if (!fornecedor) { showToast('error', 'Campo obrigatório', 'Fornecedor/Cliente é obrigatório'); document.getElementById('fornecedor').focus(); return; }
+            const rubrica = document.getElementById('rubrica').value;
+            if (!rubrica) { showToast('error', 'Campo obrigatório', 'Rubrica é obrigatória'); document.getElementById('rubrica').focus(); return; }
+            const id = document.getElementById('transId').value, venc = document.getElementById('dataVencimento').value, statusIni = document.querySelector('input[name="initialStatus"]:checked').value;
+            let status, valorPago, dataPagamento, acaoConciliacao;
+            if (statusIni === 'Pago') {
+                status = 'Pago';
+                valorPago = getCurrencyValue('initialValorPago');
+                dataPagamento = document.getElementById('initialDataPagamento').value;
+                acaoConciliacao = document.getElementById('initialObsConciliacao').value;
+                if (!dataPagamento || !valorPago) { showToast('error', 'Dados incompletos', 'Informe data e valor'); return; }
+            } else {
+                status = venc < today() ? 'Vencido' : 'Pendente';
+                valorPago = 0; dataPagamento = null; acaoConciliacao = '';
+            }
+            const vBruto = getCurrencyValue('valorOriginal'), jurosMultas = getCurrencyValue('jurosMultas'), taxData = getTaxValues();
+            const t = {
+                id: id || uuid(), tipo: document.getElementById('tipoMovimentacao').value,
+                fornecedor: fornecedor, numeroDocumento: numDoc,
+                dataEmissao: document.getElementById('dataEmissao').value, competencia: document.getElementById('competencia').value,
+                dataVencimento: venc, rubrica: rubrica,
+                valorOriginal: vBruto, valorBruto: vBruto, valorLiquido: vBruto - taxData.totalTaxes,
+                jurosMultas: jurosMultas, valorPago: valorPago, dataPagamento: dataPagamento, status: status,
+                historico: document.getElementById('historico').value, acaoConciliacao: acaoConciliacao,
+                taxes: taxData.taxes, totalTaxes: taxData.totalTaxes,
+                editadoPor: currentUser?.name || 'Sistema', editadoEm: new Date().toISOString()
+            };
+            if (id) {
+                const ex = transactions.find(x => x.id === id);
+                if (ex && ex.status === 'Pago' && !canEditPaid()) {
+                    t.valorPago = ex.valorPago; t.dataPagamento = ex.dataPagamento;
+                    t.status = 'Pago'; t.acaoConciliacao = ex.acaoConciliacao;
                 }
-                console.log('=== SALVAMENTO CONCLUÍDO ===');
-                saveStorage(); closeModal(); renderTable();
-            } catch (error) { console.error('Erro ao salvar movimentação:', error); showToast('error', 'Erro ao salvar', 'Ocorreu um erro ao salvar a movimentação. Verifique o console para mais detalhes.'); }
+                transactions[transactions.findIndex(x => x.id === id)] = t;
+                showToast('success', 'Atualizado!', 'Movimentação editada');
+            } else {
+                transactions.push(t);
+                if (taxData.enabled && taxData.taxes.length > 0) {
+                    const taxMovs = gerarMovimentacoesImpostos(t, taxData.taxes);
+                    taxMovs.forEach(m => transactions.push(m));
+                    showToast('success', 'Criado com impostos!', `${fmtBRL(vBruto)} + ${taxMovs.length} guia(s) gerada(s)`);
+                } else {
+                    showToast('success', 'Criado!', `${t.tipo} de ${fmtBRL(vBruto)}`);
+                }
+            }
+            saveStorage();
+            closeModal();
+            renderTable();
         }
 
-        function deleteTransaction(id) { if (currentUser.role === 'consulta') return; if (!hasPermission('delete')) { showToast('error', 'Sem permissão'); return; } const t = transactions.find(x => x.id === id); if (!t) return; if (t.isTax) { showToast('warning', 'Guia de Imposto', 'Exclua a origem'); return; } if (t.status === 'Pago') { if (isAdmin()) { requestAdminConfirmation('Excluir conciliado?', `"${t.fornecedor}"`, ['Ação irreversível'], () => { transactions = transactions.filter(x => x.id !== id && x.taxSource !== id); saveStorage(); renderTable(); showToast('warning', 'Excluído'); }); return; } showToast('error', 'Bloqueado'); return; } if (confirm('Excluir?')) { transactions = transactions.filter(x => x.id !== id && x.taxSource !== id); saveStorage(); renderTable(); showToast('warning', 'Excluído'); } }
+        function deleteTransaction(id) {
+            if (currentUser.role === 'consulta') return;
+            if (!hasPermission('delete')) { showToast('error', 'Sem permissão'); return; }
+            const t = transactions.find(x => x.id === id);
+            if (!t) return;
+            if (t.isTax) { showToast('warning', 'Guia de Imposto', 'Exclua a origem'); return; }
+            if (t.status === 'Pago') {
+                if (isAdmin()) {
+                    requestAdminConfirmation('Excluir conciliado?', `"${t.fornecedor}"`, ['Ação irreversível'], () => {
+                        transactions = transactions.filter(x => x.id !== id && x.taxSource !== id);
+                        saveStorage(); renderTable();
+                        showToast('warning', 'Excluído');
+                    });
+                    return;
+                }
+                showToast('error', 'Bloqueado'); return;
+            }
+            if (confirm('Excluir?')) {
+                transactions = transactions.filter(x => x.id !== id && x.taxSource !== id);
+                saveStorage(); renderTable();
+                showToast('warning', 'Excluído');
+            }
+        }
 
         function editTransaction(id) {
-            if (currentUser.role === 'consulta') { const t = transactions.find(x => x.id === id); loadFormData(t, true); document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-eye"></i> Visualizar'; document.getElementById('btnSaveTransaction').style.display = 'none'; document.getElementById('lockedAlert').style.display = 'flex'; document.getElementById('transactionModal').classList.add('active'); return; }
-            const t = transactions.find(x => x.id === id); if (!t) return; const isPaid = t.status === 'Pago';
-            if (isPaid && !canEditPaid()) { loadFormData(t, true); document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-eye"></i> Visualizar'; document.getElementById('btnSaveTransaction').style.display = 'none'; document.getElementById('lockedAlert').style.display = 'flex'; document.getElementById('transactionModal').classList.add('active'); return; }
+            if (currentUser.role === 'consulta') {
+                const t = transactions.find(x => x.id === id);
+                loadFormData(t, true);
+                document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-eye"></i> Visualizar';
+                document.getElementById('btnSaveTransaction').style.display = 'none';
+                document.getElementById('lockedAlert').style.display = 'flex';
+                document.getElementById('transactionModal').classList.add('active');
+                return;
+            }
+            const t = transactions.find(x => x.id === id);
+            if (!t) return;
+            const isPaid = t.status === 'Pago';
+            if (isPaid && !canEditPaid()) {
+                loadFormData(t, true);
+                document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-eye"></i> Visualizar';
+                document.getElementById('btnSaveTransaction').style.display = 'none';
+                document.getElementById('lockedAlert').style.display = 'flex';
+                document.getElementById('transactionModal').classList.add('active');
+                return;
+            }
             if (!hasPermission('edit')) return;
             loadFormData(t, false);
-            if (isPaid && canEditPaid()) { document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-user-shield" style="color:var(--warning)"></i> Editar (Admin)'; document.getElementById('btnSaveTransaction').classList.remove('btn-primary'); document.getElementById('btnSaveTransaction').classList.add('btn-warning'); document.getElementById('adminEditAlert').classList.add('active'); }
-            else { document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Editar'; document.getElementById('btnSaveTransaction').classList.remove('btn-warning'); document.getElementById('btnSaveTransaction').classList.add('btn-primary'); document.getElementById('adminEditAlert').classList.remove('active'); }
-            document.getElementById('btnSaveTransaction').style.display = 'inline-flex'; document.getElementById('lockedAlert').style.display = 'none'; document.getElementById('transactionModal').classList.add('active');
+            if (isPaid && canEditPaid()) {
+                document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-user-shield" style="color:var(--warning)"></i> Editar (Admin)';
+                document.getElementById('btnSaveTransaction').classList.remove('btn-primary');
+                document.getElementById('btnSaveTransaction').classList.add('btn-warning');
+                document.getElementById('adminEditAlert').classList.add('active');
+            } else {
+                document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Editar';
+                document.getElementById('btnSaveTransaction').classList.remove('btn-warning');
+                document.getElementById('btnSaveTransaction').classList.add('btn-primary');
+                document.getElementById('adminEditAlert').classList.remove('active');
+            }
+            document.getElementById('btnSaveTransaction').style.display = 'inline-flex';
+            document.getElementById('lockedAlert').style.display = 'none';
+            document.getElementById('transactionModal').classList.add('active');
         }
 
         function loadFormData(t, ro) {
-            document.getElementById('transId').value = t.id; document.getElementById('tipoMovimentacao').value = t.tipo; document.getElementById('fornecedor').value = t.fornecedor; document.getElementById('numeroDocumento').value = t.numeroDocumento; document.getElementById('dataEmissao').value = t.dataEmissao; document.getElementById('competencia').value = t.competencia || month(); document.getElementById('dataVencimento').value = t.dataVencimento; document.getElementById('rubrica').value = t.rubrica;
+            document.getElementById('transId').value = t.id;
+            document.getElementById('tipoMovimentacao').value = t.tipo;
+            document.getElementById('fornecedor').value = t.fornecedor;
+            document.getElementById('numeroDocumento').value = t.numeroDocumento;
+            document.getElementById('dataEmissao').value = t.dataEmissao;
+            document.getElementById('competencia').value = t.competencia || month();
+            document.getElementById('dataVencimento').value = t.dataVencimento;
+            document.getElementById('rubrica').value = t.rubrica;
             const valorOriginalInput = document.getElementById('valorOriginal');
             valorOriginalInput.value = (t.valorBruto || t.valorOriginal).toFixed(2).replace('.', ',');
             const jurosMultasInput = document.getElementById('jurosMultas');
             jurosMultasInput.value = (t.jurosMultas || 0).toFixed(2).replace('.', ',');
             document.getElementById('historico').value = t.historico;
-            if (t.taxes && t.taxes.length > 0) { document.getElementById('enableTaxes').checked = true; document.getElementById('taxFields').classList.add('active'); t.taxes.forEach(tax => { if (tax.nome === 'IRRF') document.getElementById('taxIRRFValue').value = tax.valor.toFixed(2).replace('.', ','); else if (tax.nome === 'PCC') document.getElementById('taxPCCValue').value = tax.valor.toFixed(2).replace('.', ','); else if (tax.nome === 'INSS') { document.getElementById('taxINSSPercent').value = tax.percent; document.getElementById('taxINSSValue').value = tax.valor.toFixed(2).replace('.', ','); } else if (tax.nome === 'ISS') { document.getElementById('taxISSPercent').value = tax.percent; document.getElementById('taxISSValue').value = tax.valor.toFixed(2).replace('.', ','); } }); setTimeout(calculateTaxes, 50); }
-            else { document.getElementById('enableTaxes').checked = false; document.getElementById('taxFields').classList.remove('active'); }
+            if (t.taxes && t.taxes.length > 0) {
+                document.getElementById('enableTaxes').checked = true;
+                document.getElementById('taxFields').classList.add('active');
+                t.taxes.forEach(tax => {
+                    if (tax.nome === 'IRRF') document.getElementById('taxIRRFValue').value = tax.valor.toFixed(2).replace('.', ',');
+                    else if (tax.nome === 'PCC') document.getElementById('taxPCCValue').value = tax.valor.toFixed(2).replace('.', ',');
+                    else if (tax.nome === 'INSS') { document.getElementById('taxINSSPercent').value = tax.percent; document.getElementById('taxINSSValue').value = tax.valor.toFixed(2).replace('.', ','); }
+                    else if (tax.nome === 'ISS') { document.getElementById('taxISSPercent').value = tax.percent; document.getElementById('taxISSValue').value = tax.valor.toFixed(2).replace('.', ','); }
+                });
+                setTimeout(calculateTaxes, 50);
+            } else {
+                document.getElementById('enableTaxes').checked = false;
+                document.getElementById('taxFields').classList.remove('active');
+            }
             updateTaxVisibility();
-            if (t.status === 'Pago') { document.querySelectorAll('input[name="initialStatus"]').forEach(r => r.checked = r.value === 'Pago'); togglePaymentFields(); document.getElementById('initialDataPagamento').value = t.dataPagamento || ''; const valorPagoInput = document.getElementById('initialValorPago'); valorPagoInput.value = (t.valorPago || 0).toFixed(2).replace('.', ','); document.getElementById('initialObsConciliacao').value = t.acaoConciliacao || ''; }
-            else { document.querySelectorAll('input[name="initialStatus"]').forEach(r => r.checked = r.value === 'Pendente'); togglePaymentFields(); }
+            if (t.status === 'Pago') {
+                document.querySelectorAll('input[name="initialStatus"]').forEach(r => r.checked = r.value === 'Pago');
+                togglePaymentFields();
+                document.getElementById('initialDataPagamento').value = t.dataPagamento || '';
+                const valorPagoInput = document.getElementById('initialValorPago');
+                valorPagoInput.value = (t.valorPago || 0).toFixed(2).replace('.', ',');
+                document.getElementById('initialObsConciliacao').value = t.acaoConciliacao || '';
+            } else {
+                document.querySelectorAll('input[name="initialStatus"]').forEach(r => r.checked = r.value === 'Pendente');
+                togglePaymentFields();
+            }
             document.querySelectorAll('#financeForm input,#financeForm select,#financeForm textarea').forEach(el => el.disabled = ro);
             document.querySelectorAll('.status-option').forEach(el => { el.style.pointerEvents = ro ? 'none' : 'auto'; el.style.opacity = ro ? '0.6' : '1'; });
         }
 
-        function openConciliateModal(id) { if (currentUser.role === 'consulta' || !hasPermission('conciliate')) return; const t = transactions.find(x => x.id === id); if (!t || (t.status === 'Pago' && !canEditPaid())) return; document.getElementById('conciliateId').value = id; const v = t.valorLiquido || t.valorOriginal; const valorPagoInput = document.getElementById('concValorPago'); valorPagoInput.value = (v + t.jurosMultas).toFixed(2).replace('.', ','); document.getElementById('concDataPagamento').value = today(); document.getElementById('concAcao').value = ''; document.getElementById('conciliateModal').classList.add('active'); }
-        function confirmConciliation(e) { e.preventDefault(); if (!hasPermission('conciliate')) return; const id = document.getElementById('conciliateId').value, i = transactions.findIndex(t => t.id === id); if (i !== -1) { transactions[i].status = 'Pago'; transactions[i].valorPago = getCurrencyValue('concValorPago'); transactions[i].dataPagamento = document.getElementById('concDataPagamento').value; transactions[i].acaoConciliacao = document.getElementById('concAcao').value; saveStorage(); closeConciliateModal(); renderTable(); showToast('success', 'Conciliado!'); } }
+        function openConciliateModal(id) {
+            if (currentUser.role === 'consulta' || !hasPermission('conciliate')) return;
+            const t = transactions.find(x => x.id === id);
+            if (!t || (t.status === 'Pago' && !canEditPaid())) return;
+            document.getElementById('conciliateId').value = id;
+            const v = t.valorLiquido || t.valorOriginal;
+            const valorPagoInput = document.getElementById('concValorPago');
+            valorPagoInput.value = (v + t.jurosMultas).toFixed(2).replace('.', ',');
+            document.getElementById('concDataPagamento').value = today();
+            document.getElementById('concAcao').value = '';
+            document.getElementById('conciliateModal').classList.add('active');
+        }
+
+        function confirmConciliation(e) {
+            e.preventDefault();
+            if (!hasPermission('conciliate')) return;
+            const id = document.getElementById('conciliateId').value, i = transactions.findIndex(t => t.id === id);
+            if (i !== -1) {
+                transactions[i].status = 'Pago';
+                transactions[i].valorPago = getCurrencyValue('concValorPago');
+                transactions[i].dataPagamento = document.getElementById('concDataPagamento').value;
+                transactions[i].acaoConciliacao = document.getElementById('concAcao').value;
+                saveStorage();
+                closeConciliateModal();
+                renderTable();
+                showToast('success', 'Conciliado!');
+            }
+        }
+
         function closeConciliateModal() { document.getElementById('conciliateModal').classList.remove('active'); }
 
+        // ===== RENDER TABLE - COM VALOR BRUTO, IMPOSTOS E LÍQUIDO =====
         function renderTable() {
-            const t = document.getElementById('tableBody'); t.innerHTML = '';
-            const f = { tipo: document.getElementById('col-filter-tipo').value, status: document.getElementById('col-filter-status').value, hist: document.getElementById('col-filter-historico').value.toLowerCase(), rub: document.getElementById('col-filter-rubrica').value.toLowerCase(), emi: document.getElementById('col-filter-emissao').value, venc: document.getElementById('col-filter-vencimento').value, comp: document.getElementById('col-filter-competencia').value, min: getCurrencyValue('col-filter-valor-min'), max: getCurrencyValue('col-filter-valor-max') || Infinity, pag: document.getElementById('col-filter-pagto').value, search: (document.getElementById('global-search')?.value || '').toLowerCase() };
-            const filtered = transactions.filter(x => { if (f.tipo && x.tipo !== f.tipo) return false; if (f.status && x.status !== f.status) return false; if (f.hist && !(x.fornecedor.toLowerCase().includes(f.hist) || x.historico?.toLowerCase().includes(f.hist) || x.numeroDocumento?.toLowerCase().includes(f.hist))) return false; if (f.rub && !x.rubrica?.toLowerCase().includes(f.rub)) return false; if (f.emi && x.dataEmissao !== f.emi) return false; if (f.venc && x.dataVencimento !== f.venc) return false; if (f.comp && x.competencia !== f.comp) return false; if (x.valorOriginal < f.min || x.valorOriginal > f.max) return false; if (f.pag && x.dataPagamento !== f.pag) return false; if (f.search) { const s = `${x.fornecedor} ${x.historico} ${x.rubrica} ${x.numeroDocumento}`.toLowerCase(); if (!s.includes(f.search)) return false; } return true; }).sort((a, b) => new Date(a.dataVencimento) - new Date(b.dataVencimento));
+            const t = document.getElementById('tableBody');
+            t.innerHTML = '';
+            const f = {
+                tipo: document.getElementById('col-filter-tipo').value, status: document.getElementById('col-filter-status').value,
+                hist: document.getElementById('col-filter-historico').value.toLowerCase(), rub: document.getElementById('col-filter-rubrica').value.toLowerCase(),
+                emi: document.getElementById('col-filter-emissao').value, venc: document.getElementById('col-filter-vencimento').value,
+                comp: document.getElementById('col-filter-competencia').value, min: getCurrencyValue('col-filter-valor-min'),
+                max: getCurrencyValue('col-filter-valor-max') || Infinity, pag: document.getElementById('col-filter-pagto').value,
+                search: (document.getElementById('global-search')?.value || '').toLowerCase()
+            };
+            const filtered = transactions.filter(x => {
+                if (f.tipo && x.tipo !== f.tipo) return false;
+                if (f.status && x.status !== f.status) return false;
+                if (f.hist && !(x.fornecedor.toLowerCase().includes(f.hist) || x.historico?.toLowerCase().includes(f.hist) || x.numeroDocumento?.toLowerCase().includes(f.hist))) return false;
+                if (f.rub && !x.rubrica?.toLowerCase().includes(f.rub)) return false;
+                if (f.emi && x.dataEmissao !== f.emi) return false;
+                if (f.venc && x.dataVencimento !== f.venc) return false;
+                if (f.comp && x.competencia !== f.comp) return false;
+                if (x.valorOriginal < f.min || x.valorOriginal > f.max) return false;
+                if (f.pag && x.dataPagamento !== f.pag) return false;
+                if (f.search) {
+                    const s = `${x.fornecedor} ${x.historico} ${x.rubrica} ${x.numeroDocumento}`.toLowerCase();
+                    if (!s.includes(f.search)) return false;
+                }
+                return true;
+            }).sort((a, b) => new Date(a.dataVencimento) - new Date(b.dataVencimento));
             document.getElementById('table-count').innerText = filtered.length;
-            if (!filtered.length) { t.innerHTML = '<tr><td colspan="11" style="text-align:center;padding:40px;color:var(--text-muted)">Nenhum registro</td></tr>'; return; }
+            if (!filtered.length) { t.innerHTML = '<tr><td colspan="13" style="text-align:center;padding:40px;color:var(--text-muted)">Nenhum registro</td></tr>'; return; }
             const isC = currentUser.role === 'consulta';
             filtered.forEach(x => {
-                const tr = document.createElement('tr'); const ip = x.status === 'Pago', it = x.isTax === true;
-                if (ip) tr.classList.add('status-paid-row'); if (it) tr.classList.add('tax-row');
-                let sc = 'status-pendente', sl = x.status; if (ip) { sc = 'status-pago'; sl = x.tipo === 'Receita' ? 'Recebido' : 'Pago'; } else if (x.status === 'Vencido') sc = 'status-vencido';
-                const tc = it ? 'type-tax' : (x.tipo === 'Receita' ? 'type-receita' : 'type-despesa'); const ve = ip ? x.valorPago : 0; const cv = x.tipo === 'Receita' ? 'var(--success)' : 'var(--text-main)';
-                let act = '', li = ''; let tb = x.tipo; if (it) tb = '🧾 ' + x.tipo;
-                if (isC) { li = ip ? '<i class="fa-solid fa-lock lock-indicator"></i>' : ''; if (it) li += '<i class="fa-solid fa-receipt tax-indicator"></i>'; act = '<button class="icon-btn locked" disabled><i class="fa-solid fa-eye"></i></button>'; }
-                else if (ip) { if (canEditPaid()) { li = '<i class="fa-solid fa-lock-open admin-indicator"></i>'; if (it) li += '<i class="fa-solid fa-receipt tax-indicator"></i>'; act = `<button class="icon-btn admin-edit" onclick="editTransaction('${x.id}')"><i class="fa-solid fa-pen-to-square"></i></button><button class="icon-btn admin-delete" onclick="deleteTransaction('${x.id}')"><i class="fa-solid fa-trash"></i></button>`; } else { li = '<i class="fa-solid fa-lock lock-indicator"></i>'; if (it) li += '<i class="fa-solid fa-receipt tax-indicator"></i>'; act = `<button class="icon-btn" onclick="editTransaction('${x.id}')"><i class="fa-solid fa-eye"></i></button>`; } }
-                else { if (it) li = '<i class="fa-solid fa-receipt tax-indicator"></i>'; if (hasPermission('conciliate')) act += `<button class="icon-btn conciliar" onclick="openConciliateModal('${x.id}')"><i class="fa-solid fa-check"></i></button>`; if (hasPermission('edit')) act += `<button class="icon-btn" onclick="editTransaction('${x.id}')"><i class="fa-solid fa-pen"></i></button>`; if (hasPermission('delete')) act += `<button class="icon-btn delete" onclick="deleteTransaction('${x.id}')"><i class="fa-solid fa-trash"></i></button>`; if (!act) act = '<button class="icon-btn locked" disabled><i class="fa-solid fa-eye"></i></button>'; }
+                const tr = document.createElement('tr');
+                const ip = x.status === 'Pago', it = x.isTax === true;
+                if (ip) tr.classList.add('status-paid-row');
+                if (it) tr.classList.add('tax-row');
+                let sc = 'status-pendente', sl = x.status;
+                if (ip) { sc = 'status-pago'; sl = x.tipo === 'Receita' ? 'Recebido' : 'Pago'; }
+                else if (x.status === 'Vencido') sc = 'status-vencido';
+                const tc = it ? 'type-tax' : (x.tipo === 'Receita' ? 'type-receita' : 'type-despesa');
+                const ve = ip ? x.valorPago : 0;
+                const cv = x.tipo === 'Receita' ? 'var(--success)' : 'var(--text-main)';
+                let act = '', li = '';
+                let tb = x.tipo;
+                if (it) tb = '🧾 ' + x.tipo;
+                if (isC) {
+                    li = ip ? '<i class="fa-solid fa-lock lock-indicator"></i>' : '';
+                    if (it) li += '<i class="fa-solid fa-receipt tax-indicator"></i>';
+                    act = '<button class="icon-btn locked" disabled><i class="fa-solid fa-eye"></i></button>';
+                } else if (ip) {
+                    if (canEditPaid()) {
+                        li = '<i class="fa-solid fa-lock-open admin-indicator"></i>';
+                        if (it) li += '<i class="fa-solid fa-receipt tax-indicator"></i>';
+                        act = `<button class="icon-btn admin-edit" onclick="editTransaction('${x.id}')"><i class="fa-solid fa-pen-to-square"></i></button><button class="icon-btn admin-delete" onclick="deleteTransaction('${x.id}')"><i class="fa-solid fa-trash"></i></button>`;
+                    } else {
+                        li = '<i class="fa-solid fa-lock lock-indicator"></i>';
+                        if (it) li += '<i class="fa-solid fa-receipt tax-indicator"></i>';
+                        act = `<button class="icon-btn" onclick="editTransaction('${x.id}')"><i class="fa-solid fa-eye"></i></button>`;
+                    }
+                } else {
+                    if (it) li = '<i class="fa-solid fa-receipt tax-indicator"></i>';
+                    if (hasPermission('conciliate')) act += `<button class="icon-btn conciliar" onclick="openConciliateModal('${x.id}')"><i class="fa-solid fa-check"></i></button>`;
+                    if (hasPermission('edit')) act += `<button class="icon-btn" onclick="editTransaction('${x.id}')"><i class="fa-solid fa-pen"></i></button>`;
+                    if (hasPermission('delete')) act += `<button class="icon-btn delete" onclick="deleteTransaction('${x.id}')"><i class="fa-solid fa-trash"></i></button>`;
+                    if (!act) act = '<button class="icon-btn locked" disabled><i class="fa-solid fa-eye"></i></button>';
+                }
                 let hh = `<strong>${x.fornecedor}</strong><span>${x.historico || '-'}</span>`;
+                // INDICADOR VISUAL PARA IMPOSTOS RETIDOS
                 if (x.totalTaxes > 0 && !it) hh = `<strong>${x.fornecedor}</strong><span>${x.historico || '-'}<br><small style="color:var(--tax-color)">💰 Bruto: ${fmtBRL(x.valorOriginal)} | Imp: ${fmtBRL(x.totalTaxes)} | Lq: ${fmtBRL(x.valorLiquido)}</small></span>`;
-                tr.innerHTML = `<td><span class="badge ${tc}">${tb}</span>${li}</td><td><span class="badge ${sc}">${sl}</span></td><td class="desc-cell">${hh}</td><td class="rubrica-cell"><div class="rubrica-main">${x.rubrica || '-'}</div></td><td>${fmtDate(x.dataEmissao)}</td><td>${fmtDate(x.dataVencimento)}</td><td><span style="background:#f1f5f9;padding:3px 8px;border-radius:4px;font-size:.78rem;font-weight:600">${fmtComp(x.competencia)}</span></td><td>${fmtBRL(x.valorOriginal)}</td><td>${x.dataPagamento ? fmtDate(x.dataPagamento) : '<span style="color:#cbd5e1">-</span>'}</td><td style="color:${cv};font-weight:bold">${ip ? fmtBRL(ve) : '-'}</td><td class="actions-cell">${act}</td>`;
+                tr.innerHTML = `<td><span class="badge ${tc}">${tb}</span>${li}</td><td><span class="badge ${sc}">${sl}</span></td><td class="desc-cell">${hh}</td><td class="rubrica-cell"><div class="rubrica-main">${x.rubrica || '-'}</div></td><td>${fmtDate(x.dataEmissao)}</td><td>${fmtDate(x.dataVencimento)}</td><td><span style="background:#f1f5f9;padding:3px 8px;border-radius:4px;font-size:.78rem;font-weight:600">${fmtComp(x.competencia)}</span></td><td>${fmtBRL(x.valorBruto || x.valorOriginal)}</td><td>${x.totalTaxes > 0 && !it ? fmtBRL(x.totalTaxes) : '-'}</td><td>${x.valorLiquido && !it ? fmtBRL(x.valorLiquido) : (x.isTax ? fmtBRL(x.valorOriginal) : '-')}</td><td>${x.dataPagamento ? fmtDate(x.dataPagamento) : '<span style="color:#cbd5e1">-</span>'}</td><td style="color:${cv};font-weight:bold">${ip ? fmtBRL(ve) : '-'}</td><td class="actions-cell">${act}</td>`;
                 t.appendChild(tr);
             });
         }
 
-        function clearColumnFilters() { ['col-filter-tipo', 'col-filter-status', 'col-filter-historico', 'col-filter-rubrica', 'col-filter-emissao', 'col-filter-vencimento', 'col-filter-competencia', 'col-filter-valor-min', 'col-filter-valor-max', 'col-filter-pagto'].forEach(i => document.getElementById(i).value = ''); document.getElementById('global-search').value = ''; renderTable(); }
+        function clearColumnFilters() {
+            ['col-filter-tipo', 'col-filter-status', 'col-filter-historico', 'col-filter-rubrica', 'col-filter-emissao', 'col-filter-vencimento', 'col-filter-competencia', 'col-filter-valor-min', 'col-filter-valor-max', 'col-filter-pagto'].forEach(i => document.getElementById(i).value = '');
+            document.getElementById('global-search').value = '';
+            renderTable();
+        }
 
-        function updateDashboard() { const td = today(); let tp = 0, trm = 0, pc = 0, tpm = 0, rc = 0, vc = 0, tv = 0; transactions.forEach(t => { if (t.isTax) return; tv += t.valorOriginal; if (t.tipo === 'Despesa' && t.status !== 'Pago') tp += ((t.valorLiquido || t.valorOriginal) + t.jurosMultas); if (t.status === 'Pago' && t.dataPagamento) { const d = new Date(t.dataPagamento), n = new Date(); if (d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear()) { if (t.tipo === 'Receita') { trm += t.valorPago; rc++; } else tpm += t.valorPago; } } if (t.status === 'Vencido') { pc++; vc++; } else if (t.status === 'Pendente' && t.dataVencimento <= td) pc++; }); document.getElementById('kpi-total-pagar').innerText = fmtBRL(tp); document.getElementById('kpi-vencidas-count').innerText = `${vc} vencida${vc !== 1 ? 's' : ''}`; document.getElementById('kpi-total-recebido').innerText = fmtBRL(trm); document.getElementById('kpi-recebidas-count').innerText = `${rc} recebimento${rc !== 1 ? 's' : ''}`; document.getElementById('kpi-pendencias').innerText = pc; const s = trm - tpm; const el = document.getElementById('kpi-saldo'); el.innerText = fmtBRL(s); el.style.color = s >= 0 ? 'var(--success)' : 'var(--danger)'; const se = document.getElementById('kpi-saldo-status'); se.innerText = s >= 0 ? 'Superávit ✓' : 'Déficit ✗'; se.style.color = s >= 0 ? 'var(--success)' : 'var(--danger)'; const mc = transactions.filter(t => !t.isTax).length; document.getElementById('kpi-total-lancamentos').innerText = mc; document.getElementById('kpi-ticket-medio').innerText = `Ticket: ${fmtBRL(mc > 0 ? tv / mc : 0)}`; }
+        function updateDashboard() {
+            const td = today();
+            let tp = 0, trm = 0, pc = 0, tpm = 0, rc = 0, vc = 0, tv = 0;
+            transactions.forEach(t => {
+                if (t.isTax) return;
+                tv += t.valorOriginal;
+                if (t.tipo === 'Despesa' && t.status !== 'Pago') tp += ((t.valorLiquido || t.valorOriginal) + t.jurosMultas);
+                if (t.status === 'Pago' && t.dataPagamento) {
+                    const d = new Date(t.dataPagamento), n = new Date();
+                    if (d.getMonth() === n.getMonth() && d.getFullYear() === n.getFullYear()) {
+                        if (t.tipo === 'Receita') { trm += t.valorPago; rc++; }
+                        else tpm += t.valorPago;
+                    }
+                }
+                if (t.status === 'Vencido') { pc++; vc++; }
+                else if (t.status === 'Pendente' && t.dataVencimento <= td) pc++;
+            });
+            document.getElementById('kpi-total-pagar').innerText = fmtBRL(tp);
+            document.getElementById('kpi-vencidas-count').innerText = `${vc} vencida${vc !== 1 ? 's' : ''}`;
+            document.getElementById('kpi-total-recebido').innerText = fmtBRL(trm);
+            document.getElementById('kpi-recebidas-count').innerText = `${rc} recebimento${recCount !== 1 ? 's' : ''}`;
+            document.getElementById('kpi-pendencias').innerText = pc;
+            const s = trm - tpm;
+            const el = document.getElementById('kpi-saldo');
+            el.innerText = fmtBRL(s);
+            el.style.color = s >= 0 ? 'var(--success)' : 'var(--danger)';
+            const se = document.getElementById('kpi-saldo-status');
+            se.innerText = s >= 0 ? 'Superávit ✓' : 'Déficit ✗';
+            se.style.color = s >= 0 ? 'var(--success)' : 'var(--danger)';
+            const mc = transactions.filter(t => !t.isTax).length;
+            document.getElementById('kpi-total-lancamentos').innerText = mc;
+            document.getElementById('kpi-ticket-medio').innerText = `Ticket: ${fmtBRL(mc > 0 ? tv / mc : 0)}`;
+        }
 
-        function switchAutoTab(tab, btn) { document.querySelectorAll('.auto-tab-btn').forEach(b => b.classList.remove('active')); document.querySelectorAll('.auto-tab-content').forEach(c => c.classList.remove('active')); btn.classList.add('active'); document.getElementById(`tab-${tab}`).classList.add('active'); }
+        function switchAutoTab(tab, btn) {
+            document.querySelectorAll('.auto-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.auto-tab-content').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
 
-        function generateReports() { const p = document.getElementById('report-period').value, pd = transactions.filter(t => t.competencia === p && !t.isTax), dbr = {}; pd.filter(t => t.tipo === 'Despesa').forEach(t => dbr[t.rubrica] = (dbr[t.rubrica] || 0) + t.valorOriginal); if (chartRubricaInstance) chartRubricaInstance.destroy(); chartRubricaInstance = new Chart(document.getElementById('chartRubrica'), { type: 'doughnut', data: { labels: Object.keys(dbr), datasets: [{ data: Object.values(dbr), backgroundColor: ['#ef4444', '#f59e0b', '#0ea5e9', '#10b981', '#8b5cf6', '#ec4899', '#6366f1', '#14b8a6', '#f97316', '#64748b'] }] }, options: { responsive: true, plugins: { legend: { position: 'right' } } } }); const ms = []; const d = new Date(p + '-01'); for (let i = 5; i >= 0; i--) { const md = new Date(d.getFullYear(), d.getMonth() - i, 1); ms.push(`${String(md.getMonth() + 1).padStart(2, '0')}/${md.getFullYear()}`); } const rec = ms.map(() => 0), desp = ms.map(() => 0); transactions.filter(t => !t.isTax).forEach(t => { if (!t.competencia) return; const [y, m] = t.competencia.split('-'); const l = `${m}/${y}`, i = ms.indexOf(l); if (i !== -1) { if (t.tipo === 'Receita') rec[i] += t.valorOriginal; else desp[i] += t.valorOriginal; } }); if (chartFluxoInstance) chartFluxoInstance.destroy(); chartFluxoInstance = new Chart(document.getElementById('chartFluxo'), { type: 'bar', data: { labels: ms, datasets: [{ label: 'Receitas', data: rec, backgroundColor: '#10b981' }, { label: 'Despesas', data: desp, backgroundColor: '#ef4444' }] }, options: { responsive: true, scales: { y: { beginAtZero: true } } } }); const sum = {}; pd.forEach(t => { if (!sum[t.rubrica]) sum[t.rubrica] = { desp: 0, rec: 0 }; if (t.tipo === 'Despesa') sum[t.rubrica].desp += t.valorOriginal; else sum[t.rubrica].rec += t.valorOriginal; }); const tp = Object.values(sum).reduce((a, b) => a + b.desp + b.rec, 0) || 1; const tb = document.getElementById('reportSummaryBody'); tb.innerHTML = ''; Object.entries(sum).sort((a, b) => (b[1].desp + b[1].rec) - (a[1].desp + a[1].rec)).forEach(([r, v]) => { const p = ((v.desp + v.rec) / tp * 100).toFixed(1), s = v.rec - v.desp; tb.innerHTML += `<tr><td style="font-weight:600">${r}</td><td style="color:var(--danger)">${fmtBRL(v.desp)}</td><td style="color:var(--success)">${fmtBRL(v.rec)}</td><td style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:700">${fmtBRL(s)}</td><td>${p}%</td></tr>`; }); }
+        function generateReports() {
+            const p = document.getElementById('report-period').value, pd = transactions.filter(t => t.competencia === p && !t.isTax), dbr = {};
+            pd.filter(t => t.tipo === 'Despesa').forEach(t => dbr[t.rubrica] = (dbr[t.rubrica] || 0) + t.valorOriginal);
+            if (chartRubricaInstance) chartRubricaInstance.destroy();
+            chartRubricaInstance = new Chart(document.getElementById('chartRubrica'), {
+                type: 'doughnut',
+                data: { labels: Object.keys(dbr), datasets: [{ data: Object.values(dbr), backgroundColor: ['#ef4444', '#f59e0b', '#0ea5e9', '#10b981', '#8b5cf6', '#ec4899', '#6366f1', '#14b8a6', '#f97316', '#64748b'] }] },
+                options: { responsive: true, plugins: { legend: { position: 'right' } } }
+            });
+            const ms = []; const d = new Date(p + '-01');
+            for (let i = 5; i >= 0; i--) { const md = new Date(d.getFullYear(), d.getMonth() - i, 1); ms.push(`${String(md.getMonth() + 1).padStart(2, '0')}/${md.getFullYear()}`); }
+            const rec = ms.map(() => 0), desp = ms.map(() => 0);
+            transactions.filter(t => !t.isTax).forEach(t => {
+                if (!t.competencia) return;
+                const [y, m] = t.competencia.split('-');
+                const l = `${m}/${y}`, i = ms.indexOf(l);
+                if (i !== -1) { if (t.tipo === 'Receita') rec[i] += t.valorOriginal; else desp[i] += t.valorOriginal; }
+            });
+            if (chartFluxoInstance) chartFluxoInstance.destroy();
+            chartFluxoInstance = new Chart(document.getElementById('chartFluxo'), {
+                type: 'bar',
+                data: { labels: ms, datasets: [{ label: 'Receitas', data: rec, backgroundColor: '#10b981' }, { label: 'Despesas', data: desp, backgroundColor: '#ef4444' }] },
+                options: { responsive: true, scales: { y: { beginAtZero: true } } }
+            });
+            const sum = {};
+            pd.forEach(t => {
+                if (!sum[t.rubrica]) sum[t.rubrica] = { desp: 0, rec: 0 };
+                if (t.tipo === 'Despesa') sum[t.rubrica].desp += t.valorOriginal;
+                else sum[t.rubrica].rec += t.valorOriginal;
+            });
+            const tp = Object.values(sum).reduce((a, b) => a + b.desp + b.rec, 0) || 1;
+            const tb = document.getElementById('reportSummaryBody');
+            tb.innerHTML = '';
+            Object.entries(sum).sort((a, b) => (b[1].desp + b[1].rec) - (a[1].desp + a[1].rec)).forEach(([r, v]) => {
+                const p = ((v.desp + v.rec) / tp * 100).toFixed(1), s = v.rec - v.desp;
+                tb.innerHTML += `<tr><td style="font-weight:600">${r}</td><td style="color:var(--danger)">${fmtBRL(v.desp)}</td><td style="color:var(--success)">${fmtBRL(v.rec)}</td><td style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:700">${fmtBRL(s)}</td><td>${p}%</td></tr>`;
+            });
+        }
 
-        function exportReportExcel() { const p = document.getElementById('report-period').value, r = []; document.querySelectorAll('#reportSummaryBody tr').forEach(tr => { const c = []; tr.querySelectorAll('td').forEach(td => c.push(td.innerText)); if (c.length) r.push({ Rubrica: c[0], Despesas: c[1], Receitas: c[2], Saldo: c[3], Percentual: c[4] }); }); if (!r.length) return; const ws = XLSX.utils.json_to_sheet(r), wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "Relatório"); XLSX.writeFile(wb, `Relatorio_${p}.xlsx`); showToast('success', 'Exportado!'); }
+        function exportReportExcel() {
+            const p = document.getElementById('report-period').value, r = [];
+            document.querySelectorAll('#reportSummaryBody tr').forEach(tr => {
+                const c = []; tr.querySelectorAll('td').forEach(td => c.push(td.innerText));
+                if (c.length) r.push({ Rubrica: c[0], Despesas: c[1], Receitas: c[2], Saldo: c[3], Percentual: c[4] });
+            });
+            if (!r.length) return;
+            const ws = XLSX.utils.json_to_sheet(r), wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Relatório");
+            XLSX.writeFile(wb, `Relatorio_${p}.xlsx`);
+            showToast('success', 'Exportado!');
+        }
 
-        function generateAutoReports() { const sp = document.getElementById('auto-report-start').value, ep = document.getElementById('auto-report-end').value, f = transactions.filter(t => { if (!t.competencia || t.isTax) return false; if (sp && t.competencia < sp) return false; if (ep && t.competencia > ep) return false; return true; }); let tr = 0, td = 0, cr = 0, cd = 0; f.forEach(t => { if (t.tipo === 'Receita') { tr += t.valorOriginal; cr++; } else { td += t.valorOriginal; cd++; } }); const r = tr - td; document.getElementById('auto-kpi-receitas').innerText = fmtBRL(tr); document.getElementById('auto-kpi-despesas').innerText = fmtBRL(td); const re = document.getElementById('auto-kpi-resultado'); re.innerText = fmtBRL(r); re.className = `amount ${r >= 0 ? 'positive' : 'negative'}`; const mnp = f.length > 0 ? new Set(f.map(t => t.competencia)).size : 0; const CATEGORIES_MAIN = RUBRICAS.map(c => `${c.codigo} ${c.nome}`); const pp = CATEGORIES_MAIN.reduce((s, c) => s + getTotalProvisionadoCategoria(c), 0) * Math.max(1, mnp); document.getElementById('auto-kpi-provisionado').innerText = fmtBRL(pp); generateTabRubrica(f, tr + td); generateTabCompetencia(f); generateTabMatriz(f); generateTabProvisionados(f); generateTabDRE(f, tr, td, r); generateTabFluxoCaixa(f); }
+        function generateAutoReports() {
+            const sp = document.getElementById('auto-report-start').value, ep = document.getElementById('auto-report-end').value;
+            const f = transactions.filter(t => {
+                if (!t.competencia || t.isTax) return false;
+                if (sp && t.competencia < sp) return false;
+                if (ep && t.competencia > ep) return false;
+                return true;
+            });
+            let tr = 0, td = 0, cr = 0, cd = 0;
+            f.forEach(t => { if (t.tipo === 'Receita') { tr += t.valorOriginal; cr++; } else { td += t.valorOriginal; cd++; } });
+            const r = tr - td;
+            document.getElementById('auto-kpi-receitas').innerText = fmtBRL(tr);
+            document.getElementById('auto-kpi-despesas').innerText = fmtBRL(td);
+            const re = document.getElementById('auto-kpi-resultado');
+            re.innerText = fmtBRL(r);
+            re.className = `amount ${r >= 0 ? 'positive' : 'negative'}`;
+            const mnp = f.length > 0 ? new Set(f.map(t => t.competencia)).size : 0;
+            const CATEGORIES_MAIN = RUBRICAS.map(c => `${c.codigo} ${c.nome}`);
+            const pp = CATEGORIES_MAIN.reduce((s, c) => s + getTotalProvisionadoCategoria(c), 0) * Math.max(1, mnp);
+            document.getElementById('auto-kpi-provisionado').innerText = fmtBRL(pp);
+            generateTabRubrica(f, tr + td);
+            generateTabCompetencia(f);
+            generateTabMatriz(f);
+            generateTabProvisionados(f);
+            generateTabDRE(f, tr, td, r);
+            generateTabFluxoCaixa(f);
+        }
 
-        function generateTabRubrica(f, tg) { const br = {}; f.forEach(t => { if (!br[t.rubrica]) br[t.rubrica] = { rec: 0, desp: 0, count: 0, category: getCategoryFromRubrica(t.rubrica) }; if (t.tipo === 'Receita') br[t.rubrica].rec += t.valorOriginal; else br[t.rubrica].desp += t.valorOriginal; br[t.rubrica].count++; }); const bc = {}; Object.entries(br).forEach(([r, d]) => { if (!bc[d.category]) bc[d.category] = { rec: 0, desp: 0, count: 0, rubricas: [] }; bc[d.category].rec += d.rec; bc[d.category].desp += d.desp; bc[d.category].count += d.count; bc[d.category].rubricas.push({ rubrica: r, ...d }); }); const tb = document.getElementById('bodyRubrica'); tb.innerHTML = ''; let trec = 0, tdesp = 0, tcount = 0; Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])).forEach(([c, d]) => { const s = d.rec - d.desp, p = tg > 0 ? ((d.rec + d.desp) / tg * 100).toFixed(1) : 0; tb.innerHTML += `<tr class="category-row"><td>📁 ${c}</td><td class="text-right" style="color:var(--success)">${fmtBRL(d.rec)}</td><td class="text-right" style="color:var(--danger)">${fmtBRL(d.desp)}</td><td class="text-right" style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'}"><strong>${fmtBRL(s)}</strong></td><td class="text-right">${p}%</td><td class="text-right">${d.count}</td></tr>`; d.rubricas.sort((a, b) => a.rubrica.localeCompare(b.rubrica)).forEach(sub => { const ss = sub.rec - sub.desp, sp = tg > 0 ? ((sub.rec + sub.desp) / tg * 100).toFixed(1) : 0; tb.innerHTML += `<tr class="subcategory-row"><td>${sub.rubrica}</td><td class="text-right" style="color:var(--success)">${sub.rec > 0 ? fmtBRL(sub.rec) : '-'}</td><td class="text-right" style="color:var(--danger)">${sub.desp > 0 ? fmtBRL(sub.desp) : '-'}</td><td class="text-right" style="color:${ss >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(ss)}</td><td class="text-right">${sp}%</td><td class="text-right">${sub.count}</td></tr>`; }); trec += d.rec; tdesp += d.desp; tcount += d.count; }); const ts = trec - tdesp; tb.innerHTML += `<tr class="total-row"><td>TOTAL</td><td class="text-right">${fmtBRL(trec)}</td><td class="text-right">${fmtBRL(tdesp)}</td><td class="text-right" style="color:${ts >= 0 ? '#86efac' : '#fca5a5'}">${fmtBRL(ts)}</td><td class="text-right">100%</td><td class="text-right">${tcount}</td></tr>`; const labels = Object.keys(br).slice(0, 10); if (chartAutoRubricaInstance) chartAutoRubricaInstance.destroy(); chartAutoRubricaInstance = new Chart(document.getElementById('chartAutoRubrica'), { type: 'bar', data: { labels, datasets: [{ label: 'Receitas', data: labels.map(l => br[l].rec), backgroundColor: '#10b981' }, { label: 'Despesas', data: labels.map(l => br[l].desp), backgroundColor: '#ef4444' }] }, options: { responsive: true, scales: { y: { beginAtZero: true } } } }); }
+        function generateTabRubrica(f, tg) {
+            const br = {};
+            f.forEach(t => {
+                if (!br[t.rubrica]) br[t.rubrica] = { rec: 0, desp: 0, count: 0, category: getCategoryFromRubrica(t.rubrica) };
+                if (t.tipo === 'Receita') br[t.rubrica].rec += t.valorOriginal;
+                else br[t.rubrica].desp += t.valorOriginal;
+                br[t.rubrica].count++;
+            });
+            const bc = {};
+            Object.entries(br).forEach(([r, d]) => {
+                if (!bc[d.category]) bc[d.category] = { rec: 0, desp: 0, count: 0, rubricas: [] };
+                bc[d.category].rec += d.rec; bc[d.category].desp += d.desp; bc[d.category].count += d.count;
+                bc[d.category].rubricas.push({ rubrica: r, ...d });
+            });
+            const tb = document.getElementById('bodyRubrica');
+            tb.innerHTML = '';
+            let trec = 0, tdesp = 0, tcount = 0;
+            Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])).forEach(([c, d]) => {
+                const s = d.rec - d.desp, p = tg > 0 ? ((d.rec + d.desp) / tg * 100).toFixed(1) : 0;
+                tb.innerHTML += `<tr class="category-row"><td>📁 ${c}</td><td class="text-right" style="color:var(--success)">${fmtBRL(d.rec)}</td><td class="text-right" style="color:var(--danger)">${fmtBRL(d.desp)}</td><td class="text-right" style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'}"><strong>${fmtBRL(s)}</strong></td><td class="text-right">${p}%</td><td class="text-right">${d.count}</td></tr>`;
+                d.rubricas.sort((a, b) => a.rubrica.localeCompare(b.rubrica)).forEach(sub => {
+                    const ss = sub.rec - sub.desp, sp = tg > 0 ? ((sub.rec + sub.desp) / tg * 100).toFixed(1) : 0;
+                    tb.innerHTML += `<tr class="subcategory-row"><td>${sub.rubrica}</td><td class="text-right" style="color:var(--success)">${sub.rec > 0 ? fmtBRL(sub.rec) : '-'}</td><td class="text-right" style="color:var(--danger)">${sub.desp > 0 ? fmtBRL(sub.desp) : '-'}</td><td class="text-right" style="color:${ss >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(ss)}</td><td class="text-right">${sp}%</td><td class="text-right">${sub.count}</td></tr>`;
+                });
+                trec += d.rec; tdesp += d.desp; tcount += d.count;
+            });
+            const ts = trec - tdesp;
+            tb.innerHTML += `<tr class="total-row"><td>TOTAL</td><td class="text-right">${fmtBRL(trec)}</td><td class="text-right">${fmtBRL(tdesp)}</td><td class="text-right" style="color:${ts >= 0 ? '#86efac' : '#fca5a5'}">${fmtBRL(ts)}</td><td class="text-right">100%</td><td class="text-right">${tcount}</td></tr>`;
+            const labels = Object.keys(br).slice(0, 10);
+            if (chartAutoRubricaInstance) chartAutoRubricaInstance.destroy();
+            chartAutoRubricaInstance = new Chart(document.getElementById('chartAutoRubrica'), {
+                type: 'bar',
+                data: { labels, datasets: [{ label: 'Receitas', data: labels.map(l => br[l].rec), backgroundColor: '#10b981' }, { label: 'Despesas', data: labels.map(l => br[l].desp), backgroundColor: '#ef4444' }] },
+                options: { responsive: true, scales: { y: { beginAtZero: true } } }
+            });
+        }
 
-        function generateTabCompetencia(f) { const bc = {}; f.forEach(t => { if (!bc[t.competencia]) bc[t.competencia] = { rec: 0, desp: 0, count: 0 }; if (t.tipo === 'Receita') bc[t.competencia].rec += t.valorOriginal; else bc[t.competencia].desp += t.valorOriginal; bc[t.competencia].count++; }); const tb = document.getElementById('bodyCompetencia'); tb.innerHTML = ''; let trec = 0, tdesp = 0, tcount = 0; const sc = Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])); sc.forEach(([c, d]) => { const s = d.rec - d.desp, m = d.rec > 0 ? (s / d.rec * 100).toFixed(1) : 0; tb.innerHTML += `<tr><td style="font-weight:600">📅 ${fmtComp(c)}</td><td class="text-right" style="color:var(--success)">${fmtBRL(d.rec)}</td><td class="text-right" style="color:var(--danger)">${fmtBRL(d.desp)}</td><td class="text-right" style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:700">${fmtBRL(s)}</td><td class="text-right" style="color:${m >= 0 ? 'var(--success)' : 'var(--danger)'}">${m}%</td><td class="text-right">${d.count}</td></tr>`; trec += d.rec; tdesp += d.desp; tcount += d.count; }); const ts = trec - tdesp, tm = trec > 0 ? (ts / trec * 100).toFixed(1) : 0; tb.innerHTML += `<tr class="total-row"><td>TOTAL</td><td class="text-right">${fmtBRL(trec)}</td><td class="text-right">${fmtBRL(tdesp)}</td><td class="text-right" style="color:${ts >= 0 ? '#86efac' : '#fca5a5'}">${fmtBRL(ts)}</td><td class="text-right">${tm}%</td><td class="text-right">${tcount}</td></tr>`; const labels = sc.map(([c]) => fmtComp(c)); if (chartAutoCompetenciaInstance) chartAutoCompetenciaInstance.destroy(); chartAutoCompetenciaInstance = new Chart(document.getElementById('chartAutoCompetencia'), { type: 'bar', data: { labels, datasets: [{ label: 'Receitas', data: sc.map(([, d]) => d.rec), backgroundColor: '#10b981' }, { label: 'Despesas', data: sc.map(([, d]) => d.desp), backgroundColor: '#ef4444' }, { label: 'Saldo', data: sc.map(([, d]) => d.rec - d.desp), type: 'line', borderColor: '#0ea5e9', tension: 0.3, fill: false }] }, options: { responsive: true, scales: { y: { beginAtZero: true } } } }); }
+        function generateTabCompetencia(f) {
+            const bc = {};
+            f.forEach(t => {
+                if (!bc[t.competencia]) bc[t.competencia] = { rec: 0, desp: 0, count: 0 };
+                if (t.tipo === 'Receita') bc[t.competencia].rec += t.valorOriginal;
+                else bc[t.competencia].desp += t.valorOriginal;
+                bc[t.competencia].count++;
+            });
+            const tb = document.getElementById('bodyCompetencia');
+            tb.innerHTML = '';
+            let trec = 0, tdesp = 0, tcount = 0;
+            const sc = Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0]));
+            sc.forEach(([c, d]) => {
+                const s = d.rec - d.desp, m = d.rec > 0 ? (s / d.rec * 100).toFixed(1) : 0;
+                tb.innerHTML += `<tr><td style="font-weight:600">📅 ${fmtComp(c)}</td><td class="text-right" style="color:var(--success)">${fmtBRL(d.rec)}</td><td class="text-right" style="color:var(--danger)">${fmtBRL(d.desp)}</td><td class="text-right" style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'};font-weight:700">${fmtBRL(s)}</td><td class="text-right" style="color:${m >= 0 ? 'var(--success)' : 'var(--danger)'}">${m}%</td><td class="text-right">${d.count}</td></tr>`;
+                trec += d.rec; tdesp += d.desp; tcount += d.count;
+            });
+            const ts = trec - tdesp, tm = trec > 0 ? (ts / trec * 100).toFixed(1) : 0;
+            tb.innerHTML += `<tr class="total-row"><td>TOTAL</td><td class="text-right">${fmtBRL(trec)}</td><td class="text-right">${fmtBRL(tdesp)}</td><td class="text-right" style="color:${ts >= 0 ? '#86efac' : '#fca5a5'}">${fmtBRL(ts)}</td><td class="text-right">${tm}%</td><td class="text-right">${tcount}</td></tr>`;
+            const labels = sc.map(([c]) => fmtComp(c));
+            if (chartAutoCompetenciaInstance) chartAutoCompetenciaInstance.destroy();
+            chartAutoCompetenciaInstance = new Chart(document.getElementById('chartAutoCompetencia'), {
+                type: 'bar',
+                data: { labels, datasets: [{ label: 'Receitas', data: sc.map(([, d]) => d.rec), backgroundColor: '#10b981' }, { label: 'Despesas', data: sc.map(([, d]) => d.desp), backgroundColor: '#ef4444' }, { label: 'Saldo', data: sc.map(([, d]) => d.rec - d.desp), type: 'line', borderColor: '#0ea5e9', tension: 0.3, fill: false }] },
+                options: { responsive: true, scales: { y: { beginAtZero: true } } }
+            });
+        }
 
-        function generateTabMatriz(f) { const r = new Set(), c = new Set(); f.forEach(t => { r.add(t.rubrica); c.add(t.competencia); }); const sr = Array.from(r).sort(), sc = Array.from(c).sort(), m = {}; f.forEach(t => { const k = `${t.rubrica}|${t.competencia}`; if (!m[k]) m[k] = { rec: 0, desp: 0 }; if (t.tipo === 'Receita') m[k].rec += t.valorOriginal; else m[k].desp += t.valorOriginal; }); const tb = document.getElementById('tableMatriz'); let h = '<thead><tr><th class="row-header" rowspan="2">Rubrica</th>'; sc.forEach(c => h += `<th colspan="3" style="background:#1e293b;color:white">${fmtComp(c)}</th>`); h += '<th colspan="3" style="background:#1e293b;color:white">TOTAL</th></tr><tr>'; for (let i = 0; i < sc.length + 1; i++) h += '<th class="sub-header provision">🟦 Prov.</th><th class="sub-header realized">🟩 Real.</th><th class="sub-header variance">🟨 Var.%</th>'; h += '</tr></thead><tbody>'; const bc = {}; sr.forEach(r => { const c = getCategoryFromRubrica(r); if (!bc[c]) bc[c] = []; bc[c].push(r); }); let gtp = 0, gtr = 0; Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])).forEach(([c, rs]) => { h += `<tr><td class="category-label" colspan="${(sc.length + 1) * 3 + 1}">📁 ${c}</td></tr>`; let ctp = 0, ctr = 0; rs.forEach(rub => { let rtp = 0, rtr = 0; const ppm = getProvisionedValue(rub); h += `<tr><td class="row-label">${rub}</td>`; sc.forEach(c => { const k = `${rub}|${c}`, d = m[k] || { rec: 0, desp: 0 }, real = d.desp > 0 ? d.desp : d.rec; rtp += ppm; rtr += real; h += `<td class="provision-cell">${ppm > 0 ? fmtBRL(ppm) : '-'}</td><td class="realized-cell">${real > 0 ? fmtBRL(real) : '-'}</td>`; let vc = 'neutral', vt = '-'; if (ppm > 0 && real > 0) { const p = (real / ppm * 100); vc = p <= 90 ? 'positive' : (p <= 100 ? 'neutral' : 'negative'); vt = p.toFixed(0) + '%'; } h += `<td class="variance-cell ${vc}">${vt}</td>`; }); const tpp = ppm * sc.length; h += `<td class="provision-cell"><strong>${fmtBRL(tpp)}</strong></td><td class="realized-cell"><strong>${fmtBRL(rtr)}</strong></td>`; let vtc = 'neutral', vtt = '-'; if (tpp > 0 && rtr > 0) { const p = (rtr / tpp * 100); vtc = p <= 90 ? 'positive' : (p <= 100 ? 'neutral' : 'negative'); vtt = p.toFixed(0) + '%'; } h += `<td class="variance-cell ${vtc}"><strong>${vtt}</strong></td></tr>`; ctp += tpp; ctr += rtr; }); h += `<tr class="subtotal-row"><td style="background:#fef3c7;font-weight:700;color:#78350f">Subtotal ${c}</td>`; sc.forEach(c => { let sp = 0, sr = 0; rs.forEach(rub => { sp += getProvisionedValue(rub); const k = `${rub}|${c}`, d = m[k] || { rec: 0, desp: 0 }; sr += d.desp > 0 ? d.desp : d.rec; }); h += `<td class="provision-cell" style="background:#fef3c7;color:#78350f">${fmtBRL(sp)}</td><td class="realized-cell" style="background:#fef3c7;color:#78350f">${fmtBRL(sr)}</td>`; const vp = sp > 0 ? (sr / sp * 100).toFixed(0) + '%' : '-'; h += `<td class="variance-cell neutral" style="background:#fef3c7;color:#78350f">${vp}</td>`; }); h += `<td class="provision-cell" style="background:#fef3c7;color:#78350f">${fmtBRL(ctp)}</td><td class="realized-cell" style="background:#fef3c7;color:#78350f">${fmtBRL(ctr)}</td>`; const cvp = ctp > 0 ? (ctr / ctp * 100).toFixed(0) + '%' : '-'; h += `<td class="variance-cell neutral" style="background:#fef3c7;color:#78350f">${cvp}</td></tr>`; gtp += ctp; gtr += ctr; }); h += `<tr class="total-row"><td style="background:var(--primary);color:white">TOTAL</td>`; sc.forEach(c => { let cp = 0, cr = 0; sr.forEach(rub => { cp += getProvisionedValue(rub); const k = `${rub}|${c}`, d = m[k] || { rec: 0, desp: 0 }; cr += d.desp > 0 ? d.desp : d.rec; }); h += `<td style="background:var(--primary);color:white">${fmtBRL(cp)}</td><td style="background:var(--primary);color:white">${fmtBRL(cr)}</td>`; const p = cp > 0 ? (cr / cp * 100).toFixed(0) + '%' : '-'; h += `<td style="background:var(--primary);color:white">${p}</td>`; }); h += `<td style="background:var(--primary);color:white">${fmtBRL(gtp)}</td><td style="background:var(--primary);color:white">${fmtBRL(gtr)}</td>`; const fp = gtp > 0 ? (gtr / gtp * 100).toFixed(0) + '%' : '-'; h += `<td style="background:var(--primary);color:white">${fp}</td></tr></tbody>`; tb.innerHTML = h; }
+        function generateTabMatriz(f) {
+            const r = new Set(), c = new Set();
+            f.forEach(t => { r.add(t.rubrica); c.add(t.competencia); });
+            const sr = Array.from(r).sort(), sc = Array.from(c).sort(), m = {};
+            f.forEach(t => {
+                const k = `${t.rubrica}|${t.competencia}`;
+                if (!m[k]) m[k] = { rec: 0, desp: 0 };
+                if (t.tipo === 'Receita') m[k].rec += t.valorOriginal;
+                else m[k].desp += t.valorOriginal;
+            });
+            const tb = document.getElementById('tableMatriz');
+            let h = '<thead><tr><th class="row-header" rowspan="2">Rubrica</th>';
+            sc.forEach(c => h += `<th colspan="3" style="background:#1e293b;color:white">${fmtComp(c)}</th>`);
+            h += '<th colspan="3" style="background:#1e293b;color:white">TOTAL</th></tr><tr>';
+            for (let i = 0; i < sc.length + 1; i++) h += '<th class="sub-header provision">🟦 Prov.</th><th class="sub-header realized">🟩 Real.</th><th class="sub-header variance">🟨 Var.%</th>';
+            h += '</tr></thead><tbody>';
+            const bc = {};
+            sr.forEach(r => { const c = getCategoryFromRubrica(r); if (!bc[c]) bc[c] = []; bc[c].push(r); });
+            let gtp = 0, gtr = 0;
+            Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])).forEach(([c, rs]) => {
+                h += `<tr><td class="category-label" colspan="${(sc.length + 1) * 3 + 1}">📁 ${c}</td></tr>`;
+                let ctp = 0, ctr = 0;
+                rs.forEach(rub => {
+                    let rtp = 0, rtr = 0;
+                    const ppm = getProvisionedValue(rub);
+                    h += `<tr><td class="row-label">${rub}</td>`;
+                    sc.forEach(c => {
+                        const k = `${rub}|${c}`, d = m[k] || { rec: 0, desp: 0 }, real = d.desp > 0 ? d.desp : d.rec;
+                        rtp += ppm; rtr += real;
+                        h += `<td class="provision-cell">${ppm > 0 ? fmtBRL(ppm) : '-'}</td><td class="realized-cell">${real > 0 ? fmtBRL(real) : '-'}</td>`;
+                        let vc = 'neutral', vt = '-';
+                        if (ppm > 0 && real > 0) {
+                            const p = (real / ppm * 100);
+                            vc = p <= 90 ? 'positive' : (p <= 100 ? 'neutral' : 'negative');
+                            vt = p.toFixed(0) + '%';
+                        }
+                        h += `<td class="variance-cell ${vc}">${vt}</td>`;
+                    });
+                    const tpp = ppm * sc.length;
+                    h += `<td class="provision-cell"><strong>${fmtBRL(tpp)}</strong></td><td class="realized-cell"><strong>${fmtBRL(rtr)}</strong></td>`;
+                    let vtc = 'neutral', vtt = '-';
+                    if (tpp > 0 && rtr > 0) {
+                        const p = (rtr / tpp * 100);
+                        vtc = p <= 90 ? 'positive' : (p <= 100 ? 'neutral' : 'negative');
+                        vtt = p.toFixed(0) + '%';
+                    }
+                    h += `<td class="variance-cell ${vtc}"><strong>${vtt}</strong></td></tr>`;
+                    ctp += tpp; ctr += rtr;
+                });
+                h += `<tr class="subtotal-row"><td style="background:#fef3c7;font-weight:700;color:#78350f">Subtotal ${c}</td>`;
+                sc.forEach(c => {
+                    let sp = 0, sr = 0;
+                    rs.forEach(rub => {
+                        sp += getProvisionedValue(rub);
+                        const k = `${rub}|${c}`, d = m[k] || { rec: 0, desp: 0 };
+                        sr += d.desp > 0 ? d.desp : d.rec;
+                    });
+                    h += `<td class="provision-cell" style="background:#fef3c7;color:#78350f">${fmtBRL(sp)}</td><td class="realized-cell" style="background:#fef3c7;color:#78350f">${fmtBRL(sr)}</td>`;
+                    const vp = sp > 0 ? (sr / sp * 100).toFixed(0) + '%' : '-';
+                    h += `<td class="variance-cell neutral" style="background:#fef3c7;color:#78350f">${vp}</td>`;
+                });
+                h += `<td class="provision-cell" style="background:#fef3c7;color:#78350f">${fmtBRL(ctp)}</td><td class="realized-cell" style="background:#fef3c7;color:#78350f">${fmtBRL(ctr)}</td>`;
+                const cvp = ctp > 0 ? (ctr / ctp * 100).toFixed(0) + '%' : '-';
+                h += `<td class="variance-cell neutral" style="background:#fef3c7;color:#78350f">${cvp}</td></tr>`;
+                gtp += ctp; gtr += ctr;
+            });
+            h += `<tr class="total-row"><td style="background:var(--primary);color:white">TOTAL</td>`;
+            sc.forEach(c => {
+                let cp = 0, cr = 0;
+                sr.forEach(rub => {
+                    cp += getProvisionedValue(rub);
+                    const k = `${rub}|${c}`, d = m[k] || { rec: 0, desp: 0 };
+                    cr += d.desp > 0 ? d.desp : d.rec;
+                });
+                h += `<td style="background:var(--primary);color:white">${fmtBRL(cp)}</td><td style="background:var(--primary);color:white">${fmtBRL(cr)}</td>`;
+                const p = cp > 0 ? (cr / cp * 100).toFixed(0) + '%' : '-';
+                h += `<td style="background:var(--primary);color:white">${p}</td>`;
+            });
+            h += `<td style="background:var(--primary);color:white">${fmtBRL(gtp)}</td><td style="background:var(--primary);color:white">${fmtBRL(gtr)}</td>`;
+            const fp = gtp > 0 ? (gtr / gtp * 100).toFixed(0) + '%' : '-';
+            h += `<td style="background:var(--primary);color:white">${fp}</td></tr></tbody>`;
+            tb.innerHTML = h;
+        }
 
-        function generateTabProvisionados(f) { const br = {}; f.forEach(t => { if (t.tipo === 'Despesa') { if (!br[t.rubrica]) br[t.rubrica] = { realized: 0, category: getCategoryFromRubrica(t.rubrica) }; br[t.rubrica].realized += t.valorOriginal; } }); const CATEGORIES_MAIN = RUBRICAS.map(c => `${c.codigo} ${c.nome}`), bc = {}; CATEGORIES_MAIN.forEach(c => bc[c] = { provisioned: getTotalProvisionadoCategoria(c), realized: 0, rubricas: [] }); Object.entries(br).forEach(([r, d]) => { if (bc[d.category]) { bc[d.category].realized += d.realized; bc[d.category].rubricas.push({ rubrica: r, provisioned: getProvisionedValue(r), realized: d.realized }); } }); const tb = document.getElementById('bodyProvisionados'); tb.innerHTML = ''; let tp = 0, tre = 0; Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])).forEach(([c, d]) => { const v = d.realized - d.provisioned, p = d.provisioned > 0 ? (d.realized / d.provisioned * 100) : 0; tp += d.provisioned; tre += d.realized; let b = 'ok', s = '<span class="exec-badge none">-</span>'; if (d.realized > 0) { if (p <= 90) { b = 'ok'; s = `<span class="exec-badge ok">✅ ${p.toFixed(0)}%</span>`; } else if (p <= 100) { b = 'warn'; s = `<span class="exec-badge warn">⚠️ ${p.toFixed(0)}%</span>`; } else { b = 'over'; s = `<span class="exec-badge over">❌ ${p.toFixed(0)}%</span>`; } } tb.innerHTML += `<tr class="category-row"><td>📁 ${c}</td><td class="text-right" style="color:var(--provision-color);font-weight:700">${fmtBRL(d.provisioned)}</td><td class="text-right" style="color:var(--success);font-weight:700">${fmtBRL(d.realized)}</td><td class="text-right" style="color:${v >= 0 ? 'var(--danger)' : 'var(--success)'};font-weight:700">${v >= 0 ? '-' : '+'}${fmtBRL(Math.abs(v))}</td><td class="text-center"><div class="progress-bar-container"><div class="progress-bar ${b}" style="width:${Math.min(p, 100)}%"></div></div><div class="progress-label ${b}">${p.toFixed(1)}%</div></td><td class="text-center">${s}</td></tr>`; d.rubricas.sort((a, b) => a.rubrica.localeCompare(b.rubrica)).forEach(sub => { const sv = sub.realized - sub.provisioned, sp = sub.provisioned > 0 ? (sub.realized / sub.provisioned * 100) : 0; let sb = 'ok', ss = '<span class="exec-badge none">-</span>'; if (sub.realized > 0) { if (sp <= 90) { sb = 'ok'; ss = `<span class="exec-badge ok">✅ ${sp.toFixed(0)}%</span>`; } else if (sp <= 100) { sb = 'warn'; ss = `<span class="exec-badge warn">⚠️ ${sp.toFixed(0)}%</span>`; } else { sb = 'over'; ss = `<span class="exec-badge over">❌ ${sp.toFixed(0)}%</span>`; } } tb.innerHTML += `<tr class="subcategory-row"><td>${sub.rubrica}</td><td class="text-right" style="color:var(--provision-color)">${fmtBRL(sub.provisioned)}</td><td class="text-right" style="color:var(--success)">${sub.realized > 0 ? fmtBRL(sub.realized) : '-'}</td><td class="text-right" style="color:${sv >= 0 ? 'var(--danger)' : 'var(--success)'}">${sub.realized > 0 ? (sv >= 0 ? '-' : '+') + fmtBRL(Math.abs(sv)) : '-'}</td><td class="text-center"><div class="progress-bar-container"><div class="progress-bar ${sb}" style="width:${Math.min(sp, 100)}%"></div></div></td><td class="text-center">${ss}</td></tr>`; }); }); const tv = tre - tp, tpe = tp > 0 ? (tre / tp * 100) : 0; let tb2 = 'ok'; if (tpe > 100) tb2 = 'over'; else if (tpe > 90) tb2 = 'warn'; tb.innerHTML += `<tr class="total-row"><td>TOTAL</td><td class="text-right" style="background:var(--primary);color:#93c5fd">${fmtBRL(tp)}</td><td class="text-right" style="background:var(--primary);color:#86efac">${fmtBRL(tre)}</td><td class="text-right" style="background:var(--primary);color:${tv >= 0 ? '#fca5a5' : '#86efac'}">${tv >= 0 ? '-' : '+'}${fmtBRL(Math.abs(tv))}</td><td class="text-center" style="background:var(--primary);color:white"><strong>${tpe.toFixed(1)}%</strong></td><td class="text-center" style="background:var(--primary);color:white"><strong>${tpe <= 100 ? '✅ Dentro' : '❌ Acima'}</strong></td></tr>`; if (chartProvisionadosInstance) chartProvisionadosInstance.destroy(); chartProvisionadosInstance = new Chart(document.getElementById('chartProvisionados'), { type: 'bar', data: { labels: CATEGORIES_MAIN.map(l => l.split('.')[0] + '. ' + (l.split('. ')[1]?.substring(0, 15) || l)), datasets: [{ label: '🟦 Prov', data: CATEGORIES_MAIN.map(c => bc[c]?.provisioned || 0), backgroundColor: '#3b82f6' }, { label: '🟩 Real', data: CATEGORIES_MAIN.map(c => bc[c]?.realized || 0), backgroundColor: '#10b981' }] }, options: { responsive: true, scales: { y: { beginAtZero: true } } } }); }
+        // ===== PROVISIONADOS VS REAL - USA VALOR BRUTO ORIGINAL =====
+        function generateTabProvisionados(f) {
+            const br = {};
+            f.forEach(t => {
+                if (t.tipo === 'Despesa') {
+                    if (!br[t.rubrica]) br[t.rubrica] = { realized: 0, category: getCategoryFromRubrica(t.rubrica) };
+                    br[t.rubrica].realized += t.valorBruto || t.valorOriginal; // USA VALOR BRUTO
+                }
+            });
+            const CATEGORIES_MAIN = RUBRICAS.map(c => `${c.codigo} ${c.nome}`), bc = {};
+            CATEGORIES_MAIN.forEach(c => bc[c] = { provisioned: getTotalProvisionadoCategoria(c), realized: 0, rubricas: [] });
+            Object.entries(br).forEach(([r, d]) => {
+                if (bc[d.category]) {
+                    bc[d.category].realized += d.realized;
+                    bc[d.category].rubricas.push({ rubrica: r, provisioned: getProvisionedValue(r), realized: d.realized });
+                }
+            });
+            const tb = document.getElementById('bodyProvisionados');
+            tb.innerHTML = '';
+            let tp = 0, tre = 0;
+            Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])).forEach(([c, d]) => {
+                const v = d.realized - d.provisioned, p = d.provisioned > 0 ? (d.realized / d.provisioned * 100) : 0;
+                tp += d.provisioned; tre += d.realized;
+                let b = 'ok', s = '<span class="exec-badge none">-</span>';
+                if (d.realized > 0) {
+                    if (p <= 90) { b = 'ok'; s = `<span class="exec-badge ok">✅ ${p.toFixed(0)}%</span>`; }
+                    else if (p <= 100) { b = 'warn'; s = `<span class="exec-badge warn">⚠️ ${p.toFixed(0)}%</span>`; }
+                    else { b = 'over'; s = `<span class="exec-badge over">❌ ${p.toFixed(0)}%</span>`; }
+                }
+                tb.innerHTML += `<tr class="category-row"><td>📁 ${c}</td><td class="text-right" style="color:var(--provision-color);font-weight:700">${fmtBRL(d.provisioned)}</td><td class="text-right" style="color:var(--success);font-weight:700">${fmtBRL(d.realized)}</td><td class="text-right" style="color:${v >= 0 ? 'var(--danger)' : 'var(--success)'};font-weight:700">${v >= 0 ? '-' : '+'}${fmtBRL(Math.abs(v))}</td><td class="text-center"><div class="progress-bar-container"><div class="progress-bar ${b}" style="width:${Math.min(p, 100)}%"></div></div><div class="progress-label ${b}">${p.toFixed(1)}%</div></td><td class="text-center">${s}</td></tr>`;
+                d.rubricas.sort((a, b) => a.rubrica.localeCompare(b.rubrica)).forEach(sub => {
+                    const sv = sub.realized - sub.provisioned, sp = sub.provisioned > 0 ? (sub.realized / sub.provisioned * 100) : 0;
+                    let sb = 'ok', ss = '<span class="exec-badge none">-</span>';
+                    if (sub.realized > 0) {
+                        if (sp <= 90) { sb = 'ok'; ss = `<span class="exec-badge ok">✅ ${sp.toFixed(0)}%</span>`; }
+                        else if (sp <= 100) { sb = 'warn'; ss = `<span class="exec-badge warn">⚠️ ${sp.toFixed(0)}%</span>`; }
+                        else { sb = 'over'; ss = `<span class="exec-badge over">❌ ${sp.toFixed(0)}%</span>`; }
+                    }
+                    tb.innerHTML += `<tr class="subcategory-row"><td>${sub.rubrica}</td><td class="text-right" style="color:var(--provision-color)">${fmtBRL(sub.provisioned)}</td><td class="text-right" style="color:var(--success)">${sub.realized > 0 ? fmtBRL(sub.realized) : '-'}</td><td class="text-right" style="color:${sv >= 0 ? 'var(--danger)' : 'var(--success)'}">${sub.realized > 0 ? (sv >= 0 ? '-' : '+') + fmtBRL(Math.abs(sv)) : '-'}</td><td class="text-center"><div class="progress-bar-container"><div class="progress-bar ${sb}" style="width:${Math.min(sp, 100)}%"></div></div></td><td class="text-center">${ss}</td></tr>`;
+                });
+            });
+            const tv = tre - tp, tpe = tp > 0 ? (tre / tp * 100) : 0;
+            let tb2 = 'ok';
+            if (tpe > 100) tb2 = 'over';
+            else if (tpe > 90) tb2 = 'warn';
+            tb.innerHTML += `<tr class="total-row"><td>TOTAL</td><td class="text-right" style="background:var(--primary);color:#93c5fd">${fmtBRL(tp)}</td><td class="text-right" style="background:var(--primary);color:#86efac">${fmtBRL(tre)}</td><td class="text-right" style="background:var(--primary);color:${tv >= 0 ? '#fca5a5' : '#86efac'}">${tv >= 0 ? '-' : '+'}${fmtBRL(Math.abs(tv))}</td><td class="text-center" style="background:var(--primary);color:white"><strong>${tpe.toFixed(1)}%</strong></td><td class="text-center" style="background:var(--primary);color:white"><strong>${tpe <= 100 ? '✅ Dentro' : '❌ Acima'}</strong></td></tr>`;
+            if (chartProvisionadosInstance) chartProvisionadosInstance.destroy();
+            chartProvisionadosInstance = new Chart(document.getElementById('chartProvisionados'), {
+                type: 'bar',
+                data: { labels: CATEGORIES_MAIN.map(l => l.split('.')[0] + '. ' + (l.split('. ')[1]?.substring(0, 15) || l)), datasets: [{ label: '🟦 Prov', data: CATEGORIES_MAIN.map(c => bc[c]?.provisioned || 0), backgroundColor: '#3b82f6' }, { label: '🟩 Real', data: CATEGORIES_MAIN.map(c => bc[c]?.realized || 0), backgroundColor: '#10b981' }] },
+                options: { responsive: true, scales: { y: { beginAtZero: true } } }
+            });
+        }
 
-        function generateTabDRE(f, tr, td, r) { const bc = {}; f.forEach(t => { if (t.tipo === 'Despesa') { const c = getCategoryFromRubrica(t.rubrica); if (!bc[c]) bc[c] = { total: 0, rubricas: {} }; bc[c].total += t.valorOriginal; if (!bc[c].rubricas[t.rubrica]) bc[c].rubricas[t.rubrica] = 0; bc[c].rubricas[t.rubrica] += t.valorOriginal; } }); const c = document.getElementById('dreContent'); let h = ''; h += `<div class="dre-line"><span class="label"><strong>RECEITA BRUTA</strong></span><span class="value" style="color:var(--success)">${fmtBRL(tr)}</span></div><div class="dre-line subtotal"><span class="label"><strong>RECEITA LÍQUIDA</strong></span><span class="value" style="color:var(--success)">${fmtBRL(tr)}</span></div><div class="dre-line"><span class="label"><strong>(-) DESPESAS</strong></span><span class="value" style="color:var(--danger)">${fmtBRL(td)}</span></div>`; Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])).forEach(([c, d]) => { const p = td > 0 ? (d.total / td * 100).toFixed(1) : 0; h += `<div class="dre-line indent"><span class="label">📁 ${c}</span><span class="value" style="color:var(--danger)">${fmtBRL(d.total)} <small>(${p}%)</small></span></div>`; Object.entries(d.rubricas).sort((a, b) => b[1] - a[1]).slice(0, 3).forEach(([r, v]) => h += `<div class="dre-line indent-2"><span class="label">↳ ${r}</span><span class="value">${fmtBRL(v)}</span></div>`; }); const e = tr - td; h += `<div class="dre-line subtotal"><span class="label"><strong>EBITDA</strong></span><span class="value" style="color:${e >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(e)}</span></div><div class="dre-line total"><span class="label"><strong>RESULTADO LÍQUIDO</strong></span><span class="value" style="color:${r >= 0 ? '#86efac' : '#fca5a5'}">${fmtBRL(r)}</span></div>`; c.innerHTML = h; }
+        function generateTabDRE(f, tr, td, r) {
+            const bc = {};
+            f.forEach(t => {
+                if (t.tipo === 'Despesa') {
+                    const c = getCategoryFromRubrica(t.rubrica);
+                    if (!bc[c]) bc[c] = { total: 0, rubricas: {} };
+                    bc[c].total += t.valorOriginal;
+                    if (!bc[c].rubricas[t.rubrica]) bc[c].rubricas[t.rubrica] = 0;
+                    bc[c].rubricas[t.rubrica] += t.valorOriginal;
+                }
+            });
+            const c = document.getElementById('dreContent');
+            let h = '';
+            h += `<div class="dre-line"><span class="label"><strong>RECEITA BRUTA</strong></span><span class="value" style="color:var(--success)">${fmtBRL(tr)}</span></div><div class="dre-line subtotal"><span class="label"><strong>RECEITA LÍQUIDA</strong></span><span class="value" style="color:var(--success)">${fmtBRL(tr)}</span></div><div class="dre-line"><span class="label"><strong>(-) DESPESAS</strong></span><span class="value" style="color:var(--danger)">${fmtBRL(td)}</span></div>`;
+            Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])).forEach(([c, d]) => {
+                const p = td > 0 ? (d.total / td * 100).toFixed(1) : 0;
+                h += `<div class="dre-line indent"><span class="label">📁 ${c}</span><span class="value" style="color:var(--danger)">${fmtBRL(d.total)} <small>(${p}%)</small></span></div>`;
+                Object.entries(d.rubricas).sort((a, b) => b[1] - a[1]).slice(0, 3).forEach(([r, v]) => h += `<div class="dre-line indent-2"><span class="label">↳ ${r}</span><span class="value">${fmtBRL(v)}</span></div>`);
+            });
+            const e = tr - td;
+            h += `<div class="dre-line subtotal"><span class="label"><strong>EBITDA</strong></span><span class="value" style="color:${e >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(e)}</span></div><div class="dre-line total"><span class="label"><strong>RESULTADO LÍQUIDO</strong></span><span class="value" style="color:${r >= 0 ? '#86efac' : '#fca5a5'}">${fmtBRL(r)}</span></div>`;
+            c.innerHTML = h;
+        }
 
-        function generateTabFluxoCaixa(f) { const bc = {}; f.forEach(t => { if (!bc[t.competencia]) bc[t.competencia] = { rr: 0, rp: 0, dr: 0, dp: 0 }; if (t.tipo === 'Receita') { if (t.status === 'Pago') bc[t.competencia].rr += (t.valorPago || t.valorOriginal); else bc[t.competencia].rp += t.valorOriginal; } else { if (t.status === 'Pago') bc[t.competencia].dr += (t.valorPago || t.valorOriginal); else bc[t.competencia].dp += t.valorOriginal; } }); const sc = Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])), t = document.getElementById('tableFluxoCaixa'); let h = '<thead><tr><th style="text-align:left">Descrição</th>'; sc.forEach(([c]) => h += `<th>${fmtComp(c)}</th>`); h += '<th style="background:#1e293b;color:white">TOTAL</th></tr></thead><tbody><tr class="section-header"><td colspan="' + (sc.length + 2) + '">📈 ENTRADAS</td></tr>'; let trr = 0, trp = 0; sc.forEach(([, d]) => { trr += d.rr; trp += d.rp; }); h += '<tr><td>Receitas Realizadas</td>'; sc.forEach(([, d]) => h += `<td class="fc-positive">${d.rr > 0 ? fmtBRL(d.rr) : '-'}</td>`); h += `<td style="background:#f0fdf4;font-weight:700;color:var(--success)">${fmtBRL(trr)}</td></tr><tr><td>Receitas a Receber</td>`; sc.forEach(([, d]) => h += `<td>${d.rp > 0 ? fmtBRL(d.rp) : '-'}</td>`); h += `<td>${fmtBRL(trp)}</td></tr><tr class="subtotal-row"><td><strong>TOTAL ENTRADAS</strong></td>`; let te = 0; sc.forEach(([, d]) => { const e = d.rr + d.rp; te += e; h += `<td class="fc-positive">${fmtBRL(e)}</td>`; }); h += `<td style="background:#d1fae5;font-weight:700;color:var(--success)">${fmtBRL(te)}</td></tr><tr class="section-header"><td colspan="${sc.length + 2}">📉 SAÍDAS</td></tr>'; let tdr = 0, tdp = 0; sc.forEach(([, d]) => { tdr += d.dr; tdp += d.dp; }); h += '<tr><td>Despesas Realizadas</td>'; sc.forEach(([, d]) => h += `<td class="fc-negative">${d.dr > 0 ? '(' + fmtBRL(d.dr) + ')' : '-'}</td>`); h += `<td style="background:#fee2e2;font-weight:700;color:var(--danger)">(${fmtBRL(tdr)})</td></tr><tr><td>Despesas a Pagar</td>`; sc.forEach(([, d]) => h += `<td>${d.dp > 0 ? '(' + fmtBRL(d.dp) + ')' : '-'}</td>`); h += `<td>(${fmtBRL(tdp)})</td></tr><tr class="subtotal-row"><td><strong>TOTAL SAÍDAS</strong></td>`; let ts = 0; sc.forEach(([, d]) => { const s = d.dr + d.dp; ts += s; h += `<td class="fc-negative">(${fmtBRL(s)})</td>`; }); h += `<td style="background:#ffe4e6;font-weight:700;color:var(--danger)">(${fmtBRL(ts)})</td></tr><tr class="section-header"><td colspan="${sc.length + 2}">⚖️ RESULTADO</td></tr><tr style="font-weight:700"><td>Saldo do Período</td>`; let sa = 0; const sas = []; sc.forEach(([, d]) => { const s = (d.rr + d.rp) - (d.dr + d.dp); sa += s; sas.push(sa); h += `<td style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(s)}</td>`; }); const st = te - ts; h += `<td style="background:${st >= 0 ? '#d1fae5' : '#fee2e2'};font-weight:700;color:${st >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(st)}</td></tr><tr style="font-weight:700;background:#f0f9ff"><td>Saldo Acumulado</td>`; sas.forEach(s => h += `<td style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(s)}</td>`); h += `<td style="background:${sa >= 0 ? '#d1fae5' : '#fee2e2'};color:${sa >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(sa)}</td></tr></tbody>`; t.innerHTML = h; const labels = sc.map(([c]) => fmtComp(c)); if (chartFluxoCaixaInstance) chartFluxoCaixaInstance.destroy(); chartFluxoCaixaInstance = new Chart(document.getElementById('chartFluxoCaixa'), { type: 'bar', data: { labels, datasets: [{ label: 'Entradas', data: sc.map(([, d]) => d.rr + d.rp), backgroundColor: '#10b981' }, { label: 'Saídas', data: sc.map(([, d]) => -(d.dr + d.dp)), backgroundColor: '#ef4444' }, { label: 'Saldo', data: sas, type: 'line', borderColor: '#0ea5e9', backgroundColor: 'rgba(14,165,233,0.1)', tension: 0.3, fill: true, borderWidth: 3 }] }, options: { responsive: true, scales: { y: { beginAtZero: false } } } }); }
+        function generateTabFluxoCaixa(f) {
+            const bc = {};
+            f.forEach(t => {
+                if (!bc[t.competencia]) bc[t.competencia] = { rr: 0, rp: 0, dr: 0, dp: 0 };
+                if (t.tipo === 'Receita') {
+                    if (t.status === 'Pago') bc[t.competencia].rr += (t.valorPago || t.valorOriginal);
+                    else bc[t.competencia].rp += t.valorOriginal;
+                } else {
+                    if (t.status === 'Pago') bc[t.competencia].dr += (t.valorPago || t.valorOriginal);
+                    else bc[t.competencia].dp += t.valorOriginal;
+                }
+            });
+            const sc = Object.entries(bc).sort((a, b) => a[0].localeCompare(b[0])), t = document.getElementById('tableFluxoCaixa');
+            let h = '<thead><tr><th style="text-align:left">Descrição</th>';
+            sc.forEach(([c]) => h += `<th>${fmtComp(c)}</th>`);
+            h += '<th style="background:#1e293b;color:white">TOTAL</th></tr></thead><tbody><tr class="section-header"><td colspan="' + (sc.length + 2) + '">📈 ENTRADAS</td></tr>';
+            let trr = 0, trp = 0;
+            sc.forEach(([, d]) => { trr += d.rr; trp += d.rp; });
+            h += '<tr><td>Receitas Realizadas</td>';
+            sc.forEach(([, d]) => h += `<td class="fc-positive">${d.rr > 0 ? fmtBRL(d.rr) : '-'}</td>`);
+            h += `<td style="background:#f0fdf4;font-weight:700;color:var(--success)">${fmtBRL(trr)}</td></tr><tr><td>Receitas a Receber</td>`;
+            sc.forEach(([, d]) => h += `<td>${d.rp > 0 ? fmtBRL(d.rp) : '-'}</td>`);
+            h += `<td>${fmtBRL(trp)}</td></tr><tr class="subtotal-row"><td><strong>TOTAL ENTRADAS</strong></td>`;
+            let te = 0;
+            sc.forEach(([, d]) => { const e = d.rr + d.rp; te += e; h += `<td class="fc-positive">${fmtBRL(e)}</td>`; });
+            h += `<td style="background:#d1fae5;font-weight:700;color:var(--success)">${fmtBRL(te)}</td></tr><tr class="section-header"><td colspan="${sc.length + 2}">📉 SAÍDAS</td></tr>`;
+            let tdr = 0, tdp = 0;
+            sc.forEach(([, d]) => { tdr += d.dr; tdp += d.dp; });
+            h += '<tr><td>Despesas Realizadas</td>';
+            sc.forEach(([, d]) => h += `<td class="fc-negative">${d.dr > 0 ? '(' + fmtBRL(d.dr) + ')' : '-'}</td>`);
+            h += `<td style="background:#fee2e2;font-weight:700;color:var(--danger)">(${fmtBRL(tdr)})</td></tr><tr><td>Despesas a Pagar</td>`;
+            sc.forEach(([, d]) => h += `<td>${d.dp > 0 ? '(' + fmtBRL(d.dp) + ')' : '-'}</td>`);
+            h += `<td>(${fmtBRL(tdp)})</td></tr><tr class="subtotal-row"><td><strong>TOTAL SAÍDAS</strong></td>`;
+            let ts = 0;
+            sc.forEach(([, d]) => { const s = d.dr + d.dp; ts += s; h += `<td class="fc-negative">(${fmtBRL(s)})</td>`; });
+            h += `<td style="background:#ffe4e6;font-weight:700;color:var(--danger)">(${fmtBRL(ts)})</td></tr><tr class="section-header"><td colspan="${sc.length + 2}">⚖️ RESULTADO</td></tr><tr style="font-weight:700"><td>Saldo do Período</td>`;
+            let sa = 0;
+            const sas = [];
+            sc.forEach(([, d]) => { const s = (d.rr + d.rp) - (d.dr + d.dp); sa += s; sas.push(sa); h += `<td style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(s)}</td>`; });
+            const st = te - ts;
+            h += `<td style="background:${st >= 0 ? '#d1fae5' : '#fee2e2'};font-weight:700;color:${st >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(st)}</td></tr><tr style="font-weight:700;background:#f0f9ff"><td>Saldo Acumulado</td>`;
+            sas.forEach(s => h += `<td style="color:${s >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(s)}</td>`);
+            h += `<td style="background:${sa >= 0 ? '#d1fae5' : '#fee2e2'};color:${sa >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtBRL(sa)}</td></tr></tbody>`;
+            t.innerHTML = h;
+            const labels = sc.map(([c]) => fmtComp(c));
+            if (chartFluxoCaixaInstance) chartFluxoCaixaInstance.destroy();
+            chartFluxoCaixaInstance = new Chart(document.getElementById('chartFluxoCaixa'), {
+                type: 'bar',
+                data: { labels, datasets: [{ label: 'Entradas', data: sc.map(([, d]) => d.rr + d.rp), backgroundColor: '#10b981' }, { label: 'Saídas', data: sc.map(([, d]) => -(d.dr + d.dp)), backgroundColor: '#ef4444' }, { label: 'Saldo', data: sas, type: 'line', borderColor: '#0ea5e9', backgroundColor: 'rgba(14,165,233,0.1)', tension: 0.3, fill: true, borderWidth: 3 }] },
+                options: { responsive: true, scales: { y: { beginAtZero: false } } }
+            });
+        }
 
-        function exportAutoReportsExcel() { if (!transactions.length) return; const wb = XLSX.utils.book_new(), ws = XLSX.utils.json_to_sheet(transactions.filter(t => !t.isTax).map(t => ({ "ID": t.id, "Tipo": t.tipo, "Fornecedor": t.fornecedor, "Doc": t.numeroDocumento, "Rubrica": t.rubrica, "Categoria": getCategoryFromRubrica(t.rubrica), "Emissão": t.dataEmissao, "Competência": t.competencia, "Vencimento": t.dataVencimento, "Histórico": t.historico, "Bruto": t.valorBruto || t.valorOriginal, "Impostos": t.totalTaxes || 0, "Líquido": t.valorLiquido || t.valorOriginal, "Juros": t.jurosMultas, "Data Pagto": t.dataPagamento || "", "Valor Pago": t.valorPago, "Status": t.status, "Provisionado": getProvisionedValue(t.rubrica) }))); XLSX.utils.book_append_sheet(wb, ws, "Dados"); XLSX.writeFile(wb, `Relatorios_${today()}.xlsx`); showToast('success', 'Exportado!'); }
+        function exportAutoReportsExcel() {
+            if (!transactions.length) return;
+            const wb = XLSX.utils.book_new(), ws = XLSX.utils.json_to_sheet(transactions.filter(t => !t.isTax).map(t => ({
+                "ID": t.id, "Tipo": t.tipo, "Fornecedor": t.fornecedor, "Doc": t.numeroDocumento, "Rubrica": t.rubrica,
+                "Categoria": getCategoryFromRubrica(t.rubrica), "Emissão": t.dataEmissao, "Competência": t.competencia,
+                "Vencimento": t.dataVencimento, "Histórico": t.historico, "Bruto": t.valorBruto || t.valorOriginal,
+                "Impostos": t.totalTaxes || 0, "Líquido": t.valorLiquido || t.valorOriginal, "Juros": t.jurosMultas,
+                "Data Pagto": t.dataPagamento || "", "Valor Pago": t.valorPago, "Status": t.status, "Provisionado": getProvisionedValue(t.rubrica)
+            })));
+            XLSX.utils.book_append_sheet(wb, ws, "Dados");
+            XLSX.writeFile(wb, `Relatorios_${today()}.xlsx`);
+            showToast('success', 'Exportado!');
+        }
 
-        // ===== FUNÇÃO MELHORADA: ABRIR MODAL COM RUBRICAS SINCRONIZADAS =====
         function openModal(edit = false) {
             if (currentUser.role === 'consulta') { showToast('warning', 'Modo Consulta', 'Somente leitura'); return; }
             if (!hasPermission('create') && !edit) { showToast('error', 'Sem permissão'); return; }
-            
-            // SEMPRE sincroniza as rubricas ao abrir o modal
-            populateRubricasSelect();
-            
             if (!edit) {
                 document.getElementById('financeForm').reset();
                 document.getElementById('transId').value = '';
@@ -1369,33 +2183,181 @@
             }
         }
 
-        function closeModal() { document.getElementById('transactionModal').classList.remove('active'); document.querySelectorAll('#financeForm input,#financeForm select,#financeForm textarea').forEach(el => el.disabled = false); }
-        function exportToExcel() { if (!transactions.length) return; const ws = XLSX.utils.json_to_sheet(transactions.map(t => ({ "ID": t.id, "Tipo": t.tipo, "Fornecedor": t.fornecedor, "Doc": t.numeroDocumento, "Rubrica": t.rubrica, "Categoria": getCategoryFromRubrica(t.rubrica), "Provisionado": getProvisionedValue(t.rubrica), "Bruto": t.valorBruto || t.valorOriginal, "Impostos": t.totalTaxes || 0, "Líquido": t.valorLiquido || t.valorOriginal, "Emissão": t.dataEmissao, "Competência": t.competencia, "Vencimento": t.dataVencimento, "Histórico": t.historico, "Juros": t.jurosMultas, "Data Pagto": t.dataPagamento || "", "Valor Pago": t.valorPago, "Status": t.status, "É Imposto": t.isTax ? "Sim" : "Não" }))); const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, "Dados"); XLSX.writeFile(wb, `Financeiro_${today()}.xlsx`); showToast('success', 'Exportado!'); }
+        function closeModal() {
+            document.getElementById('transactionModal').classList.remove('active');
+            document.querySelectorAll('#financeForm input,#financeForm select,#financeForm textarea').forEach(el => el.disabled = false);
+        }
 
-        function importFromExcel(input) { if (currentUser.role === 'consulta' || !hasPermission('import')) return; const f = input.files[0]; if (!f) return; const r = new FileReader(); r.onload = e => { try { const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' }), j = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]); if (j.length && confirm(`Importar ${j.length}?`)) { transactions = j.map(r => ({ id: r.ID || uuid(), tipo: r.Tipo || "Despesa", fornecedor: r.Fornecedor || "?", numeroDocumento: r.Doc || "", rubrica: r.Rubrica || "", dataEmissao: r.Emissão || today(), competencia: r.Competência || month(), dataVencimento: r.Vencimento || today(), historico: r.Histórico || "", valorOriginal: parseFloat(r["Bruto"] || r.Valor) || 0, valorBruto: parseFloat(r["Bruto"] || r.Valor) || 0, valorLiquido: parseFloat(r["Líquido"] || r["Bruto"] || r.Valor) || 0, jurosMultas: parseFloat(r.Juros) || 0, totalTaxes: parseFloat(r.Impostos) || 0, taxes: [], dataPagamento: r["Data Pagto"] || null, valorPago: parseFloat(r["Valor Pago"]) || 0, status: r.Status || "Pendente", acaoConciliacao: r.Obs || "", editadoPor: currentUser?.name, editadoEm: new Date().toISOString(), isTax: (r["É Imposto"] === "Sim") || false })); saveStorage(); renderTable(); showToast('success', 'Importado!', `${j.length} registros`); } } catch (e) { showToast('error', 'Erro', 'Falha'); } }; r.readAsArrayBuffer(f); input.value = ''; }
+        function exportToExcel() {
+            if (!transactions.length) return;
+            const ws = XLSX.utils.json_to_sheet(transactions.map(t => ({
+                "ID": t.id, "Tipo": t.tipo, "Fornecedor": t.fornecedor, "Doc": t.numeroDocumento, "Rubrica": t.rubrica,
+                "Categoria": getCategoryFromRubrica(t.rubrica), "Provisionado": getProvisionedValue(t.rubrica),
+                "Bruto": t.valorBruto || t.valorOriginal, "Impostos": t.totalTaxes || 0, "Líquido": t.valorLiquido || t.valorOriginal,
+                "Emissão": t.dataEmissao, "Competência": t.competencia, "Vencimento": t.dataVencimento, "Histórico": t.historico,
+                "Juros": t.jurosMultas, "Data Pagto": t.dataPagamento || "", "Valor Pago": t.valorPago, "Status": t.status,
+                "É Imposto": t.isTax ? "Sim" : "Não"
+            })));
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Dados");
+            XLSX.writeFile(wb, `Financeiro_${today()}.xlsx`);
+            showToast('success', 'Exportado!');
+        }
 
-        function clearAllData() { if (currentUser.role === 'consulta' || !hasPermission('clearAll')) return; if (isAdmin()) { requestAdminConfirmation('Limpar tudo?', `${transactions.length} registros`, ['Irreversível'], () => { localStorage.removeItem(STORAGE_KEY); transactions = []; renderTable(); updateDashboard(); showToast('warning', 'Apagado'); }); } }
+        function importFromExcel(input) {
+            if (currentUser.role === 'consulta' || !hasPermission('import')) return;
+            const f = input.files[0];
+            if (!f) return;
+            const r = new FileReader();
+            r.onload = e => {
+                try {
+                    const wb = XLSX.read(new Uint8Array(e.target.result), { type: 'array' }), j = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+                    if (j.length && confirm(`Importar ${j.length}?`)) {
+                        transactions = j.map(r => ({
+                            id: r.ID || uuid(), tipo: r.Tipo || "Despesa", fornecedor: r.Fornecedor || "?",
+                            numeroDocumento: r.Doc || "", rubrica: r.Rubrica || "",
+                            dataEmissao: r.Emissão || today(), competencia: r.Competência || month(),
+                            dataVencimento: r.Vencimento || today(), historico: r.Histórico || "",
+                            valorOriginal: parseFloat(r["Bruto"] || r.Valor) || 0,
+                            valorBruto: parseFloat(r["Bruto"] || r.Valor) || 0,
+                            valorLiquido: parseFloat(r["Líquido"] || r["Bruto"] || r.Valor) || 0,
+                            jurosMultas: parseFloat(r.Juros) || 0, totalTaxes: parseFloat(r.Impostos) || 0, taxes: [],
+                            dataPagamento: r["Data Pagto"] || null, valorPago: parseFloat(r["Valor Pago"]) || 0,
+                            status: r.Status || "Pendente", acaoConciliacao: r.Obs || "",
+                            editadoPor: currentUser?.name, editadoEm: new Date().toISOString(),
+                            isTax: (r["É Imposto"] === "Sim") || false
+                        }));
+                        saveStorage();
+                        renderTable();
+                        showToast('success', 'Importado!', `${j.length} registros`);
+                    }
+                } catch (e) { showToast('error', 'Erro', 'Falha'); }
+            };
+            r.readAsArrayBuffer(f);
+            input.value = '';
+        }
+
+        function clearAllData() {
+            if (currentUser.role === 'consulta' || !hasPermission('clearAll')) return;
+            if (isAdmin()) {
+                requestAdminConfirmation('Limpar tudo?', `${transactions.length} registros`, ['Irreversível'], () => {
+                    localStorage.removeItem(STORAGE_KEY);
+                    transactions = [];
+                    renderTable();
+                    updateDashboard();
+                    showToast('warning', 'Apagado');
+                });
+            }
+        }
 
         // ===== CHATBOT =====
         const CHAT_STORAGE_KEY = 'fin_ai_chat_v1';
         let chatHistory = [], chatIsTyping = false;
 
-        function initChatbot() { const s = localStorage.getItem(CHAT_STORAGE_KEY); if (s) chatHistory = JSON.parse(s); renderChatMessages(); const k = localStorage.getItem('fin_ai_api_key'), m = localStorage.getItem('fin_ai_model'); if (k) document.getElementById('chatApiKey').value = k; if (m) document.getElementById('chatModel').value = m; if (!chatHistory.length) addSystemMessage(`Olá, ${currentUser?.name || 'usuário'}! 👋 Como posso ajudar?`); }
+        function initChatbot() {
+            const s = localStorage.getItem(CHAT_STORAGE_KEY);
+            if (s) chatHistory = JSON.parse(s);
+            renderChatMessages();
+            const k = localStorage.getItem('fin_ai_api_key'), m = localStorage.getItem('fin_ai_model');
+            if (k) document.getElementById('chatApiKey').value = k;
+            if (m) document.getElementById('chatModel').value = m;
+            if (!chatHistory.length) addSystemMessage(`Olá, ${currentUser?.name || 'usuário'}! 👋 Como posso ajudar?`);
+        }
+
         function saveChatHistory() { localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(chatHistory.slice(-50))); }
-        function renderChatMessages() { const c = document.getElementById('chatMessages'); c.innerHTML = ''; chatHistory.forEach(m => appendMessageBubble(m.role, m.content)); c.scrollTop = c.scrollHeight; }
-        function appendMessageBubble(r, c, it = false) { const co = document.getElementById('chatMessages'), d = document.createElement('div'); d.className = `chat-message ${r}`; let av = ''; if (r === 'user') av = '<i class="fa-solid fa-user"></i>'; else if (r === 'assistant') av = '<i class="fa-solid fa-bolt"></i>'; else av = '<i class="fa-solid fa-triangle-exclamation"></i>'; const fc = r === 'system' ? escapeHtml(c) : formatChatContent(c); d.innerHTML = `<div class="chat-msg-avatar">${av}</div><div class="chat-msg-bubble">${it ? '<div class="typing-indicator"><span></span><span></span><span></span></div>' : fc}</div>`; co.appendChild(d); co.scrollTop = co.scrollHeight; return d; }
+
+        function renderChatMessages() {
+            const c = document.getElementById('chatMessages');
+            c.innerHTML = '';
+            chatHistory.forEach(m => appendMessageBubble(m.role, m.content));
+            c.scrollTop = c.scrollHeight;
+        }
+
+        function appendMessageBubble(r, c, it = false) {
+            const co = document.getElementById('chatMessages'), d = document.createElement('div');
+            d.className = `chat-message ${r}`;
+            let av = '';
+            if (r === 'user') av = '<i class="fa-solid fa-user"></i>';
+            else if (r === 'assistant') av = '<i class="fa-solid fa-bolt"></i>';
+            else av = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            const fc = r === 'system' ? escapeHtml(c) : formatChatContent(c);
+            d.innerHTML = `<div class="chat-msg-avatar">${av}</div><div class="chat-msg-bubble">${it ? '<div class="typing-indicator"><span></span><span></span><span></span></div>' : fc}</div>`;
+            co.appendChild(d);
+            co.scrollTop = co.scrollHeight;
+            return d;
+        }
+
         function addSystemMessage(t) { chatHistory.push({ role: 'system', content: t }); saveChatHistory(); renderChatMessages(); }
+
         function escapeHtml(t) { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
-        function formatChatContent(t) { let f = escapeHtml(t); f = f.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'); f = f.replace(/R\$ ([0-9.,]+)/g, '<span class="money">R$ $1</span>'); f = f.replace(/\n/g, '<br>'); if (!f.startsWith('<')) f = '<p>' + f + '</p>'; return f; }
-        function toggleChatbot() { const c = document.getElementById('chatbotContainer'); c.classList.toggle('active'); if (c.classList.contains('active')) setTimeout(() => document.getElementById('chatInput').focus(), 100); }
+
+        function formatChatContent(t) {
+            let f = escapeHtml(t);
+            f = f.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            f = f.replace(/R\$ ([0-9.,]+)/g, '<span class="money">R$ $1</span>');
+            f = f.replace(/\n/g, '<br>');
+            if (!f.startsWith('<')) f = '<p>' + f + '</p>';
+            return f;
+        }
+
+        function toggleChatbot() {
+            const c = document.getElementById('chatbotContainer');
+            c.classList.toggle('active');
+            if (c.classList.contains('active')) setTimeout(() => document.getElementById('chatInput').focus(), 100);
+        }
+
         function openChatConfig() { document.getElementById('chatConfigModal').style.display = 'flex'; }
         function closeChatConfig() { document.getElementById('chatConfigModal').style.display = 'none'; }
-        function saveChatConfig() { const k = document.getElementById('chatApiKey').value.trim(), m = document.getElementById('chatModel').value; if (k) localStorage.setItem('fin_ai_api_key', k); localStorage.setItem('fin_ai_model', m); closeChatConfig(); addSystemMessage('✅ Configurações salvas!'); }
-        function clearChatHistory() { if (confirm('Limpar?')) { chatHistory = []; localStorage.removeItem(CHAT_STORAGE_KEY); renderChatMessages(); addSystemMessage('🧹 Limpo'); } }
+
+        function saveChatConfig() {
+            const k = document.getElementById('chatApiKey').value.trim(), m = document.getElementById('chatModel').value;
+            if (k) localStorage.setItem('fin_ai_api_key', k);
+            localStorage.setItem('fin_ai_model', m);
+            closeChatConfig();
+            addSystemMessage('✅ Configurações salvas!');
+        }
+
+        function clearChatHistory() {
+            if (confirm('Limpar?')) {
+                chatHistory = [];
+                localStorage.removeItem(CHAT_STORAGE_KEY);
+                renderChatMessages();
+                addSystemMessage('🧹 Limpo');
+            }
+        }
+
         function autoResizeTextarea(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 100) + 'px'; }
+
         function handleChatKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChatMessage(); } }
+
         function sendSuggestion(t) { document.getElementById('chatInput').value = t; sendChatMessage(); }
-        function getFinancialContext() { const td = today(), cm = month(); let tdp = 0, trp = 0, tdpag = 0, trpag = 0, cv = []; const rt = {}; let ti = 0; transactions.forEach(t => { if (t.isTax) { ti += t.valorOriginal; return; } if (t.tipo === 'Despesa') { if (t.status === 'Vencido') { cv.push({ f: t.fornecedor, r: t.rubrica, v: t.valorOriginal }); tdp += t.valorOriginal; } else if (t.status === 'Pendente') tdp += t.valorOriginal; else if (t.status === 'Pago') tdpag += t.valorPago || t.valorOriginal; rt[t.rubrica] = (rt[t.rubrica] || 0) + t.valorOriginal; } else { if (t.status !== 'Pago') trp += t.valorOriginal; else trpag += t.valorPago || t.valorOriginal; } }); const tr5 = Object.entries(rt).sort((a, b) => b[1] - a[1]).slice(0, 5); const tds = tdp + tdpag, trs = trp + trpag, s = trs - tds; const tp = RUBRICAS.reduce((s, c) => s + (c.provisionado || 0), 0); return `DADOS: Data: ${fmtDate(td)} | Mês: ${fmtComp(cm)}\nUsuário: ${currentUser?.name} (${currentUser?.roleLabel})\nReceitas: ${fmtBRL(trs)} | Despesas: ${fmtBRL(tds)} | Saldo: ${fmtBRL(s)}\nOrçamento: ${fmtBRL(tp)} | Impostos: ${fmtBRL(ti)}\nVencidas: ${cv.length} | Top5: ${tr5.map(([r, v]) => r + ': ' + fmtBRL(v)).join(', ')}`; }
+
+        function getFinancialContext() {
+            const td = today(), cm = month();
+            let tdp = 0, trp = 0, tdpag = 0, trpag = 0, cv = [];
+            const rt = {};
+            let ti = 0;
+            transactions.forEach(t => {
+                if (t.isTax) { ti += t.valorOriginal; return; }
+                if (t.tipo === 'Despesa') {
+                    if (t.status === 'Vencido') { cv.push({ f: t.fornecedor, r: t.rubrica, v: t.valorOriginal }); tdp += t.valorOriginal; }
+                    else if (t.status === 'Pendente') tdp += t.valorOriginal;
+                    else if (t.status === 'Pago') tdpag += t.valorPago || t.valorOriginal;
+                    rt[t.rubrica] = (rt[t.rubrica] || 0) + t.valorOriginal;
+                } else {
+                    if (t.status !== 'Pago') trp += t.valorOriginal;
+                    else trpag += t.valorPago || t.valorOriginal;
+                }
+            });
+            const tr5 = Object.entries(rt).sort((a, b) => b[1] - a[1]).slice(0, 5);
+            const tds = tdp + tdpag, trs = trp + trpag, s = trs - tds;
+            const tp = RUBRICAS.reduce((s, c) => s + (c.provisionado || 0), 0);
+            return `DADOS: Data: ${fmtDate(td)} | Mês: ${fmtComp(cm)}
+Usuário: ${currentUser?.name} (${currentUser?.roleLabel})
+Receitas: ${fmtBRL(trs)} | Despesas: ${fmtBRL(tds)} | Saldo: ${fmtBRL(s)}
+Orçamento: ${fmtBRL(tp)} | Impostos: ${fmtBRL(ti)}
+Vencidas: ${cv.length} | Top5: ${tr5.map(([r, v]) => r + ': ' + fmtBRL(v)).join(', ')}`;
+        }
 
         async function sendChatMessage() {
             const i = document.getElementById('chatInput'), t = i.value.trim();
@@ -1404,14 +2366,19 @@
             if (!k) { addSystemMessage('⚠️ Configure a API Key!'); openChatConfig(); return; }
             chatHistory.push({ role: 'user', content: t });
             renderChatMessages();
-            i.value = ''; i.style.height = 'auto';
+            i.value = '';
+            i.style.height = 'auto';
             chatIsTyping = true;
             document.getElementById('chatSendBtn').disabled = true;
             const tb = appendMessageBubble('assistant', '', true);
             try {
-                const sp = `Você é um assistente financeiro. Usuário: ${currentUser?.name}. Baseie respostas no CONTEXTO. Formate em Real. Português.\n${getFinancialContext()}`;
+                const sp = `Você é um assistente financeiro. Usuário: ${currentUser?.name}. Baseie respostas no CONTEXTO. Formate em Real. Português.\n\n${getFinancialContext()}`;
                 const ms = [{ role: 'system', content: sp }, ...chatHistory.filter(m => m.role !== 'system').slice(-10).map(m => ({ role: m.role, content: m.content }))];
-                const r = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${k}` }, body: JSON.stringify({ model: m, messages: ms, temperature: 0.5, max_tokens: 1024 }) });
+                const r = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${k}` },
+                    body: JSON.stringify({ model: m, messages: ms, temperature: 0.5, max_tokens: 1024 })
+                });
                 if (!r.ok) throw new Error(`HTTP ${r.status}`);
                 const d = await r.json(), rp = d.choices?.[0]?.message?.content || 'Erro';
                 tb.remove();

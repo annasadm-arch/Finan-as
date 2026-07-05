@@ -473,7 +473,7 @@
                             <th><input type="date" id="col-filter-emissao" onchange="renderTable()"></th>
                             <th><input type="date" id="col-filter-vencimento" onchange="renderTable()"></th>
                             <th><input type="month" id="col-filter-competencia" onchange="renderTable()"></th>
-                            <th><input type="text" id="col-filter-valor-min" placeholder="Min" oninput="formatCurrency(this)" onchange="renderTable()" style="margin-bottom:4px"><input type="text" id="col-filter-valor-max" placeholder="Max" oninput="formatCurrency(this)" onchange="renderTable()"></th>
+                            <th><input type="number" id="col-filter-valor-min" placeholder="Min" onchange="renderTable()" style="margin-bottom:4px"><input type="number" id="col-filter-valor-max" placeholder="Max" onchange="renderTable()"></th>
                             <th><input type="date" id="col-filter-pagto" onchange="renderTable()"></th>
                             <th></th>
                             <th><button class="btn btn-outline" onclick="clearColumnFilters()" style="padding:4px 8px;font-size:.72rem;width:100%">Limpar</button></th>
@@ -636,12 +636,8 @@
                     <div class="form-group"><label><i class="fa-solid fa-calendar-xmark"></i> Data Vencimento <span class="required">*</span></label><input type="date" id="dataVencimento" required></div>
                     <div class="form-group full">
                         <label><i class="fa-solid fa-dollar-sign"></i> Valor Original Bruto (R$) <span class="required">*</span></label>
-                        <input type="text" id="valorOriginal" required placeholder="0,00" oninput="formatCurrency(this); calculateTaxes()">
+                        <input type="text" id="valorOriginal" required placeholder="0,00" oninput="formatCurrency(this)" onblur="calculateTaxes()">
                         <small style="color:var(--text-muted);font-size:.72rem;margin-top:4px;display:block">💡 Digite apenas números - a formatação é automática</small>
-                    </div>
-                    <div class="form-group full">
-                        <label><i class="fa-solid fa-percent"></i> Juros/Multas/Descontos (R$)</label>
-                        <input type="text" id="jurosMultas" placeholder="0,00" oninput="formatCurrency(this)" value="0,00">
                     </div>
                     <div class="form-group full"><label><i class="fa-solid fa-note-sticky"></i> Histórico</label><input type="text" id="historico" placeholder="Descrição adicional"></div>
                 </div>
@@ -688,7 +684,7 @@
                 <input type="hidden" id="rubricaParentId">
                 <div class="rubrica-form-group"><label>Código <span class="required" style="color:var(--danger)">*</span></label><div class="rubrica-form-grid"><input type="text" id="rubricaCodigo" placeholder="Ex: 1, 1.1, 7.2" required><span style="font-size:.78rem;color:var(--text-muted)">Numeração hierárquica</span></div></div>
                 <div class="rubrica-form-group"><label>Nome da Rubrica <span class="required" style="color:var(--danger)">*</span></label><input type="text" id="rubricaNome" placeholder="Ex: Pessoal, Ordenados" required></div>
-                <div class="rubrica-form-group"><label>Valor Provisionado Mensal (R$)</label><input type="text" id="rubricaProvisionado" placeholder="0,00" value="0,00" oninput="formatCurrency(this)"><span style="font-size:.72rem;color:var(--text-muted);margin-top:4px;display:block">Valor previsto no orçamento mensal</span></div>
+                <div class="rubrica-form-group"><label>Valor Provisionado Mensal (R$)</label><input type="text" id="rubricaProvisionado" placeholder="0,00" value="0" oninput="formatCurrency(this)"><span style="font-size:.72rem;color:var(--text-muted);margin-top:4px;display:block">Valor previsto no orçamento mensal</span></div>
                 <div class="rubrica-preview"><div class="rubrica-preview-title">Visualização Prévia</div><div class="rubrica-preview-content" id="rubricaPreviewContent">Preencha os campos</div></div>
             </div>
             <div style="margin-top:25px;display:flex;justify-content:flex-end;gap:10px">
@@ -791,43 +787,34 @@
     </div>
 
 <script>
-// ===== FUNÇÃO DE FORMATAÇÃO DE MOEDA CORRIGIDA =====
+// ===== FUNÇÃO DE FORMATAÇÃO DE MOEDA =====
 function formatCurrency(input) {
-    try {
-        // Remove todos os caracteres não numéricos
-        let value = input.value.replace(/\D/g, '');
-        
-        // Se vazio, retorna
-        if (!value) {
-            input.value = '';
-            return;
-        }
-        
-        // Converte para número e divide por 100 para ter 2 casas decimais
-        value = (parseInt(value) / 100).toFixed(2);
-        
-        // Formata com pontos e vírgulas
-        const parts = value.split('.');
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        
-        input.value = parts.join(',');
-    } catch (e) {
-        console.error('Erro ao formatar moeda:', e);
+    // Remove todos os caracteres não numéricos
+    let value = input.value.replace(/\D/g, '');
+    
+    // Se vazio, retorna
+    if (!value) {
+        input.value = '';
+        return;
     }
+    
+    // Converte para número e divide por 100 para ter 2 casas decimais
+    value = (parseInt(value) / 100).toFixed(2);
+    
+    // Formata com pontos e vírgulas
+    const parts = value.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    
+    input.value = parts.join(',');
 }
 
 // ===== FUNÇÃO PARA OBTER VALOR NUMÉRICO DE CAMPO FORMATADO =====
 function getCurrencyValue(inputId) {
-    try {
-        const input = document.getElementById(inputId);
-        if (!input || !input.value) return 0;
-        // Remove formatação e converte para número
-        const value = input.value.replace(/\./g, '').replace(',', '.');
-        return parseFloat(value) || 0;
-    } catch (e) {
-        console.error('Erro ao obter valor:', e);
-        return 0;
-    }
+    const input = document.getElementById(inputId);
+    if (!input || !input.value) return 0;
+    // Remove formatação e converte para número
+    const value = input.value.replace(/\./g, '').replace(',', '.');
+    return parseFloat(value) || 0;
 }
 
 // ===== RUBRICAS =====
@@ -993,7 +980,7 @@ function executePasswordReset(){const n=document.getElementById('resetNewPasswor
 function populateSettingsPage(){if(!currentUser)return;document.getElementById('settingsCurrentUser').value=`${currentUser.name} (${currentUser.username})`;document.getElementById('settingsCurrentRole').value=currentUser.roleLabel;renderUsersTable()}
 
 // ===== STATE =====
-let transactions=[];const STORAGE_KEY='fin_pro_v26';
+let transactions=[];const STORAGE_KEY='fin_pro_v25';
 let chartRubricaInstance,chartFluxoInstance,chartAutoRubricaInstance,chartAutoCompetenciaInstance,chartFluxoCaixaInstance,chartProvisionadosInstance;
 const uuid=()=>Date.now().toString(36)+Math.random().toString(36).substr(2);
 const fmtBRL=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v||0);
@@ -1002,22 +989,24 @@ const fmtComp=c=>{if(!c)return'-';const[y,m]=c.split('-');return`${m}/${y}`};
 const today=()=>new Date().toISOString().split('T')[0];
 const month=()=>today().substring(0,7);
 
-// ===== VENCIMENTO IMPOSTOS =====
+// ===== VENCIMENTO IMPOSTOS (CORRIGIDO) =====
 function getVencimentoImposto(dataEmissao,tipoImposto){
     const[year,month]=dataEmissao.split('-').map(Number);
     const nextMonthDate=new Date(year,month-1+1,1);
     
     if(tipoImposto==='ISS'){
+        // ISS: dia 10 - POSTERGA se não for dia útil
         let date=new Date(nextMonthDate.getFullYear(),nextMonthDate.getMonth(),10);
         const dow=date.getDay();
-        if(dow===6)date.setDate(12);
-        else if(dow===0)date.setDate(11);
+        if(dow===6)date.setDate(12); // Sábado → Segunda
+        else if(dow===0)date.setDate(11); // Domingo → Segunda
         return date.toISOString().split('T')[0];
     }else{
+        // IRRF, PCC, INSS: dia 20 - ANTECIPA se não for dia útil
         let date=new Date(nextMonthDate.getFullYear(),nextMonthDate.getMonth(),20);
         const dow=date.getDay();
-        if(dow===6)date.setDate(19);
-        else if(dow===0)date.setDate(18);
+        if(dow===6)date.setDate(19); // Sábado → Sexta (19)
+        else if(dow===0)date.setDate(18); // Domingo → Sexta (18)
         return date.toISOString().split('T')[0];
     }
 }
@@ -1035,30 +1024,26 @@ function toggleTaxSection(e){if(e&&e.type==='click'&&e.target.type!=='checkbox')
 function updateTaxVisibility(){const t=document.getElementById('tipoMovimentacao').value;document.getElementById('taxSection').style.display=t==='Despesa'?'block':'none'}
 const TAX_RATES={IRRF:0.015,PCC:0.0465};
 function calculateTaxes(){
-    try {
-        const v=getCurrencyValue('valorOriginal'),e=document.getElementById('enableTaxes').checked;
-        if(!e||v<=0){
-            ['taxIRRFValue','taxPCCValue','taxINSSValue','taxISSValue'].forEach(id=>document.getElementById(id).value='');
-            document.getElementById('summaryGross').textContent=fmtBRL(v);
-            document.getElementById('summaryTaxes').textContent=fmtBRL(0);
-            document.getElementById('summaryNet').textContent=fmtBRL(v);
-            return;
-        }
-        const irrf=v*TAX_RATES.IRRF;
-        document.getElementById('taxIRRFValue').value=irrf.toFixed(2).replace('.',',');
-        const pcc=v*TAX_RATES.PCC;
-        document.getElementById('taxPCCValue').value=pcc.toFixed(2).replace('.',',');
-        const inssP=getCurrencyValue('taxINSSPercent'),inss=v*(inssP/100);
-        document.getElementById('taxINSSValue').value=inss>0?inss.toFixed(2).replace('.',','):'';
-        const issP=getCurrencyValue('taxISSPercent'),iss=v*(issP/100);
-        document.getElementById('taxISSValue').value=iss>0?iss.toFixed(2).replace('.',','):'';
-        const tot=irrf+pcc+inss+iss;
+    const v=getCurrencyValue('valorOriginal'),e=document.getElementById('enableTaxes').checked;
+    if(!e||v<=0){
+        ['taxIRRFValue','taxPCCValue','taxINSSValue','taxISSValue'].forEach(id=>document.getElementById(id).value='');
         document.getElementById('summaryGross').textContent=fmtBRL(v);
-        document.getElementById('summaryTaxes').textContent=fmtBRL(tot);
-        document.getElementById('summaryNet').textContent=fmtBRL(v-tot);
-    } catch (error) {
-        console.error('Erro ao calcular impostos:', error);
+        document.getElementById('summaryTaxes').textContent=fmtBRL(0);
+        document.getElementById('summaryNet').textContent=fmtBRL(v);
+        return;
     }
+    const irrf=v*TAX_RATES.IRRF;
+    document.getElementById('taxIRRFValue').value=irrf.toFixed(2).replace('.',',');
+    const pcc=v*TAX_RATES.PCC;
+    document.getElementById('taxPCCValue').value=pcc.toFixed(2).replace('.',',');
+    const inssP=getCurrencyValue('taxINSSPercent'),inss=v*(inssP/100);
+    document.getElementById('taxINSSValue').value=inss>0?inss.toFixed(2).replace('.',','):'';
+    const issP=getCurrencyValue('taxISSPercent'),iss=v*(issP/100);
+    document.getElementById('taxISSValue').value=iss>0?iss.toFixed(2).replace('.',','):'';
+    const tot=irrf+pcc+inss+iss;
+    document.getElementById('summaryGross').textContent=fmtBRL(v);
+    document.getElementById('summaryTaxes').textContent=fmtBRL(tot);
+    document.getElementById('summaryNet').textContent=fmtBRL(v-tot);
 }
 function getTaxValues(){const e=document.getElementById('enableTaxes').checked;if(!e)return{enabled:false,taxes:[],totalTaxes:0};const irrf=getCurrencyValue('taxIRRFValue'),pcc=getCurrencyValue('taxPCCValue'),inss=getCurrencyValue('taxINSSValue'),iss=getCurrencyValue('taxISSValue'),t=[];if(irrf>0)t.push({nome:'IRRF',valor:irrf,percent:1.5});if(pcc>0)t.push({nome:'PCC',valor:pcc,percent:4.65});if(inss>0)t.push({nome:'INSS',valor:inss,percent:getCurrencyValue('taxINSSPercent')});if(iss>0)t.push({nome:'ISS',valor:iss,percent:getCurrencyValue('taxISSPercent')});return{enabled:true,taxes:t,totalTaxes:t.reduce((s,x)=>s+x.valor,0)}}
 
@@ -1090,145 +1075,76 @@ function gerarMovimentacoesImpostos(transOriginal,taxes){
     return movs;
 }
 
-// ===== FUNÇÃO SALVAR MOVIMENTAÇÃO CORRIGIDA =====
+// ===== SALVAR MOVIMENTAÇÃO (CORRIGIDO) =====
 function saveTransaction(e){
     e.preventDefault();
-    
-    console.log('=== INICIANDO SALVAMENTO ===');
-    
-    try {
-        // Validação de perfil
-        if(currentUser.role==='consulta'){
-            showToast('warning','Modo Consulta','Somente leitura');
-            return;
-        }
-        
-        // Validação para lançador
-        if(isLancador()){
-            const statusIni=document.querySelector('input[name="initialStatus"]:checked').value;
-            if(statusIni==='Pago'){
-                showToast('error','Ação não permitida','Perfil Lançador não pode criar como Pago');
-                return;
-            }
-        }
-        
-        // Validação de campos obrigatórios
-        const numDoc=document.getElementById('numeroDocumento').value.trim();
-        if(!numDoc){
-            showToast('error','Campo obrigatório','Número do Documento é obrigatório');
-            document.getElementById('numeroDocumento').focus();
-            return;
-        }
-        
-        const fornecedor=document.getElementById('fornecedor').value.trim();
-        if(!fornecedor){
-            showToast('error','Campo obrigatório','Fornecedor/Cliente é obrigatório');
-            document.getElementById('fornecedor').focus();
-            return;
-        }
-        
-        const rubrica=document.getElementById('rubrica').value;
-        if(!rubrica){
-            showToast('error','Campo obrigatório','Rubrica é obrigatória');
-            document.getElementById('rubrica').focus();
-            return;
-        }
-        
-        // Obter valores
-        const id=document.getElementById('transId').value;
-        const venc=document.getElementById('dataVencimento').value;
+    if(currentUser.role==='consulta'){showToast('warning','Modo Consulta','Somente leitura');return}
+    if(isLancador()){
         const statusIni=document.querySelector('input[name="initialStatus"]:checked').value;
-        
-        console.log('Valores obtidos:', {id, venc, statusIni});
-        
-        let status,valorPago,dataPagamento,acaoConciliacao;
-        
-        if(statusIni==='Pago'){
-            status='Pago';
-            valorPago=getCurrencyValue('initialValorPago');
-            dataPagamento=document.getElementById('initialDataPagamento').value;
-            acaoConciliacao=document.getElementById('initialObsConciliacao').value;
-            
-            if(!dataPagamento||!valorPago){
-                showToast('error','Dados incompletos','Informe data e valor do pagamento');
-                return;
-            }
-        }else{
-            status=venc<today()?'Vencido':'Pendente';
-            valorPago=0;
-            dataPagamento=null;
-            acaoConciliacao='';
-        }
-        
-        // Obter valor bruto e calcular impostos
-        const vBruto=getCurrencyValue('valorOriginal');
-        const jurosMultas=getCurrencyValue('jurosMultas');
-        const taxData=getTaxValues();
-        
-        console.log('Valores calculados:', {vBruto, jurosMultas, taxData});
-        
-        // Criar objeto da transação
-        const t={
-            id:id||uuid(),
-            tipo:document.getElementById('tipoMovimentacao').value,
-            fornecedor:fornecedor,
-            numeroDocumento:numDoc,
-            dataEmissao:document.getElementById('dataEmissao').value,
-            competencia:document.getElementById('competencia').value,
-            dataVencimento:venc,
-            rubrica:rubrica,
-            valorOriginal:vBruto,
-            valorBruto:vBruto,
-            valorLiquido:vBruto-taxData.totalTaxes,
-            jurosMultas:jurosMultas,
-            valorPago:valorPago,
-            dataPagamento:dataPagamento,
-            status:status,
-            historico:document.getElementById('historico').value,
-            acaoConciliacao:acaoConciliacao,
-            taxes:taxData.taxes,
-            totalTaxes:taxData.totalTaxes,
-            editadoPor:currentUser?.name||'Sistema',
-            editadoEm:new Date().toISOString()
-        };
-        
-        console.log('Transação criada:', t);
-        
-        // Salvar transação
-        if(id){
-            const ex=transactions.find(x=>x.id===id);
-            if(ex&&ex.status==='Pago'&&!canEditPaid()){
-                t.valorPago=ex.valorPago;
-                t.dataPagamento=ex.dataPagamento;
-                t.status='Pago';
-                t.acaoConciliacao=ex.acaoConciliacao;
-            }
-            transactions[transactions.findIndex(x=>x.id===id)]=t;
-            showToast('success','Atualizado!','Movimentação editada com sucesso');
-        }else{
-            transactions.push(t);
-            
-            // Gerar movimentações de impostos se necessário
-            if(taxData.enabled&&taxData.taxes.length>0){
-                const taxMovs=gerarMovimentacoesImpostos(t,taxData.taxes);
-                taxMovs.forEach(m=>transactions.push(m));
-                showToast('success','Criado com impostos!',`${fmtBRL(vBruto)} + ${taxMovs.length} guia(s) de imposto(s) gerada(s)`);
-            }else{
-                showToast('success','Criado!',`${t.tipo} de ${fmtBRL(vBruto)} salva com sucesso`);
-            }
-        }
-        
-        console.log('=== SALVAMENTO CONCLUÍDO ===');
-        
-        // Salvar e atualizar interface
-        saveStorage();
-        closeModal();
-        renderTable();
-        
-    } catch (error) {
-        console.error('Erro ao salvar movimentação:', error);
-        showToast('error', 'Erro ao salvar', 'Ocorreu um erro ao salvar a movimentação. Verifique o console para mais detalhes.');
+        if(statusIni==='Pago'){showToast('error','Ação não permitida','Perfil Lançador não pode criar como Pago');return}
     }
+    const numDoc=document.getElementById('numeroDocumento').value.trim();
+    if(!numDoc){showToast('error','Campo obrigatório','Número do Documento é obrigatório');document.getElementById('numeroDocumento').focus();return}
+    
+    const id=document.getElementById('transId').value;
+    const venc=document.getElementById('dataVencimento').value;
+    const statusIni=document.querySelector('input[name="initialStatus"]:checked').value;
+    let status,valorPago,dataPagamento,acaoConciliacao;
+    
+    if(statusIni==='Pago'){
+        status='Pago';
+        valorPago=getCurrencyValue('initialValorPago');
+        dataPagamento=document.getElementById('initialDataPagamento').value;
+        acaoConciliacao=document.getElementById('initialObsConciliacao').value;
+        if(!dataPagamento||!valorPago){showToast('error','Dados incompletos','Informe data e valor');return}
+    }else{
+        status=venc<today()?'Vencido':'Pendente';
+        valorPago=0;dataPagamento=null;acaoConciliacao='';
+    }
+    
+    const vBruto=getCurrencyValue('valorOriginal');
+    const taxData=getTaxValues();
+    const t={
+        id:id||uuid(),
+        tipo:document.getElementById('tipoMovimentacao').value,
+        fornecedor:document.getElementById('fornecedor').value,
+        numeroDocumento:numDoc,
+        dataEmissao:document.getElementById('dataEmissao').value,
+        competencia:document.getElementById('competencia').value,
+        dataVencimento:venc,
+        rubrica:document.getElementById('rubrica').value,
+        valorOriginal:vBruto,
+        valorBruto:vBruto,
+        valorLiquido:vBruto-taxData.totalTaxes,
+        jurosMultas: parseFloat(document.getElementById('jurosMultas')?.value) || 0,
+        valorPago,dataPagamento,status,
+        historico:document.getElementById('historico').value,
+        acaoConciliacao,
+        taxes:taxData.taxes,
+        totalTaxes:taxData.totalTaxes,
+        editadoPor:currentUser?.name||'Sistema',
+        editadoEm:new Date().toISOString()
+    };
+    
+    if(id){
+        const ex=transactions.find(x=>x.id===id);
+        if(ex&&ex.status==='Pago'&&!canEditPaid()){
+            t.valorPago=ex.valorPago;t.dataPagamento=ex.dataPagamento;
+            t.status='Pago';t.acaoConciliacao=ex.acaoConciliacao;
+        }
+        transactions[transactions.findIndex(x=>x.id===id)]=t;
+        showToast('success','Atualizado!','Movimentação editada');
+    }else{
+        transactions.push(t);
+        if(taxData.enabled&&taxData.taxes.length>0){
+            const taxMovs=gerarMovimentacoesImpostos(t,taxData.taxes);
+            taxMovs.forEach(m=>transactions.push(m));
+            showToast('success','Criado com impostos!',`${fmtBRL(vBruto)} + ${taxMovs.length} guia(s) de imposto(s) gerada(s)`);
+        }else{
+            showToast('success','Criado!',`${t.tipo} de ${fmtBRL(vBruto)}`);
+        }
+    }
+    saveStorage();closeModal();renderTable();
 }
 
 function deleteTransaction(id){
@@ -1258,13 +1174,13 @@ function editTransaction(id){
 function loadFormData(t,ro){
     document.getElementById('transId').value=t.id;document.getElementById('tipoMovimentacao').value=t.tipo;document.getElementById('fornecedor').value=t.fornecedor;document.getElementById('numeroDocumento').value=t.numeroDocumento;document.getElementById('dataEmissao').value=t.dataEmissao;document.getElementById('competencia').value=t.competencia||month();document.getElementById('dataVencimento').value=t.dataVencimento;document.getElementById('rubrica').value=t.rubrica;
     
+    // Formata valor original com máscara
     const valorOriginalInput = document.getElementById('valorOriginal');
     valorOriginalInput.value = (t.valorBruto||t.valorOriginal).toFixed(2).replace('.', ',');
     
-    const jurosMultasInput = document.getElementById('jurosMultas');
-    jurosMultasInput.value = (t.jurosMultas||0).toFixed(2).replace('.', ',');
-    
-    document.getElementById('historico').value=t.historico;
+    if(document.getElementById('jurosMultas')) {
+    document.getElementById('jurosMultas').value = t.jurosMultas || 0;
+}
     if(t.taxes&&t.taxes.length>0){document.getElementById('enableTaxes').checked=true;document.getElementById('taxFields').classList.add('active');t.taxes.forEach(tax=>{if(tax.nome==='IRRF')document.getElementById('taxIRRFValue').value=tax.valor.toFixed(2).replace('.',',');else if(tax.nome==='PCC')document.getElementById('taxPCCValue').value=tax.valor.toFixed(2).replace('.',',');else if(tax.nome==='INSS'){document.getElementById('taxINSSPercent').value=tax.percent;document.getElementById('taxINSSValue').value=tax.valor.toFixed(2).replace('.',',')}else if(tax.nome==='ISS'){document.getElementById('taxISSPercent').value=tax.percent;document.getElementById('taxISSValue').value=tax.valor.toFixed(2).replace('.',',')}});setTimeout(calculateTaxes,50)}else{document.getElementById('enableTaxes').checked=false;document.getElementById('taxFields').classList.remove('active')}
     updateTaxVisibility();
     if(t.status==='Pago'){document.querySelectorAll('input[name="initialStatus"]').forEach(r=>r.checked=r.value==='Pago');togglePaymentFields();document.getElementById('initialDataPagamento').value=t.dataPagamento||'';
@@ -1281,7 +1197,7 @@ function confirmConciliation(e){e.preventDefault();if(!hasPermission('conciliate
 function closeConciliateModal(){document.getElementById('conciliateModal').classList.remove('active')}
 function renderTable(){
     const t=document.getElementById('tableBody');t.innerHTML='';
-    const f={tipo:document.getElementById('col-filter-tipo').value,status:document.getElementById('col-filter-status').value,hist:document.getElementById('col-filter-historico').value.toLowerCase(),rub:document.getElementById('col-filter-rubrica').value.toLowerCase(),emi:document.getElementById('col-filter-emissao').value,venc:document.getElementById('col-filter-vencimento').value,comp:document.getElementById('col-filter-competencia').value,min:getCurrencyValue('col-filter-valor-min'),max:getCurrencyValue('col-filter-valor-max')||Infinity,pag:document.getElementById('col-filter-pagto').value,search:(document.getElementById('global-search')?.value||'').toLowerCase()};
+    const f={tipo:document.getElementById('col-filter-tipo').value,status:document.getElementById('col-filter-status').value,hist:document.getElementById('col-filter-historico').value.toLowerCase(),rub:document.getElementById('col-filter-rubrica').value.toLowerCase(),emi:document.getElementById('col-filter-emissao').value,venc:document.getElementById('col-filter-vencimento').value,comp:document.getElementById('col-filter-competencia').value,min:parseFloat(document.getElementById('col-filter-valor-min').value)||0,max:parseFloat(document.getElementById('col-filter-valor-max').value)||Infinity,pag:document.getElementById('col-filter-pagto').value,search:(document.getElementById('global-search')?.value||'').toLowerCase()};
     const filtered=transactions.filter(x=>{if(f.tipo&&x.tipo!==f.tipo)return false;if(f.status&&x.status!==f.status)return false;if(f.hist&&!(x.fornecedor.toLowerCase().includes(f.hist)||x.historico?.toLowerCase().includes(f.hist)||x.numeroDocumento?.toLowerCase().includes(f.hist)))return false;if(f.rub&&!x.rubrica?.toLowerCase().includes(f.rub))return false;if(f.emi&&x.dataEmissao!==f.emi)return false;if(f.venc&&x.dataVencimento!==f.venc)return false;if(f.comp&&x.competencia!==f.comp)return false;if(x.valorOriginal<f.min||x.valorOriginal>f.max)return false;if(f.pag&&x.dataPagamento!==f.pag)return false;if(f.search){const s=`${x.fornecedor} ${x.historico} ${x.rubrica} ${x.numeroDocumento}`.toLowerCase();if(!s.includes(f.search))return false}return true}).sort((a,b)=>new Date(a.dataVencimento)-new Date(b.dataVencimento));
     document.getElementById('table-count').innerText=filtered.length;
     if(!filtered.length){t.innerHTML='<tr><td colspan="11" style="text-align:center;padding:40px;color:var(--text-muted)">Nenhum registro</td></tr>';return}
@@ -1314,7 +1230,7 @@ function generateTabProvisionados(f){const br={};f.forEach(t=>{if(t.tipo==='Desp
 function generateTabDRE(f,tr,td,r){const bc={};f.forEach(t=>{if(t.tipo==='Despesa'){const c=getCategoryFromRubrica(t.rubrica);if(!bc[c])bc[c]={total:0,rubricas:{}};bc[c].total+=t.valorOriginal;if(!bc[c].rubricas[t.rubrica])bc[c].rubricas[t.rubrica]=0;bc[c].rubricas[t.rubrica]+=t.valorOriginal}});const c=document.getElementById('dreContent');let h='';h+=`<div class="dre-line"><span class="label"><strong>RECEITA BRUTA</strong></span><span class="value" style="color:var(--success)">${fmtBRL(tr)}</span></div><div class="dre-line subtotal"><span class="label"><strong>RECEITA LÍQUIDA</strong></span><span class="value" style="color:var(--success)">${fmtBRL(tr)}</span></div><div class="dre-line"><span class="label"><strong>(-) DESPESAS</strong></span><span class="value" style="color:var(--danger)">${fmtBRL(td)}</span></div>`;Object.entries(bc).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([c,d])=>{const p=td>0?(d.total/td*100).toFixed(1):0;h+=`<div class="dre-line indent"><span class="label">📁 ${c}</span><span class="value" style="color:var(--danger)">${fmtBRL(d.total)} <small>(${p}%)</small></span></div>`;Object.entries(d.rubricas).sort((a,b)=>b[1]-a[1]).slice(0,3).forEach(([r,v])=>h+=`<div class="dre-line indent-2"><span class="label">↳ ${r}</span><span class="value">${fmtBRL(v)}</span></div>`)});const e=tr-td;h+=`<div class="dre-line subtotal"><span class="label"><strong>EBITDA</strong></span><span class="value" style="color:${e>=0?'var(--success)':'var(--danger)'}">${fmtBRL(e)}</span></div><div class="dre-line total"><span class="label"><strong>RESULTADO LÍQUIDO</strong></span><span class="value" style="color:${r>=0?'#86efac':'#fca5a5'}">${fmtBRL(r)}</span></div>`;c.innerHTML=h}
 function generateTabFluxoCaixa(f){const bc={};f.forEach(t=>{if(!bc[t.competencia])bc[t.competencia]={rr:0,rp:0,dr:0,dp:0};if(t.tipo==='Receita'){if(t.status==='Pago')bc[t.competencia].rr+=(t.valorPago||t.valorOriginal);else bc[t.competencia].rp+=t.valorOriginal}else{if(t.status==='Pago')bc[t.competencia].dr+=(t.valorPago||t.valorOriginal);else bc[t.competencia].dp+=t.valorOriginal}});const sc=Object.entries(bc).sort((a,b)=>a[0].localeCompare(b[0])),t=document.getElementById('tableFluxoCaixa');let h='<thead><tr><th style="text-align:left">Descrição</th>';sc.forEach(([c])=>h+=`<th>${fmtComp(c)}</th>`);h+='<th style="background:#1e293b;color:white">TOTAL</th></tr></thead><tbody><tr class="section-header"><td colspan="'+(sc.length+2)+'">📈 ENTRADAS</td></tr>';let trr=0,trp=0;sc.forEach(([,d])=>{trr+=d.rr;trp+=d.rp});h+='<tr><td>Receitas Realizadas</td>';sc.forEach(([,d])=>h+=`<td class="fc-positive">${d.rr>0?fmtBRL(d.rr):'-'}</td>`);h+=`<td style="background:#f0fdf4;font-weight:700;color:var(--success)">${fmtBRL(trr)}</td></tr><tr><td>Receitas a Receber</td>`;sc.forEach(([,d])=>h+=`<td>${d.rp>0?fmtBRL(d.rp):'-'}</td>`);h+=`<td>${fmtBRL(trp)}</td></tr><tr class="subtotal-row"><td><strong>TOTAL ENTRADAS</strong></td>`;let te=0;sc.forEach(([,d])=>{const e=d.rr+d.rp;te+=e;h+=`<td class="fc-positive">${fmtBRL(e)}</td>`});h+=`<td style="background:#d1fae5;font-weight:700;color:var(--success)">${fmtBRL(te)}</td></tr><tr class="section-header"><td colspan="${sc.length+2}">📉 SAÍDAS</td></tr>`;let tdr=0,tdp=0;sc.forEach(([,d])=>{tdr+=d.dr;tdp+=d.dp});h+='<tr><td>Despesas Realizadas</td>';sc.forEach(([,d])=>h+=`<td class="fc-negative">${d.dr>0?'('+fmtBRL(d.dr)+')':'-'}</td>`);h+=`<td style="background:#fee2e2;font-weight:700;color:var(--danger)">(${fmtBRL(tdr)})</td></tr><tr><td>Despesas a Pagar</td>`;sc.forEach(([,d])=>h+=`<td>${d.dp>0?'('+fmtBRL(d.dp)+')':'-'}</td>`);h+=`<td>(${fmtBRL(tdp)})</td></tr><tr class="subtotal-row"><td><strong>TOTAL SAÍDAS</strong></td>`;let ts=0;sc.forEach(([,d])=>{const s=d.dr+d.dp;ts+=s;h+=`<td class="fc-negative">(${fmtBRL(s)})</td>`});h+=`<td style="background:#ffe4e6;font-weight:700;color:var(--danger)">(${fmtBRL(ts)})</td></tr><tr class="section-header"><td colspan="${sc.length+2}">⚖️ RESULTADO</td></tr><tr style="font-weight:700"><td>Saldo do Período</td>`;let sa=0;const sas=[];sc.forEach(([,d])=>{const s=(d.rr+d.rp)-(d.dr+d.dp);sa+=s;sas.push(sa);h+=`<td style="color:${s>=0?'var(--success)':'var(--danger)'}">${fmtBRL(s)}</td>`});const st=te-ts;h+=`<td style="background:${st>=0?'#d1fae5':'#fee2e2'};font-weight:700;color:${st>=0?'var(--success)':'var(--danger)'}">${fmtBRL(st)}</td></tr><tr style="font-weight:700;background:#f0f9ff"><td>Saldo Acumulado</td>`;sas.forEach(s=>h+=`<td style="color:${s>=0?'var(--success)':'var(--danger)'}">${fmtBRL(s)}</td>`);h+=`<td style="background:${sa>=0?'#d1fae5':'#fee2e2'};color:${sa>=0?'var(--success)':'var(--danger)'}">${fmtBRL(sa)}</td></tr></tbody>`;t.innerHTML=h;const labels=sc.map(([c])=>fmtComp(c));if(chartFluxoCaixaInstance)chartFluxoCaixaInstance.destroy();chartFluxoCaixaInstance=new Chart(document.getElementById('chartFluxoCaixa'),{type:'bar',data:{labels,datasets:[{label:'Entradas',data:sc.map(([,d])=>d.rr+d.rp),backgroundColor:'#10b981'},{label:'Saídas',data:sc.map(([,d])=>-(d.dr+d.dp)),backgroundColor:'#ef4444'},{label:'Saldo',data:sas,type:'line',borderColor:'#0ea5e9',backgroundColor:'rgba(14,165,233,0.1)',tension:0.3,fill:true,borderWidth:3}]},options:{responsive:true,scales:{y:{beginAtZero:false}}}})}
 function exportAutoReportsExcel(){if(!transactions.length)return;const wb=XLSX.utils.book_new(),ws=XLSX.utils.json_to_sheet(transactions.filter(t=>!t.isTax).map(t=>({"ID":t.id,"Tipo":t.tipo,"Fornecedor":t.fornecedor,"Doc":t.numeroDocumento,"Rubrica":t.rubrica,"Categoria":getCategoryFromRubrica(t.rubrica),"Emissão":t.dataEmissao,"Competência":t.competencia,"Vencimento":t.dataVencimento,"Histórico":t.historico,"Bruto":t.valorBruto||t.valorOriginal,"Impostos":t.totalTaxes||0,"Líquido":t.valorLiquido||t.valorOriginal,"Juros":t.jurosMultas,"Data Pagto":t.dataPagamento||"","Valor Pago":t.valorPago,"Status":t.status,"Provisionado":getProvisionedValue(t.rubrica)})));XLSX.utils.book_append_sheet(wb,ws,"Dados");XLSX.writeFile(wb,`Relatorios_${today()}.xlsx`);showToast('success','Exportado!')}
-function openModal(edit=false){if(currentUser.role==='consulta'){showToast('warning','Modo Consulta','Somente leitura');return}if(!hasPermission('create')&&!edit){showToast('error','Sem permissão');return}if(!edit){document.getElementById('financeForm').reset();document.getElementById('transId').value='';document.getElementById('modalTitle').innerHTML='<i class="fa-solid fa-file-invoice-dollar"></i> Nova Movimentação';document.getElementById('dataEmissao').value=today();document.getElementById('dataVencimento').value=today();document.getElementById('competencia').value=month();document.getElementById('tipoMovimentacao').value='Despesa';document.getElementById('rubrica').selectedIndex=0;document.getElementById('valorOriginal').value='';document.getElementById('numeroDocumento').value='';document.getElementById('jurosMultas').value='0,00';document.querySelectorAll('input[name="initialStatus"]').forEach(r=>r.checked=r.value==='Pendente');document.getElementById('enableTaxes').checked=false;document.getElementById('taxFields').classList.remove('active');['taxIRRFValue','taxPCCValue','taxINSSPercent','taxINSSValue','taxISSPercent','taxISSValue'].forEach(i=>document.getElementById(i).value='');document.getElementById('summaryGross').textContent=fmtBRL(0);document.getElementById('summaryTaxes').textContent=fmtBRL(0);document.getElementById('summaryNet').textContent=fmtBRL(0);togglePaymentFields();updateTaxVisibility();document.querySelectorAll('#financeForm input,#financeForm select,#financeForm textarea').forEach(el=>el.disabled=false);document.querySelectorAll('.status-option').forEach(el=>{el.style.pointerEvents='auto';el.style.opacity='1'});document.getElementById('lockedAlert').style.display='none';document.getElementById('adminEditAlert').classList.remove('active');if(isLancador()){document.getElementById('opt-paid').classList.add('disabled');document.querySelector('#opt-paid input').disabled=true}else{document.getElementById('opt-paid').classList.remove('disabled');document.querySelector('#opt-paid input').disabled=false}}document.getElementById('btnSaveTransaction').style.display='inline-flex';document.getElementById('btnSaveTransaction').disabled=false;document.getElementById('transactionModal').classList.add('active')}
+function openModal(edit=false){if(currentUser.role==='consulta'){showToast('warning','Modo Consulta','Somente leitura');return}if(!hasPermission('create')&&!edit){showToast('error','Sem permissão');return}if(!edit){document.getElementById('financeForm').reset();document.getElementById('transId').value='';document.getElementById('modalTitle').innerHTML='<i class="fa-solid fa-file-invoice-dollar"></i> Nova Movimentação';document.getElementById('dataEmissao').value=today();document.getElementById('dataVencimento').value=today();document.getElementById('competencia').value=month();document.getElementById('tipoMovimentacao').value='Despesa';document.getElementById('rubrica').selectedIndex=0;document.getElementById('valorOriginal').value='';document.getElementById('numeroDocumento').value='';document.querySelectorAll('input[name="initialStatus"]').forEach(r=>r.checked=r.value==='Pendente');document.getElementById('enableTaxes').checked=false;document.getElementById('taxFields').classList.remove('active');['taxIRRFValue','taxPCCValue','taxINSSPercent','taxINSSValue','taxISSPercent','taxISSValue'].forEach(i=>document.getElementById(i).value='');document.getElementById('summaryGross').textContent=fmtBRL(0);document.getElementById('summaryTaxes').textContent=fmtBRL(0);document.getElementById('summaryNet').textContent=fmtBRL(0);togglePaymentFields();updateTaxVisibility();document.querySelectorAll('#financeForm input,#financeForm select,#financeForm textarea').forEach(el=>el.disabled=false);document.querySelectorAll('.status-option').forEach(el=>{el.style.pointerEvents='auto';el.style.opacity='1'});document.getElementById('lockedAlert').style.display='none';document.getElementById('adminEditAlert').classList.remove('active');if(isLancador()){document.getElementById('opt-paid').classList.add('disabled');document.querySelector('#opt-paid input').disabled=true}else{document.getElementById('opt-paid').classList.remove('disabled');document.querySelector('#opt-paid input').disabled=false}}document.getElementById('btnSaveTransaction').style.display='inline-flex';document.getElementById('btnSaveTransaction').disabled=false;document.getElementById('transactionModal').classList.add('active')}
 function closeModal(){document.getElementById('transactionModal').classList.remove('active');document.querySelectorAll('#financeForm input,#financeForm select,#financeForm textarea').forEach(el=>el.disabled=false)}
 function exportToExcel(){if(!transactions.length)return;const ws=XLSX.utils.json_to_sheet(transactions.map(t=>({"ID":t.id,"Tipo":t.tipo,"Fornecedor":t.fornecedor,"Doc":t.numeroDocumento,"Rubrica":t.rubrica,"Categoria":getCategoryFromRubrica(t.rubrica),"Provisionado":getProvisionedValue(t.rubrica),"Bruto":t.valorBruto||t.valorOriginal,"Impostos":t.totalTaxes||0,"Líquido":t.valorLiquido||t.valorOriginal,"Emissão":t.dataEmissao,"Competência":t.competencia,"Vencimento":t.dataVencimento,"Histórico":t.historico,"Juros":t.jurosMultas,"Data Pagto":t.dataPagamento||"","Valor Pago":t.valorPago,"Status":t.status,"É Imposto":t.isTax?"Sim":"Não"})));const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Dados");XLSX.writeFile(wb,`Financeiro_${today()}.xlsx`);showToast('success','Exportado!')}
 function importFromExcel(input){if(currentUser.role==='consulta'||!hasPermission('import'))return;const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{try{const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array'}),j=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);if(j.length&&confirm(`Importar ${j.length}?`)){transactions=j.map(r=>({id:r.ID||uuid(),tipo:r.Tipo||"Despesa",fornecedor:r.Fornecedor||"?",numeroDocumento:r.Doc||"",rubrica:r.Rubrica||"",dataEmissao:r.Emissão||today(),competencia:r.Competência||month(),dataVencimento:r.Vencimento||today(),historico:r.Histórico||"",valorOriginal:parseFloat(r["Bruto"]||r.Valor)||0,valorBruto:parseFloat(r["Bruto"]||r.Valor)||0,valorLiquido:parseFloat(r["Líquido"]||r["Bruto"]||r.Valor)||0,jurosMultas:parseFloat(r.Juros)||0,totalTaxes:parseFloat(r.Impostos)||0,taxes:[],dataPagamento:r["Data Pagto"]||null,valorPago:parseFloat(r["Valor Pago"])||0,status:r.Status||"Pendente",acaoConciliacao:r.Obs||"",editadoPor:currentUser?.name,editadoEm:new Date().toISOString(),isTax:(r["É Imposto"]==="Sim")||false}));saveStorage();renderTable();showToast('success','Importado!',`${j.length} registros`)}}catch(e){showToast('error','Erro','Falha')}};r.readAsArrayBuffer(f);input.value=''}

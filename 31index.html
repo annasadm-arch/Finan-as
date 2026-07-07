@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IRMANDADE BOITUVA - UPA REGISTRO | Sistema Financeiro</title>
+<title>IRMANDADE BOITUVA - PRO CRIANÇA ARUJÁ | Sistema Financeiro</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -365,7 +365,7 @@ aside{width:100%;padding:15px;flex-direction:row}.brand{margin-bottom:0}nav{disp
 <div class="login-header">
 <div class="logo-icon"><i class="fa-solid fa-chart-pie"></i></div>
 <h1>IRMANDADE BOITUVA</h1>
-<p>UPA REGISTRO - Sistema Financeiro</p>
+<p>PRO CRIANÇA ARUJÁ - Sistema Financeiro</p>
 </div>
 <form onsubmit="handleLogin(event)">
 <div class="login-error" id="loginError"><i class="fa-solid fa-circle-exclamation"></i><span id="loginErrorMsg"></span></div>
@@ -384,7 +384,7 @@ aside{width:100%;padding:15px;flex-direction:row}.brand{margin-bottom:0}nav{disp
 </div>
 </div>
 <aside id="appSidebar" style="display:none">
-<div class="brand"><i class="fa-solid fa-chart-pie"></i> <div>IRMANDADE BOITUVA<small>UPA REGISTRO</small></div></div>
+<div class="brand"><i class="fa-solid fa-chart-pie"></i> <div>IRMANDADE BOITUVA<small>PRO CRIANÇA ARUJÁ</small></div></div>
 <nav>
 <button class="active" onclick="switchView('dashboard',event)"><i class="fa-solid fa-house"></i> Dashboard</button>
 <button onclick="switchView('rubricas',event)"><i class="fa-solid fa-folder-tree"></i> Plano de Contas</button>
@@ -528,6 +528,7 @@ aside{width:100%;padding:15px;flex-direction:row}.brand{margin-bottom:0}nav{disp
 <form id="conciliateForm" onsubmit="confirmConciliation(event)"><input type="hidden" id="conciliateId"><p id="conciliateDesc" style="margin-bottom:20px;background:#f8fafc;padding:12px;border-radius:6px"></p>
 <div class="form-grid"><div class="form-group"><label>Valor Original (R$)</label><input type="text" id="concValorOriginal" readonly style="background:#f1f5f9"></div><div class="form-group"><label>Juros/Multas (R$)</label><input type="text" id="concJurosMultas" oninput="formatCurrency(this);updateConciliateTotal()" placeholder="0,00" value="0,00"></div><div class="form-group full"><label>Valor Total a Pagar (R$)</label><input type="text" id="concValorPago" readonly style="background:#d1fae5;font-weight:700;font-size:1.1rem;color:#059669"></div><div class="form-group full"><label>Data Pagamento <span class="required">*</span></label><input type="date" id="concDataPagamento" required></div><div class="form-group full"><label>Observação</label><input type="text" id="concAcao" placeholder="Ex: PIX, Boleto..."></div></div>
 <div style="margin-top:25px;display:flex;justify-content:flex-end;gap:10px"><button type="button" class="btn btn-outline" onclick="closeConciliateModal()">Cancelar</button><button type="submit" class="btn btn-success" id="btnConfirmConciliate"><i class="fa-solid fa-check"></i> Confirmar</button></div></form></div></div>
+<!-- MODAL: BAIXAR / PAGAR TÍTULO -->
 <div class="modal-overlay" id="statusChangeModal"><div class="modal" style="max-width:580px"><div class="modal-header"><h2 id="statusChangeTitle"><i class="fa-solid fa-money-check-dollar" style="color:var(--warning)"></i> Baixar / Pagar Título</h2><button onclick="closeStatusChangeModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-muted)">&times;</button></div>
 <form id="statusChangeForm" onsubmit="confirmStatusChange(event)"><input type="hidden" id="statusChangeId">
 <div class="status-change-info" id="statusChangeInfo"></div>
@@ -559,46 +560,7 @@ function isExcludedRubrica(rubricaNome){
 
 // ===== RUBRICAS =====
 const RUBRICAS_KEY='fin_pro_rubricas_v2';
-const DEFAULT_RUBRICAS=[
-    {id:'cat-1',codigo:'1',nome:'Pessoal',tipo:'categoria',provisionado:515906.66,subRubricas:[
-        {id:'sub-1-1',codigo:'1.1',nome:'Remuneração Pessoal Direto',provisionado:367840.22},
-        {id:'sub-1-2',codigo:'1.2',nome:'Benefícios',provisionado:45583.22},
-        {id:'sub-1-3',codigo:'1.4',nome:'Encargos Contribuições',provisionado:33105.62},
-        {id:'sub-1-4',codigo:'1.5',nome:'Provisões (Rescisões/13º/Férias)',provisionado:69377.61}
-    ]},
-    {id:'cat-2',codigo:'2',nome:'Materiais de Consumo/ Serviços',tipo:'categoria',provisionado:109806.00,subRubricas:[
-        {id:'sub-2-1',codigo:'2.1',nome:'Material de escritório',provisionado:4500.00},
-        {id:'sub-2-2',codigo:'2.2',nome:'Material de limpeza e higiene',provisionado:8000.00},
-        {id:'sub-2-3',codigo:'2.3',nome:"EPI's e rouparia hospitalar",provisionado:1800.00},
-        {id:'sub-2-4',codigo:'2.4',nome:'Material e gêneros alimentícios',provisionado:4500.00},
-        {id:'sub-2-5',codigo:'2.5',nome:'Medicamentos diversos',provisionado:21500.00},
-        {id:'sub-2-6',codigo:'2.6',nome:'Material médico hospitalar',provisionado:20000.00},
-        {id:'sub-2-7',codigo:'2.7',nome:'Gás Cozinha',provisionado:300.00},
-        {id:'sub-2-8',codigo:'2.8',nome:'Internet e telefonia',provisionado:1000.00},
-        {id:'sub-2-9',codigo:'2.9',nome:'Água e energia',provisionado:27000.00},
-        {id:'sub-2-10',codigo:'2.10',nome:'Gás medicinal',provisionado:8000.00},
-        {id:'sub-2-11',codigo:'2.11',nome:'Coleta de resíduos hospitalares',provisionado:8206.00},
-        {id:'sub-2-12',codigo:'2.12',nome:'Uniforme',provisionado:5000.00}
-    ]},
-    {id:'cat-3',codigo:'3',nome:'Serviços Terceirizados',tipo:'categoria',provisionado:615396.00,subRubricas:[
-        {id:'sub-3-1',codigo:'3.1',nome:'Contabilidade',provisionado:15500.00},
-        {id:'sub-3-2',codigo:'3.2',nome:'Manutenção predial',provisionado:7500.00},
-        {id:'sub-3-3',codigo:'3.3',nome:'Manutenção de equipamentos hospitalares',provisionado:8300.00},
-        {id:'sub-3-4',codigo:'3.4',nome:'Dedetização e desratização',provisionado:1000.00},
-        {id:'sub-3-5',codigo:'3.5',nome:'Limpeza caixa dágua',provisionado:600.00},
-        {id:'sub-3-6',codigo:'3.6',nome:'Serviços de lavanderia',provisionado:8000.00},
-        {id:'sub-3-7',codigo:'3.7',nome:'Serviços de alimentação para pacientes e acompanhantes',provisionado:82000.00},
-        {id:'sub-3-8',codigo:'3.8',nome:'Serviços médicos',provisionado:335496.00},
-        {id:'sub-3-9',codigo:'3.9',nome:'Coleta de resíduos hospitalares*',provisionado:0},
-        {id:'sub-3-10',codigo:'3.10',nome:'Exames laboratoriais',provisionado:60000.00},
-        {id:'sub-3-11',codigo:'3.11',nome:'Serviços de RX',provisionado:8000.00},
-        {id:'sub-3-12',codigo:'3.12',nome:'Alimentação *',provisionado:31000.00},
-        {id:'sub-3-13',codigo:'3.13',nome:'Sistema informatizado',provisionado:30000.00},
-        {id:'sub-3-14',codigo:'3.14',nome:'Locação de equipamentos',provisionado:18000.00},
-        {id:'sub-3-15',codigo:'3.15',nome:'Educação Permanente',provisionado:10000.00}
-    ]}
-];
-
+const DEFAULT_RUBRICAS=[{id:'cat-1',codigo:'1',nome:'Pessoal',tipo:'categoria',provisionado:700727.04,subRubricas:[{id:'sub-1-1',codigo:'1.1',nome:'Ordenados',provisionado:372713.15},{id:'sub-1-2',codigo:'1.2',nome:'Encargos Sociais',provisionado:160266.65},{id:'sub-1-4',codigo:'1.4',nome:'Benefícios',provisionado:97450.55},{id:'sub-1-5',codigo:'1.5',nome:'Provisões',provisionado:70296.68}]},{id:'cat-2',codigo:'2',nome:'Material / Medicamentos',tipo:'categoria',provisionado:65000,subRubricas:[{id:'sub-2-1',codigo:'2.1',nome:'Materiais Médico Hospitalar',provisionado:30000},{id:'sub-2-2',codigo:'2.2',nome:'Medicamentos',provisionado:35000}]},{id:'cat-3',codigo:'3',nome:'Materiais Diversos',tipo:'categoria',provisionado:25240,subRubricas:[{id:'sub-3-1',codigo:'3.1',nome:'Material de Higienização',provisionado:4500},{id:'sub-3-3',codigo:'3.3',nome:'Material Expediente',provisionado:3200},{id:'sub-3-4',codigo:'3.4',nome:'Combustível',provisionado:6700},{id:'sub-3-5',codigo:'3.5',nome:'GLP',provisionado:120},{id:'sub-3-6',codigo:'3.6',nome:'Material de Manutenção',provisionado:3800},{id:'sub-3-8',codigo:'3.8',nome:'Outras Despesas',provisionado:1200},{id:'sub-3-9',codigo:'3.9',nome:'Lavanderia',provisionado:3400},{id:'sub-3-10',codigo:'3.10',nome:'Esterilização',provisionado:120},{id:'sub-3-11',codigo:'3.11',nome:'Dedetização',provisionado:600},{id:'sub-3-12',codigo:'3.12',nome:'Gases Medicinais',provisionado:1600}]},{id:'cat-4',codigo:'4',nome:'Seguros/ Impostos/ Taxas',tipo:'categoria',provisionado:4080,subRubricas:[{id:'sub-4-1',codigo:'4.1',nome:'Seguros',provisionado:2980},{id:'sub-4-2',codigo:'4.2',nome:'Impostos/Taxas',provisionado:1100}]},{id:'cat-5',codigo:'5',nome:'Gerais',tipo:'categoria',provisionado:29020,subRubricas:[{id:'sub-5-1',codigo:'5.1',nome:'Telefonia',provisionado:320},{id:'sub-5-2',codigo:'5.2',nome:'Água',provisionado:4600},{id:'sub-5-3',codigo:'5.3',nome:'Energia Elétrica',provisionado:8300},{id:'sub-5-4',codigo:'5.4',nome:'Outras Despesas Gerais',provisionado:3800},{id:'sub-5-5',codigo:'5.5',nome:'Custos Corporativos',provisionado:12000}]},{id:'cat-6',codigo:'6',nome:'Serviços Terceiros',tipo:'categoria',provisionado:626378.88,subRubricas:[{id:'sub-6-1',codigo:'6.1',nome:'Assistenciais',provisionado:361894.40},{id:'sub-6-1-1',codigo:'6.1.1',nome:'PJ Equipe Médica',provisionado:361894.40},{id:'sub-6-2',codigo:'6.2',nome:'Administrativos',provisionado:264484.48},{id:'sub-6-2-1',codigo:'6.2.1',nome:'PJ Assessorias',provisionado:6500},{id:'sub-6-2-2',codigo:'6.2.2',nome:'Operacionais',provisionado:149084.48},{id:'sub-6-2-3',codigo:'6.2.3',nome:'SADT',provisionado:85000},{id:'sub-6-2-4',codigo:'6.2.4',nome:'Alimentação',provisionado:8300},{id:'sub-6-2-5',codigo:'6.2.5',nome:'Engenharia Clinica',provisionado:15600}]}];
 function loadRubricas(){const s=localStorage.getItem(RUBRICAS_KEY);if(s)return JSON.parse(s);localStorage.setItem(RUBRICAS_KEY,JSON.stringify(DEFAULT_RUBRICAS));return JSON.parse(JSON.stringify(DEFAULT_RUBRICAS))}
 function saveRubricasToStorage(r){localStorage.setItem(RUBRICAS_KEY,JSON.stringify(r))}
 let RUBRICAS=loadRubricas();

@@ -105,7 +105,6 @@ tr.status-paid-row{background:#f0fdf4}tr.tax-row{background:#fef2f2}tr.tax-row:h
 .icon-btn.delete:hover:not(:disabled){background:var(--danger)}
 .icon-btn.conciliar:hover:not(:disabled){background:var(--success)}
 .icon-btn.status-change:hover:not(:disabled){background:var(--warning);color:#fff}
-.icon-btn.undone:hover:not(:disabled){background:var(--danger);color:#fff}
 .icon-btn:disabled{opacity:.3;cursor:not-allowed}
 .icon-btn.locked{background:#fef3c7;color:var(--warning);cursor:help}
 .icon-btn.admin-edit{background:#fef3c7;color:#92400e}
@@ -528,7 +527,6 @@ aside{width:100%;padding:15px;flex-direction:row}.brand{margin-bottom:0}nav{disp
 <form id="conciliateForm" onsubmit="confirmConciliation(event)"><input type="hidden" id="conciliateId"><p id="conciliateDesc" style="margin-bottom:20px;background:#f8fafc;padding:12px;border-radius:6px"></p>
 <div class="form-grid"><div class="form-group"><label>Valor Original (R$)</label><input type="text" id="concValorOriginal" readonly style="background:#f1f5f9"></div><div class="form-group"><label>Juros/Multas (R$)</label><input type="text" id="concJurosMultas" oninput="formatCurrency(this);updateConciliateTotal()" placeholder="0,00" value="0,00"></div><div class="form-group full"><label>Valor Total a Pagar (R$)</label><input type="text" id="concValorPago" readonly style="background:#d1fae5;font-weight:700;font-size:1.1rem;color:#059669"></div><div class="form-group full"><label>Data Pagamento <span class="required">*</span></label><input type="date" id="concDataPagamento" required></div><div class="form-group full"><label>Observação</label><input type="text" id="concAcao" placeholder="Ex: PIX, Boleto..."></div></div>
 <div style="margin-top:25px;display:flex;justify-content:flex-end;gap:10px"><button type="button" class="btn btn-outline" onclick="closeConciliateModal()">Cancelar</button><button type="submit" class="btn btn-success" id="btnConfirmConciliate"><i class="fa-solid fa-check"></i> Confirmar</button></div></form></div></div>
-<!-- MODAL: BAIXAR / PAGAR TÍTULO -->
 <div class="modal-overlay" id="statusChangeModal"><div class="modal" style="max-width:580px"><div class="modal-header"><h2 id="statusChangeTitle"><i class="fa-solid fa-money-check-dollar" style="color:var(--warning)"></i> Baixar / Pagar Título</h2><button onclick="closeStatusChangeModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-muted)">&times;</button></div>
 <form id="statusChangeForm" onsubmit="confirmStatusChange(event)"><input type="hidden" id="statusChangeId">
 <div class="status-change-info" id="statusChangeInfo"></div>
@@ -551,7 +549,9 @@ function formatCurrency(input){try{let v=input.value.replace(/\D/g,'');if(!v){in
 function getCurrencyValue(id){try{const i=document.getElementById(id);if(!i||!i.value)return 0;return parseFloat(i.value.replace(/\./g,'').replace(',','.'))||0}catch(e){return 0}}
 
 // ===== RUBRICAS EXCLUÍDAS DOS RELATÓRIOS =====
+// Palavras-chave que identificam rubricas que NÃO devem aparecer nos relatórios Matriz, Prov vs Real e Rubricas
 const EXCLUDED_RUBRICAS_KEYWORDS = ['aplicacao','aplicação','resgate','tarifa','repasse'];
+
 function isExcludedRubrica(rubricaNome){
     if(!rubricaNome) return false;
     const nomeLower = rubricaNome.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -706,7 +706,7 @@ function openConciliateModal(id){if(currentUser.role==='consulta'||!hasPermissio
 function confirmConciliation(e){e.preventDefault();if(!hasPermission('conciliate'))return;const id=document.getElementById('conciliateId').value,i=transactions.findIndex(t=>t.id===id);if(i!==-1){transactions[i].status='Pago';transactions[i].valorPago=getCurrencyValue('concValorPago');transactions[i].jurosMultas=getCurrencyValue('concJurosMultas');transactions[i].dataPagamento=document.getElementById('concDataPagamento').value;transactions[i].acaoConciliacao=document.getElementById('concAcao').value;transactions[i].editadoPor=currentUser?.name||'Sistema';transactions[i].editadoEm=new Date().toISOString();saveStorage();closeConciliateModal();renderTable();showToast('success','Conciliado!')}}
 function closeConciliateModal(){document.getElementById('conciliateModal').classList.remove('active')}
 
-// ===== NOVAS FUNÇÕES: BAIXAR, DESCONCILIAR E UNIFICADO =====
+// ===== ALTERAR STATUS DO TÍTULO =====
 function updateStatusChangeTotal(){
 const id=document.getElementById('statusChangeId').value;
 const t=transactions.find(x=>x.id===id);
@@ -772,90 +772,18 @@ renderTable();
 showToast('success','Título Baixado!',`${t.fornecedor} - ${fmtBRL(totalPago)}`);
 }
 
-// ===== NOVA FUNÇÃO: DESCONCILIAR TÍTULO =====
-function desconciliarTransaction(id){
-    if(currentUser.role==='consulta'){showToast('warning','Modo Consulta','Somente leitura');return}
-    if(!hasPermission('conciliate')){showToast('error','Sem permissão','Você não tem permissão para desconciliar');return}
-    const t=transactions.find(x=>x.id===id);
-    if(!t)return;
-    if(t.status!=='Pago'){showToast('warning','Não baixado','Este título não está pago/baixado');return}
-    
-    const valorPagoFmt = fmtBRL(t.valorPago || 0);
-    const dataPagFmt = fmtDate(t.dataPagamento);
-    
-    requestAdminConfirmation(
-        'Desconciliar Título?',
-        `Deseja reverter a baixa do título "${t.fornecedor}" (${t.numeroDocumento})?`,
-        [
-            `O status voltará para Pendente/Vencido`,
-            `Valor pago de ${valorPagoFmt} será desconsiderado`,
-            `Data de pagamento (${dataPagFmt}) será removida`,
-            `A ação será registrada no histórico`
-        ],
-        ()=>{
-            const i=transactions.findIndex(x=>x.id===id);
-            if(i===-1)return;
-            // Determina novo status baseado na data de vencimento
-            const novoStatus = t.dataVencimento < today() ? 'Vencido' : 'Pendente';
-            transactions[i].status = novoStatus;
-            transactions[i].valorPago = 0;
-            transactions[i].dataPagamento = null;
-            transactions[i].acaoConciliacao = '';
-            // Mantém jurosMultas original do lançamento (não os da baixa)
-            transactions[i].editadoPor = currentUser?.name || 'Sistema';
-            transactions[i].editadoEm = new Date().toISOString();
-            saveStorage();
-            renderTable();
-            showToast('warning','Desconciliado!',`${t.fornecedor} voltou para ${novoStatus}`);
-        }
-    );
-}
-
-// ===== FUNÇÃO UNIFICADA: BAIXAR OU DESCONCILIAR =====
-function toggleStatusChangeModal(id){
-    const t=transactions.find(x=>x.id===id);
-    if(!t)return;
-    if(t.status==='Pago'){
-        // Se já está pago, desconcilia
-        desconciliarTransaction(id);
-    }else{
-        // Se está pendente/vencido, abre modal de baixa
-        openStatusChangeModal(id);
-    }
-}
-
-// ===== TABELA PRINCIPAL COM BOTÕES DE CONCILIAR/DESCONCILIAR =====
+// ===== TABELA PRINCIPAL COM BOTÃO DE CONCILIAÇÃO E ALTERAR STATUS =====
 function renderTable(){const t=document.getElementById('tableBody');t.innerHTML='';const f={tipo:document.getElementById('col-filter-tipo').value,status:document.getElementById('col-filter-status').value,hist:document.getElementById('col-filter-historico').value.toLowerCase(),doc:(document.getElementById('col-filter-doc')?.value||'').toLowerCase(),rub:document.getElementById('col-filter-rubrica').value.toLowerCase(),emi:document.getElementById('col-filter-emissao').value,venc:document.getElementById('col-filter-vencimento').value,comp:document.getElementById('col-filter-competencia').value,min:getCurrencyValue('col-filter-valor-min'),max:getCurrencyValue('col-filter-valor-max')||Infinity,pag:document.getElementById('col-filter-pagto').value,search:(document.getElementById('global-search')?.value||'').toLowerCase()};const filtered=transactions.filter(x=>{if(f.tipo&&x.tipo!==f.tipo)return false;if(f.status&&x.status!==f.status)return false;if(f.hist&&!(x.fornecedor.toLowerCase().includes(f.hist)||x.historico?.toLowerCase().includes(f.hist)))return false;if(f.doc&&!(x.numeroDocumento?.toLowerCase().includes(f.doc)))return false;if(f.rub&&!x.rubrica?.toLowerCase().includes(f.rub))return false;if(f.emi&&x.dataEmissao!==f.emi)return false;if(f.venc&&x.dataVencimento!==f.venc)return false;if(f.comp&&x.competencia!==f.comp)return false;const valLiq=x.valorLiquido!==undefined?x.valorLiquido:x.valorOriginal;if(valLiq<f.min||valLiq>f.max)return false;if(f.pag&&x.dataPagamento!==f.pag)return false;if(f.search){const s=`${x.fornecedor} ${x.historico} ${x.rubrica} ${x.numeroDocumento}`.toLowerCase();if(!s.includes(f.search))return false}return true}).sort((a,b)=>new Date(a.dataVencimento)-new Date(b.dataVencimento));document.getElementById('table-count').innerText=filtered.length;if(!filtered.length){t.innerHTML='<tr><td colspan="12" style="text-align:center;padding:40px;color:var(--text-muted)">Nenhum registro</td></tr>';return}const isC=currentUser.role==='consulta';filtered.forEach(x=>{const tr=document.createElement('tr');const ip=x.status==='Pago',it=x.isTax===true;if(ip)tr.classList.add('status-paid-row');if(it)tr.classList.add('tax-row');let sc='status-pendente',sl=x.status;if(ip){sc='status-pago';sl=x.tipo==='Receita'?'Recebido':'Pago'}else if(x.status==='Vencido')sc='status-vencido';const tc=it?'type-tax':(x.tipo==='Receita'?'type-receita':'type-despesa');const ve=ip?x.valorPago:0;const cv=x.tipo==='Receita'?'var(--success)':'var(--text-main)';let act='',li='';let tb=x.tipo;if(it)tb='🧾 '+x.tipo;
 const valorLiq=x.valorLiquido!==undefined?x.valorLiquido:x.valorOriginal;
 const isExcl=isExcludedRubrica(x.rubrica);
-
-if(isC){
-    // Modo consulta: apenas visualizar
-    li=ip?'<i class="fa-solid fa-lock lock-indicator"></i>':'';
-    act='<button class="icon-btn locked" disabled><i class="fa-solid fa-eye"></i></button>';
-}else if(ip){
-    // TÍTULO PAGO: Botão de Desconciliar + Editar/Excluir (admin) ou Visualizar
-    li='<i class="fa-solid fa-lock-open admin-indicator"></i>';
-    if(hasPermission('conciliate')){
-        act+=`<button class="icon-btn undone" onclick="toggleStatusChangeModal('${x.id}')" title="Desconciliar / Reverter Baixa"><i class="fa-solid fa-rotate-left"></i></button>`;
-    }
-    if(canEditPaid()){
-        act+=`<button class="icon-btn admin-edit" onclick="editTransaction('${x.id}')" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button>`;
-        act+=`<button class="icon-btn admin-delete" onclick="deleteTransaction('${x.id}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>`;
-    }else{
-        act+=`<button class="icon-btn" onclick="editTransaction('${x.id}')" title="Visualizar"><i class="fa-solid fa-eye"></i></button>`;
-    }
-}else{
-    // TÍTULO PENDENTE/VENCIDO: Botões de Conciliar + Baixar + Editar + Excluir
-    if(hasPermission('conciliate')){
-        act+=`<button class="icon-btn conciliar" onclick="openConciliateModal('${x.id}')" title="Conciliar (Baixa Rápida)"><i class="fa-solid fa-check"></i></button>`;
-        act+=`<button class="icon-btn status-change" onclick="toggleStatusChangeModal('${x.id}')" title="Baixar / Pagar Título (com juros)"><i class="fa-solid fa-money-check-dollar"></i></button>`;
-    }
-    if(hasPermission('edit'))act+=`<button class="icon-btn" onclick="editTransaction('${x.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>`;
-    if(hasPermission('delete'))act+=`<button class="icon-btn delete" onclick="deleteTransaction('${x.id}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>`;
-    if(!act)act='<button class="icon-btn locked" disabled><i class="fa-solid fa-eye"></i></button>';
-}
-
+if(isC){li=ip?'<i class="fa-solid fa-lock lock-indicator"></i>':'';act='<button class="icon-btn locked" disabled><i class="fa-solid fa-eye"></i></button>'}else if(ip){if(canEditPaid()){li='<i class="fa-solid fa-lock-open admin-indicator"></i>';act=`<button class="icon-btn admin-edit" onclick="editTransaction('${x.id}')" title="Editar"><i class="fa-solid fa-pen-to-square"></i></button><button class="icon-btn admin-delete" onclick="deleteTransaction('${x.id}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>`}else{li='<i class="fa-solid fa-lock lock-indicator"></i>';act=`<button class="icon-btn" onclick="editTransaction('${x.id}')" title="Visualizar"><i class="fa-solid fa-eye"></i></button>`}}else{
+// BOTÃO DE CONCILIAÇÃO (check) - disponível para todos os não pagos
+if(hasPermission('conciliate'))act+=`<button class="icon-btn conciliar" onclick="openConciliateModal('${x.id}')" title="Conciliar/Baixar"><i class="fa-solid fa-check"></i></button>`;
+// BOTÃO DE ALTERAR STATUS (baixar com juros)
+if(hasPermission('conciliate'))act+=`<button class="icon-btn status-change" onclick="openStatusChangeModal('${x.id}')" title="Baixar/Pagar Título"><i class="fa-solid fa-money-check-dollar"></i></button>`;
+if(hasPermission('edit'))act+=`<button class="icon-btn" onclick="editTransaction('${x.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>`;
+if(hasPermission('delete'))act+=`<button class="icon-btn delete" onclick="deleteTransaction('${x.id}')" title="Excluir"><i class="fa-solid fa-trash"></i></button>`;
+if(!act)act='<button class="icon-btn locked" disabled><i class="fa-solid fa-eye"></i></button>'}
 let hh=`<strong>${x.fornecedor}</strong><span>${x.historico||'-'}</span>`;
 if(x.totalTaxes>0&&!it)hh=`<strong>${x.fornecedor}</strong><span>${x.historico||'-'}<br><small style="color:var(--tax-color)">💰 Bruto: ${fmtBRL(x.valorOriginal)} | Imp: ${fmtBRL(x.totalTaxes)} | Lq: ${fmtBRL(valorLiq)}</small></span>`;
 if(it)hh=`<strong>${x.fornecedor}</strong><span>${x.historico||'-'}<br><small style="color:var(--tax-color)">🧾 Guia de Imposto</small></span>`;
@@ -867,6 +795,7 @@ function switchAutoTab(tab,btn){document.querySelectorAll('.auto-tab-btn').forEa
 function generateReports(){const p=document.getElementById('report-period').value,pd=transactions.filter(t=>t.competencia===p&&!t.isTax&&!isExcludedRubrica(t.rubrica)),dbr={};pd.filter(t=>t.tipo==='Despesa').forEach(t=>dbr[t.rubrica]=(dbr[t.rubrica]||0)+t.valorOriginal);if(chartRubricaInstance)chartRubricaInstance.destroy();chartRubricaInstance=new Chart(document.getElementById('chartRubrica'),{type:'doughnut',data:{labels:Object.keys(dbr),datasets:[{data:Object.values(dbr),backgroundColor:['#ef4444','#f59e0b','#0ea5e9','#10b981','#8b5cf6','#ec4899','#6366f1','#14b8a6','#f97316','#64748b']}]},options:{responsive:true,plugins:{legend:{position:'right'}}}});const ms=[];const d=new Date(p+'-01');for(let i=5;i>=0;i--){const md=new Date(d.getFullYear(),d.getMonth()-i,1);ms.push(`${String(md.getMonth()+1).padStart(2,'0')}/${md.getFullYear()}`)}const rec=ms.map(()=>0),desp=ms.map(()=>0);transactions.filter(t=>!t.isTax&&!isExcludedRubrica(t.rubrica)).forEach(t=>{if(!t.competencia)return;const[y,m]=t.competencia.split('-');const l=`${m}/${y}`,i=ms.indexOf(l);if(i!==-1){if(t.tipo==='Receita')rec[i]+=t.valorOriginal;else desp[i]+=t.valorOriginal}});if(chartFluxoInstance)chartFluxoInstance.destroy();chartFluxoInstance=new Chart(document.getElementById('chartFluxo'),{type:'bar',data:{labels:ms,datasets:[{label:'Receitas',data:rec,backgroundColor:'#10b981'},{label:'Despesas',data:desp,backgroundColor:'#ef4444'}]},options:{responsive:true,scales:{y:{beginAtZero:true}}}});const sum={};pd.forEach(t=>{if(!sum[t.rubrica])sum[t.rubrica]={desp:0,rec:0};if(t.tipo==='Despesa')sum[t.rubrica].desp+=t.valorOriginal;else sum[t.rubrica].rec+=t.valorOriginal});const tp=Object.values(sum).reduce((a,b)=>a+b.desp+b.rec,0)||1;const tb=document.getElementById('reportSummaryBody');tb.innerHTML='';Object.entries(sum).sort((a,b)=>(b[1].desp+b[1].rec)-(a[1].desp+a[1].rec)).forEach(([r,v])=>{const p=((v.desp+v.rec)/tp*100).toFixed(1),s=v.rec-v.desp;tb.innerHTML+=`<tr><td style="font-weight:600">${r}</td><td style="color:var(--danger)">${fmtBRL(v.desp)}</td><td style="color:var(--success)">${fmtBRL(v.rec)}</td><td style="color:${s>=0?'var(--success)':'var(--danger)'};font-weight:700">${fmtBRL(s)}</td><td>${p}%</td></tr>`})}
 function exportReportExcel(){const p=document.getElementById('report-period').value,r=[];document.querySelectorAll('#reportSummaryBody tr').forEach(tr=>{const c=[];tr.querySelectorAll('td').forEach(td=>c.push(td.innerText));if(c.length)r.push({Rubrica:c[0],Despesas:c[1],Receitas:c[2],Saldo:c[3],Percentual:c[4]})});if(!r.length)return;const ws=XLSX.utils.json_to_sheet(r),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Relatório");XLSX.writeFile(wb,`Relatorio_${p}.xlsx`);showToast('success','Exportado!')}
 
+// ===== GERA 12 MESES A PARTIR DE UM MÊS BASE =====
 function generate12Months(baseMonth){
     const months=[];
     const[y,m]=baseMonth.split('-').map(Number);
@@ -880,9 +809,14 @@ function generate12Months(baseMonth){
     return months;
 }
 
+// ===== RELATÓRIOS AUTOMÁTICOS =====
 function generateAutoReports(){const sp=document.getElementById('auto-report-start').value,ep=document.getElementById('auto-report-end').value;
+// Filtro geral: inclui todas as movimentações (exceto impostos) no período
 const f=transactions.filter(t=>{if(t.isTax)return false;if(!t.competencia)return false;if(sp&&t.competencia<sp)return false;if(ep&&t.competencia>ep)return false;return true});
+
+// Para relatórios específicos (Matriz, Prov vs Real, Rubricas): exclui rubricas APLICAÇÃO/RESGATE/TARIFA/REPASSE
 const fReports=f.filter(t=>!isExcludedRubrica(t.rubrica));
+
 let tr=0,td=0;
 fReports.forEach(t=>{if(t.tipo==='Receita')tr+=t.valorOriginal;else td+=t.valorOriginal});
 const r=tr-td;
@@ -892,6 +826,27 @@ const re=document.getElementById('auto-kpi-resultado');
 re.innerText=fmtBRL(r);
 re.className=`amount ${r>=0?'positive':'negative'}`;
 
+// Provisionado: soma das rubricas não excluídas
+const CATEGORIES_MAIN=RUBRICAS.filter(c=>!isExcludedRubrica(`${c.codigo} ${c.nome}`));
+let totalProvisionado=0;
+CATEGORIES_MAIN.forEach(c=>{
+    totalProvisionado+=c.provisionado||0;
+    if(c.subRubricas){
+        c.subRubricas.forEach(s=>{
+            if(isExcludedRubrica(`${s.codigo} ${s.nome}`)){
+                totalProvisionado-=s.provisionado||0;
+            }
+        });
+    }
+});
+// Se a categoria inteira é excluída, não conta
+CATEGORIES_MAIN.forEach(c=>{
+    if(isExcludedRubrica(`${c.codigo} ${c.nome}`)){
+        totalProvisionado-=c.provisionado||0;
+    }
+});
+
+// Recalcula provisionado corretamente
 totalProvisionado=0;
 RUBRICAS.forEach(c=>{
     if(isExcludedRubrica(`${c.codigo} ${c.nome}`))return;
@@ -918,17 +873,21 @@ generateTabFluxoCaixa(f)}
 
 function generateTabRubrica(f,tg){const br={};f.forEach(t=>{if(isExcludedRubrica(t.rubrica))return;if(!br[t.rubrica])br[t.rubrica]={rec:0,desp:0,count:0,category:getCategoryFromRubrica(t.rubrica)};
 if(t.tipo==='Receita')br[t.rubrica].rec+=t.valorOriginal;else br[t.rubrica].desp+=t.valorOriginal;br[t.rubrica].count++});
+// Filtra categorias excluídas
 const bc={};Object.entries(br).forEach(([r,d])=>{if(isExcludedRubrica(d.category))return;if(!bc[d.category])bc[d.category]={rec:0,desp:0,count:0,rubricas:[]};bc[d.category].rec+=d.rec;bc[d.category].desp+=d.desp;bc[d.category].count+=d.count;bc[d.category].rubricas.push({rubrica:r,...d})});
 const tb=document.getElementById('bodyRubrica');tb.innerHTML='';let trec=0,tdesp=0,tcount=0;Object.entries(bc).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([c,d])=>{const s=d.rec-d.desp,p=tg>0?((d.rec+d.desp)/tg*100).toFixed(1):0;tb.innerHTML+=`<tr class="category-row"><td>📁 ${c}</td><td class="text-right" style="color:var(--success)">${fmtBRL(d.rec)}</td><td class="text-right" style="color:var(--danger)">${fmtBRL(d.desp)}</td><td class="text-right" style="color:${s>=0?'var(--success)':'var(--danger)'}"><strong>${fmtBRL(s)}</strong></td><td class="text-right">${p}%</td><td class="text-right">${d.count}</td></tr>`;d.rubricas.sort((a,b)=>a.rubrica.localeCompare(b.rubrica)).forEach(sub=>{const ss=sub.rec-sub.desp,sp=tg>0?((sub.rec+sub.desp)/tg*100).toFixed(1):0;tb.innerHTML+=`<tr class="subcategory-row"><td>${sub.rubrica}</td><td class="text-right" style="color:var(--success)">${sub.rec>0?fmtBRL(sub.rec):'-'}</td><td class="text-right" style="color:var(--danger)">${sub.desp>0?fmtBRL(sub.desp):'-'}</td><td class="text-right" style="color:${ss>=0?'var(--success)':'var(--danger)'}">${fmtBRL(ss)}</td><td class="text-right">${sp}%</td><td class="text-right">${sub.count}</td></tr>`});trec+=d.rec;tdesp+=d.desp;tcount+=d.count});const ts=trec-tdesp;tb.innerHTML+=`<tr class="total-row"><td>TOTAL</td><td class="text-right">${fmtBRL(trec)}</td><td class="text-right">${fmtBRL(tdesp)}</td><td class="text-right" style="color:${ts>=0?'#86efac':'#fca5a5'}">${fmtBRL(ts)}</td><td class="text-right">100%</td><td class="text-right">${tcount}</td></tr>`;const labels=Object.keys(br).slice(0,10);if(chartAutoRubricaInstance)chartAutoRubricaInstance.destroy();chartAutoRubricaInstance=new Chart(document.getElementById('chartAutoRubrica'),{type:'bar',data:{labels,datasets:[{label:'Receitas',data:labels.map(l=>br[l].rec),backgroundColor:'#10b981'},{label:'Despesas',data:labels.map(l=>br[l].desp),backgroundColor:'#ef4444'}]},options:{responsive:true,scales:{y:{beginAtZero:true}}}})}
 
 function generateTabCompetencia(f){const bc={};f.forEach(t=>{if(isExcludedRubrica(t.rubrica))return;if(!bc[t.competencia])bc[t.competencia]={rec:0,desp:0,count:0};
 if(t.tipo==='Receita')bc[t.competencia].rec+=t.valorOriginal;else bc[t.competencia].desp+=t.valorOriginal;bc[t.competencia].count++});const tb=document.getElementById('bodyCompetencia');tb.innerHTML='';let trec=0,tdesp=0,tcount=0;Object.entries(bc).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([c,d])=>{const s=d.rec-d.desp,m=d.rec>0?(s/d.rec*100).toFixed(1):0;tb.innerHTML+=`<tr><td style="font-weight:600">📅 ${fmtComp(c)}</td><td class="text-right" style="color:var(--success)">${fmtBRL(d.rec)}</td><td class="text-right" style="color:var(--danger)">${fmtBRL(d.desp)}</td><td class="text-right" style="color:${s>=0?'var(--success)':'var(--danger)'};font-weight:700">${fmtBRL(s)}</td><td class="text-right" style="color:${m>=0?'var(--success)':'var(--danger)'}">${m}%</td><td class="text-right">${d.count}</td></tr>`;trec+=d.rec;tdesp+=d.desp;tcount+=d.count});const ts=trec-tdesp,tm=trec>0?(ts/trec*100).toFixed(1):0;tb.innerHTML+=`<tr class="total-row"><td>TOTAL</td><td class="text-right">${fmtBRL(trec)}</td><td class="text-right">${fmtBRL(tdesp)}</td><td class="text-right" style="color:${ts>=0?'#86efac':'#fca5a5'}">${fmtBRL(ts)}</td><td class="text-right">${tm}%</td><td class="text-right">${tcount}</td></tr>`;const labels=Object.keys(bc).sort().map(c=>fmtComp(c));if(chartAutoCompetenciaInstance)chartAutoCompetenciaInstance.destroy();chartAutoCompetenciaInstance=new Chart(document.getElementById('chartAutoCompetencia'),{type:'bar',data:{labels,datasets:[{label:'Receitas',data:Object.values(bc).map(d=>d.rec),backgroundColor:'#10b981'},{label:'Despesas',data:Object.values(bc).map(d=>d.desp),backgroundColor:'#ef4444'},{label:'Saldo',data:Object.values(bc).map(d=>d.rec-d.desp),type:'line',borderColor:'#0ea5e9',tension:0.3,fill:false}]},options:{responsive:true,scales:{y:{beginAtZero:true}}}})}
 
+// ===== MATRIZ: 12 MESES DE PREVISÃO + TODAS AS RUBRICAS DO PLANO DE CONTAS (exceto APLICAÇÃO/RESGATE/TARIFA/REPASSE) =====
 function generateTabMatriz(f){
+// Determina o mês base: usa o mês inicial do filtro, ou o mês atual
 const sp=document.getElementById('auto-report-start').value;
 const baseMonth=sp||month();
 const months12=generate12Months(baseMonth);
 
+// Coleta todas as rubricas do plano de contas (exceto as excluídas)
 const allRubricas=[];
 RUBRICAS.forEach(c=>{
     if(isExcludedRubrica(`${c.codigo} ${c.nome}`))return;
@@ -951,6 +910,7 @@ RUBRICAS.forEach(c=>{
     }
 });
 
+// Mapeia os lançamentos por rubrica e competência (apenas valorOriginal bruto)
 const m={};
 f.forEach(t=>{
     if(t.isTax)return;
@@ -968,6 +928,7 @@ h+='<th colspan="3" style="background:#1e293b;color:white">TOTAL 12M</th></tr><t
 for(let i=0;i<months12.length+1;i++)h+='<th class="sub-header provision">🟦 Prev.</th><th class="sub-header realized">🟩 Real.</th><th class="sub-header variance">🟨 Var.%</th>';
 h+='</tr></thead><tbody>';
 
+// Agrupa rubricas por categoria
 const bc={};
 allRubricas.forEach(r=>{
     if(!bc[r.category])bc[r.category]=[];
@@ -1000,6 +961,7 @@ Object.entries(bc).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([cat,rubricas]
         h+=`<td class="variance-cell ${vtc}"><strong>${vtt}</strong></td></tr>`;
         ctp+=tpp;ctr+=rtr;
     });
+    // Subtotal da categoria
     h+=`<tr class="subtotal-row"><td style="background:#fef3c7;font-weight:700;color:#78350f">Subtotal</td>`;
     months12.forEach(mes=>{
         let sp=0,sr2=0;
@@ -1014,6 +976,7 @@ Object.entries(bc).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([cat,rubricas]
     gtp+=ctp;gtr+=ctr;
 });
 
+// TOTAL GERAL
 h+=`<tr class="total-row"><td style="background:var(--primary);color:white">TOTAL GERAL (12 MESES)</td>`;
 months12.forEach(mes=>{
     let cp=0,cr=0;
@@ -1028,6 +991,7 @@ h+=`<td style="background:var(--primary);color:white">${fmtBRL(gtp)}</td><td sty
 tb.innerHTML=h;
 }
 
+// ===== PROV VS REAL: EXCLUI APLICAÇÃO/RESGATE/TARIFA/REPASSE =====
 function generateTabProvisionados(f){
 const br={};
 f.forEach(t=>{
@@ -1039,13 +1003,16 @@ f.forEach(t=>{
     }
 });
 
+// Monta lista de categorias não excluídas
 const CATEGORIES_MAIN=RUBRICAS.filter(c=>!isExcludedRubrica(`${c.codigo} ${c.nome}`)).map(c=>`${c.codigo} ${c.nome}`);
 const bc={};
 CATEGORIES_MAIN.forEach(c=>{
     bc[c]={provisioned:0,realized:0,rubricas:[]};
+    // Busca provisionado da categoria
     const catObj=RUBRICAS.find(x=>`${x.codigo} ${x.nome}`===c);
     if(catObj){
         let catProv=catObj.provisionado||0;
+        // Se tem sub-rubricas, soma as não excluídas
         if(catObj.subRubricas&&catObj.subRubricas.length>0){
             catObj.subRubricas.forEach(s=>{
                 if(!isExcludedRubrica(`${s.codigo} ${s.nome}`)){
@@ -1063,10 +1030,12 @@ CATEGORIES_MAIN.forEach(c=>{
                 realized:0
             });
         }
+        // Calcula provisionado da categoria (soma das sub-rubricas não excluídas)
         bc[c].provisioned=bc[c].rubricas.reduce((s,r)=>s+r.provisioned,0);
     }
 });
 
+// Preenche realizado
 Object.entries(br).forEach(([r,d])=>{
     const cat=d.category;
     if(bc[cat]){
